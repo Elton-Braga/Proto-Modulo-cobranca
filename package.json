@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:proto-modulo-cobranca": "node dist/proto-modulo-cobranca/server/server.mjs",
-    "build:prod": "ng build --configuration production --base-href /proto-modulo-cobranca/",
+    "build:prod": "ng build --configuration production --base-href /Proto-Modulo-cobranca/",
     "deploy": "npm run build:prod && npx gh-pages -d dist/proto-modulo-cobranca/browser"
   },
   "prettier": {
