@@ -24,6 +24,10 @@
   padding: 0 0;
 }
 
+.alc {
+  text-align: center !important;
+}
+
 .cabecalho {
   background-image: url("./assets/cabecalho-2.4268559d08e72ade7357.jpg");
   background-repeat: no-repeat; /* Evita a repetição da imagem */
@@ -40,7 +44,23 @@
   width: 100%;
   background-color: #f9fafb;
   text-align: center;
-  padding: 0 15rem;
+  padding: 3rem 1rem; /* Reduzido para centralizar melhor */
+}
+
+.servicos-section .container {
+  max-width: 1200px; /* Limita a largura máxima da seção */
+  margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+.servicos-section h3 {
+  text-align: center;
+}
+
+.servicos-section .row {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente os cards */
+  flex-wrap: wrap; /* Permite quebra de linha responsiva */
+  gap: 1.5rem; /* Espaço entre os cards */
 }
 
 .service-card {
@@ -48,7 +68,8 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 1rem;
+  width: 250px; /* Largura fixa para alinhamento uniforme */
+  padding: 1.5rem;
 }
 
 .service-card:hover {
