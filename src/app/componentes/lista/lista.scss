@@ -1,0 +1,27 @@
+* {
+  //display: flex;
+}
+
+mat-form-field {
+  //display: flex;
+  margin: 0.2;
+}
+
+.menu-acordeon {
+  width: 100%;
+  //display: flex;
+}
+
+.titulo {
+  margin: 2.5rem 0;
+}
+.paginator-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  padding-right: 0.5rem;
+}
+.paginator-container ::ng-deep .mat-mdc-paginator {
+  width: auto !important;
+  display: inline-flex !important;
+}
