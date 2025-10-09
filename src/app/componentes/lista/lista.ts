@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule, NgIf } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
@@ -34,6 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatButtonModule,
     NgIf,
+    RouterLink,
   ],
   templateUrl: './lista.html',
   styleUrl: './lista.scss',
