@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule, NgIf } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
@@ -57,7 +57,9 @@ export class Lista implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {
+    //this.abrirCadastroConcessoes;
+  }
 
   ngOnInit(): void {
     // Reactive form with validations
@@ -70,6 +72,12 @@ export class Lista implements OnInit, AfterViewInit {
 
     // load mock data
     this.dataSource.data = MOCK_BENEFICIARIOS;
+  }
+
+  abrirCadastroConcessoes(element: Beneficiario): void {
+    this.router.navigate(['/cadastro-concessoes'], {
+      state: { beneficiario: element },
+    });
   }
 
   ngAfterViewInit(): void {

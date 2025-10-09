@@ -96,7 +96,7 @@
   <div
     class="table-toolbar my-2 d-flex align-items-center justify-content-between"
   >
-    <div>
+    <div class="">
       <button mat-button (click)="selection.clear()">Limpar seleção</button>
     </div>
     <div>
@@ -176,7 +176,9 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menuAcoes="matMenu">
-            <button mat-menu-item>Cadastro de concessões</button>
+            <button mat-menu-item (click)="abrirCadastroConcessoes(element)">
+              Cadastro de concessões
+            </button>
             <button mat-menu-item>Ação 2</button>
             <button mat-menu-item>Ação 3</button>
           </mat-menu>
@@ -189,9 +191,10 @@
   </div>
 
   <!-- ✅ container separado evita erro NG5002 -->
-  <div class="justify-content-end">
-    <div class="col-12">
+  <div class="">
+    <div class="paginador">
       <mat-paginator
+        class="paginador"
         [pageSizeOptions]="[10, 20]"
         showFirstLastButtons
       ></mat-paginator>
