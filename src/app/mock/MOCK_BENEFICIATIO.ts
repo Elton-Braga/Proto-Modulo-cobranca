@@ -3,9 +3,9 @@ import { Beneficiario } from './beneficiario';
 export const MOCK_BENEFICIARIOS: Beneficiario[] = [
   {
     titular: {
-      nome: 'FRANCISCO HERLIDIO CARNEIRO DOS SANTOS',
+      nome: 'FRANCISCO HERLIDIO CARNEIRO',
       cod_beneficiario: 'AC000500004120',
-      cpf: '669.069.382-15',
+      cpf: '000.000.000-00',
       data_nascimento: new Date('1988-12-10'),
       estado_civil: 'Solteiro',
       sexo: 'Masculino',
@@ -24,7 +24,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
     conjuge: {
       nome: 'MARIA BENEDITA COSTA DOS SANTOS',
       cod_beneficiario: 'AC000500004120',
-      cpf: '815.563.812-04',
+      cpf: '000.000.000-01',
       data_nascimento: new Date('1990-05-20'),
       estado_civil: 'Casada',
       sexo: 'Feminino',
@@ -41,9 +41,9 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
     },
     historico_PNRA: [
       {
-        CPF: ['669.069.382-15', '815.563.812-04'],
+        CPF: ['000.000.000-00', '000.000.000-01'],
         nome: [
-          'FRANCISCO HERLIDIO CARNEIRO DOS SANTOS',
+          'FRANCISCO HERLIDIO CARNEIRO',
           'MARIA BENEDITA COSTA DOS SANTOS',
         ],
         codigo_beneficiario: 'AC000500004120',
@@ -52,9 +52,9 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         data_Situacao: '01/01/2001',
       },
       {
-        CPF: ['669.069.382-15', '815.563.812-04'],
+        CPF: ['000.000.000-00', '000.000.000-01'],
         nome: [
-          'FRANCISCO HERLIDIO CARNEIRO DOS SANTOS',
+          'FRANCISCO HERLIDIO CARNEIRO',
           'MARIA BENEDITA COSTA DOS SANTOS',
         ],
         codigo_beneficiario: 'AC000500004120',
@@ -63,9 +63,9 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         data_Situacao: '01/01/2001',
       },
       {
-        CPF: ['669.069.382-15', '815.563.812-04'],
+        CPF: ['000.000.000-00', '000.000.000-01'],
         nome: [
-          'FRANCISCO HERLIDIO CARNEIRO DOS SANTOS',
+          'FRANCISCO HERLIDIO CARNEIRO',
           'MARIA BENEDITA COSTA DOS SANTOS',
         ],
         codigo_beneficiario: 'AC000500004120',
@@ -144,8 +144,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         dataRequerimento: '10/10/2024',
         codigoBeneficiario: 'AC000500004120',
         cpfBeneficiario: '000.000.000-00',
-        nomeBeneficiario: 'FRANCISCO HERLIDIO CARNEIRO DOS SANTOS',
-        solicitante: 'FRANCISCO HERLIDIO CARNEIRO DOS SANTOS',
+        nomeBeneficiario: 'FRANCISCO HERLIDIO CARNEIRO',
+        solicitante: 'FRANCISCO HERLIDIO CARNEIRO',
         sr: 'SR-01',
         uf: 'RS',
         projetoAssentamento: '',

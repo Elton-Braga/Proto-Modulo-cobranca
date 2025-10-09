@@ -2,6 +2,29 @@
   padding: 0;
   margin: 0;
 }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* espaçamento entre a imagem e o texto */
+}
+.texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.texto h1 {
+  font-size: 20px;
+  font-weight: lighter;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 0;
+}
+
+.texto .small {
+  font-size: 0.9rem;
+  color: #555;
+}
 .topo {
   width: 100%;
   display: flex;
@@ -18,7 +41,13 @@
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 20px;
 }
-
+.logo {
+  width: 7rem;
+}
+.objeto {
+  display: inline-flex;
+  flex-direction: row;
+}
 .espacametno {
   margin: 0rem 15rem;
   padding: 0 0;
