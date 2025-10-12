@@ -1,4 +1,39 @@
 .main {
   margin: 5rem 20rem;
   border: solid 1px rgb(235, 234, 234);
+  padding: 1rem 1rem 3rem 1rem;
+}
+mat-accordion {
+  padding: 0;
+  margin: 0;
+}
+
+.flexbox-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Espaçamento entre os campos */
+  align-items: flex-start;
+}
+
+/* Cada item ocupa 1/4 da linha */
+.itens {
+  flex: 1 1 calc(25% - 16px);
+  min-width: 220px; /* Evita campos estreitos demais */
+}
+
+/* Faz o textarea e botões ocuparem toda a linha */
+.w-100 {
+  flex: 1 1 100%;
+}
+
+/* Centraliza o checkbox dentro do fluxo */
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 1.2rem;
+}
+
+/* Botão de salvar */
+.btn-salvar {
+  margin-top: 8px;
 }

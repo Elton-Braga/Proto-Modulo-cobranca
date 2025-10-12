@@ -1,5 +1,201 @@
-<div class="row main">
-  <div class="container">
-    <h1>Cadastro de concessões</h1>
-  </div>
+<div class="main">
+  <h1 class="mb-4">Cadastro de Concessões</h1>
+
+  <mat-accordion multi>
+    <!-- Acordeon 1: Dados Gerais -->
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Dados do Imóvel </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form
+        [formGroup]="formDados"
+        (ngSubmit)="onSubmit()"
+        class="flexbox-form"
+      >
+        <!-- Linha 1 -->
+        <mat-form-field appearance="outline" class="itens">
+          <mat-label>Imóvel/Projeto</mat-label>
+          <input matInput formControlName="imovelProjeto" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="itens">
+          <mat-label>Tipo Documento</mat-label>
+          <mat-select formControlName="tipoDocumento">
+            <mat-option value="titulo">Título Definitivo</mat-option>
+            <mat-option value="contrato">Contrato</mat-option>
+            <mat-option value="outro">Outro</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="itens">
+          <mat-label>Número</mat-label>
+          <input matInput formControlName="numero" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="itens">
+          <mat-label>Beneficiário</mat-label>
+          <input matInput formControlName="beneficiario" />
+        </mat-form-field>
+
+        <!-- Linha 2 -->
+        <mat-form-field appearance="outline" class="itens">
+          <mat-label>CPF Beneficiário</mat-label>
+          <input matInput formControlName="cpfBeneficiario" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="itens">
+          <mat-label>Nascimento</mat-label>
+          <input
+            matInput
+            [matDatepicker]="pickerNascimento"
+            formControlName="nascimento"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerNascimento"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerNascimento></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="itens">
+          <mat-label>Idade</mat-label>
+          <input matInput type="number" formControlName="idade" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="itens">
+          <mat-label>Qtd. Filhos</mat-label>
+          <input matInput type="number" formControlName="qtdFilhos" />
+        </mat-form-field>
+
+        <!-- Linha 3 -->
+        <mat-form-field appearance="outline" class="itens">
+          <mat-label>Área (ha)</mat-label>
+          <input matInput formControlName="area" />
+        </mat-form-field>
+
+        <div class="checkbox-wrapper itens">
+          <mat-checkbox formControlName="regularizacaoFundiaria">
+            Regularização Fundiária
+          </mat-checkbox>
+        </div>
+
+        <mat-form-field appearance="outline" class="w-100 itens">
+          <mat-label>Observações</mat-label>
+          <textarea matInput formControlName="observacoes" rows="3"></textarea>
+        </mat-form-field>
+
+        <div class="w-100">
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn-salvar"
+            type="submit"
+          >
+            Salvar Dados
+          </button>
+        </div>
+      </form>
+    </mat-expansion-panel>
+
+    <!-- Acordeon 2: Resumo Financeiro -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Resumo Financeiro </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form [formGroup]="formFinanceiro" class="mt-3">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Valor total atualizado</mat-label>
+              <input matInput formControlName="valorTotalAtualizado" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Valor total devido</mat-label>
+              <input matInput formControlName="valorTotalDevido" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Qtd. prestações a vencer</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="qtdPrestacoesAVencer"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Valor a vencer</mat-label>
+              <input matInput formControlName="valorAVencer" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Qtd. prestações vencidas</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="qtdPrestacoesVencidas"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Valor vencido</mat-label>
+              <input matInput formControlName="valorVencido" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Qtd. prestações pagas/baixadas</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="qtdPrestacoesPagas"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Valor pago</mat-label>
+              <input matInput formControlName="valorPago" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Diferenças geradas</mat-label>
+              <input matInput formControlName="diferencasGeradas" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Diferenças em aberto</mat-label>
+              <input matInput formControlName="diferencasEmAberto" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <button mat-raised-button color="accent" class="mt-3" type="submit">
+          Salvar Resumo
+        </button>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
