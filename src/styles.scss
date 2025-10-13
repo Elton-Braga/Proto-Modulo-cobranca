@@ -63,7 +63,10 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-.align-select .mat-mdc-select-panel {
-  margin-top: 0 !important;
-  transform: translateY(-2px) !important;
+.cdk-overlay-pane {
+  /* Reseta qualquer position: relative/fixed que possa estar sendo herdado */
+  position: absolute !important;
+
+  /* Garante que ele não seja cortado por um overflow: hidden no pai */
+  overflow: visible !important;
 }

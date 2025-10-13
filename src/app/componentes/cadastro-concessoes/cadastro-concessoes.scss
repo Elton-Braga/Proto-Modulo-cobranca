@@ -37,3 +37,11 @@ mat-accordion {
 .btn-salvar {
   margin-top: 8px;
 }
+
+.menu-desalinhado-fix {
+  /* Força o uso de transform para o posicionamento, que é o padrão 
+  do CDK e geralmente mais robusto. Às vezes, este estilo 
+  pode forçar o Angular a recalcular a posição correta.
+  */
+  transform: none !important;
+}
