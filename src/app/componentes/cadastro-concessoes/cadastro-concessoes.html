@@ -235,10 +235,7 @@
         <!-- Checkbox e Observações -->
         <mat-form-field appearance="outline" class="itens align-select">
           <mat-label>Regularização Fundiaria?</mat-label>
-          <mat-select
-            formControlName="tipoTermoAditivo"
-            panelClass="align-select"
-          >
+          <mat-select formControlName="rf" panelClass="align-select">
             <mat-option value="requerimentoValor">Sim</mat-option>
             <mat-option value="alterarCondicaoPgto">Não</mat-option>
           </mat-select>
@@ -364,26 +361,26 @@
   </mat-accordion>
 </div>
 
-<!-- Toast Bootstrap -->
+<!-- Toast Bootstrap Dinâmico -->
 <div
   class="toast-container position-fixed top-0 end-0 p-3"
   style="z-index: 1200"
 >
   <div
-    id="toastSucesso"
-    class="toast text-bg-success border-0"
+    id="toastGlobal"
+    class="toast border-0"
     role="alert"
     aria-live="assertive"
     aria-atomic="true"
     data-bs-delay="5000"
   >
     <div class="d-flex">
-      <div class="toast-body">✅ Dados salvos com sucesso!</div>
+      <div id="toastMensagem" class="toast-body fw-semibold"></div>
       <button
         type="button"
-        class="btn-close btn-close-white me-2 m-auto"
+        class="btn-close me-2 m-auto"
         data-bs-dismiss="toast"
-        aria-label="Close"
+        aria-label="Fechar"
       ></button>
     </div>
   </div>

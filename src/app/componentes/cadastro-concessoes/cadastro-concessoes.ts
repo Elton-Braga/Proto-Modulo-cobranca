@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
@@ -15,9 +14,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import * as bootstrap from 'bootstrap';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro-concessoes',
+  standalone: true,
   imports: [
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -30,23 +31,39 @@ import * as bootstrap from 'bootstrap';
     MatExpansionModule,
   ],
   templateUrl: './cadastro-concessoes.html',
-  styleUrl: './cadastro-concessoes.scss',
+  styleUrls: ['./cadastro-concessoes.scss'],
 })
-export class CadastroConcessoes {
+export class CadastroConcessoes implements AfterViewInit {
   formDados!: FormGroup;
   formFinanceiro!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private location: Location) {}
 
   ngOnInit(): void {
+    // ✅ 1. Primeiro, criar os formulários
+    this.criarFormularios();
+
+    // ✅ 2. Depois, verificar se há dados vindos da navegação
+    const state = this.location.getState() as any;
+    if (state?.beneficiario) {
+      console.log('🔹 Beneficiário recebido:', state.beneficiario);
+
+      this.formDados.patchValue({
+        beneficiario: state.beneficiario.titular?.nome || '',
+        cpfBeneficiario: state.beneficiario.titular?.cpf || '',
+      });
+    }
+  }
+
+  private criarFormularios(): void {
     this.formDados = this.fb.group({
       imovelProjeto: ['', Validators.required],
       tipoDocumento: ['', Validators.required],
       numero: ['', Validators.required],
-      beneficiario: ['', Validators.required],
+      beneficiario: [{ value: '', disabled: true }, Validators.required],
       situacaoBeneficiario: [''],
       cpfBeneficiario: [
-        '',
+        { value: '', disabled: true },
         [
           Validators.required,
           Validators.minLength(11),
@@ -57,8 +74,6 @@ export class CadastroConcessoes {
       nascimento: [''],
       idade: [''],
       qtdFilhos: [''],
-
-      // 🏡 Campos solicitados
       numeroLote: ['', Validators.required],
       area: [
         '',
@@ -86,7 +101,7 @@ export class CadastroConcessoes {
         [Validators.required, Validators.pattern(/^\d+$/)],
       ],
       moduloFiscal: ['', Validators.required],
-      tituloCancelado: ['', Validators.required], // combobox "Sim" / "Não"
+      tituloCancelado: ['', Validators.required],
       valorPrimeiraPrestacao: [
         '',
         [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
@@ -98,29 +113,10 @@ export class CadastroConcessoes {
         [Validators.required, Validators.pattern(/^\d+$/)],
       ],
       municipioSedeImovel: ['', Validators.required],
-      tipoTermoAditivo: ['', Validators.required], // combobox com "Requerimento de Valor" / "Alterar Condição de Pagamento"
-
-      // 🔹 Campos auxiliares do seu modelo anterior
+      tipoTermoAditivo: ['', Validators.required],
       regularizacaoFundiaria: [false],
-      publicacao: [''],
-      boletimServico: [''],
-      dataEntregaAntiga: [''],
-      dataEmissaoAntiga: [''],
-      processoAdministrativo: [''],
-      valorHectareAntigo: [''],
-      valorAlienacaoAntigo: [''],
-      numeroSei: [''],
-      frequenciaPgto: [''],
-      qtdModFiscais: [''],
-      codSncr: [''],
-      diferencaAreaAntiga: [''],
-      valorPrimeiraPrestacaoAntiga: [''],
-      vencimentoPrimeiraPrestacaoAntiga: [''],
-      condicoesPagamento: [''],
-      numeroPrestacoesAntigas: [''],
-      tituloCanceladoAntigo: [false],
-      municipio: [''],
       observacoes: [''],
+      rf: [''],
     });
 
     this.formFinanceiro = this.fb.group({
@@ -143,16 +139,54 @@ export class CadastroConcessoes {
     if (this.formDados.valid && this.formFinanceiro.valid) {
       console.log('✅ Dados do formulário:', this.formDados.value);
       console.log('📊 Resumo financeiro:', this.formFinanceiro.value);
-      this.mostrarToast(); // <-- Mostra o toast aqui
+
+      // ✅ Chamada corrigida
+      this.mostrarToast('✅ Dados salvos com sucesso!', 'success');
     } else {
       this.formDados.markAllAsTouched();
       this.formFinanceiro.markAllAsTouched();
+
+      // Identifica campos inválidos (opcional, pode incluir)
+      const camposInvalidos: string[] = [];
+      Object.keys(this.formDados.controls).forEach((key) => {
+        const control = this.formDados.get(key);
+        if (control?.invalid) camposInvalidos.push(key);
+      });
+
+      const msgErro =
+        camposInvalidos.length > 0
+          ? `❌ Os seguintes campos obrigatórios devem ser preenchidos: ${camposInvalidos
+              .join(', ')
+              .replace(/([A-Z])/g, ' $1')
+              .toLowerCase()}.`
+          : '❌ Preencha todos os campos obrigatórios.';
+
+      // ✅ Toast de erro
+      this.mostrarToast(msgErro, 'error');
     }
   }
 
-  mostrarToast() {
-    const toastEl = document.getElementById('toastSucesso');
-    if (toastEl) {
+  ngAfterViewInit(): void {
+    // Garantia de inicialização após renderização do DOM
+  }
+
+  mostrarToast(mensagem: string, tipo: 'success' | 'error' = 'success'): void {
+    const toastEl = document.getElementById('toastGlobal');
+    const toastMsg = document.getElementById('toastMensagem');
+
+    if (toastEl && toastMsg) {
+      // Remove classes antigas
+      toastEl.classList.remove('text-bg-success', 'text-bg-danger');
+
+      // Aplica o estilo conforme o tipo
+      toastEl.classList.add(
+        tipo === 'success' ? 'text-bg-success' : 'text-bg-danger'
+      );
+
+      // Define a mensagem
+      toastMsg.textContent = mensagem;
+
+      // Exibe o toast
       const toast = new bootstrap.Toast(toastEl);
       toast.show();
     }
