@@ -14,6 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-cadastro-concessoes',
@@ -44,36 +45,81 @@ export class CadastroConcessoes {
       numero: ['', Validators.required],
       beneficiario: ['', Validators.required],
       situacaoBeneficiario: [''],
-      cpfBeneficiario: ['', [Validators.required, Validators.minLength(11)]],
+      cpfBeneficiario: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(11),
+          Validators.maxLength(11),
+          Validators.pattern(/^\d+$/),
+        ],
+      ],
       nascimento: [''],
       idade: [''],
       qtdFilhos: [''],
-      numeroLote: [''],
-      area: [''],
-      gleba: [''],
+
+      // 🏡 Campos solicitados
+      numeroLote: ['', Validators.required],
+      area: [
+        '',
+        [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
+      ],
+      gleba: ['', Validators.required],
+      dataPublicacao: ['', Validators.required],
+      numeroBoletimServico: ['', Validators.required],
+      dataEntrega: ['', Validators.required],
+      dataEmissao: ['', Validators.required],
+      numeroProcesso: ['', Validators.required],
+      codigoSNCR: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      diferencaArea: ['', Validators.pattern(/^-?\d+(\.\d{1,2})?$/)],
+      valorHectare: [
+        '',
+        [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
+      ],
+      valorAlienacao: [
+        '',
+        [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
+      ],
+      frequenciaPagamento: ['', Validators.required],
+      numeroModuloFiscal: [
+        '',
+        [Validators.required, Validators.pattern(/^\d+$/)],
+      ],
+      moduloFiscal: ['', Validators.required],
+      tituloCancelado: ['', Validators.required], // combobox "Sim" / "Não"
+      valorPrimeiraPrestacao: [
+        '',
+        [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
+      ],
+      vencimentoPrimeiraPrestacao: ['', Validators.required],
+      condicaoPagamento: ['', Validators.required],
+      numeroPrestacoes: [
+        '',
+        [Validators.required, Validators.pattern(/^\d+$/)],
+      ],
+      municipioSedeImovel: ['', Validators.required],
+      tipoTermoAditivo: ['', Validators.required], // combobox com "Requerimento de Valor" / "Alterar Condição de Pagamento"
+
+      // 🔹 Campos auxiliares do seu modelo anterior
       regularizacaoFundiaria: [false],
       publicacao: [''],
       boletimServico: [''],
-      dataEntrega: [''],
-      dataEmissao: [''],
+      dataEntregaAntiga: [''],
+      dataEmissaoAntiga: [''],
       processoAdministrativo: [''],
-      valorHectare: [''],
-      valorAlienacao: [''],
+      valorHectareAntigo: [''],
+      valorAlienacaoAntigo: [''],
       numeroSei: [''],
       frequenciaPgto: [''],
       qtdModFiscais: [''],
       codSncr: [''],
-      diferencaArea: [''],
-      valorPrimeiraPrestacao: [''],
-      vencimentoPrimeiraPrestacao: [''],
+      diferencaAreaAntiga: [''],
+      valorPrimeiraPrestacaoAntiga: [''],
+      vencimentoPrimeiraPrestacaoAntiga: [''],
       condicoesPagamento: [''],
-      numeroPrestacoes: [''],
-      tituloCancelado: [false],
+      numeroPrestacoesAntigas: [''],
+      tituloCanceladoAntigo: [false],
       municipio: [''],
-      tipoTermoAditivo: this.fb.group({
-        reenquadramentoValor: [false],
-        alteracaoCondicoesPgto: [false],
-      }),
       observacoes: [''],
     });
 
@@ -95,11 +141,20 @@ export class CadastroConcessoes {
 
   onSubmit(): void {
     if (this.formDados.valid && this.formFinanceiro.valid) {
-      console.log('Dados do formulário:', this.formDados.value);
-      console.log('Resumo financeiro:', this.formFinanceiro.value);
+      console.log('✅ Dados do formulário:', this.formDados.value);
+      console.log('📊 Resumo financeiro:', this.formFinanceiro.value);
+      this.mostrarToast(); // <-- Mostra o toast aqui
     } else {
       this.formDados.markAllAsTouched();
       this.formFinanceiro.markAllAsTouched();
+    }
+  }
+
+  mostrarToast() {
+    const toastEl = document.getElementById('toastSucesso');
+    if (toastEl) {
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
     }
   }
 }

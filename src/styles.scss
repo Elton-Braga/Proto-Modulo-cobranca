@@ -63,3 +63,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.align-select .mat-mdc-select-panel {
+  margin-top: 0 !important;
+  transform: translateY(-2px) !important;
+}
