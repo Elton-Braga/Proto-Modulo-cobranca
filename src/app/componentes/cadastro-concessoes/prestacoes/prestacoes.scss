@@ -1,0 +1,16 @@
+.flexbox-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Espaçamento entre os campos */
+  align-items: flex-start;
+}
+
+/* Cada item ocupa 1/4 da linha */
+.itens {
+  flex: 1 1 calc(25% - 16px);
+  min-width: 220px; /* Evita campos estreitos demais */
+}
+
+.titulo {
+  float: left;
+}

@@ -1,6 +1,4 @@
-<div class="container p-3">
-  <h2>Prestações</h2>
-
+<div class="flexbox-form p-3">
   <mat-accordion multi>
     <!-- 🧩 BLOCO 1 -->
     <mat-expansion-panel expanded>
@@ -9,22 +7,22 @@
       </mat-expansion-panel-header>
 
       <form [formGroup]="formPrestacoes" class="row g-3">
-        <mat-form-field class="col-md-6" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>PA Imóvel/Gleba</mat-label>
           <input matInput formControlName="paImovelGleba" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-6" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Número do Documento</mat-label>
           <input matInput formControlName="numeroDocumento" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-6" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Beneficiário</mat-label>
           <input matInput formControlName="beneficiario" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-6" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Nº Referência GRU</mat-label>
           <input matInput formControlName="numeroReferenciaGru" />
         </mat-form-field>
@@ -38,12 +36,12 @@
       </mat-expansion-panel-header>
 
       <form [formGroup]="formPrestacoes" class="row g-3">
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Prestação</mat-label>
           <input matInput type="number" formControlName="prestacao" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Vencimento Original</mat-label>
           <input
             matInput
@@ -57,7 +55,7 @@
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Data para Pagamento</mat-label>
           <input
             matInput
@@ -71,12 +69,12 @@
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Nº Ref. Antigo</mat-label>
           <input matInput formControlName="numRefAntigo" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Tipo de Comprovante</mat-label>
           <mat-select formControlName="tipoComprovante">
             <mat-option value="gru">GRU</mat-option>
@@ -85,17 +83,17 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Nº Processo SEI</mat-label>
           <input matInput formControlName="numProcessoSei" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Nº Registro GRU</mat-label>
           <input matInput formControlName="numRegistroGru" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Data da Baixa</mat-label>
           <input
             matInput
@@ -109,7 +107,7 @@
           <mat-datepicker #picker3></mat-datepicker>
         </mat-form-field>
 
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Valor Baixado</mat-label>
           <input matInput type="number" formControlName="valorBaixado" />
         </mat-form-field>
@@ -186,42 +184,42 @@
       </mat-expansion-panel-header>
 
       <form [formGroup]="formPrestacoes" class="row g-3">
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Valor Principal</mat-label>
           <input matInput type="number" formControlName="valorPrincipal" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Índice Correção</mat-label>
           <input matInput formControlName="correcaoMonetariaIndice" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Mês/Ano</mat-label>
           <input matInput formControlName="correcaoMonetariaMesAno" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Coeficiente</mat-label>
           <input matInput formControlName="correcaoMonetariaCoeficiente" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Juros (%)</mat-label>
           <input matInput type="number" formControlName="jurosPercentual" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Desconto Juros (%)</mat-label>
           <input matInput type="number" formControlName="jurosDesconto" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Valor Corrigido</mat-label>
           <input matInput type="number" formControlName="valorCorrigido" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Desconto (Valor Corrigido)</mat-label>
           <input
             matInput
@@ -230,37 +228,37 @@
           />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Multa</mat-label>
           <input matInput type="number" formControlName="multa" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Desconto Multa</mat-label>
           <input matInput type="number" formControlName="descontoMulta" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>J. Mora</mat-label>
           <input matInput type="number" formControlName="jurosMora" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Desconto J. Mora</mat-label>
           <input matInput type="number" formControlName="descontoJurosMora" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Valor com Encargos</mat-label>
           <input matInput type="number" formControlName="valorComEncargos" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Desconto Excedente</mat-label>
           <input matInput type="number" formControlName="descontoExcedente" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-3" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Valor Total da Prestação</mat-label>
           <input matInput type="number" formControlName="valorTotalPrestacao" />
         </mat-form-field>
@@ -274,7 +272,7 @@
       </mat-expansion-panel-header>
 
       <form [formGroup]="formPrestacoes" class="row g-3">
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Data Requerimento GRU</mat-label>
           <input
             matInput
@@ -288,12 +286,12 @@
           <mat-datepicker #picker4></mat-datepicker>
         </mat-form-field>
 
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Nº SEI</mat-label>
           <input matInput formControlName="numSei" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Data da Entrega GRU</mat-label>
           <input
             matInput
@@ -307,7 +305,7 @@
           <mat-datepicker #picker5></mat-datepicker>
         </mat-form-field>
 
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Forma de Entrega</mat-label>
           <mat-select formControlName="formaEntregaGru">
             <mat-option value="pessoal">Pessoal</mat-option>
@@ -316,12 +314,12 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="col-md-8" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Motivo da Não Entrega</mat-label>
           <input matInput formControlName="motivoNaoEntrega" />
         </mat-form-field>
 
-        <mat-form-field class="col-md-12" appearance="outline">
+        <mat-form-field class="itens" appearance="outline">
           <mat-label>Observações</mat-label>
           <textarea matInput formControlName="observacoes" rows="3"></textarea>
         </mat-form-field>
