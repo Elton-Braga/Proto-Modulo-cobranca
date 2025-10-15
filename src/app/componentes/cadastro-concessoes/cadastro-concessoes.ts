@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import * as bootstrap from 'bootstrap';
 import { Location } from '@angular/common';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-cadastro-concessoes',
@@ -29,6 +30,7 @@ import { Location } from '@angular/common';
     MatNativeDateModule,
     MatButtonModule,
     MatExpansionModule,
+    MatStepperModule,
   ],
   templateUrl: './cadastro-concessoes.html',
   styleUrls: ['./cadastro-concessoes.scss'],
@@ -36,7 +38,7 @@ import { Location } from '@angular/common';
 export class CadastroConcessoes implements AfterViewInit {
   formDados!: FormGroup;
   formFinanceiro!: FormGroup;
-
+  isEditable = false;
   constructor(private fb: FormBuilder, private location: Location) {}
 
   ngOnInit(): void {
