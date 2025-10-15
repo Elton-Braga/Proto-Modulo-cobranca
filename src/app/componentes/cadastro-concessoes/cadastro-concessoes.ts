@@ -16,6 +16,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import * as bootstrap from 'bootstrap';
 import { Location } from '@angular/common';
 import { MatStepperModule } from '@angular/material/stepper';
+import { Prestacoes } from './prestacoes/prestacoes';
 
 @Component({
   selector: 'app-cadastro-concessoes',
@@ -31,6 +32,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatButtonModule,
     MatExpansionModule,
     MatStepperModule,
+    Prestacoes,
   ],
   templateUrl: './cadastro-concessoes.html',
   styleUrls: ['./cadastro-concessoes.scss'],
