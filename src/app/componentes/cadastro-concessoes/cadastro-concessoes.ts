@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import * as bootstrap from 'bootstrap';
 import { Location } from '@angular/common';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { Prestacoes } from './prestacoes/prestacoes';
 
 @Component({
@@ -40,7 +40,7 @@ import { Prestacoes } from './prestacoes/prestacoes';
 export class CadastroConcessoes implements AfterViewInit {
   formDados!: FormGroup;
   formFinanceiro!: FormGroup;
-  isEditable = false;
+  isEditable = true;
   constructor(private fb: FormBuilder, private location: Location) {}
 
   ngOnInit(): void {
@@ -193,6 +193,20 @@ export class CadastroConcessoes implements AfterViewInit {
       // Exibe o toast
       const toast = new bootstrap.Toast(toastEl);
       toast.show();
+    }
+  }
+
+  /** Avança para o próximo step */
+  avancarStep(stepper: MatStepper): void {
+    if (stepper.selectedIndex < stepper.steps.length - 1) {
+      stepper.next();
+    }
+  }
+
+  /** Volta para o step anterior */
+  voltarStep(stepper: MatStepper): void {
+    if (stepper.selectedIndex > 0) {
+      stepper.previous();
     }
   }
 }

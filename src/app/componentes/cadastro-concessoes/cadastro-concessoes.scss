@@ -33,15 +33,38 @@ mat-accordion {
   padding-top: 1.2rem;
 }
 
-/* Botão de salvar */
 .btn-salvar {
   margin-top: 8px;
 }
 
 .menu-desalinhado-fix {
-  /* Força o uso de transform para o posicionamento, que é o padrão 
-  do CDK e geralmente mais robusto. Às vezes, este estilo 
-  pode forçar o Angular a recalcular a posição correta.
-  */
   transform: none !important;
+}
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.rodape-stepper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  padding: 0.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+.btn-voltar,
+.btn-avancar {
+  min-width: 150px;
+  font-weight: 600;
 }

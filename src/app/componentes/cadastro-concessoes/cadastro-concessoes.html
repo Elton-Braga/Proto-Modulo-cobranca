@@ -1,7 +1,7 @@
 <div class="main">
   <h1 class="mb-4">Cadastro de Concessões</h1>
 
-  <mat-stepper linear #stepper>
+  <mat-stepper [linear]="false" orientation="horizontal" #stepper>
     <mat-step [stepControl]="formDados" [editable]="isEditable">
       <mat-accordion multi>
         <!-- Acordeon 1: Dados Gerais -->
@@ -390,6 +390,27 @@
     >
   </mat-stepper>
 </div>
+
+<!-- ✅ Rodapé fixo -->
+<footer class="rodape-stepper">
+  <button
+    mat-raised-button
+    color="accent"
+    class="btn-voltar"
+    (click)="voltarStep(stepper)"
+  >
+    ⬅ Voltar
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="btn-avancar"
+    (click)="avancarStep(stepper)"
+  >
+    Avançar ➡
+  </button>
+</footer>
 
 <!-- Toast Bootstrap Dinâmico -->
 <div
