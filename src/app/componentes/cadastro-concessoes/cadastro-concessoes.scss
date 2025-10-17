@@ -1,7 +1,15 @@
 .main {
-  margin: 5rem 20rem;
-  border: solid 1px rgb(235, 234, 234);
+  margin: 5rem 5rem;
+  border: solid 0px rgb(235, 234, 234);
   padding: 1rem 1rem 3rem 1rem;
+}
+.menu {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-items: baseline;
+  margin: 0 0 1.5rem 0rem;
+  justify-content: space-between;
 }
 mat-accordion {
   padding: 0;
@@ -13,6 +21,7 @@ mat-accordion {
   flex-wrap: wrap;
   gap: 16px; /* Espaçamento entre os campos */
   align-items: flex-start;
+  min-width: 10rem;
 }
 
 /* Cada item ocupa 1/4 da linha */
@@ -67,4 +76,28 @@ mat-accordion {
 .btn-avancar {
   min-width: 150px;
   font-weight: 600;
+}
+
+.breadcrumb-header {
+  display: inline-flex;
+  flex-wrap: wrap;
+  //min-width: 10rem;
+  //max-width: 95rem;
+}
+
+.breadcrumb-header .mat-step-header {
+  flex: 1 1 auto;
+  min-width: 180px;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+::ng-deep .mat-step-header {
+  flex: 1 1 auto;
+  min-width: 180px; /* ajusta conforme necessário */
 }

@@ -1,0 +1,23 @@
+.flexboxform {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: baseline;
+  row-gap: 1rem;
+  column-gap: 1rem;
+}
+form {
+  width: 100%;
+}
+mat-accordion {
+  padding: 0;
+  width: 100%;
+}
+.item {
+  order: 4;
+  flex: 1 1 calc(25% - 16px);
+  min-width: 220px;
+  margin: 0.5rem;
+}

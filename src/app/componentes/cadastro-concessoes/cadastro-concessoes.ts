@@ -17,6 +17,9 @@ import * as bootstrap from 'bootstrap';
 import { Location } from '@angular/common';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { Prestacoes } from './prestacoes/prestacoes';
+import { CreditosAConsiderar } from './creditos-a-considerar/creditos-a-considerar';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-concessoes',
@@ -33,6 +36,9 @@ import { Prestacoes } from './prestacoes/prestacoes';
     MatExpansionModule,
     MatStepperModule,
     Prestacoes,
+    CreditosAConsiderar,
+    MatIconModule,
+    RouterLink,
   ],
   templateUrl: './cadastro-concessoes.html',
   styleUrls: ['./cadastro-concessoes.scss'],

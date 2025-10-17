@@ -1,7 +1,23 @@
 <div class="main">
+  <div class="menu">
+    <button
+      matMiniFab
+      aria-label="Example icon button with a home icon"
+      routerLink="/lista"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+  </div>
+
+  <br />
   <h1 class="mb-4">Cadastro de Concessões</h1>
   <br />
-  <mat-stepper [linear]="false" orientation="horizontal" #stepper>
+  <mat-stepper
+    [linear]="false"
+    orientation="horizontal"
+    #stepper
+    class="breadcrumb-header"
+  >
     <br />
     <mat-step [stepControl]="formDados" [editable]="isEditable">
       <mat-accordion multi>
@@ -379,8 +395,9 @@
     </mat-step>
 
     <mat-step [editable]="isEditable"
-      ><ng-template matStepLabel>Créditos a considerar</ng-template></mat-step
-    >
+      ><ng-template matStepLabel>Créditos a considerar</ng-template
+      ><app-creditos-a-considerar></app-creditos-a-considerar
+    ></mat-step>
 
     <mat-step [editable]="isEditable"
       ><ng-template matStepLabel>GRU's Processadas</ng-template></mat-step
