@@ -4,29 +4,31 @@
       <!-- BLOCO 1 -->
       <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
-          <mat-panel-title> Informações do Beneficiário </mat-panel-title>
+          <mat-panel-title>Informações do Beneficiário</mat-panel-title>
         </mat-expansion-panel-header>
 
-        <mat-form-field appearance="outline" class="item">
-          <mat-label>PA/Imóvel/Gleba</mat-label>
-          <input matInput formControlName="paImovelGleba" />
-        </mat-form-field>
+        <div class="linha-form">
+          <mat-form-field appearance="outline" class="item">
+            <mat-label>PA/Imóvel/Gleba</mat-label>
+            <input matInput formControlName="paImovelGleba" />
+          </mat-form-field>
 
-        <mat-form-field appearance="outline" class="item">
-          <mat-label>Número do Documento</mat-label>
-          <input matInput formControlName="numeroDocumento" />
-        </mat-form-field>
+          <mat-form-field appearance="outline" class="item">
+            <mat-label>Número do Documento</mat-label>
+            <input matInput formControlName="numeroDocumento" />
+          </mat-form-field>
 
-        <mat-form-field appearance="outline" class="item">
-          <mat-label>Beneficiário</mat-label>
-          <input matInput formControlName="beneficiario" />
-        </mat-form-field>
+          <mat-form-field appearance="outline" class="item">
+            <mat-label>Beneficiário</mat-label>
+            <input matInput formControlName="beneficiario" />
+          </mat-form-field>
+        </div>
       </mat-expansion-panel>
 
       <!-- BLOCO 2 -->
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title> Créditos </mat-panel-title>
+          <mat-panel-title>Créditos</mat-panel-title>
         </mat-expansion-panel-header>
 
         <div formArrayName="creditos">
@@ -71,7 +73,7 @@
       <!-- BLOCO 3 -->
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title> Dados Consolidados </mat-panel-title>
+          <mat-panel-title>Dados Consolidados</mat-panel-title>
         </mat-expansion-panel-header>
 
         <table
@@ -127,8 +129,6 @@
         </table>
       </mat-expansion-panel>
     </mat-accordion>
-
-    <br />
 
     <div class="botoes">
       <button mat-raised-button color="primary" type="submit">Salvar</button>

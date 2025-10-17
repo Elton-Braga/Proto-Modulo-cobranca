@@ -1,0 +1,73 @@
+.tabela-concessoes {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1.5rem;
+  margin: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.filtro-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.campo-pesquisa {
+  flex: 1 1 300px;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.table-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  font-size: 13px;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+  white-space: nowrap;
+  padding: 0.75rem;
+}
+
+tr.mat-header-row {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+tr.mat-row:hover {
+  background-color: #f0f7ff;
+}
+.filtro-container {
+  display: flex;
+  justify-content: center; /* Centraliza o campo na tela */
+  align-items: center;
+  width: 100%; /* Ocupa toda a largura disponível */
+  margin-bottom: 1rem;
+}
+
+.campo-pesquisa {
+  width: 95%; /* Faz o campo ocupar 95% da tela */
+  max-width: none; /* Remove o limite anterior */
+}

@@ -1,4 +1,4 @@
-.flexboxform {
+/*.flexboxform {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -20,4 +20,48 @@ mat-accordion {
   flex: 1 1 calc(25% - 16px);
   min-width: 220px;
   margin: 0.5rem;
+}
+*/
+
+* {
+  margin: 0.01rem;
+}
+
+.flexboxform {
+  display: flex;
+  flex-direction: column;
+  min-width: 95%;
+  //width: 100%;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.linha-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 1rem;
+}
+
+.item {
+  flex: 1 1 30%;
+  min-width: 280px;
+}
+
+.linha-credito {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem; /* distância de 1rem entre os botões */
+  margin-top: 1.5rem;
+}
+mat-expansion-panel {
+  min-width: 100%;
 }

@@ -1,0 +1,128 @@
+<mat-card class="tabela-concessoes">
+  <!-- Cabeçalho -->
+  <div class="header"></div>
+
+  <!-- Campo de pesquisa -->
+  <div class="filtro-container">
+    <mat-form-field appearance="outline" class="campo-pesquisa">
+      <mat-label>Pesquisar</mat-label>
+      <input
+        matInput
+        (keyup)="
+          dataSource.filter = $any($event.target).value.trim().toLowerCase()
+        "
+        placeholder="Filtrar por qualquer campo"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <!-- Tabela -->
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+      <!-- Colunas -->
+      <ng-container matColumnDef="parcelas">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Parcelas</th>
+        <td mat-cell *matCellDef="let element">{{ element.parcelas }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="numeroDocumento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nº Documento</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.numeroDocumento }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="idRegGru">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Nº ID Reg. GRU
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.idRegGru }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ugEmitente">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>UG Emitente</th>
+        <td mat-cell *matCellDef="let element">{{ element.ugEmitente }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ugArrecadadora">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          UG Arrecadadora
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.ugArrecadadora }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dataPgto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Pgto</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.dataPgto | date }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dataProcesso">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Processo</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.dataProcesso | date }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ra">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>RA</th>
+        <td mat-cell *matCellDef="let element">{{ element.ra }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="codReconhecimento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Cod. Reconhecimento
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.codReconhecimento }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="descricao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
+        <td mat-cell *matCellDef="let element">{{ element.descricao }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpfContribuinte">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          CPF Contribuinte
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.cpfContribuinte }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="numeroReferencia">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nº Referência</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.numeroReferencia }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor (R$)</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.valor | number : "1.2-2" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="situacao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Situação</th>
+        <td mat-cell *matCellDef="let element">{{ element.situacao }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="avisoBaixa">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Aviso de Baixa
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.avisoBaixa }}</td>
+      </ng-container>
+
+      <!-- Cabeçalho e linhas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</mat-card>

@@ -20,6 +20,7 @@ import { Prestacoes } from './prestacoes/prestacoes';
 import { CreditosAConsiderar } from './creditos-a-considerar/creditos-a-considerar';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { GRUProcessada } from './gruprocessada/gruprocessada';
 
 @Component({
   selector: 'app-cadastro-concessoes',
@@ -39,6 +40,7 @@ import { RouterLink } from '@angular/router';
     CreditosAConsiderar,
     MatIconModule,
     RouterLink,
+    GRUProcessada,
   ],
   templateUrl: './cadastro-concessoes.html',
   styleUrls: ['./cadastro-concessoes.scss'],
