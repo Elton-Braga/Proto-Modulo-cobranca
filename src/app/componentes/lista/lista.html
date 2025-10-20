@@ -7,91 +7,53 @@
     </div>
   </div>
 
-  <div class="accordion menu-acordeon" id="filtroAccordion ">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button
-          class="accordion-button collapsed"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseOne"
-          aria-expanded="false"
-          aria-controls="collapseOne"
-        >
-          Filtros de busca
-        </button>
-      </h2>
+  <mat-accordion class="menu-acordeon">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Filtros de busca</mat-panel-title>
+      </mat-expansion-panel-header>
 
-      <div
-        id="collapseOne"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingOne"
-        data-bs-parent="#filtroAccordion"
-      >
-        <div class="accordion-body">
-          <form
-            [formGroup]="formFiltro"
-            (ngSubmit)="aplicarFiltro()"
-            class="filtro-form"
+      <form [formGroup]="formFiltro" (ngSubmit)="aplicarFiltro()" class="row">
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>Nome do Beneficiário</mat-label>
+          <input matInput formControlName="nome" placeholder="Nome completo" />
+          <mat-error *ngIf="formFiltro.get('nome')?.hasError('minlength')">
+            Mínimo 3 caracteres.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>CPF do Beneficiário</mat-label>
+          <input matInput formControlName="cpf" placeholder="000.000.000-00" />
+          <mat-error *ngIf="formFiltro.get('cpf')?.hasError('pattern')">
+            Formato inválido (xxx.xxx.xxx-xx).
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>Nome do PA</mat-label>
+          <input matInput formControlName="nomePA" placeholder="Nome do PA" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>SR</mat-label>
+          <input matInput formControlName="sr" placeholder="SR" />
+        </mat-form-field>
+
+        <div class="botoes-row">
+          <button mat-flat-button color="primary" type="submit">Buscar</button>
+          <button
+            mat-stroked-button
+            color="accent"
+            type="button"
+            (click)="limparFiltro()"
           >
-            <div class="campo-row row">
-              <mat-form-field appearance="outline" class="campo-item col-6">
-                <mat-label>Nome do Beneficiário</mat-label>
-                <input
-                  matInput
-                  formControlName="nome"
-                  placeholder="Nome completo"
-                />
-                <mat-error *ngIf="formFiltro.get('nome')?.hasError('minlength')"
-                  >Mínimo 3 caracteres.</mat-error
-                >
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="campo-item col-6">
-                <mat-label>CPF do Beneficiário</mat-label>
-                <input
-                  matInput
-                  formControlName="cpf"
-                  placeholder="000.000.000-00"
-                />
-                <mat-error *ngIf="formFiltro.get('cpf')?.hasError('pattern')"
-                  >Formato inválido (xxx.xxx.xxx-xx).</mat-error
-                >
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="campo-item col-6">
-                <mat-label>Nome do PA</mat-label>
-                <input
-                  matInput
-                  formControlName="nomePA"
-                  placeholder="Nome do PA"
-                />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="campo-item col-6">
-                <mat-label>SR</mat-label>
-                <input matInput formControlName="sr" placeholder="SR" />
-              </mat-form-field>
-            </div>
-
-            <div class="botoes-row row g-3">
-              <button mat-flat-button type="submit" class="col-1">
-                Buscar
-              </button>
-              <button
-                mat-stroked-button
-                type="button"
-                class="col-1"
-                (click)="limparFiltro()"
-              >
-                Limpar campos
-              </button>
-            </div>
-          </form>
+            Limpar campos
+          </button>
         </div>
-      </div>
-    </div>
-  </div>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
 
   <div
     class="table-toolbar my-2 d-flex align-items-center justify-content-between"

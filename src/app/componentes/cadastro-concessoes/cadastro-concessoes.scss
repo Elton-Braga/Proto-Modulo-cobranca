@@ -17,6 +17,12 @@ mat-accordion {
   margin: 0;
 }
 
+::ng-deep .accordion-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .flexbox-form {
   display: flex;
   flex-wrap: wrap;

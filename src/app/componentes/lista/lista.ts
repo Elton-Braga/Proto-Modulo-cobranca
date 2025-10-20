@@ -18,6 +18,13 @@ import { CommonModule, NgIf } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+} from '@angular/material/expansion';
+//import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from "@angular/material/expansion";
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
@@ -36,6 +43,10 @@ import { Router, RouterLink } from '@angular/router';
     MatButtonModule,
     NgIf,
     RouterLink,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle,
   ],
   templateUrl: './lista.html',
   styleUrl: './lista.scss',

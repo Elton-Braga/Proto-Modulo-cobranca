@@ -9,6 +9,39 @@
   width: 100%;
 }*/
 
+.menu-acordeon {
+  margin-bottom: 1rem;
+}
+
+mat-expansion-panel {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Campos */
+.campo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.itens {
+}
+
+/* Botões */
+.botoes-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.botoes-row button {
+  min-width: 120px;
+}
+
 mat-form-field {
   //display: flex;
   margin: 0.2;
