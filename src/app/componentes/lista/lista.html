@@ -177,10 +177,19 @@
           </button>
           <mat-menu #menuAcoes="matMenu">
             <button mat-menu-item (click)="abrirCadastroConcessoes(element)">
-              Cadastro de concessões
+              <span>Cadastro de concessões</span>
+              <mat-icon>edit</mat-icon>
             </button>
-            <button mat-menu-item>Consulta concessões</button>
-            <button mat-menu-item>Ação 3</button>
+
+            <button mat-menu-item>
+              <span>Consulta concessões</span>
+              <mat-icon>search</mat-icon>
+            </button>
+
+            <button mat-menu-item (click)="imprimirGRU(element)">
+              <span>Imprimir GRU</span>
+              <mat-icon>print</mat-icon>
+            </button>
           </mat-menu>
         </td>
       </ng-container>

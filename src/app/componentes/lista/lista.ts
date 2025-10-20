@@ -150,4 +150,25 @@ export class Lista implements OnInit, AfterViewInit {
     // Caso deseje manipular o elemento selecionado ao abrir o menu de ações
     console.log('Beneficiário selecionado:', element);
   }
+
+  imprimirGRU(element: any): void {
+    // Abre a aba imediatamente (para evitar bloqueio)
+    const novaAba = window.open('about:blank', '_blank');
+    if (!novaAba) {
+      console.error('Falha ao abrir nova aba para emissão de GRU.');
+      alert(
+        'Seu navegador bloqueou a nova aba. Libere pop-ups para este site.'
+      );
+      return;
+    }
+
+    // ✅ Monte a URL absoluta — com domínio + hash
+    const url = `${window.location.origin}/#/emitir-gru`;
+
+    // Salve o beneficiário no sessionStorage (para ser lido na nova aba)
+    sessionStorage.setItem('beneficiarioSelecionado', JSON.stringify(element));
+
+    // Redireciona a nova aba
+    novaAba.location.href = url;
+  }
 }

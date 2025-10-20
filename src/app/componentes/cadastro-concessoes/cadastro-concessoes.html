@@ -26,265 +26,266 @@
           <mat-expansion-panel-header>
             <mat-panel-title> Dados do Imóvel </mat-panel-title>
           </mat-expansion-panel-header>
+          <div>
+            <form
+              [formGroup]="formDados"
+              (ngSubmit)="onSubmit()"
+              class="flexbox-form"
+            >
+              <ng-template matStepLabel>Dados do documento</ng-template>
+              <!-- Linha 1 -->
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Imóvel/Projeto</mat-label>
+                <input matInput formControlName="imovelProjeto" />
+              </mat-form-field>
 
-          <form
-            [formGroup]="formDados"
-            (ngSubmit)="onSubmit()"
-            class="flexbox-form"
-          >
-            <ng-template matStepLabel>Dados do documento</ng-template>
-            <!-- Linha 1 -->
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Imóvel/Projeto</mat-label>
-              <input matInput formControlName="imovelProjeto" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Tipo Documento</mat-label>
+                <mat-select formControlName="tipoDocumento">
+                  <mat-option value="titulo">Título Definitivo</mat-option>
+                  <mat-option value="contrato">Contrato</mat-option>
+                  <mat-option value="outro">Outro</mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Tipo Documento</mat-label>
-              <mat-select formControlName="tipoDocumento">
-                <mat-option value="titulo">Título Definitivo</mat-option>
-                <mat-option value="contrato">Contrato</mat-option>
-                <mat-option value="outro">Outro</mat-option>
-              </mat-select>
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Número</mat-label>
+                <input matInput formControlName="numero" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Número</mat-label>
-              <input matInput formControlName="numero" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Beneficiário</mat-label>
+                <input matInput formControlName="beneficiario" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Beneficiário</mat-label>
-              <input matInput formControlName="beneficiario" />
-            </mat-form-field>
+              <!-- Linha 2 -->
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>CPF Beneficiário</mat-label>
+                <input matInput formControlName="cpfBeneficiario" />
+              </mat-form-field>
 
-            <!-- Linha 2 -->
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>CPF Beneficiário</mat-label>
-              <input matInput formControlName="cpfBeneficiario" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Nascimento</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="pickerNascimento"
+                  formControlName="nascimento"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="pickerNascimento"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #pickerNascimento></mat-datepicker>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Nascimento</mat-label>
-              <input
-                matInput
-                [matDatepicker]="pickerNascimento"
-                formControlName="nascimento"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="pickerNascimento"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #pickerNascimento></mat-datepicker>
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Idade</mat-label>
+                <input matInput type="number" formControlName="idade" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Idade</mat-label>
-              <input matInput type="number" formControlName="idade" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Qtd. Filhos</mat-label>
+                <input matInput type="number" formControlName="qtdFilhos" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Qtd. Filhos</mat-label>
-              <input matInput type="number" formControlName="qtdFilhos" />
-            </mat-form-field>
+              <!-- 🏡 CAMPOS FALTANTES -->
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Número do Lote</mat-label>
+                <input matInput formControlName="numeroLote" />
+              </mat-form-field>
 
-            <!-- 🏡 CAMPOS FALTANTES -->
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Número do Lote</mat-label>
-              <input matInput formControlName="numeroLote" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Área (ha)</mat-label>
+                <input matInput formControlName="area" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Área (ha)</mat-label>
-              <input matInput formControlName="area" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Gleba</mat-label>
+                <input matInput formControlName="gleba" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Gleba</mat-label>
-              <input matInput formControlName="gleba" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Data de Publicação</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="pickerPublicacao"
+                  formControlName="dataPublicacao"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="pickerPublicacao"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #pickerPublicacao></mat-datepicker>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Data de Publicação</mat-label>
-              <input
-                matInput
-                [matDatepicker]="pickerPublicacao"
-                formControlName="dataPublicacao"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="pickerPublicacao"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #pickerPublicacao></mat-datepicker>
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Nº Boletim de Serviço</mat-label>
+                <input matInput formControlName="numeroBoletimServico" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Nº Boletim de Serviço</mat-label>
-              <input matInput formControlName="numeroBoletimServico" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Data da Entrega</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="pickerEntrega"
+                  formControlName="dataEntrega"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="pickerEntrega"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #pickerEntrega></mat-datepicker>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Data da Entrega</mat-label>
-              <input
-                matInput
-                [matDatepicker]="pickerEntrega"
-                formControlName="dataEntrega"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="pickerEntrega"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #pickerEntrega></mat-datepicker>
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Data da Emissão</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="pickerEmissao"
+                  formControlName="dataEmissao"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="pickerEmissao"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #pickerEmissao></mat-datepicker>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Data da Emissão</mat-label>
-              <input
-                matInput
-                [matDatepicker]="pickerEmissao"
-                formControlName="dataEmissao"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="pickerEmissao"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #pickerEmissao></mat-datepicker>
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Número do Processo</mat-label>
+                <input matInput formControlName="numeroProcesso" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Número do Processo</mat-label>
-              <input matInput formControlName="numeroProcesso" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Código SNCR</mat-label>
+                <input matInput formControlName="codigoSNCR" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Código SNCR</mat-label>
-              <input matInput formControlName="codigoSNCR" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Diferença de Área (ha)</mat-label>
+                <input matInput formControlName="diferencaArea" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Diferença de Área (ha)</mat-label>
-              <input matInput formControlName="diferencaArea" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Valor do Hectare</mat-label>
+                <input matInput formControlName="valorHectare" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Valor do Hectare</mat-label>
-              <input matInput formControlName="valorHectare" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Valor da Alienação</mat-label>
+                <input matInput formControlName="valorAlienacao" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Valor da Alienação</mat-label>
-              <input matInput formControlName="valorAlienacao" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Frequência do Pagamento</mat-label>
+                <mat-select formControlName="frequenciaPagamento">
+                  <mat-option value="mensal">Mensal</mat-option>
+                  <mat-option value="anual">Anual</mat-option>
+                  <mat-option value="unico">Único</mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Frequência do Pagamento</mat-label>
-              <mat-select formControlName="frequenciaPagamento">
-                <mat-option value="mensal">Mensal</mat-option>
-                <mat-option value="anual">Anual</mat-option>
-                <mat-option value="unico">Único</mat-option>
-              </mat-select>
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Número do Módulo Fiscal</mat-label>
+                <input matInput formControlName="numeroModuloFiscal" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Número do Módulo Fiscal</mat-label>
-              <input matInput formControlName="numeroModuloFiscal" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Módulo Fiscal</mat-label>
+                <input matInput formControlName="moduloFiscal" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Módulo Fiscal</mat-label>
-              <input matInput formControlName="moduloFiscal" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Título Cancelado?</mat-label>
+                <mat-select formControlName="tituloCancelado">
+                  <mat-option value="sim">Sim</mat-option>
+                  <mat-option value="nao">Não</mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Título Cancelado?</mat-label>
-              <mat-select formControlName="tituloCancelado">
-                <mat-option value="sim">Sim</mat-option>
-                <mat-option value="nao">Não</mat-option>
-              </mat-select>
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Valor da Primeira Prestação</mat-label>
+                <input matInput formControlName="valorPrimeiraPrestacao" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Valor da Primeira Prestação</mat-label>
-              <input matInput formControlName="valorPrimeiraPrestacao" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Vencimento da Primeira Prestação</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="pickerVencimento"
+                  formControlName="vencimentoPrimeiraPrestacao"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="pickerVencimento"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #pickerVencimento></mat-datepicker>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Vencimento da Primeira Prestação</mat-label>
-              <input
-                matInput
-                [matDatepicker]="pickerVencimento"
-                formControlName="vencimentoPrimeiraPrestacao"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="pickerVencimento"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #pickerVencimento></mat-datepicker>
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Condição de Pagamento</mat-label>
+                <input matInput formControlName="condicaoPagamento" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Condição de Pagamento</mat-label>
-              <input matInput formControlName="condicaoPagamento" />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Número de Prestações</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  formControlName="numeroPrestacoes"
+                />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Número de Prestações</mat-label>
-              <input
-                matInput
-                type="number"
-                formControlName="numeroPrestacoes"
-              />
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Município da Sede do Imóvel</mat-label>
+                <input matInput formControlName="municipioSedeImovel" />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="itens">
-              <mat-label>Município da Sede do Imóvel</mat-label>
-              <input matInput formControlName="municipioSedeImovel" />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="itens align-select">
-              <mat-label>Tipo de Termo Aditivo</mat-label>
-              <mat-select
-                formControlName="tipoTermoAditivo"
-                panelClass="align-select"
-              >
-                <mat-option value="requerimentoValor"
-                  >Requerimento de Valor</mat-option
+              <mat-form-field appearance="outline" class="itens align-select">
+                <mat-label>Tipo de Termo Aditivo</mat-label>
+                <mat-select
+                  formControlName="tipoTermoAditivo"
+                  panelClass="align-select"
                 >
-                <mat-option value="alterarCondicaoPgto"
-                  >Alterar Condição de Pagamento</mat-option
+                  <mat-option value="requerimentoValor"
+                    >Requerimento de Valor</mat-option
+                  >
+                  <mat-option value="alterarCondicaoPgto"
+                    >Alterar Condição de Pagamento</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+
+              <!-- Checkbox e Observações -->
+              <mat-form-field appearance="outline" class="itens align-select">
+                <mat-label>Regularização Fundiaria?</mat-label>
+                <mat-select formControlName="rf" panelClass="align-select">
+                  <mat-option value="requerimentoValor">Sim</mat-option>
+                  <mat-option value="alterarCondicaoPgto">Não</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-100 itens">
+                <mat-label>Observações</mat-label>
+                <textarea
+                  matInput
+                  formControlName="observacoes"
+                  rows="3"
+                ></textarea>
+              </mat-form-field>
+
+              <div class="w-100">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="btn-salvar"
+                  type="submit"
                 >
-              </mat-select>
-            </mat-form-field>
-
-            <!-- Checkbox e Observações -->
-            <mat-form-field appearance="outline" class="itens align-select">
-              <mat-label>Regularização Fundiaria?</mat-label>
-              <mat-select formControlName="rf" panelClass="align-select">
-                <mat-option value="requerimentoValor">Sim</mat-option>
-                <mat-option value="alterarCondicaoPgto">Não</mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="w-100 itens">
-              <mat-label>Observações</mat-label>
-              <textarea
-                matInput
-                formControlName="observacoes"
-                rows="3"
-              ></textarea>
-            </mat-form-field>
-
-            <div class="w-100">
-              <button
-                mat-raised-button
-                color="primary"
-                class="btn-salvar"
-                type="submit"
-              >
-                Salvar Dados
-              </button>
-            </div>
-          </form>
+                  Salvar Dados
+                </button>
+              </div>
+            </form>
+          </div>
         </mat-expansion-panel>
 
         <!-- Acordeon 2: Resumo Financeiro -->

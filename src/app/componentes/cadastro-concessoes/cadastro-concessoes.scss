@@ -2,6 +2,7 @@
   margin: 5rem 5rem;
   border: solid 0px rgb(235, 234, 234);
   padding: 1rem 1rem 3rem 1rem;
+  //display: flex;
 }
 .menu {
   display: inline-flex;
@@ -28,6 +29,7 @@ mat-accordion {
 .itens {
   flex: 1 1 calc(25% - 16px);
   min-width: 220px; /* Evita campos estreitos demais */
+  flex-shrink: 3;
 }
 
 /* Faz o textarea e botões ocuparem toda a linha */
@@ -51,6 +53,8 @@ mat-accordion {
 }
 .mat-stepper-horizontal {
   margin-top: 8px;
+  //display: flex;
+  //flex-wrap: wrap;
 }
 
 .mat-mdc-form-field {
