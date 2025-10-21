@@ -173,13 +173,17 @@ export class Lista implements OnInit, AfterViewInit {
       return;
     }
 
-    // ✅ Monte a URL absoluta — com domínio + hash
-    const url = `${window.location.origin}/#/emitir-gru`;
+    // ✅ Captura o caminho base da aplicação a partir do <base href> do index.html
+    const baseHref =
+      document.querySelector('base')?.getAttribute('href') || '/';
 
-    // Salve o beneficiário no sessionStorage (para ser lido na nova aba)
+    // ✅ Monta a URL correta, respeitando o subdiretório do GitHub Pages
+    const url = `${window.location.origin}${baseHref}#/emitir-gru`;
+
+    // Salva o beneficiário selecionado
     sessionStorage.setItem('beneficiarioSelecionado', JSON.stringify(element));
 
-    // Redireciona a nova aba
+    // Redireciona
     novaAba.location.href = url;
   }
 }
