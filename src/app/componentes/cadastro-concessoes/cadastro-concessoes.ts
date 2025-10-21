@@ -132,18 +132,18 @@ export class CadastroConcessoes implements AfterViewInit {
     });
 
     this.formFinanceiro = this.fb.group({
-      valorTotalAtualizado: ['0,00'],
-      qtdPrestacoesAVencer: [0],
-      valorAVencer: ['0,00'],
-      qtdPrestacoesVencidas: [0],
-      valorVencido: ['0,00'],
-      qtdPrestacoesPagas: [0],
-      valorPago: ['0,00'],
-      qtdPrestacoesNaoPagas: [0],
-      valorEmAberto: ['0,00'],
-      diferencasGeradas: ['0,00'],
-      diferencasEmAberto: ['0,00'],
-      valorTotalDevido: ['0,00'],
+      valorTotalAtualizado: [{ value: '0,00', disabled: true }],
+      qtdPrestacoesAVencer: [{ value: 0, disabled: true }],
+      valorAVencer: [{ value: '0,00', disabled: true }],
+      qtdPrestacoesVencidas: [{ value: 0, disabled: true }],
+      valorVencido: [{ value: '0,00', disabled: true }],
+      qtdPrestacoesPagas: [{ value: 0, disabled: true }],
+      valorPago: [{ value: '0,00', disabled: true }],
+      qtdPrestacoesNaoPagas: [{ value: 0, disabled: true }],
+      valorEmAberto: [{ value: '0,00', disabled: true }],
+      diferencasGeradas: [{ value: '0,00', disabled: true }],
+      diferencasEmAberto: [{ value: '0,00', disabled: true }],
+      valorTotalDevido: [{ value: '0,00', disabled: true }],
     });
   }
 

@@ -1,4 +1,93 @@
-h1 {
-  margin: 5rem 20rem;
-  color: rgb(33, 66, 156);
+button {
+  margin: 2.5rem;
+}
+.gru-container {
+  width: 75%;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  margin: 5rem auto;
+  padding-bottom: 5rem;
+  //margin-bottom: 5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  border: 1px solid #000;
+  padding: 4px 6px;
+  vertical-align: top;
+}
+
+th {
+  background-color: #f5f5f5;
+}
+
+.cabecalho {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+.cabecalho small {
+  font-weight: normal;
+  display: block;
+  margin-top: 2px;
+}
+
+.titulo {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px;
+  border-bottom: 2px solid #000;
+}
+
+.rotulo {
+  font-weight: bold;
+}
+
+.direita {
+  text-align: right;
+}
+
+.centro {
+  text-align: center;
+}
+
+.sem-borda {
+  border: none !important;
+}
+
+.instrucoes {
+  font-size: 11px;
+}
+
+.rodape {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 8px;
+  font-size: 12px;
+}
+
+.linha-digitavel {
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 6px 0;
+  letter-spacing: 1px;
+}
+
+.codigo-barras {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.codigo-barras img {
+  height: 60px;
 }

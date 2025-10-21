@@ -1,1 +1,108 @@
-<h1>Imprimir GRU - Em desenvolvimento</h1>
+<button class="btn btn-primary" (click)="imprimir()">Imprimir GRU</button>
+
+<div class="gru-container">
+  <table>
+    <tr>
+      <td colspan="4" class="cabecalho">
+        INCRA<br />
+        Instituto Nacional de Reforma Agrária<br />
+        <b>Guia de Recolhimento da União - GRU</b>
+        <small>
+          Gerado a partir de
+          http://consulta.tesouro.fazenda.gov.br/gru_novosite/gru_simples_parte2.asp
+        </small>
+      </td>
+    </tr>
+
+    <tr>
+      <td><b>Código de Recolhimento</b><br />22048-5</td>
+      <td><b>Número de Referência</b><br />12006700001220485</td>
+      <td><b>Competência</b><br />08/2016</td>
+      <td><b>Vencimento</b><br />30/08/2016</td>
+    </tr>
+
+    <tr>
+      <td colspan="2">
+        <b>Nome do Contribuinte / Recolhedor</b><br />
+        {{ beneficiario?.titular?.nome || "---" }}
+      </td>
+      <td colspan="2">
+        <b>CNPJ ou CPF do Contribuinte</b><br />
+        {{ beneficiario?.titular?.cpf || "---" }}
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2">
+        <b>Nome da Unidade Favorecida</b><br />
+        GRUPAMENTO DE APOIO ÀS UNIDADES DO SISTEMA DE
+      </td>
+      <td colspan="2"><b>UG / Gestão</b><br />120646 / 00001</td>
+    </tr>
+
+    <tr>
+      <td colspan="4" class="instrucoes">
+        <b>Instruções:</b><br />
+        As informações inseridas nessa guia são de exclusiva responsabilidade do
+        contribuinte, que deverá, em caso de dúvidas, consultar a Unidade
+        Favorecida dos recursos.
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="4" class="titulo">Valores</td>
+    </tr>
+
+    <tr>
+      <td colspan="3">(=) Valor do Principal</td>
+      <td class="direita">6.529,50</td>
+    </tr>
+    <tr>
+      <td colspan="3">(-) Desconto / Abatimento</td>
+      <td class="direita">—</td>
+    </tr>
+    <tr>
+      <td colspan="3">(-) Outras deduções</td>
+      <td class="direita">—</td>
+    </tr>
+    <tr>
+      <td colspan="3">(+) Mora / Multa</td>
+      <td class="direita">—</td>
+    </tr>
+    <tr>
+      <td colspan="3">(+) Juros / Encargos</td>
+      <td class="direita">—</td>
+    </tr>
+    <tr>
+      <td colspan="3">(+) Outros Acréscimos</td>
+      <td class="direita">—</td>
+    </tr>
+    <tr>
+      <td colspan="3"><b>(=) Valor Total</b></td>
+      <td class="direita"><b>6.529,50</b></td>
+    </tr>
+
+    <tr>
+      <td colspan="4" class="rodape">
+        GRU SIMPLES<br />
+        Pagamento exclusivo no Banco do Brasil S.A.<br />
+        [STN532BEB6100A82563059A8466C27CB3A4]
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="4" class="linha-digitavel">
+        89920000065-9 29500001010-2 955231622044-4 81891525723-1
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="4" class="codigo-barras">
+        <img
+          src="https://dummyimage.com/400x60/000/fff.png&text=||||||||||||||||||||||||||||"
+          alt="Código de Barras"
+        />
+      </td>
+    </tr>
+  </table>
+</div>
