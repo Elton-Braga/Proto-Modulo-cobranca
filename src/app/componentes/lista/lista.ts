@@ -186,4 +186,10 @@ export class Lista implements OnInit, AfterViewInit {
     // Redireciona
     novaAba.location.href = url;
   }
+
+  exportar(tipo: 'pdf' | 'xls' | 'csv'): void {
+    console.log(`Exportando dados como: ${tipo.toUpperCase()}`);
+    // Aqui poderá implementar futuramente a exportação real
+    // Exemplo: gerar arquivo com jsPDF, XLSX, ou exportação CSV manual
+  }
 }

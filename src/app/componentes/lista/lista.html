@@ -58,11 +58,43 @@
   <div
     class="table-toolbar my-2 d-flex align-items-center justify-content-between"
   >
+    <!-- Botão Dropdown Exportar -->
     <div class="">
-      <button mat-button (click)="selection.clear()">Limpar seleção</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [matMenuTriggerFor]="menuExportar"
+      >
+        Exportar
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #menuExportar="matMenu">
+        <button mat-menu-item (click)="exportar('pdf')">
+          <mat-icon>picture_as_pdf</mat-icon>
+          <span>PDF</span>
+        </button>
+        <button mat-menu-item (click)="exportar('xls')">
+          <mat-icon>grid_on</mat-icon>
+          <span>XLS</span>
+        </button>
+        <button mat-menu-item (click)="exportar('csv')">
+          <mat-icon>description</mat-icon>
+          <span>CSV</span>
+        </button>
+      </mat-menu>
     </div>
+
+    <!-- Botão Emitir GRU -->
     <div>
-      <span>Registros: {{ dataSource.data.length }}</span>
+      <button
+        mat-flat-button
+        color="accent"
+        (click)="imprimirGRU(selection.selected[0])"
+        [disabled]="selection.selected.length === 0"
+      >
+        <mat-icon>print</mat-icon>
+        Emitir GRU
+      </button>
     </div>
   </div>
 
@@ -139,17 +171,17 @@
           </button>
           <mat-menu #menuAcoes="matMenu">
             <button mat-menu-item (click)="abrirCadastroConcessoes(element)">
-              <span>Cadastro de concessões</span>
+              <span>Cadastror Dívidas</span>
               <mat-icon>edit</mat-icon>
             </button>
 
             <button mat-menu-item>
-              <span>Consulta concessões</span>
+              <span>Consultar Dívidas</span>
               <mat-icon>search</mat-icon>
             </button>
 
-            <button mat-menu-item (click)="imprimirGRU(element)">
-              <span>Imprimir GRU</span>
+            <button mat-menu-item>
+              <span>Detalhar</span>
               <mat-icon>print</mat-icon>
             </button>
           </mat-menu>
