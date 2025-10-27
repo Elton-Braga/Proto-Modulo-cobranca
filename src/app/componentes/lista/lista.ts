@@ -24,6 +24,8 @@ import {
   MatExpansionPanelHeader,
   MatExpansionPanelTitle,
 } from '@angular/material/expansion';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConsultarDivida } from './consultar-divida/consultar-divida';
 //import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from "@angular/material/expansion";
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -47,6 +49,7 @@ import {
     MatExpansionPanel,
     MatExpansionPanelHeader,
     MatExpansionPanelTitle,
+    MatDialogModule,
   ],
   templateUrl: './lista.html',
   styleUrl: './lista.scss',
@@ -68,7 +71,11 @@ export class Lista implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private dialog: MatDialog
+  ) {
     //this.abrirCadastroConcessoes;
   }
 
@@ -83,6 +90,21 @@ export class Lista implements OnInit, AfterViewInit {
 
     // load mock data
     this.dataSource.data = MOCK_BENEFICIARIOS;
+  }
+
+  abrirConsultarDivida(element: any): void {
+    const dialogRef = this.dialog.open(ConsultarDivida, {
+      width: '900px',
+      maxHeight: '90vh',
+      data: element, // envia o beneficiário selecionado para o componente
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Modal fechada com resultado:', result);
+      }
+    });
   }
 
   abrirCadastroConcessoes(element: Beneficiario): void {

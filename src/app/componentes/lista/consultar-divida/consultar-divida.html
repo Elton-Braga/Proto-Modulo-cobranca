@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Consulta de Dívidas</h2>
+
+<mat-dialog-content>
+  <p><strong>Beneficiário:</strong> {{ data?.titular?.nome }}</p>
+  <p><strong>CPF:</strong> {{ data?.titular?.cpf }}</p>
+
+  <div class="conteudo">
+    <!-- Aqui pode inserir tabela, histórico de dívidas, etc. -->
+    <p>Conteúdo detalhado da dívida...</p>
+  </div>
+</mat-dialog-content>
+<button>Imprimir GRU</button>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="fechar()" class="btn btn-primary">
+    Fechar
+  </button>
+</mat-dialog-actions>
