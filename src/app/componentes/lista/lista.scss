@@ -70,3 +70,11 @@ mat-form-field {
   display: inline-flex;
   flex-direction: row-reverse;
 }
+
+.mat-mdc-dialog-container {
+  max-width: 80vw !important;
+}
+::ng-deep .detalhar-divida-modal {
+  max-width: none !important;
+  width: 50rem !important;
+}

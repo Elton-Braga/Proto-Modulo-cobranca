@@ -1,0 +1,88 @@
+<h2 mat-dialog-title>Detalhes do Beneficiário</h2>
+
+<div class="detalhes-container">
+  <div class="grupo">
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Nome</mat-label>
+      <input matInput [value]="data?.titular?.nome" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>CPF</mat-label>
+      <input matInput [value]="data?.titular?.cpf" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Código do Beneficiário</mat-label>
+      <input matInput [value]="data?.titular?.cod_beneficiario" disabled />
+    </mat-form-field>
+  </div>
+
+  <div class="grupo">
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Data de Nascimento</mat-label>
+      <input
+        matInput
+        [value]="data?.titular?.data_nascimento | date : 'dd/MM/yyyy'"
+        disabled
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Sexo</mat-label>
+      <input matInput [value]="data?.titular?.sexo" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Estado Civil</mat-label>
+      <input matInput [value]="data?.titular?.estado_civil" disabled />
+    </mat-form-field>
+  </div>
+
+  <div class="grupo">
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Nome do Pai</mat-label>
+      <input matInput [value]="data?.titular?.nome_pai" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Nome da Mãe</mat-label>
+      <input matInput [value]="data?.titular?.nome_mae" disabled />
+    </mat-form-field>
+  </div>
+
+  <h3 class="subtitulo">Endereço de cobrança</h3>
+
+  <div class="grupo" *ngFor="let end of data?.endereco">
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Estado</mat-label>
+      <input matInput [value]="end?.estado" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Município</mat-label>
+      <input matInput [value]="end?.municipio" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Bairro</mat-label>
+      <input matInput [value]="end?.bairro" disabled />
+    </mat-form-field>
+  </div>
+
+  <div class="grupo">
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Rua</mat-label>
+      <input matInput [value]="data?.endereco?.[0]?.rua" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Número</mat-label>
+      <input matInput [value]="data?.endereco?.[0]?.numero" disabled />
+    </mat-form-field>
+  </div>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" mat-dialog-close>Fechar</button>
+</div>

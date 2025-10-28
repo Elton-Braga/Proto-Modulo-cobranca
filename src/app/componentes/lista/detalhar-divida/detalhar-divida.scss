@@ -1,0 +1,23 @@
+.detalhes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2.5rem;
+}
+
+.grupo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.campo {
+  flex: 1 1 30%;
+  min-width: 250px;
+}
+
+.subtitulo {
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #3f51b5;
+}

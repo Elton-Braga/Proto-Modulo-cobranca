@@ -169,20 +169,17 @@
           >
             <mat-icon>more_vert</mat-icon>
           </button>
-          <mat-menu #menuAcoes="matMenu">
-            <button mat-menu-item (click)="abrirCadastroConcessoes(element)">
-              <span>Cadastror Dívidas</span>
-              <mat-icon>edit</mat-icon>
-            </button>
-
-            <button mat-menu-item (click)="abrirConsultarDivida(element)">
+          <mat-menu #menuAcoes="matMenu"
+            ><button mat-menu-item (click)="abrirDetalharDivida(element)">
+              <span>Detalhar</span>
+              <mat-icon>print</mat-icon></button
+            ><button mat-menu-item (click)="abrirConsultarDivida(element)">
               <span>Consultar Dívidas</span>
               <mat-icon>search</mat-icon>
             </button>
-
-            <button mat-menu-item>
-              <span>Detalhar</span>
-              <mat-icon>print</mat-icon>
+            <button mat-menu-item (click)="abrirCadastroConcessoes(element)">
+              <span>Cadastror Dívidas</span>
+              <mat-icon>edit</mat-icon>
             </button>
           </mat-menu>
         </td>

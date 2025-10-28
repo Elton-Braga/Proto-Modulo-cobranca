@@ -70,3 +70,13 @@ body {
   /* Garante que ele não seja cortado por um overflow: hidden no pai */
   overflow: visible !important;
 }
+
+::ng-deep .mat-mdc-dialog-container {
+  max-width: none !important;
+  width: auto !important;
+}
+
+::ng-deep .cdk-overlay-pane {
+  max-width: none !important;
+  width: 50rem !important;
+}

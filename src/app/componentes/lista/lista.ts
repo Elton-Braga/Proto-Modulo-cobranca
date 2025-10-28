@@ -26,6 +26,7 @@ import {
 } from '@angular/material/expansion';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConsultarDivida } from './consultar-divida/consultar-divida';
+import { DetalharDivida } from './detalhar-divida/detalhar-divida';
 //import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from "@angular/material/expansion";
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -95,7 +96,23 @@ export class Lista implements OnInit, AfterViewInit {
   abrirConsultarDivida(element: any): void {
     const dialogRef = this.dialog.open(ConsultarDivida, {
       width: '900px',
-      maxHeight: '90vh',
+      maxHeight: '50rem',
+      data: element, // envia o beneficiário selecionado para o componente
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Modal fechada com resultado:', result);
+      }
+    });
+  }
+
+  abrirDetalharDivida(element: any): void {
+    const dialogRef = this.dialog.open(DetalharDivida, {
+      width: '80rem',
+      maxHeight: '80rem',
+      panelClass: 'detalhar-divida-modal',
       data: element, // envia o beneficiário selecionado para o componente
       disableClose: false,
     });

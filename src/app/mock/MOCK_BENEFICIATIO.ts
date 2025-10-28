@@ -155,6 +155,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         detalhar: 'Documentação completa; aguardando validação.',
       },
     ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Santarém',
+        bairro: 'Centro',
+        rua: 'Rua das Palmeiras',
+        numero: '123',
+      },
+    ],
   },
   // -------------------- 2º REGISTRO --------------------
   {
@@ -271,6 +280,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         perfilDoSolicitante: 'Beneficiário',
         status: 'Em análise',
         detalhar: 'Atualização de dados pessoais solicitada.',
+      },
+    ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Belterra',
+        bairro: 'Bairro Novo Horizonte',
+        rua: 'Avenida dos Castanhais',
+        numero: '45B',
       },
     ],
   },
@@ -392,6 +410,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         detalhar: 'Desbloqueio processado e concluído.',
       },
     ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Monte Alegre',
+        bairro: 'São José',
+        rua: 'Travessa da Liberdade',
+        numero: '567',
+      },
+    ],
   }, // ==== REGISTRO 4 ====
   {
     titular: {
@@ -476,6 +503,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         perfilDoSolicitante: 'Beneficiário',
         status: 'Aprovado',
         detalhar: 'Inclusão aprovada após verificação documental.',
+      },
+    ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Santarém',
+        bairro: 'Centro',
+        rua: 'Rua das Palmeiras',
+        numero: '123',
       },
     ],
   },
@@ -594,6 +630,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         detalhar: 'Solicitou atualização de contato e endereço.',
       },
     ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Belém',
+        bairro: 'Marco',
+        rua: 'Avenida Alcindo Cacela',
+        numero: '890',
+      },
+    ],
   },
 
   // ==== REGISTRO 6 ====
@@ -694,6 +739,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         perfilDoSolicitante: 'Incra',
         status: 'Processada',
         detalhar: 'Família cadastrada e ativa no programa.',
+      },
+    ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Altamira',
+        bairro: 'Independente I',
+        rua: 'Travessa das Castanheiras',
+        numero: '45',
       },
     ],
   }, // ==== REGISTRO 7 ====
@@ -808,6 +862,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         detalhar: 'Solicitou desbloqueio por documentação entregue.',
       },
     ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Parauapebas',
+        bairro: 'Cidade Nova',
+        rua: 'Rua Rio Branco',
+        numero: '77A',
+      },
+    ],
   },
 
   // ==== REGISTRO 8 ====
@@ -907,6 +970,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         detalhar: 'Dados de contato atualizados com sucesso.',
       },
     ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Marabá',
+        bairro: 'Nova Marabá',
+        rua: 'Rua dos Operários',
+        numero: '310',
+      },
+    ],
   }, // ==== REGISTRO 9 ====
   {
     titular: {
@@ -988,6 +1060,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         perfilDoSolicitante: 'Beneficiário',
         status: 'Processada',
         detalhar: 'Inclusão concluída com sucesso.',
+      },
+    ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Itaituba',
+        bairro: 'Floresta',
+        rua: 'Avenida das Andirobas',
+        numero: '214',
       },
     ],
   },
@@ -1106,6 +1187,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         detalhar: 'Evasão confirmada e processo encerrado.',
       },
     ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Bragança',
+        bairro: 'Aldeia',
+        rua: 'Rua Dom Eliseu',
+        numero: '98',
+      },
+    ],
   },
 
   // ==== REGISTRO 11 ====
@@ -1203,6 +1293,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         perfilDoSolicitante: 'Beneficiário',
         status: 'Processada',
         detalhar: 'Solicitou atualização de e-mail e telefone.',
+      },
+    ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Cametá',
+        bairro: 'São João',
+        rua: 'Rua da Liberdade',
+        numero: '506',
       },
     ],
   },
@@ -1305,6 +1404,15 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         perfilDoSolicitante: 'Beneficiário',
         status: 'Processada',
         detalhar: 'Inclusão realizada e validada pela SR-AM.',
+      },
+    ],
+    endereco: [
+      {
+        estado: 'PA',
+        municipio: 'Castanhal',
+        bairro: 'Nova Olinda',
+        rua: 'Avenida Presidente Vargas',
+        numero: '1290',
       },
     ],
   },
