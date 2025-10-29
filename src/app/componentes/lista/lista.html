@@ -176,6 +176,20 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="Situação">
+        <th mat-header-cell *matHeaderCellDef>Situação</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.historico_PNRA?.[0]?.situacao || '-' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Impedimento">
+        <th mat-header-cell *matHeaderCellDef>Impedimento</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.bloqueios?.[0]?.bloqueio || '-' }}
+        </td>
+      </ng-container>
+
       <!-- Ações -->
       <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
@@ -189,14 +203,14 @@
           </button>
           <mat-menu #menuAcoes="matMenu"
             ><button mat-menu-item (click)="abrirDetalharDivida(element)">
-              <span>Detalhar</span>
+              <span>Detalhar Dívidas</span>
               <mat-icon>print</mat-icon></button
             ><button mat-menu-item (click)="abrirConsultarDivida(element)">
               <span>Consultar Dívidas</span>
               <mat-icon>search</mat-icon>
             </button>
             <button mat-menu-item (click)="abrirCadastroConcessoes(element)">
-              <span>Cadastror Dívidas</span>
+              <span>Cadastrar Dívidas</span>
               <mat-icon>edit</mat-icon>
             </button>
           </mat-menu>

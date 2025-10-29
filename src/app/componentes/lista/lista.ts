@@ -68,6 +68,9 @@ export class Lista implements OnInit, AfterViewInit {
     'cpf',
     'nome_PA',
     'sr',
+    //'PA',
+    'Situação',
+    'Impedimento',
     'acoes',
   ];
   dataSource = new MatTableDataSource<Beneficiario>();
