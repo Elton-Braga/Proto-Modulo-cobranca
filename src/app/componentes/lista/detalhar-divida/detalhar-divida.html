@@ -1,3 +1,6 @@
+<button class="btn btn-primary" (click)="abrirConsultarDivida()">
+  Consultar Dívida
+</button>
 <h2 mat-dialog-title>Detalhes do Beneficiário</h2>
 
 <div class="detalhes-container">
@@ -51,7 +54,23 @@
     </mat-form-field>
   </div>
 
-  <h3 class="subtitulo">Endereço de cobrança</h3>
+  <div class="grupo">
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Impedimento</mat-label>
+      <input matInput [value]="data?.bloqueios?.[0]?.bloqueio" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Motivo do impedimento</mat-label>
+      <input
+        matInput
+        [value]="data?.bloqueios?.[0]?.descricao_bloqueio"
+        disabled
+      />
+    </mat-form-field>
+  </div>
+
+  <h4>Endereço de cobrança</h4>
 
   <div class="grupo" *ngFor="let end of data?.endereco">
     <mat-form-field appearance="outline" class="campo">

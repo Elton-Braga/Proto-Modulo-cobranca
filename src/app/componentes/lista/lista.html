@@ -37,7 +37,25 @@
 
         <mat-form-field appearance="outline" class="col-3">
           <mat-label>SR</mat-label>
-          <input matInput formControlName="sr" placeholder="SR" />
+          <mat-select formControlName="sr">
+            @for (item of sr; track item) {
+            <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Situacao</mat-label>
+          <input matInput formControlName="situacao" placeholder="Situacao" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Impedimento</mat-label>
+          <input
+            matInput
+            formControlName="impedimento"
+            placeholder="Impedimento"
+          />
         </mat-form-field>
 
         <div class="botoes-row">

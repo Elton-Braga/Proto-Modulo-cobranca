@@ -27,6 +27,7 @@ import {
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConsultarDivida } from './consultar-divida/consultar-divida';
 import { DetalharDivida } from './detalhar-divida/detalhar-divida';
+import { MatSelectModule } from '@angular/material/select';
 //import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from "@angular/material/expansion";
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -51,6 +52,8 @@ import { DetalharDivida } from './detalhar-divida/detalhar-divida';
     MatExpansionPanelHeader,
     MatExpansionPanelTitle,
     MatDialogModule,
+    MatSelectModule,
+    //MatSelect,
   ],
   templateUrl: './lista.html',
   styleUrl: './lista.scss',
@@ -70,6 +73,8 @@ export class Lista implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<Beneficiario>();
   selection = new SelectionModel<Beneficiario>(true, []);
 
+  sr: string[] = ['01', '02', '03', '04', '05'];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
@@ -87,6 +92,8 @@ export class Lista implements OnInit, AfterViewInit {
       cpf: ['', [Validators.pattern(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)]],
       nomePA: [''],
       sr: [''],
+      situacao: [],
+      impedimento: [],
     });
 
     // load mock data

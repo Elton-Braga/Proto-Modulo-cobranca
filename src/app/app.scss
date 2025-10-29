@@ -117,3 +117,16 @@
 footer {
   padding: 0 15rem;
 }
+::ng-deep .detalhar-divida-modal .mat-mdc-dialog-container {
+  max-width: 90vw !important; /* largura máxima de 90% da tela */
+  width: 80rem !important; /* largura fixa se preferir */
+  height: auto !important;
+  overflow: hidden !important;
+  border-radius: 12px;
+  padding: 0;
+}
+
+::ng-deep .detalhar-divida-modal .mdc-dialog__surface {
+  overflow-y: auto !important; /* habilita o scroll vertical */
+  max-height: 85vh !important; /* limita altura */
+}

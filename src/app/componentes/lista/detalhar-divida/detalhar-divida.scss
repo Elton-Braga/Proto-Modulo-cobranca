@@ -21,3 +21,7 @@
   margin-top: 1rem;
   color: #3f51b5;
 }
+.scrollable-modal .mat-mdc-dialog-content {
+  overflow-y: scroll;
+  height: 400px; /* Ajuste a altura conforme necessário */
+}
