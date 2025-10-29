@@ -6,12 +6,12 @@
 <div class="detalhes-container">
   <div class="grupo">
     <mat-form-field appearance="outline" class="campo">
-      <mat-label>Nome</mat-label>
+      <mat-label>Nome do Titular</mat-label>
       <input matInput [value]="data?.titular?.nome" disabled />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="campo">
-      <mat-label>CPF</mat-label>
+      <mat-label>CPF do Titular</mat-label>
       <input matInput [value]="data?.titular?.cpf" disabled />
     </mat-form-field>
 
@@ -20,10 +20,33 @@
       <input matInput [value]="data?.titular?.cod_beneficiario" disabled />
     </mat-form-field>
   </div>
+  <h4>Dados do conjuge</h4>
+  <div class="grupo">
+    <br />
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Nome do Conjuge</mat-label>
+      <input matInput [value]="data?.conjuge?.nome" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>CPF do Conjuge</mat-label>
+      <input matInput [value]="data?.conjuge?.cpf" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Nascimento do Conjuge</mat-label>
+      <input matInput [value]="data?.conjuge?.data_nascimento" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo">
+      <mat-label>Sexo do conjuge</mat-label>
+      <input matInput [value]="data?.conjuge?.sexo" disabled />
+    </mat-form-field>
+  </div>
 
   <div class="grupo">
     <mat-form-field appearance="outline" class="campo">
-      <mat-label>Data de Nascimento</mat-label>
+      <mat-label>Data de Nascimento do titular</mat-label>
       <input
         matInput
         [value]="data?.titular?.data_nascimento | date : 'dd/MM/yyyy'"
@@ -32,7 +55,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="campo">
-      <mat-label>Sexo</mat-label>
+      <mat-label>Sexo do titular</mat-label>
       <input matInput [value]="data?.titular?.sexo" disabled />
     </mat-form-field>
 
