@@ -1,5 +1,6 @@
 import { BeneficiarioBloqueio } from './beneficiarioBloqueio';
 import { Conjuge } from './conjuge';
+import { DadosDeCobranca } from './DadosDeCobranca';
 import { EnderecoCobranca } from './enderecoCobranca';
 import { HistoricoPNRA } from './HistoricoPNRA';
 import { Lote } from './lote';
@@ -18,4 +19,5 @@ export interface Beneficiario {
   historico_PNRA: HistoricoPNRA[];
   requerimento: RequerimentoFiltro[];
   endereco: EnderecoCobranca[];
+  dadosDeCobranca: DadosDeCobranca[];
 }
