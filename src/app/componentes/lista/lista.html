@@ -72,7 +72,7 @@
       </form>
     </mat-expansion-panel>
   </mat-accordion>
-
+  <br />
   <div
     class="table-toolbar my-2 d-flex align-items-center justify-content-between"
   >
@@ -115,6 +115,7 @@
       </button>
     </div>
   </div>
+  <br />
 
   <div class="table-responsive">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
@@ -212,6 +213,11 @@
             <button mat-menu-item (click)="abrirCadastroConcessoes(element)">
               <span>Cadastrar Dívidas</span>
               <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-menu-item>
+              <span>Dívidas</span>
+              <mat-icon>request_quote</mat-icon>
             </button>
           </mat-menu>
         </td>
