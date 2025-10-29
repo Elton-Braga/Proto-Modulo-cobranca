@@ -1,66 +1,94 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MOCK_BENEFICIARIOS } from '../../mock/MOCK_BENEFICIATIO';
+import { CommonModule, NgIf } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Beneficiario } from '../../mock/beneficiario';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule, NgIf } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { Router, RouterLink } from '@angular/router';
+import { SelectionModel } from '@angular/cdk/collections';
 import {
   MatAccordion,
   MatExpansionPanel,
   MatExpansionPanelHeader,
   MatExpansionPanelTitle,
 } from '@angular/material/expansion';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import { MOCK_BENEFICIARIOS } from '../../mock/MOCK_BENEFICIATIO';
+import { Beneficiario } from '../../mock/beneficiario';
 import { ConsultarDivida } from './consultar-divida/consultar-divida';
 import { DetalharDivida } from './detalhar-divida/detalhar-divida';
-import { MatSelectModule } from '@angular/material/select';
-//import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from "@angular/material/expansion";
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
   selector: 'app-lista',
+  templateUrl: './lista.html',
+  styleUrls: ['./lista.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state(
+        'collapsed',
+        style({
+          height: '0px',
+          minHeight: '0',
+          opacity: 0,
+          overflow: 'hidden',
+        })
+      ),
+      state(
+        'expanded',
+        style({
+          height: '*',
+          opacity: 1,
+        })
+      ),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
+      ),
+    ]),
+  ],
   imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
     MatIconModule,
     MatMenuModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatCheckboxModule,
     MatFormFieldModule,
-    ReactiveFormsModule,
-    CommonModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
+    MatSelectModule,
     NgIf,
     RouterLink,
     MatAccordion,
     MatExpansionPanel,
     MatExpansionPanelHeader,
     MatExpansionPanelTitle,
-    MatDialogModule,
-    MatSelectModule,
-    //MatSelect,
   ],
-  templateUrl: './lista.html',
-  styleUrl: './lista.scss',
 })
 export class Lista implements OnInit, AfterViewInit {
-  beneficiariosOriginais = [...MOCK_BENEFICIARIOS];
-  formFiltro!: FormGroup;
+  expandedElement: any | null = null;
+
   displayedColumns: string[] = [
     'select',
     'cod_beneficiario',
@@ -68,14 +96,15 @@ export class Lista implements OnInit, AfterViewInit {
     'cpf',
     'nome_PA',
     'sr',
-    //'PA',
     'Situação',
     'Impedimento',
     'acoes',
   ];
+
   dataSource = new MatTableDataSource<Beneficiario>();
   selection = new SelectionModel<Beneficiario>(true, []);
-
+  beneficiariosOriginais = [...MOCK_BENEFICIARIOS];
+  formFiltro!: FormGroup;
   sr: string[] = ['01', '02', '03', '04', '05'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -84,30 +113,74 @@ export class Lista implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private router: Router,
     private dialog: MatDialog
-  ) {
-    //this.abrirCadastroConcessoes;
-  }
+  ) {}
 
   ngOnInit(): void {
-    // Reactive form with validations
     this.formFiltro = this.fb.group({
       nome: ['', [Validators.minLength(3)]],
       cpf: ['', [Validators.pattern(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)]],
       nomePA: [''],
       sr: [''],
-      situacao: [],
-      impedimento: [],
+      situacao: [''],
+      impedimento: [''],
     });
 
-    // load mock data
     this.dataSource.data = MOCK_BENEFICIARIOS;
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  toggleExpand(element: any): void {
+    this.expandedElement = this.expandedElement === element ? null : element;
+  }
+
+  aplicarFiltro(): void {
+    const { nome, cpf, nomePA, sr } = this.formFiltro.value;
+    const filtradas = this.beneficiariosOriginais.filter((b) => {
+      const titular = b.titular;
+      const nomeMatch =
+        !nome || titular.nome.toLowerCase().includes(nome.toLowerCase());
+      const cpfMatch = !cpf || titular.cpf === cpf;
+      const paMatch =
+        !nomePA ||
+        b.historico_PNRA?.[0]?.nome_PA
+          ?.toLowerCase()
+          .includes(nomePA.toLowerCase());
+      const srMatch =
+        !sr ||
+        b.requerimento?.[0]?.sr?.toLowerCase().includes(sr.toLowerCase());
+      return nomeMatch && cpfMatch && paMatch && srMatch;
+    });
+    this.dataSource.data = filtradas;
+  }
+
+  limparFiltro(): void {
+    this.formFiltro.reset();
+    this.dataSource.data = this.beneficiariosOriginais;
+  }
+
+  isAllSelected(): boolean {
+    const numSelected = this.selection.selected.length;
+    return numSelected === this.dataSource.data.length;
+  }
+
+  masterToggle(): void {
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.data.forEach((row) => this.selection.select(row));
+  }
+
+  exportar(tipo: 'pdf' | 'xls' | 'csv'): void {
+    console.log(`Exportando: ${tipo.toUpperCase()}`);
   }
 
   abrirConsultarDivida(element: any): void {
     const dialogRef = this.dialog.open(ConsultarDivida, {
       width: '900px',
       maxHeight: '50rem',
-      data: element, // envia o beneficiário selecionado para o componente
+      data: element,
       disableClose: false,
     });
 
@@ -123,7 +196,7 @@ export class Lista implements OnInit, AfterViewInit {
       width: '80rem',
       maxHeight: '80rem',
       panelClass: 'detalhar-divida-modal',
-      data: element, // envia o beneficiário selecionado para o componente
+      data: element,
       disableClose: false,
     });
 
@@ -140,105 +213,18 @@ export class Lista implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
-
-  /** Filtra pelos campos do formulário. */
-  aplicarFiltro(): void {
-    const { nome, cpf, nomePA, sr } = this.formFiltro.value;
-    const filtro = { nome, cpf, nomePA, sr };
-
-    // Transform dataset em linhas planas para a tabela (ex.: extrair titular e campos úteis)
-    const linhas = MOCK_BENEFICIARIOS.map(
-      (b) =>
-        ({
-          beneficiario: b,
-          cod_beneficiario: b.titular?.cod_beneficiario || '',
-          nome: b.titular?.nome || '',
-          cpf: b.titular?.cpf || '',
-          nome_PA: b.historico_PNRA?.[0]?.nome_PA || '',
-          sr: b.requerimento?.[0]?.sr || '',
-        } as any)
-    );
-
-    // aplicar filtro por cada propriedade não vazia
-    const filtradas = linhas.filter((l) => {
-      if (
-        filtro.nome &&
-        !l.nome.toLowerCase().includes(filtro.nome.toLowerCase())
-      )
-        return false;
-      if (filtro.cpf && l.cpf !== filtro.cpf) return false;
-      if (
-        filtro.nomePA &&
-        !l.nome_PA.toLowerCase().includes(filtro.nomePA.toLowerCase())
-      )
-        return false;
-      if (filtro.sr && !l.sr.toLowerCase().includes(filtro.sr.toLowerCase()))
-        return false;
-      return true;
-    });
-
-    // Atualizar datasource com o formato esperado pela tabela
-    this.dataSource.data = filtradas.map((f) => f.beneficiario);
-  }
-
-  limparFiltro(): void {
-    // Limpa o formulário
-    this.formFiltro.reset();
-
-    // Restaura o dataSource para os dados originais (caso você tenha armazenado o mock completo)
-    this.dataSource.data = this.beneficiariosOriginais;
-  }
-
-  isAllSelected(): boolean {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  masterToggle(): void {
-    if (this.isAllSelected()) {
-      this.selection.clear();
-    } else {
-      this.dataSource.data.forEach((row) => this.selection.select(row));
-    }
-  }
-
-  abrirMenuAcoes(element: any): void {
-    // Caso deseje manipular o elemento selecionado ao abrir o menu de ações
+  abrirMenuAcoes(event: Event, element: any): void {
+    event.stopPropagation();
     console.log('Beneficiário selecionado:', element);
   }
 
   imprimirGRU(element: any): void {
-    // Abre a aba imediatamente (para evitar bloqueio)
     const novaAba = window.open('about:blank', '_blank');
     if (!novaAba) {
-      console.error('Falha ao abrir nova aba para emissão de GRU.');
-      alert(
-        'Seu navegador bloqueou a nova aba. Libere pop-ups para este site.'
-      );
+      alert('Permita pop-ups para imprimir a GRU.');
       return;
     }
-
-    // ✅ Captura o caminho base da aplicação a partir do <base href> do index.html
-    const baseHref =
-      document.querySelector('base')?.getAttribute('href') || '/';
-
-    // ✅ Monta a URL correta, respeitando o subdiretório do GitHub Pages
-    const url = `${window.location.origin}${baseHref}#/emitir-gru`;
-
-    // Salva o beneficiário selecionado
     sessionStorage.setItem('beneficiarioSelecionado', JSON.stringify(element));
-
-    // Redireciona
-    novaAba.location.href = url;
-  }
-
-  exportar(tipo: 'pdf' | 'xls' | 'csv'): void {
-    console.log(`Exportando dados como: ${tipo.toUpperCase()}`);
-    // Aqui poderá implementar futuramente a exportação real
-    // Exemplo: gerar arquivo com jsPDF, XLSX, ou exportação CSV manual
+    novaAba.location.href = `${window.location.origin}/#/emitir-gru`;
   }
 }

@@ -45,8 +45,8 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-6">
-          <mat-label>Situacao</mat-label>
-          <input matInput formControlName="situacao" placeholder="Situacao" />
+          <mat-label>Situação</mat-label>
+          <input matInput formControlName="situacao" placeholder="Situação" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-6">
@@ -72,12 +72,13 @@
       </form>
     </mat-expansion-panel>
   </mat-accordion>
+
   <br />
+
   <div
     class="table-toolbar my-2 d-flex align-items-center justify-content-between"
   >
-    <!-- Botão Dropdown Exportar -->
-    <div class="">
+    <div>
       <button
         mat-raised-button
         color="primary"
@@ -102,7 +103,6 @@
       </mat-menu>
     </div>
 
-    <!-- Botão Emitir GRU -->
     <div>
       <button
         mat-flat-button
@@ -115,33 +115,35 @@
       </button>
     </div>
   </div>
+
   <br />
 
   <div class="table-responsive">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
-      <!-- Select Column -->
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      multiTemplateDataRows
+      class="mat-elevation-z8 w-100"
+    >
+      <!-- Coluna de seleção -->
       <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox
             (change)="$event ? masterToggle() : null"
             [checked]="isAllSelected()"
             [indeterminate]="selection.hasValue() && !isAllSelected()"
-            aria-label="Seleção de todas as linhas"
-          >
-          </mat-checkbox>
+          ></mat-checkbox>
         </th>
         <td mat-cell *matCellDef="let row">
           <mat-checkbox
             (click)="$event.stopPropagation()"
             (change)="$event ? selection.toggle(row) : null"
             [checked]="selection.isSelected(row)"
-            aria-label="Selecionar linha"
-          >
-          </mat-checkbox>
+          ></mat-checkbox>
         </td>
       </ng-container>
 
-      <!-- Código -->
+      <!-- Outras colunas -->
       <ng-container matColumnDef="cod_beneficiario">
         <th mat-header-cell *matHeaderCellDef>Código</th>
         <td mat-cell *matCellDef="let element">
@@ -149,19 +151,16 @@
         </td>
       </ng-container>
 
-      <!-- Nome -->
       <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
         <td mat-cell *matCellDef="let element">{{ element.titular.nome }}</td>
       </ng-container>
 
-      <!-- CPF -->
       <ng-container matColumnDef="cpf">
         <th mat-header-cell *matHeaderCellDef>CPF</th>
         <td mat-cell *matCellDef="let element">{{ element.titular.cpf }}</td>
       </ng-container>
 
-      <!-- Nome PA -->
       <ng-container matColumnDef="nome_PA">
         <th mat-header-cell *matHeaderCellDef>Nome do PA</th>
         <td mat-cell *matCellDef="let element">
@@ -169,7 +168,6 @@
         </td>
       </ng-container>
 
-      <!-- SR -->
       <ng-container matColumnDef="sr">
         <th mat-header-cell *matHeaderCellDef>SR</th>
         <td mat-cell *matCellDef="let element">
@@ -191,22 +189,42 @@
         </td>
       </ng-container>
 
-      <!-- Ações -->
+      <!-- Coluna de ações -->
       <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let element">
-          <button
-            mat-icon-button
-            [matMenuTriggerFor]="menuAcoes"
-            (click)="abrirMenuAcoes(element)"
-          >
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menuAcoes="matMenu"
-            ><button mat-menu-item (click)="abrirDetalharDivida(element)">
+          <div class="d-flex align-items-center">
+            <!-- Menu de Ações -->
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="menuAcoes"
+              (click)="abrirMenuAcoes($event, element)"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <!-- Botão de Expandir -->
+            <button
+              mat-icon-button
+              (click)="toggleExpand(element)"
+              [class.expanded]="expandedElement === element"
+            >
+              <mat-icon>
+                {{
+                  expandedElement === element
+                    ? "keyboard_arrow_up"
+                    : "keyboard_arrow_down"
+                }}
+              </mat-icon>
+            </button>
+          </div>
+
+          <mat-menu #menuAcoes="matMenu">
+            <button mat-menu-item (click)="abrirDetalharDivida(element)">
               <span>Detalhar Dívidas</span>
-              <mat-icon>print</mat-icon></button
-            ><button mat-menu-item (click)="abrirConsultarDivida(element)">
+              <mat-icon>print</mat-icon>
+            </button>
+            <button mat-menu-item (click)="abrirConsultarDivida(element)">
               <span>Consultar Dívidas</span>
               <mat-icon>search</mat-icon>
             </button>
@@ -214,7 +232,6 @@
               <span>Cadastrar Dívidas</span>
               <mat-icon>edit</mat-icon>
             </button>
-
             <button mat-menu-item>
               <span>Dívidas</span>
               <mat-icon>request_quote</mat-icon>
@@ -223,19 +240,63 @@
         </td>
       </ng-container>
 
+      <!-- Coluna da linha expandida -->
+      <ng-container matColumnDef="expandedDetail">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [attr.colspan]="displayedColumns.length"
+        >
+          <div
+            class="detail-container"
+            [@detailExpand]="
+              element === expandedElement ? 'expanded' : 'collapsed'
+            "
+          >
+            <div
+              *ngFor="let d of element.dadosDeCobranca"
+              class="grid-dados p-2 mb-3 border rounded"
+            >
+              <mat-form-field appearance="outline">
+                <mat-label>Data Assinatura</mat-label>
+                <input matInput [value]="d.dataAssinaturaContrato" disabled />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Valor Contrato</mat-label>
+                <input
+                  matInput
+                  [value]="d.valorContrato | number : '1.2-2'"
+                  disabled
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Saldo</mat-label>
+                <input matInput [value]="d.saldo | number : '1.2-2'" disabled />
+              </mat-form-field>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let element; columns: displayedColumns"
+        (click)="toggleExpand(element)"
+        class="row-click"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['expandedDetail']"
+        class="expanded-row"
+      ></tr>
     </table>
   </div>
 
-  <!-- ✅ container separado evita erro NG5002 -->
-  <div class="">
-    <div class="paginador">
-      <mat-paginator
-        class="paginador"
-        [pageSizeOptions]="[10, 20]"
-        showFirstLastButtons
-      ></mat-paginator>
-    </div>
-  </div>
+  <mat-paginator
+    [pageSizeOptions]="[10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
 </div>

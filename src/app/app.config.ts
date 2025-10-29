@@ -4,7 +4,7 @@ import {
   provideZonelessChangeDetection,
 } from '@angular/core';
 import { provideRouter, withHashLocation } from '@angular/router';
-
+import { provideAnimations } from '@angular/platform-browser/animations'; // ✅ Import adicionado
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -12,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withHashLocation()),
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideRouter(routes),
+    provideAnimations(), // ✅ Habilita as animações em toda a aplicação
   ],
 };
