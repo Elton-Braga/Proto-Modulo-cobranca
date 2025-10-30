@@ -60,9 +60,34 @@ mat-form-field {
 .mat-mdc-dialog-container {
   max-width: 80vw !important;
 }
-::ng-deep .detalhar-divida-modal {
-  max-width: none !important;
-  width: 50rem !important;
+::ng-deep // Estilos para a modal de detalhar dívida em tela cheia
+.detalhar-divida-modal {
+  // Garante que o overlay ocupe toda a tela
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  // Remove bordas e espaçamentos
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+
+  // Garante que a modal fique acima de outros elementos
+  z-index: 1000;
+
+  // Ajusta o container interno do Angular Material
+  .mat-dialog-container {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+  }
 }
 
 .expanded-row {
@@ -134,4 +159,20 @@ button[mat-icon-button].expanded {
 .linha-expandida {
   border: 1px solid #e2e2e2;
   background: #f1f1f1;
+}
+
+::ng-deep .detalhar-divida-modal {
+  max-width: none !important;
+  width: 100vw !important;
+  height: 100vh !important;
+
+  .mat-dialog-container {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+  }
 }

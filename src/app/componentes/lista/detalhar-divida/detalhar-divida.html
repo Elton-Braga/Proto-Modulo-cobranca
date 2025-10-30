@@ -1,130 +1,176 @@
-<button class="btn btn-primary" (click)="abrirConsultarDivida()">
-  Consultar Dívida
-</button>
-<h2 mat-dialog-title>Detalhes do Beneficiário</h2>
+<div class="modal-fullscreen">
+  <br />
+  <mat-dialog-content class="modal-content">
+    <div class="content-grid">
+      <!-- ================= TITULAR ================= -->
+      <div class="grid-section">
+        <h3 class="section-title">Dados do Titular</h3>
+        <div class="table-container">
+          <table
+            mat-table
+            [dataSource]="[data.titular]"
+            class="mat-elevation-z1 data-table"
+          >
+            <ng-container
+              *ngFor="let col of colunasTitular"
+              [matColumnDef]="col"
+            >
+              <th mat-header-cell *matHeaderCellDef>
+                {{ getColumnDisplayName(col) }}
+              </th>
+              <td mat-cell *matCellDef="let el">
+                <mat-form-field appearance="outline" class="full-width-field">
+                  <input
+                    matInput
+                    [(ngModel)]="el[col]"
+                    [disabled]="!editando"
+                    [type]="getInputType(col)"
+                  />
+                </mat-form-field>
+              </td>
+            </ng-container>
 
-<div class="detalhes-container">
-  <div class="grupo">
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Nome do Titular</mat-label>
-      <input matInput [value]="data?.titular?.nome" disabled />
-    </mat-form-field>
+            <tr mat-header-row *matHeaderRowDef="colunasTitular"></tr>
+            <tr mat-row *matRowDef="let row; columns: colunasTitular"></tr>
+          </table>
+        </div>
+      </div>
+      <br />
+      <!-- ================= CONJUGE ================= -->
+      <div class="grid-section">
+        <h3 class="section-title">Dados do Cônjuge</h3>
+        <div class="table-container">
+          <table
+            mat-table
+            [dataSource]="[data.conjuge]"
+            class="mat-elevation-z1 data-table"
+          >
+            <ng-container
+              *ngFor="let col of colunasConjuge"
+              [matColumnDef]="col"
+            >
+              <th mat-header-cell *matHeaderCellDef>
+                {{ getColumnDisplayName(col) }}
+              </th>
+              <td mat-cell *matCellDef="let el">
+                <mat-form-field appearance="outline" class="full-width-field">
+                  <input
+                    matInput
+                    [(ngModel)]="el[col]"
+                    [disabled]="!editando"
+                    [type]="getInputType(col)"
+                  />
+                </mat-form-field>
+              </td>
+            </ng-container>
 
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>CPF do Titular</mat-label>
-      <input matInput [value]="data?.titular?.cpf" disabled />
-    </mat-form-field>
+            <tr mat-header-row *matHeaderRowDef="colunasConjuge"></tr>
+            <tr mat-row *matRowDef="let row; columns: colunasConjuge"></tr>
+          </table>
+        </div>
+      </div>
+      <br />
+      <!-- ================= PROJETO ASSENTAMENTO ================= -->
+      <div class="grid-section">
+        <h3 class="section-title">Projeto de Assentamento</h3>
+        <div class="table-container">
+          <table
+            mat-table
+            [dataSource]="data.projeto_assentamento"
+            class="mat-elevation-z1 data-table"
+          >
+            <ng-container
+              *ngFor="let col of colunasProjeto"
+              [matColumnDef]="col"
+            >
+              <th mat-header-cell *matHeaderCellDef>
+                {{ getColumnDisplayName(col) }}
+              </th>
+              <td mat-cell *matCellDef="let el">
+                <mat-form-field appearance="outline" class="full-width-field">
+                  <input
+                    matInput
+                    [(ngModel)]="el[col]"
+                    [disabled]="!editando"
+                  />
+                </mat-form-field>
+              </td>
+            </ng-container>
 
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Código do Beneficiário</mat-label>
-      <input matInput [value]="data?.titular?.cod_beneficiario" disabled />
-    </mat-form-field>
-  </div>
-  <h4>Dados do conjuge</h4>
-  <div class="grupo">
-    <br />
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Nome do Conjuge</mat-label>
-      <input matInput [value]="data?.conjuge?.nome" disabled />
-    </mat-form-field>
+            <tr mat-header-row *matHeaderRowDef="colunasProjeto"></tr>
+            <tr mat-row *matRowDef="let row; columns: colunasProjeto"></tr>
+          </table>
+        </div>
+      </div>
+      <br />
+      <!-- ================= ENDEREÇO COBRANÇA ================= -->
+      <div class="grid-section">
+        <h3 class="section-title">Endereço de Cobrança</h3>
+        <div class="table-container">
+          <table
+            mat-table
+            [dataSource]="data.endereco"
+            class="mat-elevation-z1 data-table"
+          >
+            <ng-container
+              *ngFor="let col of colunasEndereco"
+              [matColumnDef]="col"
+            >
+              <th mat-header-cell *matHeaderCellDef>
+                {{ getColumnDisplayName(col) }}
+              </th>
+              <td mat-cell *matCellDef="let el">
+                <mat-form-field appearance="outline" class="full-width-field">
+                  <input
+                    matInput
+                    [(ngModel)]="el[col]"
+                    [disabled]="!editando"
+                  />
+                </mat-form-field>
+              </td>
+            </ng-container>
 
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>CPF do Conjuge</mat-label>
-      <input matInput [value]="data?.conjuge?.cpf" disabled />
-    </mat-form-field>
+            <tr mat-header-row *matHeaderRowDef="colunasEndereco"></tr>
+            <tr mat-row *matRowDef="let row; columns: colunasEndereco"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
 
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Nascimento do Conjuge</mat-label>
-      <input matInput [value]="data?.conjuge?.data_nascimento" disabled />
-    </mat-form-field>
+  <mat-dialog-actions class="modal-actions">
+    <div class="actions-container">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="habilitarEdicao()"
+        [disabled]="editando"
+        class="action-button"
+      >
+        <mat-icon>edit</mat-icon>
+        Editar
+      </button>
 
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Sexo do conjuge</mat-label>
-      <input matInput [value]="data?.conjuge?.sexo" disabled />
-    </mat-form-field>
-  </div>
+      <button
+        mat-flat-button
+        color="accent"
+        (click)="salvar()"
+        [disabled]="!editando"
+        class="action-button"
+      >
+        <mat-icon>save</mat-icon>
+        Salvar
+      </button>
 
-  <div class="grupo">
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Data de Nascimento do titular</mat-label>
-      <input
-        matInput
-        [value]="data?.titular?.data_nascimento | date : 'dd/MM/yyyy'"
-        disabled
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Sexo do titular</mat-label>
-      <input matInput [value]="data?.titular?.sexo" disabled />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Estado Civil</mat-label>
-      <input matInput [value]="data?.titular?.estado_civil" disabled />
-    </mat-form-field>
-  </div>
-
-  <div class="grupo">
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Nome do Pai</mat-label>
-      <input matInput [value]="data?.titular?.nome_pai" disabled />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Nome da Mãe</mat-label>
-      <input matInput [value]="data?.titular?.nome_mae" disabled />
-    </mat-form-field>
-  </div>
-
-  <div class="grupo">
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Impedimento</mat-label>
-      <input matInput [value]="data?.bloqueios?.[0]?.bloqueio" disabled />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Motivo do impedimento</mat-label>
-      <input
-        matInput
-        [value]="data?.bloqueios?.[0]?.descricao_bloqueio"
-        disabled
-      />
-    </mat-form-field>
-  </div>
-
-  <h4>Endereço de cobrança</h4>
-
-  <div class="grupo" *ngFor="let end of data?.endereco">
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Estado</mat-label>
-      <input matInput [value]="end?.estado" disabled />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Município</mat-label>
-      <input matInput [value]="end?.municipio" disabled />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Bairro</mat-label>
-      <input matInput [value]="end?.bairro" disabled />
-    </mat-form-field>
-  </div>
-
-  <div class="grupo">
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Rua</mat-label>
-      <input matInput [value]="data?.endereco?.[0]?.rua" disabled />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="campo">
-      <mat-label>Número</mat-label>
-      <input matInput [value]="data?.endereco?.[0]?.numero" disabled />
-    </mat-form-field>
-  </div>
-</div>
-
-<div mat-dialog-actions align="end">
-  <button mat-flat-button color="primary" mat-dialog-close>Fechar</button>
+      <button
+        mat-stroked-button
+        color="warn"
+        mat-dialog-close
+        class="action-button"
+      >
+        <mat-icon>close</mat-icon>
+        Fechar
+      </button>
+    </div>
+  </mat-dialog-actions>
 </div>
