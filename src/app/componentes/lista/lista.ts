@@ -123,6 +123,8 @@ export class Lista implements OnInit, AfterViewInit {
       sr: [''],
       situacao: [''],
       impedimento: [''],
+      cod_beneficiario: [''],
+      modalidade: [''],
     });
 
     this.dataSource.data = MOCK_BENEFICIARIOS;

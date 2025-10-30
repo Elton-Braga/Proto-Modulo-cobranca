@@ -23,6 +23,20 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-3">
+          <mat-label>Código do Beneficiário</mat-label>
+          <input
+            matInput
+            formControlName="cod_beneficiario"
+            placeholder="Código do BEneficiario"
+          />
+          <mat-error
+            *ngIf="formFiltro.get('cod_beneficiario')?.hasError('minlength')"
+          >
+            Mínimo 3 caracteres.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>CPF do Beneficiário</mat-label>
           <input matInput formControlName="cpf" placeholder="000.000.000-00" />
           <mat-error *ngIf="formFiltro.get('cpf')?.hasError('pattern')">
@@ -44,17 +58,26 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-6">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Situação</mat-label>
           <input matInput formControlName="situacao" placeholder="Situação" />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-6">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Impedimento</mat-label>
           <input
             matInput
             formControlName="impedimento"
             placeholder="Impedimento"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>Modalidade</mat-label>
+          <input
+            matInput
+            formControlName="modalidade"
+            placeholder="Modalidade"
           />
         </mat-form-field>
 
