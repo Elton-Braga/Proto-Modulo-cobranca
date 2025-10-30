@@ -1,7 +1,3 @@
-* {
-  //display: flex;
-}
-
 .menu-acordeon {
   margin-bottom: 1rem;
 }
@@ -18,9 +14,6 @@ mat-expansion-panel {
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 16px;
-}
-
-.itens {
 }
 
 /* Botões */
@@ -139,5 +132,6 @@ button[mat-icon-button].expanded {
 }
 
 .linha-expandida {
-  border: 1px solid #f3f1f1;
+  border: 1px solid #e2e2e2;
+  background: #f1f1f1;
 }
