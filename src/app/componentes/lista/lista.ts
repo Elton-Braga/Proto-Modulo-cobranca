@@ -229,4 +229,31 @@ export class Lista implements OnInit, AfterViewInit {
     sessionStorage.setItem('beneficiarioSelecionado', JSON.stringify(element));
     novaAba.location.href = `${window.location.origin}/#/emitir-gru`;
   }
+
+  toggleInnerSelection(element: any, row: any): void {
+    if (!element.innerSelection) {
+      element.innerSelection = new SelectionModel<any>(true, []);
+    }
+    element.innerSelection.toggle(row);
+  }
+
+  isAllSelectedInner(element: any): boolean {
+    if (!element.innerSelection) {
+      element.innerSelection = new SelectionModel<any>(true, []);
+    }
+    const numSelected = element.innerSelection.selected.length;
+    const numRows = element.dadosDeCobranca.length;
+    return numSelected === numRows;
+  }
+
+  masterToggleInner(element: any): void {
+    if (!element.innerSelection) {
+      element.innerSelection = new SelectionModel<any>(true, []);
+    }
+    this.isAllSelectedInner(element)
+      ? element.innerSelection.clear()
+      : element.dadosDeCobranca.forEach((row: any) =>
+          element.innerSelection.select(row)
+        );
+  }
 }
