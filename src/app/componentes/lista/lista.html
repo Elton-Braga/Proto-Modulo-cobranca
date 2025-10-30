@@ -281,7 +281,7 @@
               class="grid-dados p-2 mb-3 border rounded"
             >
               <mat-form-field appearance="outline">
-                <mat-label>Data Assinatura</mat-label>
+                <mat-label>Data Do vencimento</mat-label>
                 <input matInput [value]="d.dataAssinaturaContrato" disabled />
               </mat-form-field>
 
@@ -295,8 +295,8 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline">
-                <mat-label>Saldo</mat-label>
-                <input matInput [value]="d.saldo | number : '1.2-2'" disabled />
+                <mat-label>Modalidade</mat-label>
+                <input matInput [value]="d.modalidade" disabled />
               </mat-form-field>
             </div>
           </div>

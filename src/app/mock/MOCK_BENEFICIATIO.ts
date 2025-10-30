@@ -166,6 +166,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
     ],
     dadosDeCobranca: [
       {
+        dataVencimento: '10/10/2020',
         dataAssinaturaContrato: '10/03/2015',
         dataMovimentacao: '15/07/2016',
         valorContrato: 50000.0,
@@ -179,6 +180,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: false,
         rebateLiquidacaoAteVencimento: 20.0,
         rebateLiquidacaoAposVencimento: 10.0,
+        modalidade: '',
       },
       {
         dataAssinaturaContrato: '22/09/2017',
@@ -194,6 +196,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: true,
         rebateLiquidacaoAteVencimento: 15.0,
         rebateLiquidacaoAposVencimento: 5.0,
+        dataVencimento: '10/10/2020',
+        modalidade: '',
       },
       {
         dataAssinaturaContrato: '12/01/2020',
@@ -209,6 +213,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: false,
         rebateLiquidacaoAteVencimento: 25.0,
         rebateLiquidacaoAposVencimento: 10.0,
+        dataVencimento: '10/10/2020',
+        modalidade: '',
       },
     ],
   },
@@ -340,6 +346,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
     ],
     dadosDeCobranca: [
       {
+        dataVencimento: '10/10/2020',
         dataAssinaturaContrato: '10/03/2015',
         dataMovimentacao: '15/07/2016',
         valorContrato: 50000.0,
@@ -353,6 +360,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: false,
         rebateLiquidacaoAteVencimento: 20.0,
         rebateLiquidacaoAposVencimento: 10.0,
+        modalidade: '',
       },
       {
         dataAssinaturaContrato: '22/09/2017',
@@ -368,6 +376,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: true,
         rebateLiquidacaoAteVencimento: 15.0,
         rebateLiquidacaoAposVencimento: 5.0,
+        dataVencimento: undefined,
+        modalidade: '',
       },
     ],
   },
@@ -500,6 +510,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
     ],
     dadosDeCobranca: [
       {
+        dataVencimento: '10/10/2020',
         dataAssinaturaContrato: '12/01/2020',
         dataMovimentacao: '11/04/2021',
         valorContrato: 80000.0,
@@ -513,6 +524,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: false,
         rebateLiquidacaoAteVencimento: 25.0,
         rebateLiquidacaoAposVencimento: 10.0,
+        modalidade: '',
       },
     ],
   }, // ==== REGISTRO 4 ====
@@ -612,6 +624,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
     ],
     dadosDeCobranca: [
       {
+        dataVencimento: '10/10/2020',
         dataAssinaturaContrato: '05/06/2014',
         dataMovimentacao: '15/09/2015',
         valorContrato: 40000.0,
@@ -625,6 +638,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: false,
         rebateLiquidacaoAteVencimento: 10.0,
         rebateLiquidacaoAposVencimento: 4.0,
+        modalidade: '',
       },
     ],
   },
@@ -767,6 +781,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: false,
         rebateLiquidacaoAteVencimento: 22.0,
         rebateLiquidacaoAposVencimento: 8.0,
+        dataVencimento: '10/10/2020',
+        modalidade: '',
       },
     ],
   },
@@ -895,6 +911,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: true,
         rebateLiquidacaoAteVencimento: 12.0,
         rebateLiquidacaoAposVencimento: 6.0,
+        dataVencimento: '10/10/2020',
+        modalidade: '',
       },
     ],
   }, // ==== REGISTRO 7 ====
@@ -1033,6 +1051,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: false,
         rebateLiquidacaoAteVencimento: 18.0,
         rebateLiquidacaoAposVencimento: 9.0,
+        dataVencimento: '10/10/2020',
+        modalidade: '',
       },
     ],
   },
@@ -1158,6 +1178,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: true,
         rebateLiquidacaoAteVencimento: 8.0,
         rebateLiquidacaoAposVencimento: 2.0,
+        dataVencimento: '10/10/2020',
+        modalidade: '',
       },
     ],
   }, // ==== REGISTRO 9 ====
@@ -1267,6 +1289,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: false,
         rebateLiquidacaoAteVencimento: 30.0,
         rebateLiquidacaoAposVencimento: 15.0,
+        dataVencimento: '10/10/2020',
+        modalidade: '',
       },
     ],
   },
@@ -1409,6 +1433,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: true,
         rebateLiquidacaoAteVencimento: 5.0,
         rebateLiquidacaoAposVencimento: 1.0,
+        dataVencimento: '10/10/2020',
+        modalidade: '',
       },
       {
         dataAssinaturaContrato: '11/12/2016',
@@ -1424,6 +1450,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: false,
         rebateLiquidacaoAteVencimento: 14.0,
         rebateLiquidacaoAposVencimento: 7.0,
+        dataVencimento: '10/10/2020',
+        modalidade: '',
       },
     ],
   },
@@ -1661,6 +1689,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: false,
         rebateLiquidacaoAteVencimento: 28.0,
         rebateLiquidacaoAposVencimento: 12.0,
+        dataVencimento: undefined,
+        modalidade: '',
       },
       {
         dataAssinaturaContrato: '28/07/2011',
@@ -1676,6 +1706,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: true,
         rebateLiquidacaoAteVencimento: 6.0,
         rebateLiquidacaoAposVencimento: 3.0,
+        dataVencimento: undefined,
+        modalidade: '',
       },
     ],
   },

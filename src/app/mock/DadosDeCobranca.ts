@@ -1,6 +1,7 @@
 export interface DadosDeCobranca {
   dataAssinaturaContrato: string; // Data da assinatura do contrato
   dataMovimentacao: string; // Data da movimentação financeira
+  dataVencimento: any;
   valorContrato: number; // Valor total do contrato
   valorCredito: number; // Valor do crédito concedido
   valorNaoUtilizado: number; // Valor não utilizado pelo beneficiário
@@ -12,4 +13,5 @@ export interface DadosDeCobranca {
   houveDescumprimentoRegras: boolean; // Indicador de descumprimento contratual
   rebateLiquidacaoAteVencimento: number; // Percentual de rebate até o vencimento
   rebateLiquidacaoAposVencimento: number; // Percentual de rebate após o vencimento
+  modalidade: string;
 }
