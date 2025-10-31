@@ -74,39 +74,56 @@
     </div>
   </mat-dialog-content>
 
+  <!-- ================= RODAPÉ COM NOVO BOTÃO ================= -->
   <mat-dialog-actions class="modal-actions">
     <div class="actions-container">
-      <button
-        mat-flat-button
-        color="primary"
-        (click)="habilitarEdicao()"
-        [disabled]="editando"
-        class="action-button"
-      >
-        <mat-icon>edit</mat-icon>
-        Editar
-      </button>
+      <!-- Botão à esquerda -->
+      <div class="left-actions">
+        <button
+          mat-flat-button
+          color="primary"
+          class="action-button"
+          (click)="abrirConsultarDivida(data)"
+        >
+          <mat-icon>search</mat-icon>
+          Consultar Dívida
+        </button>
+      </div>
 
-      <button
-        mat-flat-button
-        color="accent"
-        (click)="salvar()"
-        [disabled]="!editando"
-        class="action-button"
-      >
-        <mat-icon>save</mat-icon>
-        Salvar
-      </button>
+      <!-- Botões à direita -->
+      <div class="right-actions">
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="habilitarEdicao()"
+          [disabled]="editando"
+          class="action-button"
+        >
+          <mat-icon>edit</mat-icon>
+          Editar
+        </button>
 
-      <button
-        mat-stroked-button
-        color="warn"
-        mat-dialog-close
-        class="action-button"
-      >
-        <mat-icon>close</mat-icon>
-        Fechar
-      </button>
+        <button
+          mat-flat-button
+          color="accent"
+          (click)="salvar()"
+          [disabled]="!editando"
+          class="action-button"
+        >
+          <mat-icon>save</mat-icon>
+          Salvar
+        </button>
+
+        <button
+          mat-stroked-button
+          color="warn"
+          mat-dialog-close
+          class="action-button"
+        >
+          <mat-icon>close</mat-icon>
+          Fechar
+        </button>
+      </div>
     </div>
   </mat-dialog-actions>
 </div>

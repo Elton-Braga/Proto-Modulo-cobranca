@@ -1,5 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { ConsultarDivida } from '../consultar-divida/consultar-divida';
 
 @Component({
   selector: 'app-detalhar-divida',
@@ -81,7 +86,10 @@ export class DetalharDivida {
     'motivoImpedimento',
   ];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialog: MatDialog
+  ) {}
 
   // Método para obter nomes amigáveis para as colunas
   getColumnDisplayName(column: string): string {
@@ -118,6 +126,21 @@ export class DetalharDivida {
     };
 
     return displayNames[column] || column;
+  }
+
+  abrirConsultarDivida(element: any): void {
+    const dialogRef = this.dialog.open(ConsultarDivida, {
+      width: '900px',
+      maxHeight: '50rem',
+      data: element,
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Modal fechada com resultado:', result);
+      }
+    });
   }
 
   // Método para determinar o tipo de input
