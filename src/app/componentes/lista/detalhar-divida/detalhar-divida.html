@@ -3,136 +3,72 @@
   <mat-dialog-content class="modal-content">
     <div class="content-grid">
       <!-- ================= TITULAR ================= -->
-      <div class="grid-section">
+      <div class="grid-section full-width">
         <h3 class="section-title">Dados do Titular</h3>
-        <div class="table-container">
-          <table
-            mat-table
-            [dataSource]="[data.titular]"
-            class="mat-elevation-z1 data-table"
-          >
-            <ng-container
-              *ngFor="let col of colunasTitular"
-              [matColumnDef]="col"
-            >
-              <th mat-header-cell *matHeaderCellDef>
-                {{ getColumnDisplayName(col) }}
-              </th>
-              <td mat-cell *matCellDef="let el">
-                <mat-form-field appearance="outline" class="full-width-field">
-                  <input
-                    matInput
-                    [(ngModel)]="el[col]"
-                    [disabled]="!editando"
-                    [type]="getInputType(col)"
-                  />
-                </mat-form-field>
-              </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="colunasTitular"></tr>
-            <tr mat-row *matRowDef="let row; columns: colunasTitular"></tr>
-          </table>
+        <div class="form-grid">
+          <div class="form-field" *ngFor="let col of colunasTitular">
+            <mat-form-field appearance="outline" class="full-width-field">
+              <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+              <input
+                matInput
+                [(ngModel)]="data.titular[col]"
+                [disabled]="!editando"
+                [type]="getInputType(col)"
+              />
+            </mat-form-field>
+          </div>
         </div>
       </div>
-      <br />
+
       <!-- ================= CONJUGE ================= -->
-      <div class="grid-section">
+      <div class="grid-section full-width">
         <h3 class="section-title">Dados do Cônjuge</h3>
-        <div class="table-container">
-          <table
-            mat-table
-            [dataSource]="[data.conjuge]"
-            class="mat-elevation-z1 data-table"
-          >
-            <ng-container
-              *ngFor="let col of colunasConjuge"
-              [matColumnDef]="col"
-            >
-              <th mat-header-cell *matHeaderCellDef>
-                {{ getColumnDisplayName(col) }}
-              </th>
-              <td mat-cell *matCellDef="let el">
-                <mat-form-field appearance="outline" class="full-width-field">
-                  <input
-                    matInput
-                    [(ngModel)]="el[col]"
-                    [disabled]="!editando"
-                    [type]="getInputType(col)"
-                  />
-                </mat-form-field>
-              </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="colunasConjuge"></tr>
-            <tr mat-row *matRowDef="let row; columns: colunasConjuge"></tr>
-          </table>
+        <div class="form-grid">
+          <div class="form-field" *ngFor="let col of colunasConjuge">
+            <mat-form-field appearance="outline" class="full-width-field">
+              <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+              <input
+                matInput
+                [(ngModel)]="data.conjuge[col]"
+                [disabled]="!editando"
+                [type]="getInputType(col)"
+              />
+            </mat-form-field>
+          </div>
         </div>
       </div>
-      <br />
+
       <!-- ================= PROJETO ASSENTAMENTO ================= -->
-      <div class="grid-section">
+      <div class="grid-section full-width">
         <h3 class="section-title">Projeto de Assentamento</h3>
-        <div class="table-container">
-          <table
-            mat-table
-            [dataSource]="data.projeto_assentamento"
-            class="mat-elevation-z1 data-table"
-          >
-            <ng-container
-              *ngFor="let col of colunasProjeto"
-              [matColumnDef]="col"
-            >
-              <th mat-header-cell *matHeaderCellDef>
-                {{ getColumnDisplayName(col) }}
-              </th>
-              <td mat-cell *matCellDef="let el">
-                <mat-form-field appearance="outline" class="full-width-field">
-                  <input
-                    matInput
-                    [(ngModel)]="el[col]"
-                    [disabled]="!editando"
-                  />
-                </mat-form-field>
-              </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="colunasProjeto"></tr>
-            <tr mat-row *matRowDef="let row; columns: colunasProjeto"></tr>
-          </table>
+        <div class="form-grid">
+          <div class="form-field" *ngFor="let col of colunasProjeto">
+            <mat-form-field appearance="outline" class="full-width-field">
+              <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+              <input
+                matInput
+                [(ngModel)]="data.projeto_assentamento[0][col]"
+                [disabled]="!editando"
+              />
+            </mat-form-field>
+          </div>
         </div>
       </div>
-      <br />
-      <!-- ================= ENDEREÇO COBRANÇA ================= -->
-      <div class="grid-section">
-        <h3 class="section-title">Endereço de Cobrança</h3>
-        <div class="table-container">
-          <table
-            mat-table
-            [dataSource]="data.endereco"
-            class="mat-elevation-z1 data-table"
-          >
-            <ng-container
-              *ngFor="let col of colunasEndereco"
-              [matColumnDef]="col"
-            >
-              <th mat-header-cell *matHeaderCellDef>
-                {{ getColumnDisplayName(col) }}
-              </th>
-              <td mat-cell *matCellDef="let el">
-                <mat-form-field appearance="outline" class="full-width-field">
-                  <input
-                    matInput
-                    [(ngModel)]="el[col]"
-                    [disabled]="!editando"
-                  />
-                </mat-form-field>
-              </td>
-            </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="colunasEndereco"></tr>
-            <tr mat-row *matRowDef="let row; columns: colunasEndereco"></tr>
-          </table>
+      <!-- ================= ENDEREÇO COBRANÇA ================= -->
+      <div class="grid-section full-width">
+        <h3 class="section-title">Endereço de Cobrança</h3>
+        <div class="form-grid">
+          <div class="form-field" *ngFor="let col of colunasEndereco">
+            <mat-form-field appearance="outline" class="full-width-field">
+              <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+              <input
+                matInput
+                [(ngModel)]="data.endereco[0][col]"
+                [disabled]="!editando"
+              />
+            </mat-form-field>
+          </div>
         </div>
       </div>
     </div>
