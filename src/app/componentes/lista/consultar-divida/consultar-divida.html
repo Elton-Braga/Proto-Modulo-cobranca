@@ -1,17 +1,74 @@
 <h2 mat-dialog-title>Consulta de Dívidas</h2>
 
-<mat-dialog-content>
-  <p><strong>Beneficiário:</strong> {{ data?.titular?.nome }}</p>
-  <p><strong>CPF:</strong> {{ data?.titular?.cpf }}</p>
-
-  <div class="conteudo">
-    <!-- Aqui pode inserir tabela, histórico de dívidas, etc. -->
-    <p>Conteúdo detalhado da dívida...</p>
+<mat-dialog-content class="cd-content">
+  <div class="header-dados">
+    <div><strong>Beneficiário:</strong> {{ beneficiarioNome }}</div>
+    <div><strong>CPF:</strong> {{ beneficiarioCpf }}</div>
   </div>
+
+  <div class="table-container" *ngIf="pagamentos?.length; else vazio">
+    <table class="pagamentos-table" role="table">
+      <thead>
+        <tr>
+          <th>Modalidade</th>
+          <th>Código do Plano</th>
+          <th>Código da Parcela</th>
+          <th>Nº Parcela</th>
+          <th>Valor Original</th>
+          <th>Correção Anual</th>
+          <th>Valor Remissão</th>
+          <th>Desconto Concedido</th>
+          <th>Juros de Mora</th>
+          <th>Valor Devido</th>
+          <th>Data de Vencimento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of pagamentos">
+          <td>{{ p.modalidade }}</td>
+          <td>{{ p.codigoPlano }}</td>
+          <td>{{ p.codigoParcela }}</td>
+          <td style="text-align: right">{{ p.numeroParcela }}</td>
+          <td style="text-align: right">
+            {{ formataNumero(p.valorOriginal) }}
+          </td>
+          <td style="text-align: right">
+            {{ formataPercentual(p.correcaoAnual) }}
+          </td>
+          <td style="text-align: right">
+            {{ formataNumero(p.valorRemissao) }}
+          </td>
+          <td style="text-align: right">
+            {{ formataNumero(p.descontoConcedido) }}
+          </td>
+          <td style="text-align: right">{{ formataNumero(p.jurosMora) }}</td>
+          <td style="text-align: right">{{ formataNumero(p.valorDevido) }}</td>
+          <td>{{ p.dataVencimento }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #vazio>
+    <div class="vazio">Nenhum registro de pagamento encontrado.</div>
+  </ng-template>
 </mat-dialog-content>
-<button>Imprimir GRU</button>
-<mat-dialog-actions align="end">
-  <button mat-stroked-button (click)="fechar()" class="btn btn-primary">
-    Fechar
+
+<div class="acoes">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="imprimirGRU()"
+    class="btn-imprimir"
+  >
+    <mat-icon>print</mat-icon>
+    Imprimir GRU
   </button>
-</mat-dialog-actions>
+
+  <mat-dialog-actions align="end">
+    <button mat-stroked-button (click)="fechar()" class="btn-fechar">
+      <mat-icon>close</mat-icon>
+      Fechar
+    </button>
+  </mat-dialog-actions>
+</div>

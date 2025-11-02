@@ -217,6 +217,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         modalidade: '',
       },
     ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
   },
   // -------------------- 2º REGISTRO --------------------
   {
@@ -380,6 +395,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         modalidade: '',
       },
     ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
   },
 
   // -------------------- 3º REGISTRO --------------------
@@ -527,6 +557,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         modalidade: '',
       },
     ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
   }, // ==== REGISTRO 4 ====
   {
     titular: {
@@ -639,6 +684,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         rebateLiquidacaoAteVencimento: 10.0,
         rebateLiquidacaoAposVencimento: 4.0,
         modalidade: '',
+      },
+    ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
   },
@@ -785,6 +845,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         modalidade: '',
       },
     ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
   },
 
   // ==== REGISTRO 6 ====
@@ -913,6 +988,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         rebateLiquidacaoAposVencimento: 6.0,
         dataVencimento: '10/10/2020',
         modalidade: '',
+      },
+    ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
   }, // ==== REGISTRO 7 ====
@@ -1055,6 +1145,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         modalidade: '',
       },
     ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
   },
 
   // ==== REGISTRO 8 ====
@@ -1182,6 +1287,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         modalidade: '',
       },
     ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
   }, // ==== REGISTRO 9 ====
   {
     titular: {
@@ -1291,6 +1411,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         rebateLiquidacaoAposVencimento: 15.0,
         dataVencimento: '10/10/2020',
         modalidade: '',
+      },
+    ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
   },
@@ -1454,6 +1589,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         modalidade: '',
       },
     ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
   },
 
   // ==== REGISTRO 11 ====
@@ -1563,6 +1713,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
       },
     ],
     dadosDeCobranca: [],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
   },
 
   // ==== REGISTRO 12 ====
@@ -1708,6 +1873,21 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         rebateLiquidacaoAposVencimento: 3.0,
         dataVencimento: undefined,
         modalidade: '',
+      },
+    ],
+    pagamento: [
+      {
+        modalidade: 'Remissão',
+        codigoPlano: 'PL-2025-001',
+        codigoParcela: 'CP-0001',
+        numeroParcela: 1,
+        valorOriginal: 1500.0,
+        correcaoAnual: 0.045, // 4.5% ao ano (valor numérico)
+        valorRemissao: 750.0,
+        descontoConcedido: 100.0,
+        jurosMora: 12.5,
+        valorDevido: 662.5,
+        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
   },

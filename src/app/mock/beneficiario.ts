@@ -5,6 +5,7 @@ import { EnderecoCobranca } from './enderecoCobranca';
 import { HistoricoPNRA } from './HistoricoPNRA';
 import { Lote } from './lote';
 import { Observacoes } from './obsercacoes';
+import { ParcelaPagamento } from './pagamento';
 import { RequerimentoFiltro } from './requerimentoFiltro';
 import { Titular } from './titular';
 import { UnidadeFamiliar } from './unidadeFamiliar';
@@ -20,4 +21,5 @@ export interface Beneficiario {
   requerimento: RequerimentoFiltro[];
   endereco: EnderecoCobranca[];
   dadosDeCobranca: DadosDeCobranca[];
+  pagamento: ParcelaPagamento[];
 }
