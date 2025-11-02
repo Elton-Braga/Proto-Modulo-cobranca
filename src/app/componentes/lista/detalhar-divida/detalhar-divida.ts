@@ -136,8 +136,11 @@ export class DetalharDivida {
   // ================== CONSULTAR DÍVIDA ==================
   abrirConsultarDivida(element: any): void {
     const dialogRef = this.dialog.open(ConsultarDivida, {
-      width: '900px',
-      maxHeight: '50rem',
+      width: '100vw', // Largura total da viewport
+      height: '100vh', // Altura total da viewport
+      maxWidth: '100vw', // Remove limitação de largura máxima
+      maxHeight: '100vh', // Remove limitação de altura máxima
+      panelClass: 'detalhar-divida-modal',
       data: element,
       disableClose: false,
     });
