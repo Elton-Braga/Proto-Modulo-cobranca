@@ -12,7 +12,7 @@
               <input
                 matInput
                 [(ngModel)]="data.titular[col]"
-                [disabled]="!editando"
+                [disabled]="!editando || !isCampoEditavel('titular', col)"
                 [type]="getInputType(col)"
               />
             </mat-form-field>
@@ -30,7 +30,7 @@
               <input
                 matInput
                 [(ngModel)]="data.conjuge[col]"
-                [disabled]="!editando"
+                [disabled]="!editando || !isCampoEditavel('conjuge', col)"
                 [type]="getInputType(col)"
               />
             </mat-form-field>
@@ -48,36 +48,56 @@
               <input
                 matInput
                 [(ngModel)]="data.projeto_assentamento[0][col]"
-                [disabled]="!editando"
+                disabled
               />
             </mat-form-field>
           </div>
         </div>
       </div>
-
-      <!-- ================= ENDEREÇO COBRANÇA ================= -->
-      <div class="grid-section full-width">
-        <h3 class="section-title">Endereço de Cobrança</h3>
-        <div class="form-grid">
-          <div class="form-field" *ngFor="let col of colunasEndereco">
-            <mat-form-field appearance="outline" class="full-width-field">
-              <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
-              <input
-                matInput
-                [(ngModel)]="data.endereco[0][col]"
-                [disabled]="!editando"
-              />
-            </mat-form-field>
+      <div class="row">
+        <!-- ================= ENDEREÇO E IMPEDIMENTO (LADO A LADO) ================= -->
+        <div class="col-9">
+          <!-- ENDEREÇO COBRANÇA -->
+          <div class="grid-section half-width">
+            <h3 class="section-title">Endereço de Cobrança</h3>
+            <div class="form-grid">
+              <div class="form-field" *ngFor="let col of colunasEndereco">
+                <mat-form-field appearance="outline" class="full-width-field">
+                  <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+                  <input
+                    matInput
+                    [(ngModel)]="data.endereco[0][col]"
+                    [disabled]="!editando"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <br />
+          <!-- IMPEDIMENTO -->
+          <div class="col-5">
+            <h3 class="section-title">Impedimento</h3>
+            <div class="form-grid">
+              <div class="form-field" *ngFor="let col of colunasImpedimento">
+                <mat-form-field appearance="outline" class="full-width-field">
+                  <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+                  <input
+                    matInput
+                    [(ngModel)]="data.impedimento[col]"
+                    [disabled]="!editando"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </mat-dialog-content>
 
-  <!-- ================= RODAPÉ COM NOVO BOTÃO ================= -->
+  <!-- ================= RODAPÉ ================= -->
   <mat-dialog-actions class="modal-actions">
     <div class="actions-container">
-      <!-- Botão à esquerda -->
       <div class="left-actions">
         <button
           mat-flat-button
@@ -90,7 +110,6 @@
         </button>
       </div>
 
-      <!-- Botões à direita -->
       <div class="right-actions">
         <button
           mat-flat-button

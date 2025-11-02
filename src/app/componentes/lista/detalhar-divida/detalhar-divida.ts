@@ -32,6 +32,7 @@ import { ConsultarDivida } from '../consultar-divida/consultar-divida';
 export class DetalharDivida {
   editando = false;
 
+  // ================== COLUNAS ==================
   colunasTitular = [
     'nome',
     'cpf',
@@ -76,22 +77,26 @@ export class DetalharDivida {
     'codigoMunicipioComunincra',
   ];
 
-  colunasEndereco = [
-    'estado',
-    'municipio',
-    'bairro',
-    'rua',
-    'numero',
-    'haImpedimento',
-    'motivoImpedimento',
-  ];
+  colunasEndereco = ['estado', 'municipio', 'bairro', 'rua', 'numero'];
+  colunasImpedimento = ['haImpedimento', 'motivoImpedimento'];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialog
-  ) {}
+  ) {
+    // Inicializações seguras
+    this.data = this.data || {};
+    this.data.titular = this.data.titular || {};
+    this.data.conjuge = this.data.conjuge || {};
+    this.data.projeto_assentamento = this.data.projeto_assentamento || [{}];
+    this.data.endereco = this.data.endereco || [{}];
+    this.data.impedimento = this.data.impedimento || {
+      haImpedimento: '',
+      motivoImpedimento: '',
+    };
+  }
 
-  // Método para obter nomes amigáveis para as colunas
+  // ================== NOMES DE EXIBIÇÃO ==================
   getColumnDisplayName(column: string): string {
     const displayNames: { [key: string]: string } = {
       nome: 'Nome',
@@ -122,12 +127,13 @@ export class DetalharDivida {
       rua: 'Rua',
       numero: 'Número',
       haImpedimento: 'Impedimento',
-      motivoImpedimento: 'Motivo Impedimento',
+      motivoImpedimento: 'Motivo do Impedimento',
     };
 
     return displayNames[column] || column;
   }
 
+  // ================== CONSULTAR DÍVIDA ==================
   abrirConsultarDivida(element: any): void {
     const dialogRef = this.dialog.open(ConsultarDivida, {
       width: '900px',
@@ -143,20 +149,15 @@ export class DetalharDivida {
     });
   }
 
-  // Método para determinar o tipo de input
+  // ================== TIPO DE INPUT ==================
   getInputType(column: string): string {
-    if (column === 'data_nascimento') {
-      return 'date';
-    }
-    if (column === 'email') {
-      return 'email';
-    }
-    if (column === 'telefone') {
-      return 'tel';
-    }
+    if (column === 'data_nascimento') return 'date';
+    if (column === 'email') return 'email';
+    if (column === 'telefone') return 'tel';
     return 'text';
   }
 
+  // ================== CONTROLE DE EDIÇÃO ==================
   habilitarEdicao() {
     this.editando = true;
   }
@@ -164,5 +165,21 @@ export class DetalharDivida {
   salvar() {
     this.editando = false;
     console.log('Dados atualizados:', this.data);
+  }
+
+  // ================== REGRAS DE CAMPOS EDITÁVEIS ==================
+  isCampoEditavel(secao: string, campo: string): boolean {
+    if (!this.editando) return false;
+
+    switch (secao) {
+      case 'titular':
+      case 'conjuge':
+        return campo === 'telefone' || campo === 'email';
+      case 'endereco':
+      case 'impedimento':
+        return true;
+      default:
+        return false;
+    }
   }
 }

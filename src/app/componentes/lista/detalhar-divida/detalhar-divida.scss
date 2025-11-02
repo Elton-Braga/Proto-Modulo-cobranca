@@ -106,3 +106,23 @@
     grid-template-columns: 1fr;
   }
 }
+.inline-flex-container {
+  display: inline-flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+}
+
+.half-width {
+  flex: 1;
+}
+
+@media (max-width: 1000px) {
+  .inline-flex-container {
+    flex-direction: column;
+  }
+}
+
+.largura-impedimento {
+  width: 30%;
+}
