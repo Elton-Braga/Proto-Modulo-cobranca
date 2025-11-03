@@ -81,6 +81,47 @@
           />
         </mat-form-field>
 
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Tipo</mat-label>
+          <input matInput formControlName="tipo" placeholder="Tipo" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Nosso Número (Boleto)</mat-label>
+          <input
+            matInput
+            formControlName="nossoNumero"
+            placeholder="Número do boleto"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-4">
+          <mat-label>Número de Referência (GRU)</mat-label>
+          <input
+            matInput
+            formControlName="numeroReferencia"
+            placeholder="Número da GRU"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-4">
+          <mat-label>Número do Processo</mat-label>
+          <input
+            matInput
+            formControlName="numeroProcesso"
+            placeholder="Número do processo"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-4">
+          <mat-label>Nº do Documento de Titulação</mat-label>
+          <input
+            matInput
+            formControlName="numeroDocumento"
+            placeholder="Documento de titulação"
+          />
+        </mat-form-field>
+
         <div class="botoes-row">
           <button mat-flat-button color="primary" type="submit">Buscar</button>
           <button

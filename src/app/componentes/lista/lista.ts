@@ -32,7 +32,6 @@ import {
   transition,
 } from '@angular/animations';
 import { MOCK_BENEFICIARIOS } from '../../mock/MOCK_BENEFICIATIO';
-import { Beneficiario } from '../../mock/beneficiario';
 import { ConsultarDivida } from './consultar-divida/consultar-divida';
 import { DetalharDivida } from './detalhar-divida/detalhar-divida';
 
@@ -45,20 +44,9 @@ import { DetalharDivida } from './detalhar-divida/detalhar-divida';
     trigger('detailExpand', [
       state(
         'collapsed',
-        style({
-          height: '0px',
-          minHeight: '0',
-          opacity: 0,
-          overflow: 'hidden',
-        })
+        style({ height: '0px', minHeight: '0', opacity: 0, overflow: 'hidden' })
       ),
-      state(
-        'expanded',
-        style({
-          height: '*',
-          opacity: 1,
-        })
-      ),
+      state('expanded', style({ height: '*', opacity: 1 })),
       transition(
         'expanded <=> collapsed',
         animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
@@ -87,7 +75,7 @@ import { DetalharDivida } from './detalhar-divida/detalhar-divida';
   ],
 })
 export class Lista implements OnInit, AfterViewInit {
-  expandedElement: any | null = null;
+  expandedElement: Beneficiario | null = null;
 
   displayedColumns: string[] = [
     'select',
@@ -103,7 +91,7 @@ export class Lista implements OnInit, AfterViewInit {
 
   dataSource = new MatTableDataSource<Beneficiario>();
   selection = new SelectionModel<Beneficiario>(true, []);
-  beneficiariosOriginais = [...MOCK_BENEFICIARIOS];
+  beneficiariosOriginais: Beneficiario[] = [...MOCK_BENEFICIARIOS];
   formFiltro!: FormGroup;
   sr: string[] = ['01', '02', '03', '04', '05'];
 
@@ -125,22 +113,38 @@ export class Lista implements OnInit, AfterViewInit {
       impedimento: [''],
       cod_beneficiario: [''],
       modalidade: [''],
+      tipo: [''],
+      nossoNumero: [''],
+      numeroReferencia: [''],
+      numeroProcesso: [''],
+      numeroDocumento: [''],
     });
 
-    this.dataSource.data = MOCK_BENEFICIARIOS;
+    this.dataSource.data = this.beneficiariosOriginais;
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
-  toggleExpand(element: any): void {
+  toggleExpand(element: Beneficiario): void {
     this.expandedElement = this.expandedElement === element ? null : element;
   }
 
   aplicarFiltro(): void {
-    const { nome, cpf, nomePA, sr } = this.formFiltro.value;
-    const filtradas = this.beneficiariosOriginais.filter((b) => {
+    const {
+      nome,
+      cpf,
+      nomePA,
+      sr,
+      tipo,
+      nossoNumero,
+      numeroReferencia,
+      numeroProcesso,
+      numeroDocumento,
+    } = this.formFiltro.value;
+
+    const filtradas = this.beneficiariosOriginais.filter((b: Beneficiario) => {
       const titular = b.titular;
       const nomeMatch =
         !nome || titular.nome.toLowerCase().includes(nome.toLowerCase());
@@ -153,8 +157,43 @@ export class Lista implements OnInit, AfterViewInit {
       const srMatch =
         !sr ||
         b.requerimento?.[0]?.sr?.toLowerCase().includes(sr.toLowerCase());
-      return nomeMatch && cpfMatch && paMatch && srMatch;
+      const tipoMatch =
+        !tipo ||
+        b.dadosDeCobranca?.some((d) =>
+          d.tipo?.toLowerCase().includes(tipo.toLowerCase())
+        );
+      const nossoNumeroMatch =
+        !nossoNumero ||
+        b.dadosDeCobranca?.some((d) =>
+          d.nossoNumero?.toString().includes(nossoNumero)
+        );
+      const numeroReferenciaMatch =
+        !numeroReferencia ||
+        b.dadosDeCobranca?.some((d) =>
+          d.numeroReferencia?.toString().includes(numeroReferencia)
+        );
+      const numeroProcessoMatch =
+        !numeroProcesso ||
+        b.requerimento?.[0]?.numeroProcesso
+          ?.toString()
+          .includes(numeroProcesso);
+      const numeroDocumentoMatch =
+        !numeroDocumento ||
+        b.documentoTitulacao?.numero?.toString().includes(numeroDocumento);
+
+      return (
+        nomeMatch &&
+        cpfMatch &&
+        paMatch &&
+        srMatch &&
+        tipoMatch &&
+        nossoNumeroMatch &&
+        numeroReferenciaMatch &&
+        numeroProcessoMatch &&
+        numeroDocumentoMatch
+      );
     });
+
     this.dataSource.data = filtradas;
   }
 
@@ -164,8 +203,7 @@ export class Lista implements OnInit, AfterViewInit {
   }
 
   isAllSelected(): boolean {
-    const numSelected = this.selection.selected.length;
-    return numSelected === this.dataSource.data.length;
+    return this.selection.selected.length === this.dataSource.data.length;
   }
 
   masterToggle(): void {
@@ -178,39 +216,35 @@ export class Lista implements OnInit, AfterViewInit {
     console.log(`Exportando: ${tipo.toUpperCase()}`);
   }
 
-  abrirConsultarDivida(element: any): void {
+  abrirConsultarDivida(element: Beneficiario): void {
     const dialogRef = this.dialog.open(ConsultarDivida, {
-      width: '100vw', // Largura total da viewport
-      height: '100vh', // Altura total da viewport
-      maxWidth: '100vw', // Remove limitação de largura máxima
-      maxHeight: '100vh', // Remove limitação de altura máxima
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       panelClass: 'detalhar-divida-modal',
       data: element,
       disableClose: false,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('Modal fechada com resultado:', result);
-      }
+      if (result) console.log('Modal fechada com resultado:', result);
     });
   }
 
-  abrirDetalharDivida(element: any): void {
+  abrirDetalharDivida(element: Beneficiario): void {
     const dialogRef = this.dialog.open(DetalharDivida, {
-      width: '100vw', // Largura total da viewport
-      height: '100vh', // Altura total da viewport
-      maxWidth: '100vw', // Remove limitação de largura máxima
-      maxHeight: '100vh', // Remove limitação de altura máxima
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       panelClass: 'detalhar-divida-modal',
       data: element,
       disableClose: false,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('Modal fechada com resultado:', result);
-      }
+      if (result) console.log('Modal fechada com resultado:', result);
     });
   }
 
@@ -220,12 +254,12 @@ export class Lista implements OnInit, AfterViewInit {
     });
   }
 
-  abrirMenuAcoes(event: Event, element: any): void {
+  abrirMenuAcoes(event: Event, element: Beneficiario): void {
     event.stopPropagation();
     console.log('Beneficiário selecionado:', element);
   }
 
-  imprimirGRU(element: any): void {
+  imprimirGRU(element: Beneficiario): void {
     const novaAba = window.open('about:blank', '_blank');
     if (!novaAba) {
       alert('Permita pop-ups para imprimir a GRU.');
@@ -235,30 +269,63 @@ export class Lista implements OnInit, AfterViewInit {
     novaAba.location.href = `${window.location.origin}/#/emitir-gru`;
   }
 
-  toggleInnerSelection(element: any, row: any): void {
-    if (!element.innerSelection) {
-      element.innerSelection = new SelectionModel<any>(true, []);
-    }
+  toggleInnerSelection(element: Beneficiario, row: DadosDeCobranca): void {
+    element.innerSelection ??= new SelectionModel<DadosDeCobranca>(true, []);
     element.innerSelection.toggle(row);
   }
 
-  isAllSelectedInner(element: any): boolean {
-    if (!element.innerSelection) {
-      element.innerSelection = new SelectionModel<any>(true, []);
-    }
+  isAllSelectedInner(element: Beneficiario): boolean {
+    element.innerSelection ??= new SelectionModel<DadosDeCobranca>(true, []);
     const numSelected = element.innerSelection.selected.length;
-    const numRows = element.dadosDeCobranca.length;
+    const numRows = element.dadosDeCobranca?.length ?? 0;
     return numSelected === numRows;
   }
 
-  masterToggleInner(element: any): void {
-    if (!element.innerSelection) {
-      element.innerSelection = new SelectionModel<any>(true, []);
+  masterToggleInner(element: Beneficiario): void {
+    element.innerSelection ??= new SelectionModel<DadosDeCobranca>(true, []);
+    if (this.isAllSelectedInner(element)) {
+      element.innerSelection.clear();
+    } else {
+      element.dadosDeCobranca?.forEach((row) =>
+        element.innerSelection!.select(row)
+      );
     }
-    this.isAllSelectedInner(element)
-      ? element.innerSelection.clear()
-      : element.dadosDeCobranca.forEach((row: any) =>
-          element.innerSelection.select(row)
-        );
   }
+}
+
+/* =======================================================
+   ==== INTERFACES ESTRUTURADAS E TIPADAS CORRETAMENTE ====
+   ======================================================= */
+
+export interface DocumentoTitulacao {
+  numero?: string;
+  tipo?: string;
+}
+
+export interface Requerimento {
+  sr?: string;
+  numeroProcesso?: string;
+}
+
+export interface DadosDeCobranca {
+  tipo?: string;
+  nossoNumero?: string;
+  numeroReferencia?: string;
+  modalidade?: string;
+  valorContrato?: number;
+  dataAssinaturaContrato?: string;
+}
+
+export interface Beneficiario {
+  titular: {
+    cod_beneficiario: string;
+    nome: string;
+    cpf: string;
+  };
+  historico_PNRA?: { nome_PA?: string; situacao?: string }[];
+  bloqueios?: { bloqueio?: string }[];
+  requerimento?: Requerimento[];
+  dadosDeCobranca?: DadosDeCobranca[];
+  documentoTitulacao?: DocumentoTitulacao;
+  innerSelection?: SelectionModel<DadosDeCobranca>;
 }
