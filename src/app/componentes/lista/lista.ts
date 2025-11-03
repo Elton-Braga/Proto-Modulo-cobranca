@@ -119,8 +119,24 @@ export class Lista implements OnInit, AfterViewInit {
       numeroProcesso: [''],
       numeroDocumento: [''],
     });
+    this.beneficiariosOriginais.forEach((b) => {
+      b.dadosDeCobranca?.forEach((d) => {
+        d.dataAssinaturaContrato = this.converterData(d.dataAssinaturaContrato);
+        (d as any).dataVencimento = this.converterData(
+          (d as any).dataVencimento
+        );
+      });
+    });
 
     this.dataSource.data = this.beneficiariosOriginais;
+  }
+
+  private converterData(dataStr?: string): string | undefined {
+    if (!dataStr) return undefined;
+    const partes = dataStr.split('/');
+    if (partes.length !== 3) return dataStr;
+    const [dia, mes, ano] = partes;
+    return `${ano}-${mes}-${dia}`;
   }
 
   ngAfterViewInit(): void {
