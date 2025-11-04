@@ -281,8 +281,12 @@ export class Lista implements OnInit, AfterViewInit {
       alert('Permita pop-ups para imprimir a GRU.');
       return;
     }
+
     sessionStorage.setItem('beneficiarioSelecionado', JSON.stringify(element));
-    novaAba.location.href = `${window.location.origin}/#/emitir-gru`;
+
+    const basePath =
+      window.location.origin + window.location.pathname.replace(/\/$/, '');
+    novaAba.location.href = `${basePath}/#/emitir-gru`;
   }
 
   toggleInnerSelection(element: Beneficiario, row: DadosDeCobranca): void {
