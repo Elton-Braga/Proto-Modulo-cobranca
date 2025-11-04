@@ -285,7 +285,10 @@ export class Lista implements OnInit, AfterViewInit {
     // Aguarda brevemente para garantir que o dado foi gravado antes de abrir a nova aba
     setTimeout(() => {
       const novaAba = window.open(
-        `${window.location.origin}/#/emitir-gru`,
+        `${window.location.origin}${window.location.pathname.replace(
+          /\/$/,
+          ''
+        )}/#/emitir-gru`,
         '_blank'
       );
       if (!novaAba) {
