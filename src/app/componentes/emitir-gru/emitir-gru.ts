@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -6,24 +6,43 @@ import { Component } from '@angular/core';
   templateUrl: './emitir-gru.html',
   styleUrls: ['./emitir-gru.scss'],
 })
-export class EmitirGRU {
+export class EmitirGRU implements OnInit {
   beneficiario: any = null;
 
-  constructor() {
+  ngOnInit(): void {
     const dado = sessionStorage.getItem('beneficiarioSelecionado');
-    this.beneficiario = dado ? JSON.parse(dado) : null;
-    console.log('Beneficiário carregado:', this.beneficiario);
+
+    // ⚠️ Verificação adicional: se for 'undefined' ou vazio, aborta o parse
+    if (!dado || dado === 'undefined' || dado === 'null') {
+      console.warn('Nenhum beneficiário válido encontrado no sessionStorage.');
+      this.beneficiario = null;
+      return;
+    }
+
+    try {
+      this.beneficiario = JSON.parse(dado);
+      console.log('Beneficiário carregado:', this.beneficiario);
+    } catch (erro) {
+      console.error('Erro ao interpretar o dado do beneficiário:', erro);
+      this.beneficiario = null;
+    }
   }
 
   imprimir(): void {
     const conteudo = document.querySelector('.gru-container')?.innerHTML;
+
     if (!conteudo) {
       console.error('Erro: não foi possível localizar a seção da GRU.');
       return;
     }
 
     const janela = window.open('', '_blank', 'width=900,height=900');
-    janela?.document.write(`
+    if (!janela) {
+      alert('Permita pop-ups para imprimir a GRU.');
+      return;
+    }
+
+    janela.document.write(`
       <html>
         <head>
           <title>Impressão da GRU</title>
@@ -83,12 +102,15 @@ export class EmitirGRU {
           <script>
             window.onload = function() {
               window.print();
-              window.close();
-            }
+              window.onafterprint = function() {
+                window.close();
+              };
+            };
           </script>
         </body>
       </html>
     `);
-    janela?.document.close();
+
+    janela.document.close();
   }
 }

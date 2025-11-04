@@ -275,18 +275,23 @@ export class Lista implements OnInit, AfterViewInit {
     console.log('Beneficiário selecionado:', element);
   }
 
+  // ================================
+  // MÉTODO ATUALIZADO PARA ABRIR GRU
+  // ================================
   imprimirGRU(element: Beneficiario): void {
-    const novaAba = window.open('about:blank', '_blank');
-    if (!novaAba) {
-      alert('Permita pop-ups para imprimir a GRU.');
-      return;
-    }
-
+    // Salva o beneficiário no sessionStorage
     sessionStorage.setItem('beneficiarioSelecionado', JSON.stringify(element));
 
-    const basePath =
-      window.location.origin + window.location.pathname.replace(/\/$/, '');
-    novaAba.location.href = `${basePath}/#/emitir-gru`;
+    // Aguarda brevemente para garantir que o dado foi gravado antes de abrir a nova aba
+    setTimeout(() => {
+      const novaAba = window.open(
+        `${window.location.origin}/#/emitir-gru`,
+        '_blank'
+      );
+      if (!novaAba) {
+        alert('Permita pop-ups para imprimir a GRU.');
+      }
+    }, 100);
   }
 
   toggleInnerSelection(element: Beneficiario, row: DadosDeCobranca): void {
