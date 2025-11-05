@@ -9,6 +9,29 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ParcelaPagamento } from '../../../mock/pagamento';
 
+export type ParcelaPagamentoExtendido = ParcelaPagamento & {
+  tipoReceita?: string;
+  descricaoReceita?: string;
+  numeroReferencia?: string;
+  nossoNumero?: string;
+  parcela?: string | number;
+  valorOriginal?: number;
+  correcao?: number;
+  desconto?: number;
+  jurosMora?: number;
+  multa?: number;
+  remissao?: number;
+  credito?: number;
+  valorDevido?: number;
+  saldoDevedor?: number;
+  dataVencimento?: string;
+  dataPagamentoAposVencimento?: string;
+  dataPagamento?: string;
+  dataRequerimento?: string;
+  prorrogacao?: string;
+  situacao?: string;
+};
+
 @Component({
   selector: 'app-consultar-divida',
   standalone: true,
@@ -17,7 +40,7 @@ import { ParcelaPagamento } from '../../../mock/pagamento';
   styleUrls: ['./consultar-divida.scss'],
 })
 export class ConsultarDivida implements OnInit {
-  pagamentos: ParcelaPagamento[] = [];
+  pagamentos: ParcelaPagamentoExtendido[] = [];
   beneficiarioNome: string = '';
   beneficiarioCpf: string = '';
 
@@ -36,93 +59,23 @@ export class ConsultarDivida implements OnInit {
   }
 
   /** ===================== AÇÕES ===================== **/
-  imprimirGRU(): void {
-    const printableTitle = `GRU - ${
-      this.beneficiarioNome || 'Consulta Dívida'
-    }`;
-
-    const style = `
-      <style>
-        body { font-family: Arial, Helvetica, sans-serif; margin: 16px; color: #222; }
-        h1 { font-size: 18px; margin-bottom: 8px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px; }
-        th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; }
-        th { background: #f3f6fb; font-weight: 600; }
-      </style>
-    `;
-
-    const rowsHtml = this.pagamentos
-      .map(
-        (p) => `
-      <tr>
-        <td>${p.modalidade ?? ''}</td>
-        <td>${p.codigoPlano ?? ''}</td>
-        <td>${p.codigoParcela ?? ''}</td>
-        <td style="text-align:right">${p.numeroParcela ?? ''}</td>
-        <td style="text-align:right">${this.formataNumero(p.valorOriginal)}</td>
-        <td style="text-align:right">${this.formataPercentual(
-          p.correcaoAnual
-        )}</td>
-        <td style="text-align:right">${this.formataNumero(p.valorRemissao)}</td>
-        <td style="text-align:right">${this.formataNumero(
-          p.descontoConcedido
-        )}</td>
-        <td style="text-align:right">${this.formataNumero(p.jurosMora)}</td>
-        <td style="text-align:right">${this.formataNumero(p.valorDevido)}</td>
-        <td>${p.dataVencimento ?? ''}</td>
-      </tr>
-    `
-      )
-      .join('');
-
-    const html = `
-      <!doctype html>
-      <html>
-        <head>
-          <meta charset="utf-8"/>
-          <title>${printableTitle}</title>
-          ${style}
-        </head>
-        <body>
-          <h1>${printableTitle}</h1>
-          <div><strong>Beneficiário:</strong> ${this.beneficiarioNome}</div>
-          <div><strong>CPF:</strong> ${this.beneficiarioCpf}</div>
-          <table>
-            <thead>
-              <tr>
-                <th>Modalidade</th>
-                <th>Código do Plano</th>
-                <th>Código da Parcela</th>
-                <th>Nº Parcela</th>
-                <th>Valor Original</th>
-                <th>Correção Anual</th>
-                <th>Valor Remissão</th>
-                <th>Desconto Concedido</th>
-                <th>Juros de Mora</th>
-                <th>Valor Devido</th>
-                <th>Data de Vencimento</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${
-                rowsHtml ||
-                `<tr><td colspan="11" style="text-align:center">Nenhum registro de pagamento encontrado.</td></tr>`
-              }
-            </tbody>
-          </table>
-        </body>
-      </html>
-    `;
-
-    const win = window.open('', '_blank', 'noopener');
-    if (win) {
-      win.document.write(html);
-      win.document.close();
-      win.focus();
-      setTimeout(() => win.print(), 300);
-    } else {
-      window.print();
+  imprimirGRU(element?: ParcelaPagamentoExtendido): void {
+    if (element) {
+      sessionStorage.setItem(
+        'beneficiarioSelecionado',
+        JSON.stringify(element)
+      );
     }
+
+    const novaAba = window.open('about:blank', '_blank');
+    if (!novaAba) {
+      alert('Permita pop-ups para imprimir a GRU.');
+      return;
+    }
+
+    // Ajusta o caminho para projetos hospedados no GitHub Pages
+    const baseUrl = `${window.location.origin}${window.location.pathname}`;
+    novaAba.location.href = `${baseUrl}#/emitir-gru`;
   }
 
   fechar(): void {

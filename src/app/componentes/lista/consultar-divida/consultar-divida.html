@@ -2,48 +2,104 @@
 
 <mat-dialog-content class="cd-content">
   <div class="header-dados">
-    <div><strong>Beneficiário:</strong> {{ beneficiarioNome }}</div>
-    <div><strong>CPF:</strong> {{ beneficiarioCpf }}</div>
+    <div><strong>Beneficiário:</strong> {{ beneficiarioNome || "xxxxx" }}</div>
+    <div><strong>CPF:</strong> {{ beneficiarioCpf || "xxxxx" }}</div>
   </div>
 
   <div class="table-container" *ngIf="pagamentos?.length; else vazio">
+    <!-- BLOCO 1 – IDENTIFICAÇÃO DA RECEITA -->
+    <h3 class="bloco-titulo">Identificação da Receita</h3>
     <table class="pagamentos-table" role="table">
       <thead>
         <tr>
-          <th>Modalidade</th>
-          <th>Código do Plano</th>
-          <th>Código da Parcela</th>
-          <th>Nº Parcela</th>
+          <th>Tipo de Receita</th>
+          <th>Descrição da Receita</th>
+          <th>Nº Referência</th>
+          <th>Nosso Número</th>
+          <th>Parcela</th>
           <th>Valor Original</th>
-          <th>Correção Anual</th>
-          <th>Valor Remissão</th>
-          <th>Desconto Concedido</th>
-          <th>Juros de Mora</th>
-          <th>Valor Devido</th>
-          <th>Data de Vencimento</th>
+          <th>Correção</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let p of pagamentos">
-          <td>{{ p.modalidade }}</td>
-          <td>{{ p.codigoPlano }}</td>
-          <td>{{ p.codigoParcela }}</td>
-          <td style="text-align: right">{{ p.numeroParcela }}</td>
+          <td>{{ p.tipoReceita || "xxxxx" }}</td>
+          <td>{{ p.descricaoReceita || "xxxxx" }}</td>
+          <td>{{ p.numeroReferencia || "xxxxx" }}</td>
+          <td>{{ p.nossoNumero || "xxxxx" }}</td>
+          <td>{{ p.parcela || "xxxxx" }}</td>
           <td style="text-align: right">
-            {{ formataNumero(p.valorOriginal) }}
+            {{ formataNumero(p.valorOriginal) || "xxxxx" }}
           </td>
           <td style="text-align: right">
-            {{ formataPercentual(p.correcaoAnual) }}
+            {{ formataNumero(p.correcao) || "xxxxx" }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- BLOCO 2 – COMPOSIÇÃO FINANCEIRA -->
+    <h3 class="bloco-titulo">Composição Financeira</h3>
+    <table class="pagamentos-table" role="table">
+      <thead>
+        <tr>
+          <th>Desconto</th>
+          <th>Juros de Mora</th>
+          <th>Multa</th>
+          <th>Remissão</th>
+          <th>Crédito</th>
+          <th>Valor Devido</th>
+          <th>Saldo Devedor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of pagamentos">
+          <td style="text-align: right">
+            {{ formataNumero(p.desconto) || "xxxxx" }}
           </td>
           <td style="text-align: right">
-            {{ formataNumero(p.valorRemissao) }}
+            {{ formataNumero(p.jurosMora) || "xxxxx" }}
           </td>
           <td style="text-align: right">
-            {{ formataNumero(p.descontoConcedido) }}
+            {{ formataNumero(p.multa) || "xxxxx" }}
           </td>
-          <td style="text-align: right">{{ formataNumero(p.jurosMora) }}</td>
-          <td style="text-align: right">{{ formataNumero(p.valorDevido) }}</td>
-          <td>{{ p.dataVencimento }}</td>
+          <td style="text-align: right">
+            {{ formataNumero(p.remissao) || "xxxxx" }}
+          </td>
+          <td style="text-align: right">
+            {{ formataNumero(p.credito) || "xxxxx" }}
+          </td>
+          <td style="text-align: right">
+            {{ formataNumero(p.valorDevido) || "xxxxx" }}
+          </td>
+          <td style="text-align: right">
+            {{ formataNumero(p.saldoDevedor) || "xxxxx" }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- BLOCO 3 – DATAS E SITUAÇÃO -->
+    <h3 class="bloco-titulo">Datas e Situação</h3>
+    <table class="pagamentos-table" role="table">
+      <thead>
+        <tr>
+          <th>Data Vencimento</th>
+          <th>Data para Pagamento</th>
+          <th>Data do Pagamento</th>
+          <th>Data Requerimento</th>
+          <th>Prorrogação</th>
+          <th>Situação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of pagamentos">
+          <td>{{ p.dataVencimento || "xxxxx" }}</td>
+          <td>{{ p.dataPagamentoAposVencimento || "xxxxx" }}</td>
+          <td>{{ p.dataPagamento || "xxxxx" }}</td>
+          <td>{{ p.dataRequerimento || "xxxxx" }}</td>
+          <td>{{ p.prorrogacao || "xxxxx" }}</td>
+          <td>{{ p.situacao || "xxxxx" }}</td>
         </tr>
       </tbody>
     </table>
