@@ -2,96 +2,160 @@
   <br />
   <mat-dialog-content class="modal-content">
     <div class="content-grid">
-      <!-- ================= TITULAR ================= -->
-      <div class="grid-section full-width">
-        <h3 class="section-title">Dados do Titular</h3>
-        <div class="form-grid">
-          <div class="form-field" *ngFor="let col of colunasTitular">
-            <mat-form-field appearance="outline" class="full-width-field">
-              <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
-              <input
-                matInput
-                [(ngModel)]="data.titular[col]"
-                [disabled]="!editando || !isCampoEditavel('titular', col)"
-                [type]="getInputType(col)"
-              />
-            </mat-form-field>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= CONJUGE ================= -->
-      <div class="grid-section full-width">
-        <h3 class="section-title">Dados do Cônjuge</h3>
-        <div class="form-grid">
-          <div class="form-field" *ngFor="let col of colunasConjuge">
-            <mat-form-field appearance="outline" class="full-width-field">
-              <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
-              <input
-                matInput
-                [(ngModel)]="data.conjuge[col]"
-                [disabled]="!editando || !isCampoEditavel('conjuge', col)"
-                [type]="getInputType(col)"
-              />
-            </mat-form-field>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= PROJETO ASSENTAMENTO ================= -->
-      <div class="grid-section full-width">
-        <h3 class="section-title">Projeto de Assentamento</h3>
-        <div class="form-grid">
-          <div class="form-field" *ngFor="let col of colunasProjeto">
-            <mat-form-field appearance="outline" class="full-width-field">
-              <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
-              <input
-                matInput
-                [(ngModel)]="data.projeto_assentamento[0][col]"
-                disabled
-              />
-            </mat-form-field>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <!-- ================= ENDEREÇO E IMPEDIMENTO (LADO A LADO) ================= -->
-        <div class="col-9">
-          <!-- ENDEREÇO COBRANÇA -->
-          <div class="grid-section half-width">
-            <h3 class="section-title">Endereço de Cobrança</h3>
+      <mat-accordion multi="true">
+        <!-- ================= TITULAR ================= -->
+        <mat-expansion-panel expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Dados do Titular </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="grid-section full-width">
             <div class="form-grid">
-              <div class="form-field" *ngFor="let col of colunasEndereco">
+              <div class="form-field" *ngFor="let col of colunasTitular">
                 <mat-form-field appearance="outline" class="full-width-field">
                   <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
                   <input
                     matInput
-                    [(ngModel)]="data.endereco[0][col]"
-                    [disabled]="!editando"
+                    [(ngModel)]="data.titular[col]"
+                    [disabled]="!editando || !isCampoEditavel('titular', col)"
+                    [type]="getInputType(col)"
                   />
                 </mat-form-field>
               </div>
             </div>
           </div>
-          <br />
-          <!-- IMPEDIMENTO -->
-          <div class="col-5">
-            <h3 class="section-title">Impedimento</h3>
+        </mat-expansion-panel>
+
+        <!-- ================= CONJUGE ================= -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Dados do Cônjuge </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="grid-section full-width">
             <div class="form-grid">
-              <div class="form-field" *ngFor="let col of colunasImpedimento">
+              <div class="form-field" *ngFor="let col of colunasConjuge">
                 <mat-form-field appearance="outline" class="full-width-field">
                   <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
                   <input
                     matInput
-                    [(ngModel)]="data.impedimento[col]"
-                    [disabled]="!editando"
+                    [(ngModel)]="data.conjuge[col]"
+                    [disabled]="!editando || !isCampoEditavel('conjuge', col)"
+                    [type]="getInputType(col)"
                   />
                 </mat-form-field>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </mat-expansion-panel>
+
+        <!-- ================= PROJETO ASSENTAMENTO ================= -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Projeto de Assentamento </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="grid-section full-width">
+            <div class="form-grid">
+              <div class="form-field" *ngFor="let col of colunasProjeto">
+                <mat-form-field appearance="outline" class="full-width-field">
+                  <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+                  <input
+                    matInput
+                    [(ngModel)]="data.projeto_assentamento[0][col]"
+                    disabled
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+        <!-- ================= GEOLOCALIZAÇÃO ================= -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Geolocalização </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="grid-section full-width">
+            <div class="row">
+              <div class="col-6">
+                <mat-form-field appearance="outline" class="full-width-field">
+                  <mat-label>Latitude</mat-label>
+                  <input matInput [disabled]="!editando" />
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="outline" class="full-width-field">
+                  <mat-label>Longitude</mat-label>
+                  <input matInput [disabled]="!editando" />
+                </mat-form-field>
+              </div>
+              <iframe
+                class="col-12"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d95610.68142526726!2d-42.23844749254404!3d-22.88587129197667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-BR!2sbr!4v1762367780379!5m2!1spt-BR!2sbr"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+        <!-- ================= ENDEREÇO E IMPEDIMENTO ================= -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Endereço de Cobrança e Impedimento
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-9">
+              <!-- ENDEREÇO -->
+              <div class="grid-section half-width">
+                <h3 class="section-title">Endereço de Cobrança</h3>
+                <div class="form-grid">
+                  <div class="form-field" *ngFor="let col of colunasEndereco">
+                    <mat-form-field
+                      appearance="outline"
+                      class="full-width-field"
+                    >
+                      <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+                      <input
+                        matInput
+                        [(ngModel)]="data.endereco[0][col]"
+                        [disabled]="!editando"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <!-- IMPEDIMENTO -->
+              <div class="col-5">
+                <h3 class="section-title">Impedimento</h3>
+                <div class="form-grid">
+                  <div
+                    class="form-field"
+                    *ngFor="let col of colunasImpedimento"
+                  >
+                    <mat-form-field
+                      appearance="outline"
+                      class="full-width-field"
+                    >
+                      <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+                      <input
+                        matInput
+                        [(ngModel)]="data.impedimento[col]"
+                        [disabled]="!editando"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
   </mat-dialog-content>
 
@@ -135,7 +199,7 @@
 
         <button
           mat-stroked-button
-          color="warn"
+          color="primary"
           mat-dialog-close
           class="action-button"
         >
