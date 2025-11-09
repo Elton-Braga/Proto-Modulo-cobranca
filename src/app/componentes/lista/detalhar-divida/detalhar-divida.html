@@ -1,23 +1,25 @@
 <div class="modal-fullscreen">
   <br />
   <mat-dialog-content class="modal-content">
-    <div class="content-grid">
+    <form [formGroup]="form">
       <mat-accordion multi="true">
         <!-- ================= TITULAR ================= -->
         <mat-expansion-panel expanded>
           <mat-expansion-panel-header>
-            <mat-panel-title> Dados do Titular </mat-panel-title>
+            <mat-panel-title> Titular </mat-panel-title>
           </mat-expansion-panel-header>
-          <div class="grid-section full-width">
-            <div class="form-grid">
-              <div class="form-field" *ngFor="let col of colunasTitular">
-                <mat-form-field appearance="outline" class="full-width-field">
-                  <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+          <div formGroupName="titular" class="container">
+            <div class="row">
+              <div
+                class="col-md-3"
+                *ngFor="let campo of getControles('titular')"
+              >
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>{{ campo.key | titlecase }}</mat-label>
                   <input
                     matInput
-                    [(ngModel)]="data.titular[col]"
-                    [disabled]="!editando || !isCampoEditavel('titular', col)"
-                    [type]="getInputType(col)"
+                    [formControlName]="campo.key"
+                    [type]="campo.key.includes('data') ? 'date' : 'text'"
                   />
                 </mat-form-field>
               </div>
@@ -25,21 +27,23 @@
           </div>
         </mat-expansion-panel>
 
-        <!-- ================= CONJUGE ================= -->
+        <!-- ================= CÔNJUGE ================= -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title> Dados do Cônjuge </mat-panel-title>
+            <mat-panel-title> Cônjuge </mat-panel-title>
           </mat-expansion-panel-header>
-          <div class="grid-section full-width">
-            <div class="form-grid">
-              <div class="form-field" *ngFor="let col of colunasConjuge">
-                <mat-form-field appearance="outline" class="full-width-field">
-                  <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
+          <div formGroupName="conjuge" class="container">
+            <div class="row">
+              <div
+                class="col-md-3"
+                *ngFor="let campo of getControles('conjuge')"
+              >
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>{{ campo.key | titlecase }}</mat-label>
                   <input
                     matInput
-                    [(ngModel)]="data.conjuge[col]"
-                    [disabled]="!editando || !isCampoEditavel('conjuge', col)"
-                    [type]="getInputType(col)"
+                    [formControlName]="campo.key"
+                    [type]="campo.key.includes('data') ? 'date' : 'text'"
                   />
                 </mat-form-field>
               </div>
@@ -52,16 +56,15 @@
           <mat-expansion-panel-header>
             <mat-panel-title> Projeto de Assentamento </mat-panel-title>
           </mat-expansion-panel-header>
-          <div class="grid-section full-width">
-            <div class="form-grid">
-              <div class="form-field" *ngFor="let col of colunasProjeto">
-                <mat-form-field appearance="outline" class="full-width-field">
-                  <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
-                  <input
-                    matInput
-                    [(ngModel)]="data.projeto_assentamento[0][col]"
-                    disabled
-                  />
+          <div formGroupName="projetoAssentamento" class="container">
+            <div class="row">
+              <div
+                class="col-md-3"
+                *ngFor="let campo of getControles('projetoAssentamento')"
+              >
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>{{ campo.key | titlecase }}</mat-label>
+                  <input matInput [formControlName]="campo.key" />
                 </mat-form-field>
               </div>
             </div>
@@ -73,30 +76,20 @@
           <mat-expansion-panel-header>
             <mat-panel-title> Geolocalização </mat-panel-title>
           </mat-expansion-panel-header>
-          <div class="grid-section full-width">
+          <div formGroupName="geolocalizacao" class="container">
             <div class="row">
-              <div class="col-6">
-                <mat-form-field appearance="outline" class="full-width-field">
+              <div class="col-md-6">
+                <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Latitude</mat-label>
-                  <input matInput [disabled]="!editando" />
+                  <input matInput formControlName="latitude" />
                 </mat-form-field>
               </div>
-              <div class="col-6">
-                <mat-form-field appearance="outline" class="full-width-field">
+              <div class="col-md-6">
+                <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Longitude</mat-label>
-                  <input matInput [disabled]="!editando" />
+                  <input matInput formControlName="longitude" />
                 </mat-form-field>
               </div>
-              <iframe
-                class="col-12"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d95610.68142526726!2d-42.23844749254404!3d-22.88587129197667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-BR!2sbr!4v1762367780379!5m2!1spt-BR!2sbr"
-                width="600"
-                height="450"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
             </div>
           </div>
         </mat-expansion-panel>
@@ -108,46 +101,36 @@
               Endereço de Cobrança e Impedimento
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div class="row">
-            <div class="col-9">
+
+          <div class="container">
+            <div class="row">
               <!-- ENDEREÇO -->
-              <div class="grid-section half-width">
-                <h3 class="section-title">Endereço de Cobrança</h3>
-                <div class="form-grid">
-                  <div class="form-field" *ngFor="let col of colunasEndereco">
-                    <mat-form-field
-                      appearance="outline"
-                      class="full-width-field"
-                    >
-                      <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
-                      <input
-                        matInput
-                        [(ngModel)]="data.endereco[0][col]"
-                        [disabled]="!editando"
-                      />
+              <div formGroupName="enderecoCobranca" class="col-md-8">
+                <h3>Endereço de Cobrança</h3>
+                <div class="row">
+                  <div
+                    class="col-md-6"
+                    *ngFor="let campo of getControles('enderecoCobranca')"
+                  >
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>{{ campo.key | titlecase }}</mat-label>
+                      <input matInput [formControlName]="campo.key" />
                     </mat-form-field>
                   </div>
                 </div>
               </div>
-              <br />
+
               <!-- IMPEDIMENTO -->
-              <div class="col-5">
-                <h3 class="section-title">Impedimento</h3>
-                <div class="form-grid">
+              <div formGroupName="impedimento" class="col-md-3">
+                <h3>Impedimento</h3>
+                <div class="row">
                   <div
-                    class="form-field"
-                    *ngFor="let col of colunasImpedimento"
+                    class="col-md-12"
+                    *ngFor="let campo of getControles('impedimento')"
                   >
-                    <mat-form-field
-                      appearance="outline"
-                      class="full-width-field"
-                    >
-                      <mat-label>{{ getColumnDisplayName(col) }}</mat-label>
-                      <input
-                        matInput
-                        [(ngModel)]="data.impedimento[col]"
-                        [disabled]="!editando"
-                      />
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>{{ campo.key | titlecase }}</mat-label>
+                      <input matInput [formControlName]="campo.key" />
                     </mat-form-field>
                   </div>
                 </div>
@@ -156,7 +139,7 @@
           </div>
         </mat-expansion-panel>
       </mat-accordion>
-    </div>
+    </form>
   </mat-dialog-content>
 
   <!-- ================= RODAPÉ ================= -->
@@ -166,8 +149,7 @@
         <button
           mat-flat-button
           color="primary"
-          class="action-button"
-          (click)="abrirConsultarDivida(data)"
+          (click)="abrirConsultarDivida(form.value)"
         >
           <mat-icon>search</mat-icon>
           Consultar Dívida
@@ -175,34 +157,29 @@
       </div>
 
       <div class="right-actions">
+        <!-- Botão Editar desabilita quando em edição -->
         <button
           mat-flat-button
           color="primary"
           (click)="habilitarEdicao()"
           [disabled]="editando"
-          class="action-button"
         >
           <mat-icon>edit</mat-icon>
           Editar
         </button>
 
+        <!-- Botão Salvar habilita apenas quando em edição -->
         <button
           mat-flat-button
           color="accent"
           (click)="salvar()"
           [disabled]="!editando"
-          class="action-button"
         >
           <mat-icon>save</mat-icon>
           Salvar
         </button>
 
-        <button
-          mat-stroked-button
-          color="primary"
-          mat-dialog-close
-          class="action-button"
-        >
+        <button mat-stroked-button color="warn" mat-dialog-close>
           <mat-icon>close</mat-icon>
           Fechar
         </button>

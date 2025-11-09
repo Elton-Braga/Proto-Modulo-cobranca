@@ -1,76 +1,183 @@
-import { Component, Inject } from '@angular/core';
-//import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-//import { ConsultarDivida } from '../consultar-divida/consultar-divida';
-import { SafeUrlPipe } from '../../pipe/detalhar-pipe';
-
+import { Component, Inject, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
   MatDialogModule,
 } from '@angular/material/dialog';
 import { ConsultarDivida } from '../consultar-divida/consultar-divida';
+import { MOCK_BENEFICIARIOS } from '../../../mock/MOCK_BENEFICIATIO';
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { NgFor } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-//import { SafeUrlPipe } from '../../pipes/safe-url.pipe'; // ajuste o caminho conforme sua estrutura
+import { Beneficiario } from '../lista';
 
 @Component({
   selector: 'app-detalhar-divida',
   standalone: true,
   imports: [
-    FormsModule,
+    MatIconModule,
+    CommonModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatExpansionModule,
-    SafeUrlPipe,
     MatDialogModule,
-    NgFor,
     MatIconModule,
     MatButtonModule,
   ],
   templateUrl: './detalhar-divida.html',
   styleUrls: ['./detalhar-divida.scss'],
 })
-export class DetalharDivida {
+export class DetalharDivida implements OnInit {
   editando = false;
+  form!: FormGroup;
   latitude = -22.88587129197667;
   longitude = -42.23844749254404;
 
-  colunasTitular = [];
-  colunasConjuge = [];
-  colunasProjeto = [];
-  colunasEndereco = ['estado', 'municipio', 'bairro', 'rua', 'numero'];
-  colunasImpedimento = ['haImpedimento', 'motivoImpedimento'];
+  camposBloqueados: string[] = [
+    'nome',
+    'cpf',
+    'data_nascimento',
+    'codigo_beneficiario',
+    'nome_pai',
+    'nome_mae',
+    'naturalidade',
+    'nacionalidade',
+    'nis',
+  ];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialog: MatDialog
-  ) {
-    this.data = this.data || {};
-    this.data.titular = this.data.titular || {};
-    this.data.conjuge = this.data.conjuge || {};
-    this.data.projeto_assentamento = this.data.projeto_assentamento || [{}];
-    this.data.endereco = this.data.endereco || [{}];
-    this.data.impedimento = this.data.impedimento || {
-      haImpedimento: '',
-      motivoImpedimento: '',
-    };
+    private dialog: MatDialog,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    // ✅ Inicialização dos grupos com controle do estado (disabled)
+    this.form = this.fb.group({
+      titular: this.fb.group({
+        nome: new FormControl({ value: '', disabled: true }),
+        cpf: new FormControl({ value: '', disabled: true }),
+        codigo_beneficiario: new FormControl({ value: '', disabled: true }),
+        nib: new FormControl({ value: '', disabled: true }),
+        data_nascimento: new FormControl({ value: '', disabled: true }),
+        estado_civil: new FormControl({ value: '', disabled: true }),
+        sexo: new FormControl({ value: '', disabled: true }),
+        nome_pai: new FormControl({ value: '', disabled: true }),
+        nome_mae: new FormControl({ value: '', disabled: true }),
+        nacionalidade: new FormControl({ value: '', disabled: true }),
+        naturalidade: new FormControl({ value: '', disabled: true }),
+        nis: new FormControl({ value: '', disabled: true }),
+        telefone: new FormControl({ value: '', disabled: true }),
+        email: new FormControl({ value: '', disabled: true }),
+        numero_processo: new FormControl({ value: '', disabled: true }),
+        data_entrada_processo: new FormControl({ value: '', disabled: true }),
+        data_homologacao: new FormControl({ value: '', disabled: true }),
+      }),
+      conjuge: this.fb.group({
+        nome: new FormControl({ value: '', disabled: true }),
+        cpf: new FormControl({ value: '', disabled: true }),
+        data_nascimento: new FormControl({ value: '', disabled: true }),
+        estado_civil: new FormControl({ value: '', disabled: true }),
+        sexo: new FormControl({ value: '', disabled: true }),
+        nome_pai: new FormControl({ value: '', disabled: true }),
+        nome_mae: new FormControl({ value: '', disabled: true }),
+        nacionalidade: new FormControl({ value: '', disabled: true }),
+        naturalidade: new FormControl({ value: '', disabled: true }),
+        nis: new FormControl({ value: '', disabled: true }),
+        telefone: new FormControl({ value: '', disabled: true }),
+        email: new FormControl({ value: '', disabled: true }),
+      }),
+      projetoAssentamento: this.fb.group({
+        nome_projeto: new FormControl({ value: '', disabled: true }),
+        codigo_projeto: new FormControl({ value: '', disabled: true }),
+        agrovila_contato: new FormControl({ value: '', disabled: true }),
+        codigo_contato: new FormControl({ value: '', disabled: true }),
+        lote_individual_contato: new FormControl({ value: '', disabled: true }),
+        numero_lote: new FormControl({ value: '', disabled: true }),
+        nome_lote: new FormControl({ value: '', disabled: true }),
+        estado: new FormControl({ value: '', disabled: true }),
+        municipio: new FormControl({ value: '', disabled: true }),
+        codigo_municipio: new FormControl({ value: '', disabled: true }),
+      }),
+      geolocalizacao: this.fb.group({
+        latitude: new FormControl({ value: this.latitude, disabled: true }),
+        longitude: new FormControl({ value: this.longitude, disabled: true }),
+      }),
+      enderecoCobranca: this.fb.group({
+        estado: new FormControl({ value: '', disabled: true }),
+        municipio: new FormControl({ value: '', disabled: true }),
+        bairro: new FormControl({ value: '', disabled: true }),
+        rua: new FormControl({ value: '', disabled: true }),
+        numero: new FormControl({ value: '', disabled: true }),
+      }),
+      impedimento: this.fb.group({
+        bloqueio: new FormControl({ value: '', disabled: true }),
+        motivo_bloqueio: new FormControl({ value: '', disabled: true }),
+      }),
+    });
+
+    // ✅ Preenche os dados (mock)
+    this.carregarDadosMock();
   }
 
-  get mapaUrl(): string {
-    return `https://www.google.com/maps/embed/v1/view?key=AIzaSyD3F-vl_X-PARA_EXEMPLO_APENAS&center=${this.latitude},${this.longitude}&zoom=13&maptype=roadmap`;
+  carregarDadosMock(): void {
+    const beneficiario = MOCK_BENEFICIARIOS[0];
+    this.form.patchValue({
+      titular: beneficiario.titular,
+      conjuge: beneficiario.conjuge,
+      projetoAssentamento: beneficiario.projeto_assentamento[0],
+      enderecoCobranca: beneficiario.endereco[0],
+      impedimento: beneficiario.bloqueios[0],
+      geolocalizacao: {
+        latitude: this.latitude,
+        longitude: this.longitude,
+      },
+    });
   }
 
-  getColumnDisplayName(column: string): string {
-    const displayNames: { [key: string]: string } = {};
-    return displayNames[column] || column;
+  habilitarEdicao(): void {
+    this.editando = true; // ✅ agora controla o estado dos botões
+    Object.keys(this.form.controls).forEach((grupo) => {
+      const grupoControl = this.form.get(grupo);
+      if (grupoControl instanceof FormGroup) {
+        Object.keys(grupoControl.controls).forEach((campo) => {
+          if (!this.camposBloqueados.includes(campo)) {
+            grupoControl.get(campo)?.enable();
+          }
+        });
+      }
+    });
   }
 
-  abrirConsultarDivida(element: any): void {
+  salvar(): void {
+    this.editando = false; // ✅ retorna estado inicial (salvar desabilitado, editar habilitado)
+    Object.values(this.form.controls).forEach((control) => control.disable());
+    console.log('✅ Dados salvos:', this.form.value);
+  }
+
+  getControles(grupo: string): { key: string; value: any }[] {
+    const control = this.form.get(grupo);
+    if (control instanceof FormGroup) {
+      return Object.keys(control.controls).map((key) => ({
+        key,
+        value: control.controls[key],
+      }));
+    }
+    return [];
+  }
+
+  abrirConsultarDivida(element: Beneficiario): void {
     const dialogRef = this.dialog.open(ConsultarDivida, {
       width: '100vw',
       height: '100vh',
@@ -86,33 +193,7 @@ export class DetalharDivida {
     });
   }
 
-  getInputType(column: string): string {
-    if (column === 'data_nascimento') return 'date';
-    if (column === 'email') return 'email';
-    if (column === 'telefone') return 'tel';
-    return 'text';
-  }
-
-  habilitarEdicao() {
-    this.editando = true;
-  }
-
-  salvar() {
-    this.editando = false;
-    console.log('Dados atualizados:', this.data);
-  }
-
-  isCampoEditavel(secao: string, campo: string): boolean {
-    if (!this.editando) return false;
-    switch (secao) {
-      case 'titular':
-      case 'conjuge':
-        return campo === 'telefone' || campo === 'email';
-      case 'endereco':
-      case 'impedimento':
-        return true;
-      default:
-        return false;
-    }
+  get mapaUrl(): string {
+    return `https://www.google.com/maps/embed/v1/view?key=AIzaSyD3F-vl_X-PARA_EXEMPLO_APENAS&center=${this.latitude},${this.longitude}&zoom=13&maptype=roadmap`;
   }
 }
