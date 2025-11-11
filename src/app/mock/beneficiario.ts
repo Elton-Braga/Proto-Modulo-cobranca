@@ -1,4 +1,5 @@
 import { BeneficiarioBloqueio } from './beneficiarioBloqueio';
+import { ConcessaoCredito } from './concessaoCredito';
 import { Conjuge } from './conjuge';
 import { DadosDeCobranca } from './DadosDeCobranca';
 import { EnderecoCobranca } from './enderecoCobranca';
@@ -7,6 +8,7 @@ import { Lote } from './lote';
 import { Observacoes } from './obsercacoes';
 import { ParcelaPagamento } from './pagamento';
 import { RequerimentoFiltro } from './requerimentoFiltro';
+import { titulacao } from './titulacao';
 import { Titular } from './titular';
 import { UnidadeFamiliar } from './unidadeFamiliar';
 
@@ -22,4 +24,6 @@ export interface Beneficiario {
   endereco: EnderecoCobranca[];
   dadosDeCobranca: DadosDeCobranca[];
   pagamento: ParcelaPagamento[];
+  concessao: ConcessaoCredito[];
+  titulacao: titulacao[];
 }

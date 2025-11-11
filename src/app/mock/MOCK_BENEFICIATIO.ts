@@ -232,6 +232,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
+      },
+    ],
   },
   // -------------------- 2º REGISTRO --------------------
   {
@@ -410,6 +422,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
+      },
+    ],
   },
 
   // -------------------- 3º REGISTRO --------------------
@@ -572,6 +596,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
+      },
+    ],
   }, // ==== REGISTRO 4 ====
   {
     titular: {
@@ -699,6 +735,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         jurosMora: 12.5,
         valorDevido: 662.5,
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
       },
     ],
   },
@@ -860,6 +908,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
+      },
+    ],
   },
 
   // ==== REGISTRO 6 ====
@@ -1003,6 +1063,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         jurosMora: 12.5,
         valorDevido: 662.5,
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
       },
     ],
   }, // ==== REGISTRO 7 ====
@@ -1160,6 +1232,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
+      },
+    ],
   },
 
   // ==== REGISTRO 8 ====
@@ -1302,6 +1386,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
+      },
+    ],
   }, // ==== REGISTRO 9 ====
   {
     titular: {
@@ -1426,6 +1522,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         jurosMora: 12.5,
         valorDevido: 662.5,
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
       },
     ],
   },
@@ -1604,6 +1712,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
       },
     ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
+      },
+    ],
   },
 
   // ==== REGISTRO 11 ====
@@ -1726,6 +1846,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         jurosMora: 12.5,
         valorDevido: 662.5,
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
       },
     ],
   },
@@ -1888,6 +2020,18 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         jurosMora: 12.5,
         valorDevido: 662.5,
         dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+      },
+    ],
+    concessao: [
+      {
+        n_processo: 'string',
+        modalidade: 'string',
+      },
+    ],
+    titulacao: [
+      {
+        n_processo: 'string',
+        doc_titulacao: 'string',
       },
     ],
   },

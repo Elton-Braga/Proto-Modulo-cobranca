@@ -138,6 +138,58 @@
           </div>
         </mat-expansion-panel>
 
+        <!-- ================= titulação ================= -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Titulação </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div>
+            <div>
+              <div formGroupName="titulacao">
+                <div class="row">
+                  <div
+                    class="col-md-6"
+                    *ngFor="let campo of getControles('titulacao')"
+                  >
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>{{ campo.key | titlecase }}</mat-label>
+                      <input matInput [formControlName]="campo.key" />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+        <!-- ================= Concessão de credito ================= -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Concessão de credito </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div>
+            <div>
+              <div formGroupName="concessao_credito">
+                <div class="row">
+                  <div
+                    class="col-md-6"
+                    *ngFor="let campo of getControles('concessao_credito')"
+                  >
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>{{ campo.key | titlecase }}</mat-label>
+                      <input matInput [formControlName]="campo.key" />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <!-- IMPEDIMENTO -->
+            </div>
+          </div>
+        </mat-expansion-panel>
+
         <!-- ================= ENDEREÇO E IMPEDIMENTO ================= -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>

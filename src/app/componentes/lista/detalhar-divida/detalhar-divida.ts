@@ -162,6 +162,15 @@ export class DetalharDivida implements OnInit {
         bloqueio: new FormControl({ value: '', disabled: true }),
         motivo_bloqueio: new FormControl({ value: '', disabled: true }),
       }),
+      titulacao: this.fb.group({
+        n_processo: new FormControl({ value: '', disabled: true }),
+        doc_titulacao: new FormControl({ value: '', disabled: true }),
+      }),
+
+      concessao_credito: this.fb.group({
+        n_processo: new FormControl({ value: '', disabled: true }),
+        modalidade: new FormControl({ value: '', disabled: true }),
+      }),
     });
 
     // ✅ Preenche os dados (mock)
@@ -175,6 +184,8 @@ export class DetalharDivida implements OnInit {
       conjuge: beneficiario.conjuge,
       projetoAssentamento: beneficiario.projeto_assentamento[0],
       enderecoCobranca: beneficiario.endereco[0],
+      titulacao: beneficiario.titulacao[0],
+      concessao_credito: beneficiario.concessao[0],
       impedimento: beneficiario.bloqueios[0],
       unidadeFamiliar: beneficiario.dependentes[0],
       bloqueio: beneficiario.bloqueios[0],
