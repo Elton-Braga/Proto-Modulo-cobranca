@@ -51,6 +51,30 @@
           </div>
         </mat-expansion-panel>
 
+        <!-- ================= Unidade Familiar ================= -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Unidade Familiar </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div formGroupName="unidadeFamiliar" class="container">
+            <div class="row">
+              <div
+                class="col-md-3"
+                *ngFor="let campo of getControles('unidadeFamiliar')"
+              >
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>{{ campo.key | titlecase }}</mat-label>
+                  <input
+                    matInput
+                    [formControlName]="campo.key"
+                    [type]="campo.key.includes('data') ? 'date' : 'text'"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
         <!-- ================= PROJETO ASSENTAMENTO ================= -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -61,6 +85,26 @@
               <div
                 class="col-md-3"
                 *ngFor="let campo of getControles('projetoAssentamento')"
+              >
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>{{ campo.key | titlecase }}</mat-label>
+                  <input matInput [formControlName]="campo.key" />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+        <!-- ================= Bloqueio ================= -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Bloqueio / Desbloqueio </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div formGroupName="bloqueio" class="container">
+            <div class="row">
+              <div
+                class="col-md-3"
+                *ngFor="let campo of getControles('bloqueio')"
               >
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>{{ campo.key | titlecase }}</mat-label>
@@ -97,16 +141,13 @@
         <!-- ================= ENDEREÇO E IMPEDIMENTO ================= -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title>
-              Endereço de Cobrança e Impedimento
-            </mat-panel-title>
+            <mat-panel-title> Endereço de Cobrança </mat-panel-title>
           </mat-expansion-panel-header>
 
           <div class="container">
             <div class="row">
               <!-- ENDEREÇO -->
               <div formGroupName="enderecoCobranca" class="col-md-8">
-                <h3>Endereço de Cobrança</h3>
                 <div class="row">
                   <div
                     class="col-md-6"
@@ -121,20 +162,6 @@
               </div>
 
               <!-- IMPEDIMENTO -->
-              <div formGroupName="impedimento" class="col-md-3">
-                <h3>Impedimento</h3>
-                <div class="row">
-                  <div
-                    class="col-md-12"
-                    *ngFor="let campo of getControles('impedimento')"
-                  >
-                    <mat-form-field appearance="outline" class="w-100">
-                      <mat-label>Impedimento</mat-label>
-                      <input matInput [formControlName]="campo.key" />
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </mat-expansion-panel>

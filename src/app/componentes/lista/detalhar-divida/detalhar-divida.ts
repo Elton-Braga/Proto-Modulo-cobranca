@@ -98,6 +98,24 @@ export class DetalharDivida implements OnInit {
         telefone: new FormControl({ value: '', disabled: true }),
         email: new FormControl({ value: '', disabled: true }),
       }),
+
+      unidadeFamiliar: this.fb.group({
+        situacao_conjugal: new FormControl({ value: '', disabled: true }),
+        data_uniao: new FormControl({ value: '', disabled: true }),
+        data_separacao: new FormControl({ value: '', disabled: true }),
+        renda_familiar: new FormControl({ value: '', disabled: true }),
+        nome_dependente: new FormControl({ value: '', disabled: true }),
+        tipo_dependente: new FormControl({ value: '', disabled: true }),
+        nome: new FormControl({ value: '', disabled: true }),
+        data_nascimento: new FormControl({ value: '', disabled: true }),
+        data_entrada_na_familia: new FormControl({ value: '', disabled: true }),
+        cpf_dependente: new FormControl({ value: '', disabled: true }),
+        telefone: new FormControl({ value: '', disabled: true }),
+        associacao_unidade_familiar: new FormControl({
+          value: '',
+          disabled: true,
+        }),
+      }),
       projetoAssentamento: this.fb.group({
         nome_projeto: new FormControl({ value: '', disabled: true }),
         codigo_projeto: new FormControl({ value: '', disabled: true }),
@@ -109,6 +127,25 @@ export class DetalharDivida implements OnInit {
         estado: new FormControl({ value: '', disabled: true }),
         municipio: new FormControl({ value: '', disabled: true }),
         codigo_municipio: new FormControl({ value: '', disabled: true }),
+      }),
+
+      bloqueio: this.fb.group({
+        bloqueio: new FormControl({ value: '', disabled: true }),
+        codigo_beneficiario: new FormControl({ value: '', disabled: true }),
+        codigo_tipo_bloqueio: new FormControl({ value: '', disabled: true }),
+        descricao_bloqueio: new FormControl({ value: '', disabled: true }),
+        codigo_transacao: new FormControl({ value: '', disabled: true }),
+        data_bloqueio: new FormControl({ value: '', disabled: true }),
+        codigo_sub_bloqueio: new FormControl({ value: '', disabled: true }),
+        descricao_sub_bloqueio: new FormControl({ value: '', disabled: true }),
+        descricao_motivo_bloqueio: new FormControl({
+          value: '',
+          disabled: true,
+        }),
+        desbloqueio_atendido: new FormControl({ value: '', disabled: true }),
+        situacao_analise: new FormControl({ value: '', disabled: true }),
+        data_resultado: new FormControl({ value: '', disabled: true }),
+        observacoes: new FormControl({ value: '', disabled: true }),
       }),
       geolocalizacao: this.fb.group({
         latitude: new FormControl({ value: this.latitude, disabled: true }),
@@ -139,6 +176,8 @@ export class DetalharDivida implements OnInit {
       projetoAssentamento: beneficiario.projeto_assentamento[0],
       enderecoCobranca: beneficiario.endereco[0],
       impedimento: beneficiario.bloqueios[0],
+      unidadeFamiliar: beneficiario.dependentes[0],
+      bloqueio: beneficiario.bloqueios[0],
       geolocalizacao: {
         latitude: this.latitude,
         longitude: this.longitude,

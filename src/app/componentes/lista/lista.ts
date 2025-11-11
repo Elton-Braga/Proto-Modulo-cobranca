@@ -118,6 +118,8 @@ export class Lista implements OnInit, AfterViewInit {
       numeroReferencia: [''],
       numeroProcesso: [''],
       numeroDocumento: [''],
+      situacao_receita: [''],
+      situacao_PA: [''],
     });
     this.beneficiariosOriginais.forEach((b) => {
       b.dadosDeCobranca?.forEach((d) => {
