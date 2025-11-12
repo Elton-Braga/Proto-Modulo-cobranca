@@ -22,22 +22,14 @@
     <mat-step [stepControl]="formDados" [editable]="isEditable">
       <mat-accordion multi class="accordion-wrapper">
         <!-- Acordeon 1: Dados Gerais -->
-        <mat-expansion-panel [expanded]="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title> Dados do Imóvel </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div>
-            <form
-              [formGroup]="formDados"
-              (ngSubmit)="onSubmit()"
-              class="flexbox-form"
-            >
+        <form [formGroup]="formDados" (ngSubmit)="onSubmit()">
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title> Dados do Beneficiario </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="flexbox-form">
               <ng-template matStepLabel>Dados do documento</ng-template>
               <!-- Linha 1 -->
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Imóvel/Projeto</mat-label>
-                <input matInput formControlName="imovelProjeto" />
-              </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
                 <mat-label>Tipo Documento</mat-label>
@@ -89,34 +81,6 @@
               </mat-form-field>
 
               <!-- 🏡 CAMPOS FALTANTES -->
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Número do Lote</mat-label>
-                <input matInput formControlName="numeroLote" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Área (ha)</mat-label>
-                <input matInput formControlName="area" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Gleba</mat-label>
-                <input matInput formControlName="gleba" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Data de Publicação</mat-label>
-                <input
-                  matInput
-                  [matDatepicker]="pickerPublicacao"
-                  formControlName="dataPublicacao"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="pickerPublicacao"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #pickerPublicacao></mat-datepicker>
-              </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
                 <mat-label>Nº Boletim de Serviço</mat-label>
@@ -152,8 +116,93 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
+                <mat-label>Número de Prestações</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  formControlName="numeroPrestacoes"
+                />
+              </mat-form-field>
+
+              <!-- Checkbox e Observações -->
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Imóvel </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="flexbox-form">
+              <mat-form-field appearance="outline" class="itens align-select">
+                <mat-label>Regularização Fundiaria?</mat-label>
+                <mat-select formControlName="rf" panelClass="align-select">
+                  <mat-option value="requerimentoValor">Sim</mat-option>
+                  <mat-option value="alterarCondicaoPgto">Não</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Imóvel/Projeto</mat-label>
+                <input matInput formControlName="imovelProjeto" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Número do Lote</mat-label>
+                <input matInput formControlName="numeroLote" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Área (ha)</mat-label>
+                <input matInput formControlName="area" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Gleba</mat-label>
+                <input matInput formControlName="gleba" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Município da Sede do Imóvel</mat-label>
+                <input matInput formControlName="municipioSedeImovel" />
+              </mat-form-field>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Titulação </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="flexbox-form">
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Título Cancelado?</mat-label>
+                <mat-select formControlName="tituloCancelado">
+                  <mat-option value="sim">Sim</mat-option>
+                  <mat-option value="nao">Não</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
                 <mat-label>Número do Processo</mat-label>
                 <input matInput formControlName="numeroProcesso" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Data de Publicação</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="pickerPublicacao"
+                  formControlName="dataPublicacao"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="pickerPublicacao"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #pickerPublicacao></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Módulo Fiscal</mat-label>
+                <input matInput formControlName="moduloFiscal" />
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
@@ -174,33 +223,6 @@
               <mat-form-field appearance="outline" class="itens">
                 <mat-label>Valor da Alienação</mat-label>
                 <input matInput formControlName="valorAlienacao" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Frequência do Pagamento</mat-label>
-                <mat-select formControlName="frequenciaPagamento">
-                  <mat-option value="mensal">Mensal</mat-option>
-                  <mat-option value="anual">Anual</mat-option>
-                  <mat-option value="unico">Único</mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Número do Módulo Fiscal</mat-label>
-                <input matInput formControlName="numeroModuloFiscal" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Módulo Fiscal</mat-label>
-                <input matInput formControlName="moduloFiscal" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Título Cancelado?</mat-label>
-                <mat-select formControlName="tituloCancelado">
-                  <mat-option value="sim">Sim</mat-option>
-                  <mat-option value="nao">Não</mat-option>
-                </mat-select>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
@@ -227,18 +249,26 @@
                 <input matInput formControlName="condicaoPagamento" />
               </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Número de Prestações</mat-label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Qtd. prestações a vencer</mat-label>
                 <input
                   matInput
                   type="number"
-                  formControlName="numeroPrestacoes"
+                  formControlName="qtdPrestacoesAVencer"
                 />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Frequência do Pagamento</mat-label>
+                <mat-select formControlName="frequenciaPagamento">
+                  <mat-option value="mensal">Mensal</mat-option>
+                  <mat-option value="anual">Anual</mat-option>
+                  <mat-option value="unico">Único</mat-option>
+                </mat-select>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
-                <mat-label>Município da Sede do Imóvel</mat-label>
-                <input matInput formControlName="municipioSedeImovel" />
+                <mat-label>Número do Módulo Fiscal</mat-label>
+                <input matInput formControlName="numeroModuloFiscal" />
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens align-select">
@@ -255,15 +285,15 @@
                   >
                 </mat-select>
               </mat-form-field>
+            </div>
+          </mat-expansion-panel>
 
-              <!-- Checkbox e Observações -->
-              <mat-form-field appearance="outline" class="itens align-select">
-                <mat-label>Regularização Fundiaria?</mat-label>
-                <mat-select formControlName="rf" panelClass="align-select">
-                  <mat-option value="requerimentoValor">Sim</mat-option>
-                  <mat-option value="alterarCondicaoPgto">Não</mat-option>
-                </mat-select>
-              </mat-form-field>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header
+              >Observações
+            </mat-expansion-panel-header>
+            <div class="flexbox-form">
+              <mat-panel-title> Observações </mat-panel-title>
 
               <mat-form-field appearance="outline" class="w-100 itens">
                 <mat-label>Observações</mat-label>
@@ -273,20 +303,9 @@
                   rows="3"
                 ></textarea>
               </mat-form-field>
-
-              <div class="w-100">
-                <button
-                  mat-raised-button
-                  color="primary"
-                  class="btn-salvar"
-                  type="submit"
-                >
-                  Salvar Dados
-                </button>
-              </div>
-            </form>
-          </div>
-        </mat-expansion-panel>
+            </div>
+          </mat-expansion-panel>
+        </form>
 
         <!-- Acordeon 2: Resumo Financeiro -->
         <mat-expansion-panel>
@@ -311,16 +330,7 @@
             </div>
 
             <div class="row mb-3">
-              <div class="col-md-6">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Qtd. prestações a vencer</mat-label>
-                  <input
-                    matInput
-                    type="number"
-                    formControlName="qtdPrestacoesAVencer"
-                  />
-                </mat-form-field>
-              </div>
+              <div class="col-md-6"></div>
               <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Valor a vencer</mat-label>
@@ -381,13 +391,10 @@
                 </mat-form-field>
               </div>
             </div>
-
-            <button mat-raised-button color="accent" class="mt-3" type="submit">
-              Salvar Resumo
-            </button>
           </form>
         </mat-expansion-panel>
       </mat-accordion>
+      <br /><br />
     </mat-step>
 
     <mat-step [editable]="isEditable"
@@ -421,7 +428,9 @@
   >
     ⬅ Voltar
   </button>
-
+  <button mat-raised-button color="accent" class="btn-salvar" type="submit">
+    Salvar Dados
+  </button>
   <button
     mat-raised-button
     color="primary"
@@ -431,6 +440,16 @@
     Avançar ➡
   </button>
 </footer>
+<!--<div class="w-100">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="btn-salvar"
+                  type="submit"
+                >
+                  Salvar Dados
+                </button>
+              </div>-->
 
 <!-- Toast Bootstrap Dinâmico -->
 <div

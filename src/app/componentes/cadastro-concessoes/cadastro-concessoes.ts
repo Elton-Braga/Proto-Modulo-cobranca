@@ -129,11 +129,12 @@ export class CadastroConcessoes implements AfterViewInit {
       regularizacaoFundiaria: [false],
       observacoes: [''],
       rf: [''],
+      qtdPrestacoesAVencer: [{ value: 0, disabled: true }],
     });
 
     this.formFinanceiro = this.fb.group({
       valorTotalAtualizado: [{ value: '0,00', disabled: true }],
-      qtdPrestacoesAVencer: [{ value: 0, disabled: true }],
+
       valorAVencer: [{ value: '0,00', disabled: true }],
       qtdPrestacoesVencidas: [{ value: 0, disabled: true }],
       valorVencido: [{ value: '0,00', disabled: true }],
