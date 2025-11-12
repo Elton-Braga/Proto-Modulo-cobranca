@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, createPlatform, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -155,7 +155,9 @@ export class DetalharDivida implements OnInit {
         estado: new FormControl({ value: '', disabled: true }),
         municipio: new FormControl({ value: '', disabled: true }),
         bairro: new FormControl({ value: '', disabled: true }),
-        rua: new FormControl({ value: '', disabled: true }),
+        logradouro: new FormControl({ value: '', disabled: true }),
+        complemento: new FormControl({ value: '', disabled: true }),
+        cep: new FormControl({ value: '', disabled: true }),
         numero: new FormControl({ value: '', disabled: true }),
       }),
       impedimento: this.fb.group({
@@ -189,6 +191,7 @@ export class DetalharDivida implements OnInit {
       impedimento: beneficiario.bloqueios[0],
       unidadeFamiliar: beneficiario.dependentes[0],
       bloqueio: beneficiario.bloqueios[0],
+      //enderecoCobranca: beneficiario.endereco[0],
       geolocalizacao: {
         latitude: this.latitude,
         longitude: this.longitude,
