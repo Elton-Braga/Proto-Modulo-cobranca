@@ -32,20 +32,6 @@
               <!-- Linha 1 -->
 
               <mat-form-field appearance="outline" class="itens">
-                <mat-label>Tipo Documento</mat-label>
-                <mat-select formControlName="tipoDocumento">
-                  <mat-option value="titulo">Título Definitivo</mat-option>
-                  <mat-option value="contrato">Contrato</mat-option>
-                  <mat-option value="outro">Outro</mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Número</mat-label>
-                <input matInput formControlName="numero" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
                 <mat-label>Beneficiário</mat-label>
                 <input matInput formControlName="beneficiario" />
               </mat-form-field>
@@ -80,51 +66,16 @@
                 <input matInput type="number" formControlName="qtdFilhos" />
               </mat-form-field>
 
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Situação</mat-label>
+                <mat-select formControlName="tipoDocumento">
+                  <mat-option value="titulo">situacção 1</mat-option>
+                  <mat-option value="contrato">situacção 2</mat-option>
+                  <mat-option value="outro">situacção 3</mat-option>
+                </mat-select>
+              </mat-form-field>
+
               <!-- 🏡 CAMPOS FALTANTES -->
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Nº Boletim de Serviço</mat-label>
-                <input matInput formControlName="numeroBoletimServico" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Data da Entrega</mat-label>
-                <input
-                  matInput
-                  [matDatepicker]="pickerEntrega"
-                  formControlName="dataEntrega"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="pickerEntrega"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #pickerEntrega></mat-datepicker>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Data da Emissão</mat-label>
-                <input
-                  matInput
-                  [matDatepicker]="pickerEmissao"
-                  formControlName="dataEmissao"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="pickerEmissao"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #pickerEmissao></mat-datepicker>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Número de Prestações</mat-label>
-                <input
-                  matInput
-                  type="number"
-                  formControlName="numeroPrestacoes"
-                />
-              </mat-form-field>
-
-              <!-- Checkbox e Observações -->
             </div>
           </mat-expansion-panel>
 
@@ -250,7 +201,7 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Qtd. prestações a vencer</mat-label>
+                <mat-label>Qtd. prestações </mat-label>
                 <input
                   matInput
                   type="number"
