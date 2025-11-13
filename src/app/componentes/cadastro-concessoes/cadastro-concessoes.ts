@@ -130,6 +130,7 @@ export class CadastroConcessoes implements AfterViewInit {
       observacoes: [''],
       rf: [''],
       qtdPrestacoesAVencer: [{ value: 0, disabled: true }],
+      N_PA: [],
     });
 
     this.formFinanceiro = this.fb.group({
