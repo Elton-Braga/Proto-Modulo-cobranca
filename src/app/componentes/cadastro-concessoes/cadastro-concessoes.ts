@@ -131,6 +131,8 @@ export class CadastroConcessoes implements AfterViewInit {
       rf: [''],
       qtdPrestacoesAVencer: [{ value: 0, disabled: true }],
       N_PA: [],
+      Pag_Processo_SEI: [],
+      Processo_SEI_não_interesse: [],
     });
 
     this.formFinanceiro = this.fb.group({
