@@ -75,7 +75,7 @@ export class CadastroConcessoes implements AfterViewInit {
       beneficiario: [{ value: '', disabled: true }, Validators.required],
       situacaoBeneficiario: [''],
       cpfBeneficiario: [
-        { value: '', disabled: true },
+        { value: '', disabled: false },
         [
           Validators.required,
           Validators.minLength(11),
@@ -133,6 +133,8 @@ export class CadastroConcessoes implements AfterViewInit {
       N_PA: [],
       Pag_Processo_SEI: [],
       Processo_SEI_não_interesse: [],
+      tipo_receita: [{ value: 'Alienação de Bens Imóveis', disabled: true }],
+      descricao_receita: [{ value: 'Título de Domínio XYX', disabled: true }],
     });
 
     this.formFinanceiro = this.fb.group({

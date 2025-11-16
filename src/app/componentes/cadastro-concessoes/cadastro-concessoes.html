@@ -29,6 +29,16 @@
             </mat-expansion-panel-header>
             <div class="flexbox-form">
               <ng-template matStepLabel>Dados do documento</ng-template>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Tipo da receita</mat-label>
+                <input matInput formControlName="tipo_receita" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Descrição da Receita</mat-label>
+                <input matInput formControlName="descricao_receita" />
+              </mat-form-field>
               <!-- Linha 1 -->
 
               <mat-form-field appearance="outline" class="itens">
