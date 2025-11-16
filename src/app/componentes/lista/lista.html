@@ -186,6 +186,15 @@
         <mat-icon>print</mat-icon>
         Emitir GRU
       </button>
+      <button
+        mat-flat-button
+        type="button"
+        class="custom-light-button"
+        (click)="cadastroConcessoes()"
+      >
+        <mat-icon>add</mat-icon>
+        Novo Cadastro
+      </button>
     </div>
   </div>
 
@@ -301,10 +310,10 @@
               <span>Consultar Dívidas</span>
               <mat-icon>search</mat-icon>
             </button>
-            <button mat-menu-item (click)="abrirCadastroConcessoes(element)">
+            <!-- <button mat-menu-item (click)="abrirCadastroConcessoes(element)">
               <span>Cadastrar Dívidas</span>
               <mat-icon>edit</mat-icon>
-            </button>
+            </button>-->
           </mat-menu>
         </td>
       </ng-container>

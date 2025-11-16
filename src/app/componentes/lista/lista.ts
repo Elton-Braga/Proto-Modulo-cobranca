@@ -272,6 +272,10 @@ export class Lista implements OnInit, AfterViewInit {
     });
   }
 
+  cadastroConcessoes(): void {
+    this.router.navigate(['/cadastro-concessoes']);
+  }
+
   abrirMenuAcoes(event: Event, element: Beneficiario): void {
     event.stopPropagation();
     console.log('Beneficiário selecionado:', element);

@@ -180,3 +180,20 @@ button[mat-icon-button].expanded {
 .btn-ver {
   border: 0;
 }
+
+.custom-light-button {
+  background-color: #f8f9fa; /* Bootstrap's default light background */
+  color: #212529; /* Bootstrap's default dark text color */
+  border: 0px solid #dee2e6; /* Bootstrap's default light border */
+  /* Add other styling like padding, border-radius, etc. as needed */
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  border-radius: 2rem;
+  margin-left: 1.5rem;
+}
+
+.custom-light-button:hover {
+  background-color: #e2e6ea; /* Slightly darker on hover */
+  border-color: #dae0e5;
+}
