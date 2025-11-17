@@ -127,6 +127,9 @@ export class DetalharDivida implements OnInit {
         estado: new FormControl({ value: '', disabled: true }),
         municipio: new FormControl({ value: '', disabled: true }),
         codigo_municipio: new FormControl({ value: '', disabled: true }),
+        gleba: new FormControl({ value: '', disabled: true }),
+        area: new FormControl({ value: '', disabled: true }),
+        regularizacao_fundiaria: new FormControl({ value: '', disabled: true }),
       }),
 
       bloqueio: this.fb.group({
@@ -167,11 +170,26 @@ export class DetalharDivida implements OnInit {
       titulacao: this.fb.group({
         n_processo: new FormControl({ value: '', disabled: true }),
         doc_titulacao: new FormControl({ value: '', disabled: true }),
+
+        tituloCancelado: new FormControl({ value: '', disabled: true }),
+        valorPrimeiraPrestacao: new FormControl({ value: '', disabled: true }),
+        vencimentoPrimeiraPrestacao: new FormControl({
+          value: '',
+          disabled: true,
+        }),
+        condicaoPagamento: new FormControl({ value: '', disabled: true }),
+        numeroPrestacoes: new FormControl({ value: '', disabled: true }),
+        municipioSedeImovel: new FormControl({ value: '', disabled: true }),
+        tipoTermoAditivo: new FormControl({ value: '', disabled: true }),
       }),
 
       concessao_credito: this.fb.group({
         n_processo: new FormControl({ value: '', disabled: true }),
         modalidade: new FormControl({ value: '', disabled: true }),
+      }),
+
+      observacao: this.fb.group({
+        observacao: new FormControl({ value: '', disabled: true }),
       }),
     });
 
