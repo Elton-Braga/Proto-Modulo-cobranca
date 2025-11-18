@@ -85,6 +85,7 @@ export class Lista implements OnInit, AfterViewInit {
     'nome_PA',
     'sr',
     'Situação',
+    'Descrição da Receita',
     'Impedimento',
     'acoes',
   ];

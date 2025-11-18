@@ -5,6 +5,7 @@ import {
   FormControl,
   Validators,
   ReactiveFormsModule,
+  FormsModule,
 } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
@@ -34,6 +35,7 @@ import { Beneficiario } from '../lista';
     MatDialogModule,
     MatIconModule,
     MatButtonModule,
+    FormsModule,
   ],
   templateUrl: './detalhar-divida.html',
   styleUrls: ['./detalhar-divida.scss'],
