@@ -182,9 +182,9 @@ button[mat-icon-button].expanded {
 }
 
 .custom-light-button {
-  background-color: #f8f9fa; /* Bootstrap's default light background */
-  color: #212529; /* Bootstrap's default dark text color */
-  border: 0px solid #dee2e6; /* Bootstrap's default light border */
+  //background-color: #f8f9fa; /* Bootstrap's default light background */
+  //color: #212529; /* Bootstrap's default dark text color */
+  //border: 0px solid #dee2e6; /* Bootstrap's default light border */
   /* Add other styling like padding, border-radius, etc. as needed */
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
@@ -194,6 +194,6 @@ button[mat-icon-button].expanded {
 }
 
 .custom-light-button:hover {
-  background-color: #e2e6ea; /* Slightly darker on hover */
+  background-color: #0a7aeb; /* Slightly darker on hover */
   border-color: #dae0e5;
 }
