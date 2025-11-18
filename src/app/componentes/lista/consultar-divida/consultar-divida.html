@@ -1,6 +1,26 @@
-<h2 mat-dialog-title>Consulta de Dívidas</h2>
+<!--<h2 mat-dialog-title>Consulta de Dívidas</h2>-->
+<br /><br />
 
-<mat-dialog-content class="cd-content">
+<mat-dialog-content class="cd-content" id="conteudo-gru">
+  <div class="row topo">
+    <div class="col-2">
+      <img
+        src="https://www.gov.br/incra/pt-br/canais_atendimento/LogoINCRAverticaldegrad.png"
+        class="logo"
+      />
+    </div>
+    <div class="col-10 texto">
+      <strong>
+        <h5>
+          INCRA - Instituto Nacional de Colonização e Reforma Agrária
+        </h5></strong
+      ><br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </div>
+  </div>
   <div class="header-dados">
     <div><strong>Beneficiário:</strong> {{ beneficiarioNome || "xxxxx" }}</div>
     <div><strong>CPF:</strong> {{ beneficiarioCpf || "xxxxx" }}</div>
@@ -114,11 +134,21 @@
   <button
     mat-flat-button
     color="primary"
-    (click)="imprimirGRU()"
+    (click)="imprimir()"
     class="btn-imprimir"
   >
     <mat-icon>print</mat-icon>
-    Imprimir GRU
+    Imprimir
+  </button>
+
+  <button
+    mat-flat-button
+    color="accent"
+    (click)="baixarGRU()"
+    class="btn-baixar"
+  >
+    <mat-icon>download</mat-icon>
+    Baixar GRU
   </button>
 
   <mat-dialog-actions align="end">
