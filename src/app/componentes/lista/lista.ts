@@ -84,7 +84,10 @@ export class Lista implements OnInit, AfterViewInit {
     'cpf',
     'nome_PA',
     'sr',
+
     'Situação',
+    'Parcela',
+    'Situação da Receita',
     'Descrição da Receita',
     'Impedimento',
     'acoes',
