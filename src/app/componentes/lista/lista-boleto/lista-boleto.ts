@@ -102,6 +102,7 @@ export interface DebtRow {
     MatExpansionPanel,
     MatExpansionPanelHeader,
     MatExpansionPanelTitle,
+    MatMenuModule,
   ],
   templateUrl: './lista-boleto.html',
   styleUrls: ['./lista-boleto.scss'],
@@ -363,5 +364,179 @@ export class ListaBoleto implements AfterViewInit {
     // exemplo: acionar download / geração de boleto / GRU, etc.
     console.log('Baixar documento para', row);
     // lógica real de download aqui
+  }
+
+  /** Emitir GRU para uma única linha (acionada pelo menu de ações da linha) */
+  emitirGRU(row: DebtRow): void {
+    if (!row) return;
+    const id = row.codigoBeneficiario ?? row.beneficiarioIndex;
+    // Aqui você chamaria o serviço que solicita a GRU para essa cobrança
+    console.log('Emitir GRU (único) para', id, row);
+    // Exemplo: this.gruService.emitir([id]).subscribe(...)
+  }
+
+  /** Abrir detalhamento da dívida (pode abrir dialog) */
+  detalharDivida(row: DebtRow): void {
+    if (!row) return;
+    console.log('Detalhar dívida', row);
+    // Abrir modal ou navegar para rota de detalhe:
+    // this.dialog.open(DetalheDividaComponent, { data: row });
+    // ou this.router.navigate(['/divida', row.beneficiarioIndex, row.cobrancaIndex]);
+  }
+
+  /** Abrir detalhamento do devedor (pode abrir dialog ou rota) */
+  detalharDevedor(row: DebtRow): void {
+    if (!row) return;
+    console.log('Detalhar devedor', row);
+    // Exemplo de navegação:
+    // this.router.navigate(['/devedor', row.codigoBeneficiario]);
+  }
+
+  /** Atualizar parcela (abrir formulário/modal de edição) */
+  atualizarParcela(row: DebtRow): void {
+    if (!row) return;
+    console.log('Atualizar parcela', row);
+    // Exemplo: abrir um dialog para editar a parcela
+    // const ref = this.dialog.open(EditarParcelaComponent, { data: row });
+    // ref.afterClosed().subscribe( updated => { if(updated) this.atualizarTabela(); });
+  }
+
+  /** Exporta seleção atual como CSV (utiliza ponto e vírgula como separador) */
+  exportarCSV(): void {
+    const rows = this.selection.selected;
+    if (!rows || rows.length === 0) {
+      console.warn('Nenhuma linha selecionada para exportar CSV.');
+      return;
+    }
+
+    const headers = [
+      'codigoBeneficiario',
+      'nomeDevedor',
+      'cpfDevedor',
+      'numeroParcela',
+      'vencimento',
+      'valor',
+    ];
+    const csvLines: string[] = [];
+
+    // Cabeçalho legível (opcional: deixar como chaves)
+    csvLines.push(headers.join(';'));
+
+    for (const r of rows) {
+      const values = headers.map((h) => {
+        let v: any = (r as any)[h];
+        if (h === 'vencimento' && v) {
+          v =
+            v instanceof Date
+              ? v.toLocaleDateString('pt-BR')
+              : new Date(v).toLocaleDateString('pt-BR');
+        }
+        if (v === null || v === undefined) v = '';
+        // escape básico
+        return `"${String(v).replace(/"/g, '""').replace(/;/g, ',')}"`;
+      });
+      csvLines.push(values.join(';'));
+    }
+
+    const csvContent = csvLines.join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `export_selecionados_${new Date()
+      .toISOString()
+      .slice(0, 10)}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  /** Exporta seleção abrindo uma nova janela com tabela HTML e chamando print (solução simples) */
+  exportarPDF(): void {
+    const rows = this.selection.selected;
+    if (!rows || rows.length === 0) {
+      console.warn('Nenhuma linha selecionada para exportar PDF.');
+      return;
+    }
+
+    const headers = ['Código', 'Nome', 'CPF', 'Parcela', 'Vencimento', 'Valor'];
+    const columns = [
+      'codigoBeneficiario',
+      'nomeDevedor',
+      'cpfDevedor',
+      'numeroParcela',
+      'vencimento',
+      'valor',
+    ];
+
+    let html = `<html><head><title>Exportação PDF</title><style>
+      table{width:100%;border-collapse:collapse;font-family:Arial,Helvetica,sans-serif}
+      th,td{border:1px solid #ccc;padding:6px;font-size:12px}
+      th{background:#f5f5f5}
+      </style></head><body>`;
+    html += `<h3>Itens selecionados</h3>`;
+    html +=
+      '<table><thead><tr>' +
+      headers.map((h) => `<th>${h}</th>`).join('') +
+      '</tr></thead><tbody>';
+
+    for (const r of rows) {
+      html += '<tr>';
+      for (const col of columns) {
+        let v: any = (r as any)[col];
+        if (col === 'vencimento' && v) {
+          v =
+            v instanceof Date
+              ? v.toLocaleDateString('pt-BR')
+              : new Date(v).toLocaleDateString('pt-BR');
+        }
+        html += `<td>${v ?? ''}</td>`;
+      }
+      html += '</tr>';
+    }
+
+    html += '</tbody></table></body></html>';
+
+    const w = window.open('', '_blank');
+    if (w) {
+      w.document.open();
+      w.document.write(html);
+      w.document.close();
+      // chama print; o usuário pode salvar como PDF no diálogo de impressão
+      w.print();
+    } else {
+      console.warn(
+        'Popup bloqueado: não foi possível abrir janela para exportar PDF.'
+      );
+    }
+  }
+
+  /**
+   * Emitir GRU para as linhas selecionadas (botão "Emitir GRU" da toolbar).
+   * Recebe opcionalmente o evento do clique para impedir propagação.
+   */
+  emitirGRUSelecionadas(event?: MouseEvent): void {
+    if (event) {
+      event.stopPropagation();
+    }
+
+    const rows = this.selection.selected;
+    if (!rows || rows.length === 0) {
+      console.warn('Nenhuma linha selecionada para emissão de GRU.');
+      return;
+    }
+
+    const ids = rows
+      .map(
+        (r) =>
+          r.codigoBeneficiario ?? `${r.beneficiarioIndex}:${r.cobrancaIndex}`
+      )
+      .filter(Boolean);
+
+    console.log('Emitir GRU para IDs:', ids);
+    // Aqui você chamaria um serviço que gera as GRUs em lote:
+    // this.gruService.emitirPara(ids).subscribe(res => { ... });
+
+    // Exemplo de feedback (se usar MatSnackBar, descomente e injete no construtor)
+    // this.snackBar.open(`${rows.length} GRU(s) preparada(s) para emissão.`, 'Fechar', { duration: 3000 });
   }
 }
