@@ -22,11 +22,11 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="col-3">
-            <mat-label>Código do Beneficiário</mat-label>
+            <mat-label>Código do Devedor</mat-label>
             <input
               matInput
               formControlName="cod_beneficiario"
-              placeholder="Código do BEneficiario"
+              placeholder="Código do devedor"
             />
             <mat-error
               *ngIf="formFiltro.get('cod_beneficiario')?.hasError('minlength')"
@@ -36,7 +36,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="col-3">
-            <mat-label>CPF do Beneficiário</mat-label>
+            <mat-label>CPF do devedor</mat-label>
             <input
               matInput
               formControlName="cpf"
