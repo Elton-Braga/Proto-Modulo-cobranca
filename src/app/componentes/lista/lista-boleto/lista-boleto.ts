@@ -28,6 +28,8 @@ import { MOCK_BENEFICIARIOS } from '../../../mock/MOCK_BENEFICIATIO';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DetalharDivida } from '../detalhar-divida/detalhar-divida';
 import { ConsultarDivida } from '../consultar-divida/consultar-divida';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 /* =======================================================
    ==== INTERFACES ESTRUTURADAS E TIPADAS CORRETAMENTE ====
@@ -105,6 +107,8 @@ export interface DebtRow {
     MatExpansionPanelHeader,
     MatExpansionPanelTitle,
     MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   templateUrl: './lista-boleto.html',
   styleUrls: ['./lista-boleto.scss'],
@@ -158,7 +162,11 @@ export class ListaBoleto implements AfterViewInit {
       numeroProcesso: [''],
       numeroDocumento: [''],
       situacao_receita: [''],
-      situacao_PA: [''],
+      //situacao_PA: [''],
+      vencimentoPeriodo: this.fb.group({
+        start: [null],
+        end: [null],
+      }),
     });
 
     // Monta as linhas da tabela ao inicializar (flatten de beneficiários -> cobranças)
