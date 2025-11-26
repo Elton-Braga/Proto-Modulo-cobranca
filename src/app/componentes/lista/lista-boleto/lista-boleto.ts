@@ -26,6 +26,8 @@ import { Router, RouterLink } from '@angular/router';
 // import { Beneficiario } from '../../../mock/beneficiario';
 import { MOCK_BENEFICIARIOS } from '../../../mock/MOCK_BENEFICIATIO';
 import { SelectionModel } from '@angular/cdk/collections';
+import { DetalharDivida } from '../detalhar-divida/detalhar-divida';
+import { ConsultarDivida } from '../consultar-divida/consultar-divida';
 
 /* =======================================================
    ==== INTERFACES ESTRUTURADAS E TIPADAS CORRETAMENTE ====
@@ -379,9 +381,19 @@ export class ListaBoleto implements AfterViewInit {
   detalharDivida(row: DebtRow): void {
     if (!row) return;
     console.log('Detalhar dívida', row);
-    // Abrir modal ou navegar para rota de detalhe:
-    // this.dialog.open(DetalheDividaComponent, { data: row });
-    // ou this.router.navigate(['/divida', row.beneficiarioIndex, row.cobrancaIndex]);
+    const dialogRef = this.dialog.open(DetalharDivida, {
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'detalhar-divida-modal',
+      data: row,
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) console.log('Modal fechada com resultado:', result);
+    });
   }
 
   /** Abrir detalhamento do devedor (pode abrir dialog ou rota) */
@@ -390,6 +402,19 @@ export class ListaBoleto implements AfterViewInit {
     console.log('Detalhar devedor', row);
     // Exemplo de navegação:
     // this.router.navigate(['/devedor', row.codigoBeneficiario]);
+    const dialogRef = this.dialog.open(ConsultarDivida, {
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'detalhar-divida-modal',
+      data: row,
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) console.log('Modal fechada com resultado:', result);
+    });
   }
 
   /** Atualizar parcela (abrir formulário/modal de edição) */
