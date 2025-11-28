@@ -201,6 +201,15 @@
 
             <button
               mat-menu-item
+              (click)="exportarCSV()"
+              (click)="$event.stopPropagation()"
+            >
+              <mat-icon>grid_on</mat-icon>
+              <span>Excel</span>
+            </button>
+
+            <button
+              mat-menu-item
               (click)="exportarPDF()"
               (click)="$event.stopPropagation()"
             >
