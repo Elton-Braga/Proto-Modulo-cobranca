@@ -1,4 +1,4 @@
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import {
   FormBuilder,
@@ -109,6 +109,7 @@ export interface DebtRow {
     MatMenuModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgFor,
   ],
   templateUrl: './lista-boleto.html',
   styleUrls: ['./lista-boleto.scss'],
@@ -121,6 +122,7 @@ export class ListaBoleto implements AfterViewInit {
     MOCK_BENEFICIARIOS as unknown as Beneficiario[];
 
   sr: string[] = ['01', '02', '03', '04', '05'];
+  tipos: string[] = ['Tipo 1', 'Tipo 2', 'Tipo 3'];
 
   // Tabela / seleção
   displayedColumns: string[] = [
@@ -128,7 +130,8 @@ export class ListaBoleto implements AfterViewInit {
     'codigo',
     'nome',
     'cpf',
-    'descricao',
+    'descricaoD',
+    'descricaoP',
     'parcela',
     'vencimento',
     'valor',
@@ -162,7 +165,8 @@ export class ListaBoleto implements AfterViewInit {
       numeroProcesso: [''],
       numeroDocumento: [''],
       situacao_receita: [''],
-      //situacao_PA: [''],
+      DescricaoReceita: [''],
+      situacaoP: [],
       vencimentoPeriodo: this.fb.group({
         start: [null],
         end: [null],
