@@ -27,9 +27,10 @@ import { Router, RouterLink } from '@angular/router';
 import { MOCK_BENEFICIARIOS } from '../../../mock/MOCK_BENEFICIATIO';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DetalharDivida } from '../detalhar-divida/detalhar-divida';
-import { ConsultarDivida } from '../consultar-divida/consultar-divida';
+//import { ConsultarDivida } from '../consultar-divida/consultar-divida';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ConsultarDivida } from './modal/consultar-divida/consultar-divida';
 
 /* =======================================================
    ==== INTERFACES ESTRUTURADAS E TIPADAS CORRETAMENTE ====
@@ -409,23 +410,32 @@ export class ListaBoleto implements AfterViewInit {
   }
 
   /** Abrir detalhamento do devedor (pode abrir dialog ou rota) */
-  detalharDevedor(row: DebtRow): void {
+  detalharReceita(row: DebtRow): void {
     if (!row) return;
-    console.log('Detalhar devedor', row);
-    // Exemplo de navegação:
-    // this.router.navigate(['/devedor', row.codigoBeneficiario]);
+
+    const beneficiario = MOCK_BENEFICIARIOS.find(
+      (b) => b.titular.cod_beneficiario === row.codigoBeneficiario
+    );
+
     const dialogRef = this.dialog.open(ConsultarDivida, {
       width: '100vw',
       height: '100vh',
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'detalhar-divida-modal',
-      data: row,
-      disableClose: false,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) console.log('Modal fechada com resultado:', result);
+      data: {
+        ...beneficiario,
+        pagamento: [
+          {
+            tipoReceita: 'Receita X',
+            descricaoReceita: row.descricaoDivida,
+            numeroReferencia: 'REF123',
+            valorOriginal: row.valor,
+            dataVencimento: row.vencimento?.toLocaleDateString('pt-BR'),
+            situacao: row.situacao,
+          },
+        ],
+      },
     });
   }
 

@@ -246,6 +246,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         doc_titulacao: 'string',
       },
     ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
+      },
+    ],
   },
   // -------------------- 2º REGISTRO --------------------
   {
@@ -438,6 +511,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         doc_titulacao: 'string',
       },
     ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
+      },
+    ],
   },
 
   // -------------------- 3º REGISTRO --------------------
@@ -614,6 +760,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         doc_titulacao: 'string',
       },
     ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
+      },
+    ],
   }, // ==== REGISTRO 4 ====
   {
     titular: {
@@ -755,6 +974,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
       {
         n_processo: 'string',
         doc_titulacao: 'string',
+      },
+    ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
       },
     ],
   },
@@ -930,6 +1222,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         doc_titulacao: 'string',
       },
     ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
+      },
+    ],
   },
 
   // ==== REGISTRO 6 ====
@@ -1087,6 +1452,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
       {
         n_processo: 'string',
         doc_titulacao: 'string',
+      },
+    ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
       },
     ],
   }, // ==== REGISTRO 7 ====
@@ -1258,6 +1696,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         doc_titulacao: 'string',
       },
     ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
+      },
+    ],
   },
 
   // ==== REGISTRO 8 ====
@@ -1414,6 +1925,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         doc_titulacao: 'string',
       },
     ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
+      },
+    ],
   }, // ==== REGISTRO 9 ====
   {
     titular: {
@@ -1552,6 +2136,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
       {
         n_processo: 'string',
         doc_titulacao: 'string',
+      },
+    ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
       },
     ],
   },
@@ -1744,6 +2401,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         doc_titulacao: 'string',
       },
     ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
+      },
+    ],
   },
 
   // ==== REGISTRO 11 ====
@@ -1880,6 +2610,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
       {
         n_processo: 'string',
         doc_titulacao: 'string',
+      },
+    ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
       },
     ],
   },
@@ -2056,6 +2859,79 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
       {
         n_processo: 'string',
         doc_titulacao: 'string',
+      },
+    ],
+    debitos: [
+      {
+        objetoCredito:
+          'Crédito destinado à recuperação produtiva da unidade familiar',
+        tipoReceita: 'PRONAF – Investimento',
+        valorConcedido: 45000.0,
+        prazosCondicoesReembolso:
+          'Reembolso em até 60 parcelas mensais, com 12 meses de carência e juros de 4,5% ao ano.',
+        regrasLegaisPrograma:
+          'Normas previstas na Lei 11.326/2006 e regulamentações específicas do Programa Nacional de Fortalecimento da Agricultura Familiar.',
+        tituloDominio: 'Título de Domínio nº TD-2020-4587',
+        contrato: 'Contrato nº CT-2015-0098',
+        termoAditivo: 'Termo Aditivo nº TA-2018-003',
+        outrosDocumentos: [
+          'Laudo Técnico de Vistoria 2015',
+          'Plano de Recuperação Produtiva',
+        ],
+        descricaoObjeto:
+          'Financiamento concedido para aquisição de insumos, equipamentos agrícolas e recuperação de áreas produtivas.',
+        condicoesCobranca:
+          'Cobrança realizada conforme legislação vigente, podendo haver desconto de adimplência e rebate por liquidação antecipada.',
+        descricaoReceita:
+          'Investimento agrícola para fortalecimento da produção familiar',
+        valorOriginal: 45000.0,
+        numeroPrestacoes: 60,
+        saldoDevedor: 23000.5,
+      },
+      {
+        objetoCredito:
+          'Crédito emergencial para mitigação de perdas decorrentes de intempéries',
+        tipoReceita: 'Crédito Especial – Emergencial',
+        valorConcedido: 30000.0,
+        prazosCondicoesReembolso:
+          'Parcelamento em 48 meses, com juros de 3,8% ao ano, sem período de carência.',
+        regrasLegaisPrograma:
+          'Regulamentado por instruções normativas do programa emergencial de apoio à agricultura familiar.',
+        contrato: 'Contrato nº CT-2017-1120',
+        outrosDocumentos: ['Relatório de danos climáticos 2017'],
+        descricaoObjeto:
+          'Apoio financeiro para recuperação de áreas afetadas por eventos climáticos extremos.',
+        condicoesCobranca:
+          'Cobrança com possibilidade de renegociação em caso de novos eventos climáticos reconhecidos oficialmente.',
+        descricaoReceita: 'Crédito emergencial para recomposição produtiva',
+        valorOriginal: 30000.0,
+        numeroPrestacoes: 48,
+        saldoDevedor: 27000.0,
+      },
+      {
+        objetoCredito:
+          'Crédito de fomento para ampliação da capacidade produtiva',
+        tipoReceita: 'Fomento – Ampliação Produtiva',
+        valorConcedido: 80000.0,
+        prazosCondicoesReembolso:
+          'Pagamento em 72 parcelas, com carência de 18 meses e juros de 3,2% ao ano.',
+        regrasLegaisPrograma:
+          'Regido pelas normas do Programa Nacional de Crédito Fundiário e instruções complementares.',
+        contrato: 'Contrato nº CT-2020-5541',
+        termoAditivo: 'Termo Aditivo nº TA-2021-014',
+        outrosDocumentos: [
+          'Projeto Técnico 2020',
+          'Ata de visita técnica 2021',
+        ],
+        descricaoObjeto:
+          'Financiamento para aquisição de equipamentos de irrigação e implementação de sistemas produtivos modernos.',
+        condicoesCobranca:
+          'Cobrança conforme regras do contrato, com possibilidade de rebate de até 25% para liquidação antes do vencimento.',
+        descricaoReceita:
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        valorOriginal: 80000.0,
+        numeroPrestacoes: 72,
+        saldoDevedor: 60000.0,
       },
     ],
   },

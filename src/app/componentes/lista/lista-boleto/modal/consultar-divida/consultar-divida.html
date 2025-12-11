@@ -1,0 +1,212 @@
+<!--<h2 mat-dialog-title>Consulta de Dívidas</h2>-->
+<br /><br />
+
+<mat-dialog-content class="cd-content" id="conteudo-gru">
+  <div class="row topo">
+    <div class="col-2">
+      <img
+        src="https://www.gov.br/incra/pt-br/canais_atendimento/LogoINCRAverticaldegrad.png"
+        class="logo"
+      />
+    </div>
+    <div class="col-10 texto">
+      <strong>
+        <h5>INCRA - Instituto Nacional de Colonização e Reforma Agrária</h5>
+      </strong>
+      <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </div>
+  </div>
+
+  <!-- Cabeçalho com identificação do beneficiário (mantido) -->
+  <div class="header-dados">
+    <div><strong>DEVEDOR:</strong> {{ beneficiarioNome || "xxxxx" }}</div>
+    <div><strong>CPF:</strong> {{ beneficiarioCpf || "xxxxx" }}</div>
+  </div>
+
+  <!-- Se não houver débitos -->
+  <div class="table-container" *ngIf="debitos?.length; else vazio">
+    <!-- Itera sobre cada débito e monta os 6 blocos -->
+    <ng-container *ngFor="let d of debitos; let i = index">
+      <h3 class="bloco-titulo">Débito {{ i + 1 }}</h3>
+
+      <!-- BLOCO 1 – IDENTIFICAÇÃO -->
+      <h3 class="bloco-titulo">Bloco 1 — Identificação</h3>
+      <table class="pagamentos-table" role="table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ beneficiarioNome || "xxxxx" }}</td>
+            <td>{{ beneficiarioCpf || "xxxxx" }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- BLOCO 2 – OBJETO DE COBRANÇA -->
+      <h3 class="bloco-titulo">Bloco 2 — Objeto de Cobrança</h3>
+      <table class="pagamentos-table" role="table">
+        <thead>
+          <tr>
+            <th>Objeto do Crédito</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ d.objetoCredito || "xxxxx" }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- BLOCO 3 – CRÉDITO CONCEDIDO -->
+      <h3 class="bloco-titulo">Bloco 3 — Crédito Concedido</h3>
+      <table class="pagamentos-table" role="table">
+        <thead>
+          <tr>
+            <th>Tipo da Receita</th>
+            <th>Valor Concedido</th>
+            <th>Prazos / Condições</th>
+            <th>Regras Legais</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ d.tipoReceita || "xxxxx" }}</td>
+            <td style="text-align: right">
+              {{ formataNumero(d.valorConcedido) || "xxxxx" }}
+            </td>
+            <td>{{ d.prazosCondicoesReembolso || "xxxxx" }}</td>
+            <td>{{ d.regrasLegaisPrograma || "xxxxx" }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- BLOCO 4 – DOCUMENTO DE TITULAÇÃO -->
+      <h3 class="bloco-titulo">Bloco 4 — Documento de Titulação</h3>
+      <table class="pagamentos-table" role="table">
+        <thead>
+          <tr>
+            <th>Título de Domínio</th>
+            <th>Contrato</th>
+            <th>Termo Aditivo</th>
+            <th>Outros Documentos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{
+                d.tituloDominio || (d.tituloDominio === "" ? "xxxxx" : "xxxxx")
+              }}
+            </td>
+            <td>{{ d.contrato || "xxxxx" }}</td>
+            <td>{{ d.termoAditivo || "xxxxx" }}</td>
+            <td>
+              <ng-container *ngIf="d.outrosDocumentos?.length; else semDocs">
+                <ul style="margin: 0; padding-left: 1rem">
+                  <li *ngFor="let od of d.outrosDocumentos">{{ od }}</li>
+                </ul>
+              </ng-container>
+              <ng-template #semDocs>xxxxx</ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- BLOCO 5 – RECEITAS DIVERSAS -->
+      <h3 class="bloco-titulo">Bloco 5 — Receitas Diversas</h3>
+      <table class="pagamentos-table" role="table">
+        <thead>
+          <tr>
+            <th>Descrição do Objeto</th>
+            <th>Condições de Cobrança</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ d.descricaoObjeto || "xxxxx" }}</td>
+            <td>{{ d.condicoesCobranca || "xxxxx" }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- BLOCO 6 – IDENTIFICAÇÃO DA RECEITA -->
+      <h3 class="bloco-titulo">Bloco 6 — Identificação da Receita</h3>
+      <table class="pagamentos-table" role="table">
+        <thead>
+          <tr>
+            <th>Tipo da Receita</th>
+            <th>Descrição da Receita</th>
+            <th>Valor Original</th>
+            <th>Nº Prestações</th>
+            <th>Saldo Devedor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ d.tipoReceita || "xxxxx" }}</td>
+            <td>{{ d.descricaoReceita || "xxxxx" }}</td>
+            <td style="text-align: right">
+              {{ formataNumero(d.valorOriginal) || "xxxxx" }}
+            </td>
+            <td style="text-align: right">
+              {{
+                d.numeroPrestacoes ?? d.numeroPrestacoes === 0
+                  ? d.numeroPrestacoes
+                  : "xxxxx"
+              }}
+            </td>
+            <td style="text-align: right">
+              {{ formataNumero(d.saldoDevedor) || "xxxxx" }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Separador visual entre débitos -->
+      <div style="height: 1rem"></div>
+      <hr />
+      <div style="height: 1rem"></div>
+    </ng-container>
+  </div>
+
+  <ng-template #vazio>
+    <div class="vazio">Nenhum registro de débito encontrado.</div>
+  </ng-template>
+</mat-dialog-content>
+
+<div class="acoes">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="imprimir()"
+    class="btn-imprimir"
+  >
+    <mat-icon>print</mat-icon>
+    Imprimir
+  </button>
+
+  <button
+    mat-flat-button
+    color="accent"
+    (click)="baixarGRU()"
+    class="btn-baixar"
+  >
+    <mat-icon>download</mat-icon>
+    Baixar GRU
+  </button>
+
+  <mat-dialog-actions align="end">
+    <button mat-stroked-button (click)="fechar()" class="btn-fechar">
+      <mat-icon>close</mat-icon>
+      Fechar
+    </button>
+  </mat-dialog-actions>
+</div>
