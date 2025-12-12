@@ -72,27 +72,29 @@ export class ConsultarDivida implements OnInit {
     this.debitos = Array.isArray(this.data.debitos) ? this.data.debitos : [];
 
     // Garantir alguns campos (normalização mínima)
-    this.debitos = this.debitos.map((d) => {
-      return {
-        objetoCredito: d.objetoCredito ?? '',
-        tipoReceita: d.tipoReceita ?? '',
-        valorConcedido: d.valorConcedido ?? null,
-        prazosCondicoesReembolso: d.prazosCondicoesReembolso ?? '',
-        regrasLegaisPrograma: d.regrasLegaisPrograma ?? '',
-        tituloDominio: d.tituloDominio ?? '',
-        contrato: d.contrato ?? '',
-        termoAditivo: d.termoAditivo ?? '',
-        outrosDocumentos: Array.isArray(d.outrosDocumentos)
-          ? d.outrosDocumentos
-          : [],
-        descricaoObjeto: d.descricaoObjeto ?? '',
-        condicoesCobranca: d.condicoesCobranca ?? '',
-        descricaoReceita: d.descricaoReceita ?? '',
-        valorOriginal: d.valorOriginal ?? null,
-        numeroPrestacoes: d.numeroPrestacoes ?? null,
-        saldoDevedor: d.saldoDevedor ?? null,
-      };
-    });
+    this.debitos = this.debitos
+      .map((d) => {
+        return {
+          objetoCredito: d.objetoCredito ?? '',
+          tipoReceita: d.tipoReceita ?? '',
+          valorConcedido: d.valorConcedido ?? null,
+          prazosCondicoesReembolso: d.prazosCondicoesReembolso ?? '',
+          regrasLegaisPrograma: d.regrasLegaisPrograma ?? '',
+          tituloDominio: d.tituloDominio ?? '',
+          contrato: d.contrato ?? '',
+          termoAditivo: d.termoAditivo ?? '',
+          outrosDocumentos: Array.isArray(d.outrosDocumentos)
+            ? d.outrosDocumentos
+            : [],
+          descricaoObjeto: d.descricaoObjeto ?? '',
+          condicoesCobranca: d.condicoesCobranca ?? '',
+          descricaoReceita: d.descricaoReceita ?? '',
+          valorOriginal: d.valorOriginal ?? null,
+          numeroPrestacoes: d.numeroPrestacoes ?? null,
+          saldoDevedor: d.saldoDevedor ?? null,
+        };
+      })
+      .slice(0, 1);
   }
 
   /** ===================== AÇÕES ===================== **/
@@ -198,25 +200,7 @@ export class ConsultarDivida implements OnInit {
     }
   }
 
-  baixarGRU(): void {
-    /* 
-  const conteudo = document.getElementById('conteudo-gru');
-  if (!conteudo) return;
-
-  html2canvas(conteudo).then(canvas => {
-    const imgData = canvas.toDataURL('image/png');
-
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const imgWidth = 190;
-    const pageHeight = 295;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    let position = 0;
-
-    pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-
-    pdf.save('GRU.pdf');
-  });*/
-  }
+  baixarGRU(): void {}
 
   fechar(): void {
     this.dialogRef.close();

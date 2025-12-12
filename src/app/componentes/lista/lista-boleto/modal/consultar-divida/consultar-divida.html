@@ -1,4 +1,3 @@
-<!--<h2 mat-dialog-title>Consulta de Dívidas</h2>-->
 <br /><br />
 
 <mat-dialog-content class="cd-content" id="conteudo-gru">
@@ -31,9 +30,9 @@
   <div class="table-container" *ngIf="debitos?.length; else vazio">
     <!-- Itera sobre cada débito e monta os 6 blocos -->
     <ng-container *ngFor="let d of debitos; let i = index">
-      <h3 class="bloco-titulo">Débito {{ i + 1 }}</h3>
+      <h3 class="titulo-principal">Débito</h3>
 
-      <!-- BLOCO 1 – IDENTIFICAÇÃO -->
+      <!-- BLOCO 1 – IDENTIFICAÇÃO 
       <h3 class="bloco-titulo">Bloco 1 — Identificação</h3>
       <table class="pagamentos-table" role="table">
         <thead>
@@ -48,9 +47,9 @@
             <td>{{ beneficiarioCpf || "xxxxx" }}</td>
           </tr>
         </tbody>
-      </table>
+      </table>-->
 
-      <!-- BLOCO 2 – OBJETO DE COBRANÇA -->
+      <!-- BLOCO 2 – OBJETO DE COBRANÇA 
       <h3 class="bloco-titulo">Bloco 2 — Objeto de Cobrança</h3>
       <table class="pagamentos-table" role="table">
         <thead>
@@ -63,10 +62,10 @@
             <td>{{ d.objetoCredito || "xxxxx" }}</td>
           </tr>
         </tbody>
-      </table>
+      </table>-->
 
       <!-- BLOCO 3 – CRÉDITO CONCEDIDO -->
-      <h3 class="bloco-titulo">Bloco 3 — Crédito Concedido</h3>
+      <h3 class="bloco-titulo">Plano de pagamento</h3>
       <table class="pagamentos-table" role="table">
         <thead>
           <tr>
@@ -88,8 +87,8 @@
         </tbody>
       </table>
 
-      <!-- BLOCO 4 – DOCUMENTO DE TITULAÇÃO -->
-      <h3 class="bloco-titulo">Bloco 4 — Documento de Titulação</h3>
+      <!-- BLOCO 4 – DOCUMENTO DE TITULAÇÃO 
+      <h3 class="bloco-titulo">Bloco 4 — Documento de Titulação</h3>-->
       <table class="pagamentos-table" role="table">
         <thead>
           <tr>
@@ -120,8 +119,8 @@
         </tbody>
       </table>
 
-      <!-- BLOCO 5 – RECEITAS DIVERSAS -->
-      <h3 class="bloco-titulo">Bloco 5 — Receitas Diversas</h3>
+      <!-- BLOCO 5 – RECEITAS DIVERSAS 
+      <h3 class="bloco-titulo">Bloco 5 — Receitas Diversas</h3>-->
       <table class="pagamentos-table" role="table">
         <thead>
           <tr>
@@ -138,7 +137,7 @@
       </table>
 
       <!-- BLOCO 6 – IDENTIFICAÇÃO DA RECEITA -->
-      <h3 class="bloco-titulo">Bloco 6 — Identificação da Receita</h3>
+      <h3 class="bloco-titulo">Identificação da Receita</h3>
       <table class="pagamentos-table" role="table">
         <thead>
           <tr>
@@ -147,8 +146,10 @@
             <th>Valor Original</th>
             <th>Nº Prestações</th>
             <th>Saldo Devedor</th>
+            <th>Objeto do Crédito</th>
           </tr>
         </thead>
+
         <tbody>
           <tr>
             <td>{{ d.tipoReceita || "xxxxx" }}</td>
@@ -166,6 +167,7 @@
             <td style="text-align: right">
               {{ formataNumero(d.saldoDevedor) || "xxxxx" }}
             </td>
+            <td>{{ d.objetoCredito || "xxxxx" }}</td>
           </tr>
         </tbody>
       </table>
