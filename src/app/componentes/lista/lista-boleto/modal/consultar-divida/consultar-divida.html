@@ -207,6 +207,173 @@
     </ng-container>
   </div>
 
+  <!-- GRID DE PARCELAS / LANÇAMENTOS -->
+  <h3 class="bloco-titulo">Parcelas / Lançamentos</h3>
+
+  <div class="table-container mat-elevation-z1">
+    <table
+      mat-table
+      [dataSource]="pagamentos"
+      class="pagamentos-table"
+      role="table"
+    >
+      <!-- COLUNA SELEÇÃO (TOTAL / PARCIAL) -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            (change)="masterToggle()"
+            [checked]="isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="selection.toggle(row)"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Nº REF -->
+      <ng-container matColumnDef="numeroReferencia">
+        <th mat-header-cell *matHeaderCellDef>Nº Ref.</th>
+        <td mat-cell *matCellDef="let p">{{ p.numeroReferencia || "—" }}</td>
+      </ng-container>
+
+      <!-- NOSSO NÚMERO -->
+      <ng-container matColumnDef="nossoNumero">
+        <th mat-header-cell *matHeaderCellDef>Nosso Número</th>
+        <td mat-cell *matCellDef="let p">{{ p.nossoNumero || "—" }}</td>
+      </ng-container>
+
+      <!-- PRESTAÇÃO -->
+      <ng-container matColumnDef="parcela">
+        <th mat-header-cell *matHeaderCellDef>Prest.</th>
+        <td mat-cell *matCellDef="let p">{{ p.parcela || "—" }}</td>
+      </ng-container>
+
+      <!-- VENCIMENTO -->
+      <ng-container matColumnDef="dataVencimento">
+        <th mat-header-cell *matHeaderCellDef>Vencimento</th>
+        <td mat-cell *matCellDef="let p">{{ p.dataVencimento || "—" }}</td>
+      </ng-container>
+
+      <!-- PRORROGAÇÃO -->
+      <ng-container matColumnDef="prorrogacao">
+        <th mat-header-cell *matHeaderCellDef>Prorrogação</th>
+        <td mat-cell *matCellDef="let p">{{ p.prorrogacao || "—" }}</td>
+      </ng-container>
+
+      <!-- MOEDA -->
+      <ng-container matColumnDef="moeda">
+        <th mat-header-cell *matHeaderCellDef>Moeda</th>
+        <td mat-cell *matCellDef="let p">R$</td>
+      </ng-container>
+
+      <!-- VALOR -->
+      <ng-container matColumnDef="valorOriginal">
+        <th mat-header-cell *matHeaderCellDef>Valor</th>
+        <td mat-cell *matCellDef="let p" style="text-align: right">
+          {{ formataNumero(p.valorOriginal) }}
+        </td>
+      </ng-container>
+
+      <!-- CORREÇÃO -->
+      <ng-container matColumnDef="correcao">
+        <th mat-header-cell *matHeaderCellDef>Correção</th>
+        <td mat-cell *matCellDef="let p" style="text-align: right">
+          {{ formataNumero(p.correcao) }}
+        </td>
+      </ng-container>
+
+      <!-- JUROS -->
+      <ng-container matColumnDef="juros">
+        <th mat-header-cell *matHeaderCellDef>Juros</th>
+        <td mat-cell *matCellDef="let p" style="text-align: right">
+          {{ formataNumero(p.jurosMora) }}
+        </td>
+      </ng-container>
+
+      <!-- JUROS MORA -->
+      <ng-container matColumnDef="jurosMora">
+        <th mat-header-cell *matHeaderCellDef>Juros Mora</th>
+        <td mat-cell *matCellDef="let p" style="text-align: right">
+          {{ formataNumero(p.jurosMora) }}
+        </td>
+      </ng-container>
+
+      <!-- MULTA -->
+      <ng-container matColumnDef="multa">
+        <th mat-header-cell *matHeaderCellDef>Multa</th>
+        <td mat-cell *matCellDef="let p" style="text-align: right">
+          {{ formataNumero(p.multa) }}
+        </td>
+      </ng-container>
+
+      <!-- DESCONTOS -->
+      <ng-container matColumnDef="desconto">
+        <th mat-header-cell *matHeaderCellDef>Descontos</th>
+        <td mat-cell *matCellDef="let p" style="text-align: right">
+          {{ formataNumero(p.desconto) }}
+        </td>
+      </ng-container>
+
+      <!-- DESCONTO EXCEDENTE -->
+      <ng-container matColumnDef="remissao">
+        <th mat-header-cell *matHeaderCellDef>Desc. Exced.</th>
+        <td mat-cell *matCellDef="let p" style="text-align: right">
+          {{ formataNumero(p.remissao) }}
+        </td>
+      </ng-container>
+
+      <!-- CRÉDITO -->
+      <ng-container matColumnDef="credito">
+        <th mat-header-cell *matHeaderCellDef>Crédito</th>
+        <td mat-cell *matCellDef="let p" style="text-align: right">
+          {{ formataNumero(p.credito) }}
+        </td>
+      </ng-container>
+
+      <!-- A PAGAR -->
+      <ng-container matColumnDef="valorDevido">
+        <th mat-header-cell *matHeaderCellDef>A pagar</th>
+        <td mat-cell *matCellDef="let p" style="text-align: right">
+          {{ formataNumero(p.valorDevido) }}
+        </td>
+      </ng-container>
+
+      <!-- MOEDA (FINAL) -->
+      <ng-container matColumnDef="moedaFinal">
+        <th mat-header-cell *matHeaderCellDef>Moeda</th>
+        <td mat-cell *matCellDef="let p">R$</td>
+      </ng-container>
+
+      <!-- BAIXADO -->
+      <ng-container matColumnDef="baixado">
+        <th mat-header-cell *matHeaderCellDef>Baixado</th>
+        <td mat-cell *matCellDef="let p">
+          {{ p.dataPagamento ? "Sim" : "Não" }}
+        </td>
+      </ng-container>
+
+      <!-- Nº AVISO BAIXA -->
+      <ng-container matColumnDef="numeroAvisoBaixa">
+        <th mat-header-cell *matHeaderCellDef>Nº Aviso Baixa</th>
+        <td mat-cell *matCellDef="let p">{{ p.numeroAvisoBaixa || "—" }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="selection.toggle(row)"
+      ></tr>
+    </table>
+  </div>
+
   <ng-template #vazio>
     <p>Nenhum débito encontrado.</p>
   </ng-template>

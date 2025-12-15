@@ -8,6 +8,9 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ParcelaPagamento } from '../../../../../mock/pagamento';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
 //import { ParcelaPagamento } from '../../../mock/pagamento';
 //import html2canvas from 'html2canvas';
 //import jsPDF from 'jspdf';
@@ -38,7 +41,14 @@ export type ParcelaPagamentoExtendido = ParcelaPagamento & {
 @Component({
   selector: 'app-consultar-divida',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatButtonModule, MatIconModule],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatCheckboxModule,
+  ],
   templateUrl: './consultar-divida.html',
   styleUrls: ['./consultar-divida.scss'],
 })
@@ -46,6 +56,29 @@ export class ConsultarDivida implements OnInit {
   pagamentos: ParcelaPagamentoExtendido[] = [];
   beneficiarioNome: string = '';
   beneficiarioCpf: string = '';
+  selection = new SelectionModel<ParcelaPagamentoExtendido>(true, []);
+
+  displayedColumns: string[] = [
+    'select',
+    'numeroReferencia',
+    'nossoNumero',
+    'parcela',
+    'dataVencimento',
+    'prorrogacao',
+    'moeda',
+    'valorOriginal',
+    'correcao',
+    'juros',
+    'jurosMora',
+    'multa',
+    'desconto',
+    'remissao',
+    'credito',
+    'valorDevido',
+    'moedaFinal',
+    'baixado',
+    'numeroAvisoBaixa',
+  ];
 
   // NOVA PROPRIEDADE: array de débitos diretamente do JSON
   debitos: any[] = [];
@@ -219,5 +252,16 @@ export class ConsultarDivida implements OnInit {
     if (valor === null || valor === undefined) return '';
     const pct = valor < 1 ? valor * 100 : valor;
     return `${pct.toFixed(2)}%`;
+  }
+  isAllSelected(): boolean {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.pagamentos.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle(): void {
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.pagamentos.forEach((row) => this.selection.select(row));
   }
 }
