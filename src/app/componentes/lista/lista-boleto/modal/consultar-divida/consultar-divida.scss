@@ -4,7 +4,7 @@
 }
 
 .topo {
-  margin: 2rem;
+  margin: 0 2rem 2rem 0;
 }
 
 .logo {
@@ -18,10 +18,17 @@
 }
 
 .cd-content {
+  /*
+  padding: 1rem 1.25rem;
+  background: #fff;
+  color: #222;*/
+  //width: 110rem;
+  width: 100%;
+  max-width: 2500px; /* largura máxima do conteúdo */
+  margin: 0 auto; /* CENTRALIZA horizontalmente */
   padding: 1rem 1.25rem;
   background: #fff;
   color: #222;
-  width: 80rem;
 }
 
 .header-dados {
@@ -99,4 +106,9 @@
   font-weight: 600;
   border-left: 4px solid #0b3a7b;
   padding-left: 0.5rem;
+}
+
+input {
+  width: 90%;
+  margin: 0 1rem;
 }
