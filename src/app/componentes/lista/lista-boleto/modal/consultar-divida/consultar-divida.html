@@ -28,114 +28,7 @@
 
   <!-- Se não houver débitos -->
   <div class="table-container" *ngIf="debitos?.length; else vazio">
-    <!-- Itera sobre cada débito e monta os 6 blocos -->
     <ng-container *ngFor="let d of debitos; let i = index">
-      <h3 class="titulo-principal">Débito</h3>
-
-      <!-- BLOCO 1 – IDENTIFICAÇÃO 
-      <h3 class="bloco-titulo">Bloco 1 — Identificação</h3>
-      <table class="pagamentos-table" role="table">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>CPF</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ beneficiarioNome || "xxxxx" }}</td>
-            <td>{{ beneficiarioCpf || "xxxxx" }}</td>
-          </tr>
-        </tbody>
-      </table>-->
-
-      <!-- BLOCO 2 – OBJETO DE COBRANÇA 
-      <h3 class="bloco-titulo">Bloco 2 — Objeto de Cobrança</h3>
-      <table class="pagamentos-table" role="table">
-        <thead>
-          <tr>
-            <th>Objeto do Crédito</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ d.objetoCredito || "xxxxx" }}</td>
-          </tr>
-        </tbody>
-      </table>-->
-
-      <!-- BLOCO 3 – CRÉDITO CONCEDIDO -->
-      <h3 class="bloco-titulo">Plano de pagamento</h3>
-      <table class="pagamentos-table" role="table">
-        <thead>
-          <tr>
-            <th>Tipo da Receita</th>
-            <th>Valor Concedido</th>
-            <th>Prazos / Condições</th>
-            <th>Regras Legais</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ d.tipoReceita || "xxxxx" }}</td>
-            <td style="text-align: right">
-              {{ formataNumero(d.valorConcedido) || "xxxxx" }}
-            </td>
-            <td>{{ d.prazosCondicoesReembolso || "xxxxx" }}</td>
-            <td>{{ d.regrasLegaisPrograma || "xxxxx" }}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- BLOCO 4 – DOCUMENTO DE TITULAÇÃO 
-      <h3 class="bloco-titulo">Bloco 4 — Documento de Titulação</h3>-->
-      <table class="pagamentos-table" role="table">
-        <thead>
-          <tr>
-            <th>Título de Domínio</th>
-            <th>Contrato</th>
-            <th>Termo Aditivo</th>
-            <th>Outros Documentos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              {{
-                d.tituloDominio || (d.tituloDominio === "" ? "xxxxx" : "xxxxx")
-              }}
-            </td>
-            <td>{{ d.contrato || "xxxxx" }}</td>
-            <td>{{ d.termoAditivo || "xxxxx" }}</td>
-            <td>
-              <ng-container *ngIf="d.outrosDocumentos?.length; else semDocs">
-                <ul style="margin: 0; padding-left: 1rem">
-                  <li *ngFor="let od of d.outrosDocumentos">{{ od }}</li>
-                </ul>
-              </ng-container>
-              <ng-template #semDocs>xxxxx</ng-template>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- BLOCO 5 – RECEITAS DIVERSAS 
-      <h3 class="bloco-titulo">Bloco 5 — Receitas Diversas</h3>-->
-      <table class="pagamentos-table" role="table">
-        <thead>
-          <tr>
-            <th>Descrição do Objeto</th>
-            <th>Condições de Cobrança</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ d.descricaoObjeto || "xxxxx" }}</td>
-            <td>{{ d.condicoesCobranca || "xxxxx" }}</td>
-          </tr>
-        </tbody>
-      </table>
-
       <!-- BLOCO 6 – IDENTIFICAÇÃO DA RECEITA -->
       <h3 class="bloco-titulo">Identificação da Receita</h3>
       <table class="pagamentos-table" role="table">
@@ -149,35 +42,174 @@
             <th>Objeto do Crédito</th>
           </tr>
         </thead>
-
         <tbody>
           <tr>
-            <td>{{ d.tipoReceita || "xxxxx" }}</td>
-            <td>{{ d.descricaoReceita || "xxxxx" }}</td>
-            <td style="text-align: right">
-              {{ formataNumero(d.valorOriginal) || "xxxxx" }}
+            <td>
+              <input type="text" [value]="d.tipoReceita || 'xxxxx'" disabled />
             </td>
-            <td style="text-align: right">
-              {{
-                d.numeroPrestacoes ?? d.numeroPrestacoes === 0
-                  ? d.numeroPrestacoes
-                  : "xxxxx"
-              }}
+            <td>
+              <input
+                type="text"
+                [value]="d.descricaoReceita || 'xxxxx'"
+                disabled
+              />
             </td>
-            <td style="text-align: right">
-              {{ formataNumero(d.saldoDevedor) || "xxxxx" }}
+            <td>
+              <input
+                type="text"
+                [value]="formataNumero(d.valorOriginal) || 'xxxxx'"
+                disabled
+                style="text-align: right"
+              />
             </td>
-            <td>{{ d.objetoCredito || "xxxxx" }}</td>
+            <td>
+              <input
+                type="text"
+                [value]="d.numeroPrestacoes ?? 'xxxxx'"
+                disabled
+                style="text-align: right"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                [value]="formataNumero(d.saldoDevedor) || 'xxxxx'"
+                disabled
+                style="text-align: right"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                [value]="d.objetoCredito || 'xxxxx'"
+                disabled
+              />
+            </td>
           </tr>
         </tbody>
       </table>
 
-      <!-- Separador visual entre débitos -->
+      <!-- BLOCO 3 – PLANO DE PAGAMENTO -->
+      <h3 class="bloco-titulo">Plano de pagamento</h3>
+      <table class="pagamentos-table" role="table">
+        <thead>
+          <tr>
+            <th>Tipo da Receita</th>
+            <th>Valor Concedido</th>
+            <th>Prazos / Condições</th>
+            <th>Regras Legais</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="text" [value]="d.tipoReceita || 'xxxxx'" disabled />
+            </td>
+            <td>
+              <input
+                type="text"
+                [value]="formataNumero(d.valorConcedido) || 'xxxxx'"
+                disabled
+                style="text-align: right"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                [value]="d.prazosCondicoesReembolso || 'xxxxx'"
+                disabled
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                [value]="d.regrasLegaisPrograma || 'xxxxx'"
+                disabled
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- BLOCO 4 – DOCUMENTO DE TITULAÇÃO -->
+      <table class="pagamentos-table" role="table">
+        <thead>
+          <tr>
+            <th>Título de Domínio</th>
+            <th>Contrato</th>
+            <th>Termo Aditivo</th>
+            <th>Outros Documentos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                type="text"
+                [value]="d.tituloDominio || 'xxxxx'"
+                disabled
+              />
+            </td>
+            <td>
+              <input type="text" [value]="d.contrato || 'xxxxx'" disabled />
+            </td>
+            <td>
+              <input type="text" [value]="d.termoAditivo || 'xxxxx'" disabled />
+            </td>
+            <td>
+              <ng-container *ngIf="d.outrosDocumentos?.length; else semDocs">
+                <div
+                  *ngFor="let od of d.outrosDocumentos"
+                  style="margin-bottom: 4px"
+                >
+                  <input type="text" [value]="od" disabled />
+                </div>
+              </ng-container>
+              <ng-template #semDocs>
+                <input type="text" value="xxxxx" disabled />
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- BLOCO 5 – RECEITAS DIVERSAS -->
+      <table class="pagamentos-table" role="table">
+        <thead>
+          <tr>
+            <th>Descrição do Objeto</th>
+            <th>Condições de Cobrança</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                type="text"
+                [value]="d.descricaoObjeto || 'xxxxx'"
+                disabled
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                [value]="d.condicoesCobranca || 'xxxxx'"
+                disabled
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <div style="height: 1rem"></div>
       <hr />
       <div style="height: 1rem"></div>
     </ng-container>
   </div>
+
+  <ng-template #vazio>
+    <p>Nenhum débito encontrado.</p>
+  </ng-template>
 
   <ng-template #vazio>
     <div class="vazio">Nenhum registro de débito encontrado.</div>
