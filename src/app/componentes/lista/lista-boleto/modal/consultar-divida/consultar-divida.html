@@ -377,8 +377,7 @@
       <ng-container matColumnDef="prorrogacao">
         <th mat-header-cell *matHeaderCellDef>Prorrogação</th>
         <td mat-cell *matCellDef="let d">
-          {{ d.prorrogacao || "—" }}
-          <!-- Não tem no JSON, então sempre será "—" -->
+          {{ d.dataParaPagamento || "—" }}
         </td>
       </ng-container>
 
@@ -387,7 +386,6 @@
         <th mat-header-cell *matHeaderCellDef>Moeda</th>
         <td mat-cell *matCellDef="let d">
           {{ d.moeda || "—" }}
-          <!-- Não tem no JSON, então sempre será "—" -->
         </td>
       </ng-container>
 
@@ -412,7 +410,6 @@
         <th mat-header-cell *matHeaderCellDef>Juros</th>
         <td mat-cell *matCellDef="let d" style="text-align: right">
           {{ formataNumero(d.juros) }}
-          <!-- Não tem no JSON, então será 0 -->
         </td>
       </ng-container>
 
@@ -437,7 +434,6 @@
         <th mat-header-cell *matHeaderCellDef>Descontos</th>
         <td mat-cell *matCellDef="let d" style="text-align: right">
           {{ formataNumero(d.desconto) }}
-          <!-- Não tem no JSON, então será 0 -->
         </td>
       </ng-container>
 
@@ -446,7 +442,6 @@
         <th mat-header-cell *matHeaderCellDef>Desc. Exced.</th>
         <td mat-cell *matCellDef="let d" style="text-align: right">
           {{ formataNumero(d.remissao) }}
-          <!-- Não tem no JSON, então será 0 -->
         </td>
       </ng-container>
 
@@ -455,7 +450,6 @@
         <th mat-header-cell *matHeaderCellDef>Crédito</th>
         <td mat-cell *matCellDef="let d" style="text-align: right">
           {{ formataNumero(d.credito) }}
-          <!-- Não tem no JSON, então será 0 -->
         </td>
       </ng-container>
 
@@ -463,7 +457,7 @@
       <ng-container matColumnDef="valorDevido">
         <th mat-header-cell *matHeaderCellDef>A pagar</th>
         <td mat-cell *matCellDef="let d" style="text-align: right">
-          {{ formataNumero(d.valorTotalPrestacao) }}
+          {{ formataNumero(d.valorDevido) }}
         </td>
       </ng-container>
 
@@ -472,7 +466,6 @@
         <th mat-header-cell *matHeaderCellDef>Moeda</th>
         <td mat-cell *matCellDef="let d">
           {{ d.moedaFinal || "—" }}
-          <!-- Não tem no JSON, então sempre será "—" -->
         </td>
       </ng-container>
 
@@ -481,7 +474,6 @@
         <th mat-header-cell *matHeaderCellDef>Baixado</th>
         <td mat-cell *matCellDef="let d">
           {{ d.baixado || "—" }}
-          <!-- Não tem no JSON, então sempre será "—" -->
         </td>
       </ng-container>
 
@@ -490,7 +482,6 @@
         <th mat-header-cell *matHeaderCellDef>Nº Aviso Baixa</th>
         <td mat-cell *matCellDef="let d">
           {{ d.numeroAvisoBaixa || "—" }}
-          <!-- Não tem no JSON, então sempre será "—" -->
         </td>
       </ng-container>
 
@@ -499,7 +490,6 @@
         <th mat-header-cell *matHeaderCellDef>Tipo de Baixa</th>
         <td mat-cell *matCellDef="let d">
           {{ d.tipoBaixa || "—" }}
-          <!-- Não tem no JSON, então sempre será "—" -->
         </td>
       </ng-container>
 
@@ -508,7 +498,6 @@
         <th mat-header-cell *matHeaderCellDef>Prestação Única</th>
         <td mat-cell *matCellDef="let d">
           {{ d.prestacaoUnica || "—" }}
-          <!-- Não tem no JSON, então sempre será "—" -->
         </td>
       </ng-container>
 
@@ -517,7 +506,6 @@
         <th mat-header-cell *matHeaderCellDef>Data Baixa</th>
         <td mat-cell *matCellDef="let d">
           {{ d.dataBaixa || "—" }}
-          <!-- Não tem no JSON, então sempre será "—" -->
         </td>
       </ng-container>
 
