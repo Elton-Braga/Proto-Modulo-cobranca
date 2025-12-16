@@ -38,7 +38,7 @@
           <th>Valor Original</th>
           <th>Nº Prestações</th>
           <th>Saldo Devedor</th>
-          <th>Objeto do Crédito</th>
+          <th>Objeto da cobrança</th>
         </tr>
       </thead>
       <tbody>
@@ -241,51 +241,179 @@
         </td>
       </ng-container>
 
-      <!-- TIPO DA RECEITA -->
-      <ng-container matColumnDef="tipoReceita">
-        <th mat-header-cell *matHeaderCellDef>Tipo da Receita</th>
+      <!-- NÚMERO DE REFERÊNCIA -->
+      <ng-container matColumnDef="numeroReferencia">
+        <th mat-header-cell *matHeaderCellDef>Nº Ref.</th>
         <td mat-cell *matCellDef="let d">
-          {{ d.tipoReceita || "—" }}
+          {{ d.numeroReferencia || "—" }}
         </td>
       </ng-container>
 
-      <!-- DESCRIÇÃO -->
-      <ng-container matColumnDef="descricaoReceita">
-        <th mat-header-cell *matHeaderCellDef>Descrição</th>
+      <!-- NOSSO NÚMERO -->
+      <ng-container matColumnDef="nossoNumero">
+        <th mat-header-cell *matHeaderCellDef>Nosso Número</th>
         <td mat-cell *matCellDef="let d">
-          {{ d.descricaoReceita || "—" }}
+          {{ d.nossoNumero || "—" }}
+        </td>
+      </ng-container>
+
+      <!-- PARCELA -->
+      <ng-container matColumnDef="parcela">
+        <th mat-header-cell *matHeaderCellDef>Prest.</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ d.parcela || "—" }}
+        </td>
+      </ng-container>
+
+      <!-- DATA DE VENCIMENTO -->
+      <ng-container matColumnDef="dataVencimento">
+        <th mat-header-cell *matHeaderCellDef>Vencimento</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.dataVencimento || "—" }}
+        </td>
+      </ng-container>
+
+      <!-- PRORROGAÇÃO -->
+      <ng-container matColumnDef="prorrogacao">
+        <th mat-header-cell *matHeaderCellDef>Prorrogação</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.prorrogacao || "—" }}
+        </td>
+      </ng-container>
+
+      <!-- MOEDA -->
+      <ng-container matColumnDef="moeda">
+        <th mat-header-cell *matHeaderCellDef>Moeda</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.moeda || "—" }}
         </td>
       </ng-container>
 
       <!-- VALOR ORIGINAL -->
       <ng-container matColumnDef="valorOriginal">
-        <th mat-header-cell *matHeaderCellDef>Valor Original</th>
+        <th mat-header-cell *matHeaderCellDef>Valor</th>
         <td mat-cell *matCellDef="let d" style="text-align: right">
           {{ formataNumero(d.valorOriginal) }}
         </td>
       </ng-container>
 
-      <!-- Nº PRESTAÇÕES -->
-      <ng-container matColumnDef="numeroPrestacoes">
-        <th mat-header-cell *matHeaderCellDef>Nº Prestações</th>
+      <!-- CORREÇÃO -->
+      <ng-container matColumnDef="correcao">
+        <th mat-header-cell *matHeaderCellDef>Correção</th>
         <td mat-cell *matCellDef="let d" style="text-align: right">
-          {{ d.numeroPrestacoes || "—" }}
+          {{ formataNumero(d.correcao) }}
         </td>
       </ng-container>
 
-      <!-- SALDO DEVEDOR -->
-      <ng-container matColumnDef="saldoDevedor">
-        <th mat-header-cell *matHeaderCellDef>Saldo Devedor</th>
+      <!-- JUROS -->
+      <ng-container matColumnDef="juros">
+        <th mat-header-cell *matHeaderCellDef>Juros</th>
         <td mat-cell *matCellDef="let d" style="text-align: right">
-          {{ formataNumero(d.saldoDevedor) }}
+          {{ formataNumero(d.juros) }}
         </td>
       </ng-container>
 
-      <!-- OBJETO DO CRÉDITO -->
-      <ng-container matColumnDef="objetoCredito">
-        <th mat-header-cell *matHeaderCellDef>Objeto do Crédito</th>
+      <!-- JUROS MORA -->
+      <ng-container matColumnDef="jurosMora">
+        <th mat-header-cell *matHeaderCellDef>Juros Mora</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ formataNumero(d.jurosMora) }}
+        </td>
+      </ng-container>
+
+      <!-- MULTA -->
+      <ng-container matColumnDef="multa">
+        <th mat-header-cell *matHeaderCellDef>Multa</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ formataNumero(d.multa) }}
+        </td>
+      </ng-container>
+
+      <!-- DESCONTO -->
+      <ng-container matColumnDef="desconto">
+        <th mat-header-cell *matHeaderCellDef>Descontos</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ formataNumero(d.desconto) }}
+        </td>
+      </ng-container>
+
+      <!-- REMISSÃO -->
+      <ng-container matColumnDef="remissao">
+        <th mat-header-cell *matHeaderCellDef>Desc. Exced.</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ formataNumero(d.remissao) }}
+        </td>
+      </ng-container>
+
+      <!-- CRÉDITO -->
+      <ng-container matColumnDef="credito">
+        <th mat-header-cell *matHeaderCellDef>Crédito</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ formataNumero(d.credito) }}
+        </td>
+      </ng-container>
+
+      <!-- VALOR DEVIDO -->
+      <ng-container matColumnDef="valorDevido">
+        <th mat-header-cell *matHeaderCellDef>A pagar</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ formataNumero(d.valorDevido) }}
+        </td>
+      </ng-container>
+
+      <!-- MOEDA FINAL -->
+      <ng-container matColumnDef="moedaFinal">
+        <th mat-header-cell *matHeaderCellDef>Moeda</th>
         <td mat-cell *matCellDef="let d">
-          {{ d.objetoCredito || "—" }}
+          {{ d.moedaFinal || "—" }}
+        </td>
+      </ng-container>
+
+      <!-- BAIXADO -->
+      <ng-container matColumnDef="baixado">
+        <th mat-header-cell *matHeaderCellDef>Baixado</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.baixado || "—" }}
+        </td>
+      </ng-container>
+
+      <!-- NÚMERO AVISO BAIXA -->
+      <ng-container matColumnDef="numeroAvisoBaixa">
+        <th mat-header-cell *matHeaderCellDef>Nº Aviso Baixa</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.numeroAvisoBaixa || "—" }}
+        </td>
+      </ng-container>
+
+      <!-- TIPO DE BAIXA -->
+      <ng-container matColumnDef="tipoBaixa">
+        <th mat-header-cell *matHeaderCellDef>Tipo de Baixa</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.tipoBaixa || "—" }}
+        </td>
+      </ng-container>
+
+      <!-- PRESTAÇÃO ÚNICA -->
+      <ng-container matColumnDef="prestacaoUnica">
+        <th mat-header-cell *matHeaderCellDef>Prestação Única</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.prestacaoUnica || "—" }}
+        </td>
+      </ng-container>
+
+      <!-- DATA BAIXA -->
+      <ng-container matColumnDef="dataBaixa">
+        <th mat-header-cell *matHeaderCellDef>Data Baixa</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.dataBaixa || "—" }}
+        </td>
+      </ng-container>
+
+      <!-- TOTAL A PAGAR -->
+      <ng-container matColumnDef="totalPagar">
+        <th mat-header-cell *matHeaderCellDef>Total a pagar</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ formataNumero(d.totalPagar) }}
         </td>
       </ng-container>
 

@@ -57,7 +57,7 @@ export class ConsultarDivida implements OnInit {
   pagamentos: ParcelaPagamentoExtendido[] = [];
   //debitos: any[] = [];
   debitos: Debito[] = [];
-
+  /*
   displayedColumns: string[] = [
     'select',
     'tipoReceita',
@@ -66,7 +66,7 @@ export class ConsultarDivida implements OnInit {
     'numeroPrestacoes',
     'saldoDevedor',
     'objetoCredito',
-  ];
+  ];*/
 
   beneficiarioNome = '';
   beneficiarioCpf = '';
@@ -76,27 +76,31 @@ export class ConsultarDivida implements OnInit {
 
   selection = new SelectionModel<ParcelaPagamentoExtendido>(true, []);
 
-  /*displayedColumns: string[] = [
+  displayedColumns: string[] = [
     'select',
-    'numeroReferencia',
-    'nossoNumero',
-    'parcela',
-    'dataVencimento',
-    'prorrogacao',
-    'moeda',
-    'valorOriginal',
-    'correcao',
-    'juros',
-    'jurosMora',
-    'multa',
-    'desconto',
-    'remissao',
-    'credito',
-    'valorDevido',
-    'moedaFinal',
-    'baixado',
-    'numeroAvisoBaixa',
-  ];*/
+    'numeroReferencia', // Nº Ref.
+    'nossoNumero', // nosso número
+    'parcela', // Prest.
+    'dataVencimento', // Vencimento
+    'prorrogacao', // Prorrogação
+    'moeda', // Moeda (original)
+    'valorOriginal', // Valor
+    'correcao', // Correção
+    'juros', // Juros
+    'jurosMora', // Juros Mora
+    'multa', // Multa
+    'desconto', // Descontos
+    'remissao', // Desc. Exced.
+    'credito', // Crédito (ou dedução, pelo SNCCI)
+    'valorDevido', // A pagar
+    'moedaFinal', // Moeda (final)
+    'baixado', // Baixado
+    'numeroAvisoBaixa', // Nº Aviso Baixa
+    'tipoBaixa', // Tipo de Baixa (nova coluna)
+    'prestacaoUnica', // Prestação Única (nova coluna)
+    'dataBaixa', // Data Baixa (nova coluna)
+    'totalPagar',
+  ];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -104,6 +108,7 @@ export class ConsultarDivida implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('displayedColumns atual:', this.displayedColumns);
     this.pagamentos = Array.isArray(this.data?.pagamento)
       ? this.data.pagamento
       : [];
