@@ -20,213 +20,217 @@
     </div>
   </div>
 
-  <!-- Cabeçalho com identificação do beneficiário (mantido) -->
+  <!-- Cabeçalho com identificação do beneficiário -->
   <div class="header-dados">
     <div><strong>DEVEDOR:</strong> {{ beneficiarioNome || "xxxxx" }}</div>
     <div><strong>CPF:</strong> {{ beneficiarioCpf || "xxxxx" }}</div>
   </div>
 
-  <!-- Se não houver débitos -->
-  <div class="table-container" *ngIf="debitos?.length; else vazio">
-    <ng-container *ngFor="let d of debitos; let i = index">
-      <!-- BLOCO 6 – IDENTIFICAÇÃO DA RECEITA -->
-      <h3 class="bloco-titulo">Identificação da Receita</h3>
-      <table class="pagamentos-table" role="table">
-        <thead>
-          <tr>
-            <th>Tipo da Receita</th>
-            <th>Descrição da Receita</th>
-            <th>Valor Original</th>
-            <th>Nº Prestações</th>
-            <th>Saldo Devedor</th>
-            <th>Objeto do Crédito</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input type="text" [value]="d.tipoReceita || 'xxxxx'" disabled />
-            </td>
-            <td>
-              <input
-                type="text"
-                [value]="d.descricaoReceita || 'xxxxx'"
-                disabled
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                [value]="formataNumero(d.valorOriginal) || 'xxxxx'"
-                disabled
-                style="text-align: right"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                [value]="d.numeroPrestacoes ?? 'xxxxx'"
-                disabled
-                style="text-align: right"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                [value]="formataNumero(d.saldoDevedor) || 'xxxxx'"
-                disabled
-                style="text-align: right"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                [value]="d.objetoCredito || 'xxxxx'"
-                disabled
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- DADOS DO DÉBITO SELECIONADO -->
+  <div class="table-container" *ngIf="debitoSelecionado; else vazio">
+    <!-- BLOCO 6 – IDENTIFICAÇÃO DA RECEITA -->
+    <h3 class="bloco-titulo">Identificação da Receita</h3>
+    <table class="pagamentos-table" role="table">
+      <thead>
+        <tr>
+          <th>Tipo da Receita</th>
+          <th>Descrição da Receita</th>
+          <th>Valor Original</th>
+          <th>Nº Prestações</th>
+          <th>Saldo Devedor</th>
+          <th>Objeto do Crédito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.tipoReceita || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.descricaoReceita || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="formataNumero(debitoSelecionado.valorOriginal)"
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.numeroPrestacoes ?? 'xxxxx'"
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="formataNumero(debitoSelecionado.saldoDevedor)"
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.objetoCredito || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- BLOCO 3 – PLANO DE PAGAMENTO -->
-      <h3 class="bloco-titulo">Plano de pagamento</h3>
-      <table class="pagamentos-table" role="table">
-        <thead>
-          <tr>
-            <th>Tipo da Receita</th>
-            <th>Valor Concedido</th>
-            <th>Prazos / Condições</th>
-            <th>Regras Legais</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input type="text" [value]="d.tipoReceita || 'xxxxx'" disabled />
-            </td>
-            <td>
-              <input
-                type="text"
-                [value]="formataNumero(d.valorConcedido) || 'xxxxx'"
-                disabled
-                style="text-align: right"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                [value]="d.prazosCondicoesReembolso || 'xxxxx'"
-                disabled
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                [value]="d.regrasLegaisPrograma || 'xxxxx'"
-                disabled
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- BLOCO 3 – PLANO DE PAGAMENTO -->
+    <h3 class="bloco-titulo">Plano de pagamento</h3>
+    <table class="pagamentos-table" role="table">
+      <thead>
+        <tr>
+          <th>Tipo da Receita</th>
+          <th>Valor Concedido</th>
+          <th>Prazos / Condições</th>
+          <th>Regras Legais</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.tipoReceita || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="formataNumero(debitoSelecionado.valorConcedido)"
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.prazosCondicoesReembolso || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.regrasLegaisPrograma || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- BLOCO 4 – DOCUMENTO DE TITULAÇÃO -->
-      <table class="pagamentos-table" role="table">
-        <thead>
-          <tr>
-            <th>Título de Domínio</th>
-            <th>Contrato</th>
-            <th>Termo Aditivo</th>
-            <th>Outros Documentos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input
-                type="text"
-                [value]="d.tituloDominio || 'xxxxx'"
-                disabled
-              />
-            </td>
-            <td>
-              <input type="text" [value]="d.contrato || 'xxxxx'" disabled />
-            </td>
-            <td>
-              <input type="text" [value]="d.termoAditivo || 'xxxxx'" disabled />
-            </td>
-            <td>
-              <ng-container *ngIf="d.outrosDocumentos?.length; else semDocs">
-                <div
-                  *ngFor="let od of d.outrosDocumentos"
-                  style="margin-bottom: 4px"
-                >
-                  <input type="text" [value]="od" disabled />
-                </div>
-              </ng-container>
-              <ng-template #semDocs>
-                <input type="text" value="xxxxx" disabled />
-              </ng-template>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- BLOCO 4 – DOCUMENTO DE TITULAÇÃO -->
+    <table class="pagamentos-table" role="table">
+      <thead>
+        <tr>
+          <th>Título de Domínio</th>
+          <th>Contrato</th>
+          <th>Termo Aditivo</th>
+          <th>Outros Documentos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.tituloDominio || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.contrato || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.termoAditivo || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <ng-container
+              *ngIf="debitoSelecionado.outrosDocumentos?.length; else semDocs"
+            >
+              <div
+                *ngFor="let od of debitoSelecionado.outrosDocumentos"
+                style="margin-bottom: 4px"
+              >
+                <input type="text" [value]="od" [disabled]="!modoEdicao" />
+              </div>
+            </ng-container>
+            <ng-template #semDocs>
+              <input type="text" value="xxxxx" disabled />
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- BLOCO 5 – RECEITAS DIVERSAS -->
-      <table class="pagamentos-table" role="table">
-        <thead>
-          <tr>
-            <th>Descrição do Objeto</th>
-            <th>Condições de Cobrança</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input
-                type="text"
-                [value]="d.descricaoObjeto || 'xxxxx'"
-                disabled
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                [value]="d.condicoesCobranca || 'xxxxx'"
-                disabled
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- BLOCO 5 – RECEITAS DIVERSAS -->
+    <table class="pagamentos-table" role="table">
+      <thead>
+        <tr>
+          <th>Descrição do Objeto</th>
+          <th>Condições de Cobrança</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.descricaoObjeto || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.condicoesCobranca || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <div style="height: 1rem"></div>
-      <hr />
-      <div style="height: 1rem"></div>
-    </ng-container>
+    <div style="height: 1rem"></div>
+    <hr />
+    <div style="height: 1rem"></div>
   </div>
 
   <!-- GRID DE PARCELAS / LANÇAMENTOS -->
   <h3 class="bloco-titulo">Parcelas / Lançamentos</h3>
 
   <div class="table-container mat-elevation-z1">
-    <table
-      mat-table
-      [dataSource]="pagamentos"
-      class="pagamentos-table"
-      role="table"
-    >
-      <!-- COLUNA SELEÇÃO (TOTAL / PARCIAL) -->
+    <table mat-table [dataSource]="debitos" class="pagamentos-table">
+      <!-- SELEÇÃO -->
       <ng-container matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-checkbox
-            (change)="masterToggle()"
-            [checked]="isAllSelected()"
-            [indeterminate]="selection.hasValue() && !isAllSelected()"
-          >
-          </mat-checkbox>
-        </th>
+        <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
           <mat-checkbox
             (click)="$event.stopPropagation()"
@@ -237,153 +241,86 @@
         </td>
       </ng-container>
 
-      <!-- Nº REF -->
-      <ng-container matColumnDef="numeroReferencia">
-        <th mat-header-cell *matHeaderCellDef>Nº Ref.</th>
-        <td mat-cell *matCellDef="let p">{{ p.numeroReferencia || "—" }}</td>
+      <!-- TIPO DA RECEITA -->
+      <ng-container matColumnDef="tipoReceita">
+        <th mat-header-cell *matHeaderCellDef>Tipo da Receita</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.tipoReceita || "—" }}
+        </td>
       </ng-container>
 
-      <!-- NOSSO NÚMERO -->
-      <ng-container matColumnDef="nossoNumero">
-        <th mat-header-cell *matHeaderCellDef>Nosso Número</th>
-        <td mat-cell *matCellDef="let p">{{ p.nossoNumero || "—" }}</td>
+      <!-- DESCRIÇÃO -->
+      <ng-container matColumnDef="descricaoReceita">
+        <th mat-header-cell *matHeaderCellDef>Descrição</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.descricaoReceita || "—" }}
+        </td>
       </ng-container>
 
-      <!-- PRESTAÇÃO -->
-      <ng-container matColumnDef="parcela">
-        <th mat-header-cell *matHeaderCellDef>Prest.</th>
-        <td mat-cell *matCellDef="let p">{{ p.parcela || "—" }}</td>
-      </ng-container>
-
-      <!-- VENCIMENTO -->
-      <ng-container matColumnDef="dataVencimento">
-        <th mat-header-cell *matHeaderCellDef>Vencimento</th>
-        <td mat-cell *matCellDef="let p">{{ p.dataVencimento || "—" }}</td>
-      </ng-container>
-
-      <!-- PRORROGAÇÃO -->
-      <ng-container matColumnDef="prorrogacao">
-        <th mat-header-cell *matHeaderCellDef>Prorrogação</th>
-        <td mat-cell *matCellDef="let p">{{ p.prorrogacao || "—" }}</td>
-      </ng-container>
-
-      <!-- MOEDA -->
-      <ng-container matColumnDef="moeda">
-        <th mat-header-cell *matHeaderCellDef>Moeda</th>
-        <td mat-cell *matCellDef="let p">R$</td>
-      </ng-container>
-
-      <!-- VALOR -->
+      <!-- VALOR ORIGINAL -->
       <ng-container matColumnDef="valorOriginal">
-        <th mat-header-cell *matHeaderCellDef>Valor</th>
-        <td mat-cell *matCellDef="let p" style="text-align: right">
-          {{ formataNumero(p.valorOriginal) }}
+        <th mat-header-cell *matHeaderCellDef>Valor Original</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ formataNumero(d.valorOriginal) }}
         </td>
       </ng-container>
 
-      <!-- CORREÇÃO -->
-      <ng-container matColumnDef="correcao">
-        <th mat-header-cell *matHeaderCellDef>Correção</th>
-        <td mat-cell *matCellDef="let p" style="text-align: right">
-          {{ formataNumero(p.correcao) }}
+      <!-- Nº PRESTAÇÕES -->
+      <ng-container matColumnDef="numeroPrestacoes">
+        <th mat-header-cell *matHeaderCellDef>Nº Prestações</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ d.numeroPrestacoes || "—" }}
         </td>
       </ng-container>
 
-      <!-- JUROS -->
-      <ng-container matColumnDef="juros">
-        <th mat-header-cell *matHeaderCellDef>Juros</th>
-        <td mat-cell *matCellDef="let p" style="text-align: right">
-          {{ formataNumero(p.jurosMora) }}
+      <!-- SALDO DEVEDOR -->
+      <ng-container matColumnDef="saldoDevedor">
+        <th mat-header-cell *matHeaderCellDef>Saldo Devedor</th>
+        <td mat-cell *matCellDef="let d" style="text-align: right">
+          {{ formataNumero(d.saldoDevedor) }}
         </td>
       </ng-container>
 
-      <!-- JUROS MORA -->
-      <ng-container matColumnDef="jurosMora">
-        <th mat-header-cell *matHeaderCellDef>Juros Mora</th>
-        <td mat-cell *matCellDef="let p" style="text-align: right">
-          {{ formataNumero(p.jurosMora) }}
+      <!-- OBJETO DO CRÉDITO -->
+      <ng-container matColumnDef="objetoCredito">
+        <th mat-header-cell *matHeaderCellDef>Objeto do Crédito</th>
+        <td mat-cell *matCellDef="let d">
+          {{ d.objetoCredito || "—" }}
         </td>
-      </ng-container>
-
-      <!-- MULTA -->
-      <ng-container matColumnDef="multa">
-        <th mat-header-cell *matHeaderCellDef>Multa</th>
-        <td mat-cell *matCellDef="let p" style="text-align: right">
-          {{ formataNumero(p.multa) }}
-        </td>
-      </ng-container>
-
-      <!-- DESCONTOS -->
-      <ng-container matColumnDef="desconto">
-        <th mat-header-cell *matHeaderCellDef>Descontos</th>
-        <td mat-cell *matCellDef="let p" style="text-align: right">
-          {{ formataNumero(p.desconto) }}
-        </td>
-      </ng-container>
-
-      <!-- DESCONTO EXCEDENTE -->
-      <ng-container matColumnDef="remissao">
-        <th mat-header-cell *matHeaderCellDef>Desc. Exced.</th>
-        <td mat-cell *matCellDef="let p" style="text-align: right">
-          {{ formataNumero(p.remissao) }}
-        </td>
-      </ng-container>
-
-      <!-- CRÉDITO -->
-      <ng-container matColumnDef="credito">
-        <th mat-header-cell *matHeaderCellDef>Crédito</th>
-        <td mat-cell *matCellDef="let p" style="text-align: right">
-          {{ formataNumero(p.credito) }}
-        </td>
-      </ng-container>
-
-      <!-- A PAGAR -->
-      <ng-container matColumnDef="valorDevido">
-        <th mat-header-cell *matHeaderCellDef>A pagar</th>
-        <td mat-cell *matCellDef="let p" style="text-align: right">
-          {{ formataNumero(p.valorDevido) }}
-        </td>
-      </ng-container>
-
-      <!-- MOEDA (FINAL) -->
-      <ng-container matColumnDef="moedaFinal">
-        <th mat-header-cell *matHeaderCellDef>Moeda</th>
-        <td mat-cell *matCellDef="let p">R$</td>
-      </ng-container>
-
-      <!-- BAIXADO -->
-      <ng-container matColumnDef="baixado">
-        <th mat-header-cell *matHeaderCellDef>Baixado</th>
-        <td mat-cell *matCellDef="let p">
-          {{ p.dataPagamento ? "Sim" : "Não" }}
-        </td>
-      </ng-container>
-
-      <!-- Nº AVISO BAIXA -->
-      <ng-container matColumnDef="numeroAvisoBaixa">
-        <th mat-header-cell *matHeaderCellDef>Nº Aviso Baixa</th>
-        <td mat-cell *matCellDef="let p">{{ p.numeroAvisoBaixa || "—" }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr
-        mat-row
-        *matRowDef="let row; columns: displayedColumns"
-        (click)="selection.toggle(row)"
-      ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
-
-  <ng-template #vazio>
-    <p>Nenhum débito encontrado.</p>
-  </ng-template>
 
   <ng-template #vazio>
     <div class="vazio">Nenhum registro de débito encontrado.</div>
   </ng-template>
 </mat-dialog-content>
 
+<!-- AÇÕES -->
 <div class="acoes">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="editar()"
+    [disabled]="modoEdicao || !debitoSelecionado"
+  >
+    <mat-icon>edit</mat-icon>
+    Editar
+  </button>
+
+  <button
+    mat-flat-button
+    color="accent"
+    (click)="salvar()"
+    [disabled]="!modoEdicao"
+  >
+    <mat-icon>save</mat-icon>
+    Salvar
+  </button>
+
   <button
     mat-flat-button
     color="primary"
