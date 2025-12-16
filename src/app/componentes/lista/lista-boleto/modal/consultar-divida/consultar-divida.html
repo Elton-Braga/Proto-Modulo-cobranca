@@ -94,13 +94,14 @@
 
     <!-- BLOCO 3 – PLANO DE PAGAMENTO -->
     <h3 class="bloco-titulo">Plano de pagamento</h3>
+
     <table class="pagamentos-table" role="table">
       <thead>
         <tr>
-          <th>Tipo da Receita</th>
-          <th>Valor Concedido</th>
-          <th>Prazos / Condições</th>
-          <th>Regras Legais</th>
+          <th>Número de referência</th>
+          <th>Nosso número</th>
+          <th>Número ref. antigo</th>
+          <th>Prestação</th>
         </tr>
       </thead>
       <tbody>
@@ -108,14 +109,66 @@
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.tipoReceita || 'xxxxx'"
+              [value]="debitoSelecionado.numeroReferencia || 'xxxxx'"
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="formataNumero(debitoSelecionado.valorConcedido)"
+              [value]="debitoSelecionado.nossoNumero || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.numeroRefAntigo || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.prestacao || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="pagamentos-table" role="table">
+      <thead>
+        <tr>
+          <th>Vencimento original</th>
+          <th>Data para pagamento</th>
+          <th>Valor principal</th>
+          <th>Correção</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.vencimentoOriginal || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.dataParaPagamento || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="
+                formataNumero(debitoSelecionado.valorPrincipal) || 'xxxxx'
+              "
               [disabled]="!modoEdicao"
               style="text-align: right"
             />
@@ -123,29 +176,22 @@
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.prazosCondicoesReembolso || 'xxxxx'"
+              [value]="formataNumero(debitoSelecionado.correcao) || 'xxxxx'"
               [disabled]="!modoEdicao"
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              [value]="debitoSelecionado.regrasLegaisPrograma || 'xxxxx'"
-              [disabled]="!modoEdicao"
+              style="text-align: right"
             />
           </td>
         </tr>
       </tbody>
     </table>
 
-    <!-- BLOCO 4 – DOCUMENTO DE TITULAÇÃO -->
     <table class="pagamentos-table" role="table">
       <thead>
         <tr>
-          <th>Título de Domínio</th>
-          <th>Contrato</th>
-          <th>Termo Aditivo</th>
-          <th>Outros Documentos</th>
+          <th>Índice</th>
+          <th>mês/ano</th>
+          <th>coeficiente</th>
+          <th>Valor corrigido</th>
         </tr>
       </thead>
       <tbody>
@@ -153,49 +199,46 @@
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.tituloDominio || 'xxxxx'"
+              [value]="debitoSelecionado.indice || 'xxxxx'"
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.contrato || 'xxxxx'"
+              [value]="debitoSelecionado.mesAno || 'xxxxx'"
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.termoAditivo || 'xxxxx'"
+              [value]="formataNumero(debitoSelecionado.coeficiente) || 'xxxxx'"
               [disabled]="!modoEdicao"
+              style="text-align: right"
             />
           </td>
           <td>
-            <ng-container
-              *ngIf="debitoSelecionado.outrosDocumentos?.length; else semDocs"
-            >
-              <div
-                *ngFor="let od of debitoSelecionado.outrosDocumentos"
-                style="margin-bottom: 4px"
-              >
-                <input type="text" [value]="od" [disabled]="!modoEdicao" />
-              </div>
-            </ng-container>
-            <ng-template #semDocs>
-              <input type="text" value="xxxxx" disabled />
-            </ng-template>
+            <input
+              type="text"
+              [value]="
+                formataNumero(debitoSelecionado.valorCorrigido) || 'xxxxx'
+              "
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
           </td>
         </tr>
       </tbody>
     </table>
 
-    <!-- BLOCO 5 – RECEITAS DIVERSAS -->
     <table class="pagamentos-table" role="table">
       <thead>
         <tr>
-          <th>Descrição do Objeto</th>
-          <th>Condições de Cobrança</th>
+          <th>Multa</th>
+          <th>Juros de mora</th>
+          <th>Valor com encargos</th>
+          <th>Valor total prestação</th>
         </tr>
       </thead>
       <tbody>
@@ -203,14 +246,71 @@
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.descricaoObjeto || 'xxxxx'"
+              [value]="formataNumero(debitoSelecionado.multa) || 'xxxxx'"
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="formataNumero(debitoSelecionado.jurosMora) || 'xxxxx'"
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="
+                formataNumero(debitoSelecionado.valorComEncargos) || 'xxxxx'
+              "
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="
+                formataNumero(debitoSelecionado.valorTotalPrestacao) || 'xxxxx'
+              "
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="pagamentos-table" role="table">
+      <thead>
+        <tr>
+          <th>Data entrega GRU</th>
+          <th>Forma entrega GRU</th>
+          <th>Motivo não entrega GRU</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.dataEntregaGRU || 'xxxxx'"
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.condicoesCobranca || 'xxxxx'"
+              [value]="debitoSelecionado.formaEntregaGRU || 'xxxxx'"
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="debitoSelecionado.motivoNaoEntregaGRU || 'xxxxx'"
               [disabled]="!modoEdicao"
             />
           </td>
