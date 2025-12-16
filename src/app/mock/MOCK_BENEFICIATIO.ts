@@ -272,6 +272,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -292,6 +315,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -317,6 +363,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   },
@@ -537,6 +606,25 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+        numeroReferencia: '',
+        nossoNumero: '',
+        numeroRefAntigo: '',
+        prestacao: '1/12',
+        vencimentoOriginal: '',
+        dataParaPagamento: '',
+        valorPrincipal: 0,
+        correcao: 0,
+        indice: '',
+        mesAno: '',
+        coeficiente: 0,
+        valorCorrigido: 0,
+        multa: 0,
+        jurosMora: 0,
+        valorComEncargos: 0,
+        valorTotalPrestacao: 0,
+        dataEntregaGRU: '',
+        formaEntregaGRU: '',
+        motivoNaoEntregaGRU: '',
       },
       {
         objetoCredito:
@@ -557,6 +645,25 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+        numeroReferencia: '',
+        nossoNumero: '',
+        numeroRefAntigo: '',
+        prestacao: '2/12',
+        vencimentoOriginal: '',
+        dataParaPagamento: '',
+        valorPrincipal: 0,
+        correcao: 0,
+        indice: '',
+        mesAno: '',
+        coeficiente: 0,
+        valorCorrigido: 0,
+        multa: 0,
+        jurosMora: 0,
+        valorComEncargos: 0,
+        valorTotalPrestacao: 0,
+        dataEntregaGRU: '',
+        formaEntregaGRU: '',
+        motivoNaoEntregaGRU: '',
       },
       {
         objetoCredito:
@@ -582,6 +689,25 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+        numeroReferencia: '',
+        nossoNumero: '',
+        numeroRefAntigo: '',
+        prestacao: '3/12',
+        vencimentoOriginal: '',
+        dataParaPagamento: '',
+        valorPrincipal: 0,
+        correcao: 0,
+        indice: '',
+        mesAno: '',
+        coeficiente: 0,
+        valorCorrigido: 0,
+        multa: 0,
+        jurosMora: 0,
+        valorComEncargos: 0,
+        valorTotalPrestacao: 0,
+        dataEntregaGRU: '',
+        formaEntregaGRU: '',
+        motivoNaoEntregaGRU: '',
       },
     ],
   },
@@ -786,6 +912,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -806,6 +955,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -831,6 +1003,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   }, // ==== REGISTRO 4 ====
@@ -1002,6 +1197,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -1022,6 +1240,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -1047,6 +1288,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   },
@@ -1248,6 +1512,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -1268,6 +1555,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -1293,6 +1603,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   },
@@ -1480,6 +1813,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -1500,6 +1856,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -1525,6 +1904,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   }, // ==== REGISTRO 7 ====
@@ -1722,6 +2124,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -1742,6 +2167,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -1767,6 +2215,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   },
@@ -1951,6 +2422,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -1971,6 +2465,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -1996,6 +2513,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   }, // ==== REGISTRO 9 ====
@@ -2164,6 +2704,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -2184,6 +2747,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -2209,6 +2795,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   },
@@ -2427,6 +3036,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -2447,6 +3079,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -2472,6 +3127,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   },
@@ -2638,6 +3316,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -2658,6 +3359,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -2683,6 +3407,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   },
@@ -2887,6 +3634,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 45000.0,
         numeroPrestacoes: 60,
         saldoDevedor: 23000.5,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 750.0, // 45000 / 60
+        correcao: 225.5,
+        coeficiente: 1.05,
+        valorCorrigido: 787.5,
+        multa: 150.25,
+        jurosMora: 87.3,
+        valorComEncargos: 1024.55,
+        valorTotalPrestacao: 1024.55,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-001',
+        nossoNumero: '20230123456789',
+        numeroRefAntigo: 'ANT-2015-0098',
+        prestacao: '1/12',
+        vencimentoOriginal: '15/03/2023',
+        dataParaPagamento: '20/03/2023',
+        indice: 'IPCA-E',
+        mesAno: '03/2023',
+        dataEntregaGRU: '10/03/2023',
+        formaEntregaGRU: 'Correios',
+        motivoNaoEntregaGRU: 'Não se aplica',
       },
       {
         objetoCredito:
@@ -2907,6 +3677,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 30000.0,
         numeroPrestacoes: 48,
         saldoDevedor: 27000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 625.0, // 30000 / 48
+        correcao: 187.5,
+        coeficiente: 1.03,
+        valorCorrigido: 643.75,
+        multa: 125.0,
+        jurosMora: 62.5,
+        valorComEncargos: 831.25,
+        valorTotalPrestacao: 831.25,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-002',
+        nossoNumero: '20230234567890',
+        numeroRefAntigo: 'ANT-2017-1120',
+        prestacao: '2/12',
+        vencimentoOriginal: '10/02/2023',
+        dataParaPagamento: '15/02/2023',
+        indice: 'IGP-M',
+        mesAno: '02/2023',
+        dataEntregaGRU: '05/02/2023',
+        formaEntregaGRU: 'Pessoalmente',
+        motivoNaoEntregaGRU: 'Cliente retirou no balcão',
       },
       {
         objetoCredito:
@@ -2932,6 +3725,29 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorOriginal: 80000.0,
         numeroPrestacoes: 72,
         saldoDevedor: 60000.0,
+
+        // Campos numéricos para valores monetários
+        valorPrincipal: 1111.11, // 80000 / 72
+        correcao: 333.33,
+        coeficiente: 1.08,
+        valorCorrigido: 1200.0,
+        multa: 222.22,
+        jurosMora: 111.11,
+        valorComEncargos: 1533.33,
+        valorTotalPrestacao: 1533.33,
+
+        // Campos string para textos e datas
+        numeroReferencia: 'REF-2023-003',
+        nossoNumero: '20230345678901',
+        numeroRefAntigo: 'ANT-2020-5541',
+        prestacao: '3/12',
+        vencimentoOriginal: '05/04/2023',
+        dataParaPagamento: '10/04/2023',
+        indice: 'SELIC',
+        mesAno: '04/2023',
+        dataEntregaGRU: '01/04/2023',
+        formaEntregaGRU: 'E-mail',
+        motivoNaoEntregaGRU: 'GRU enviada por e-mail',
       },
     ],
   },

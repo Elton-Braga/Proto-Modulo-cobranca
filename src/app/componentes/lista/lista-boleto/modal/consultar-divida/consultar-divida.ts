@@ -55,18 +55,8 @@ export interface Debito {
 })
 export class ConsultarDivida implements OnInit {
   pagamentos: ParcelaPagamentoExtendido[] = [];
-  //debitos: any[] = [];
+
   debitos: Debito[] = [];
-  /*
-  displayedColumns: string[] = [
-    'select',
-    'tipoReceita',
-    'descricaoReceita',
-    'valorOriginal',
-    'numeroPrestacoes',
-    'saldoDevedor',
-    'objetoCredito',
-  ];*/
 
   beneficiarioNome = '';
   beneficiarioCpf = '';
@@ -108,7 +98,6 @@ export class ConsultarDivida implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('displayedColumns atual:', this.displayedColumns);
     this.pagamentos = Array.isArray(this.data?.pagamento)
       ? this.data.pagamento
       : [];
