@@ -64,7 +64,7 @@ export class ConsultarDivida implements OnInit {
   debitoSelecionado: any | null = null;
   modoEdicao = false;
 
-  selection = new SelectionModel<ParcelaPagamentoExtendido>(true, []);
+  selection = new SelectionModel<Debito>(true, []);
 
   displayedColumns: string[] = [
     'select',
@@ -102,23 +102,81 @@ export class ConsultarDivida implements OnInit {
       ? this.data.pagamento
       : [];
 
-    this.debitos = Array.isArray(this.data?.debitos) ? this.data.debitos : [];
+    // Transformar os dados dos débitos para incluir todos os campos necessários
+    this.debitos = Array.isArray(this.data?.debitos)
+      ? this.data.debitos.map((debito: any, index: number) => ({
+          ...debito,
+          // Mapear campos duplicados
+          parcela: debito.prestacao || `0/${debito.numeroPrestacoes || 0}`,
+          dataVencimento: debito.vencimentoOriginal || '',
+          prorrogacao: debito.dataParaPagamento || '',
+          // Inicializar campos que não existem nos dados originais
+          moeda: debito.moeda || 'BRL',
+          juros: debito.juros || 0,
+          desconto: debito.desconto || 0,
+          remissao: debito.remissao || 0,
+          credito: debito.credito || 0,
+          valorDevido: debito.valorTotalPrestacao || 0,
+          moedaFinal: debito.moedaFinal || 'BRL',
+          baixado: debito.baixado || 'Não',
+          numeroAvisoBaixa:
+            debito.numeroAvisoBaixa || `ABX-2023-00${index + 1}`,
+          tipoBaixa:
+            debito.tipoBaixa ||
+            ['Normal', 'Emergencial', 'Ampliação'][index] ||
+            'Normal',
+          prestacaoUnica: debito.prestacaoUnica || 'Não',
+          dataBaixa: debito.dataBaixa || '—',
+          totalPagar: debito.valorTotalPrestacao || 0,
+        }))
+      : [];
 
     this.beneficiarioNome = this.data?.titular?.nome || '';
     this.beneficiarioCpf = this.data?.titular?.cpf || '';
 
+    // Preencher valores iniciais para o primeiro débito
     if (this.debitos.length) {
-      this.debitoSelecionado = this.debitos[0];
+      this.debitoSelecionado = { ...this.debitos[0] };
+
+      this.preencherValoresIniciais(this.debitoSelecionado, 0);
     }
   }
+  private preencherValoresIniciais(debito: Debito, index: number): void {
+    // Preencher campos que podem estar vazios com valores apropriados
+    if (!debito.tipoReceita)
+      debito.tipoReceita =
+        [
+          'PRONAF – Investimento',
+          'Crédito Especial – Emergencial',
+          'Fomento – Ampliação Produtiva',
+        ][index] || 'xxxxx';
+    if (!debito.descricaoReceita)
+      debito.descricaoReceita =
+        [
+          'Investimento agrícola para fortalecimento da produção familiar',
+          'Crédito emergencial para recomposição produtiva',
+          'Financiamento para modernização e ampliação da infraestrutura produtiva',
+        ][index] || 'xxxxx';
+    if (!debito.objetoCredito)
+      debito.objetoCredito =
+        'Crédito destinado à recuperação produtiva da unidade familiar';
+    /*if (!debito.numeroReferencia) debito.numeroReferencia = `REF-2023-00${index + 1}`;
+    if (!debito.nossoNumero) debito.nossoNumero = `2023${String(index + 1).padStart(10, '0')}`;
+    if (!debito.numeroRefAntigo) debito.numeroRefAntigo = `ANT-2020-${String(index + 1).padStart(4, '0')}`;
+    if (!debito.prestacao) debito.prestacao = `${index * 5 + 15}/${debito.numeroPrestacoes || 60}`;
+    if (!debito.vencimentoOriginal) debito.vencimentoOriginal = `15/0${index + 1}/2023`;
+    if (!debito.dataParaPagamento) debito.dataParaPagamento = `20/0${index + 1}/2023`;
+    if (!debito.indice) debito.indice = ['IPCA-E', 'IGP-M', 'SELIC'][index] || 'IPCA-E';
+    if (!debito.mesAno) debito.mesAno = `0${index + 1}/2023`;
+    if (!debito.dataEntregaGRU) debito.dataEntregaGRU = `10/0${index + 1}/2023`;
+    if (!debito.formaEntregaGRU) debito.formaEntregaGRU = ['Correios', 'Pessoalmente', 'E-mail'][index] || 'Correios';
+    if (!debito.motivoNaoEntregaGRU) debito.motivoNaoEntregaGRU = ['Não se aplica', 'Cliente retirou no balcão', 'GRU enviada por e-mail'][index] || 'Não se aplica';*/
+  }
 
-  selecionarLinha(row: ParcelaPagamentoExtendido): void {
+  selecionarLinha(row: Debito): void {
     this.selection.clear();
     this.selection.select(row);
-
-    const index = this.pagamentos.indexOf(row);
-    this.debitoSelecionado = this.debitos[index] ?? null;
-
+    this.debitoSelecionado = { ...row };
     this.modoEdicao = false;
   }
 
@@ -131,7 +189,7 @@ export class ConsultarDivida implements OnInit {
   }
 
   isAllSelected(): boolean {
-    return this.selection.selected.length === this.pagamentos.length;
+    return this.selection.selected.length === this.debitos.length;
   }
 
   masterToggle(): void {

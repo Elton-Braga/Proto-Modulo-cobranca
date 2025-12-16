@@ -27,7 +27,7 @@
   </div>
 
   <!-- DADOS DO DÉBITO SELECIONADO -->
-  <div class="table-container" *ngIf="debitoSelecionado; else vazio">
+  <div class="table-container" *ngIf="debitoSelecionado">
     <!-- BLOCO 6 – IDENTIFICAÇÃO DA RECEITA -->
     <h3 class="bloco-titulo">Identificação da Receita</h3>
     <table class="pagamentos-table" role="table">
@@ -334,7 +334,6 @@
         <td mat-cell *matCellDef="let row">
           <mat-checkbox
             (click)="$event.stopPropagation()"
-            (change)="selection.toggle(row)"
             [checked]="selection.isSelected(row)"
           >
           </mat-checkbox>
@@ -518,13 +517,14 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <!--<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>-->
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="selecionarLinha(row)"
+      ></tr>
     </table>
   </div>
-
-  <ng-template #vazio>
-    <div class="vazio">Nenhum registro de débito encontrado.</div>
-  </ng-template>
 </mat-dialog-content>
 
 <!-- AÇÕES -->
@@ -567,6 +567,26 @@
   >
     <mat-icon>download</mat-icon>
     Baixar GRU
+  </button>
+
+  <button
+    mat-flat-button
+    color="accent"
+    (click)="baixarGRU()"
+    class="btn-baixar"
+  >
+    <mat-icon>add</mat-icon>
+    Incluir
+  </button>
+
+  <button
+    mat-flat-button
+    color="accent"
+    (click)="baixarGRU()"
+    class="btn-baixar"
+  >
+    <mat-icon>delete</mat-icon>
+    Excluir
   </button>
 
   <mat-dialog-actions align="end">

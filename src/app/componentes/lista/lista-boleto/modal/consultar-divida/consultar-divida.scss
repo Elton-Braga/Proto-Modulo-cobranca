@@ -112,3 +112,15 @@ input {
   width: 90%;
   margin: 0 1rem;
 }
+
+// No arquivo consultar-divida.scss
+.pagamentos-table {
+  tr.selected {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    cursor: pointer;
+  }
+}
