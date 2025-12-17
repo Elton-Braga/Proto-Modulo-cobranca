@@ -284,7 +284,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '0001',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -339,7 +339,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -399,7 +399,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',
@@ -996,7 +996,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '4001',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -1051,7 +1051,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -1111,7 +1111,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',
@@ -1317,7 +1317,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '2001',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -1372,7 +1372,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -1432,7 +1432,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',
@@ -1668,7 +1668,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '0005',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -1723,7 +1723,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -1783,7 +1783,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',
@@ -2005,7 +2005,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '0005',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -2060,7 +2060,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -2120,7 +2120,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',
@@ -2352,7 +2352,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '0005',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -2407,7 +2407,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -2467,7 +2467,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',
@@ -2686,7 +2686,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '0005',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -2741,7 +2741,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -2801,7 +2801,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',
@@ -3004,7 +3004,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '0005',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -3059,7 +3059,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -3119,7 +3119,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',
@@ -3372,7 +3372,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '0005',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -3427,7 +3427,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -3487,7 +3487,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',
@@ -3688,7 +3688,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '0005',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -3743,7 +3743,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -3803,7 +3803,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',
@@ -4042,7 +4042,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1024.55,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-001',
+        numeroReferencia: '0005',
         nossoNumero: '20230123456789',
         numeroRefAntigo: 'ANT-2015-0098',
         prestacao: '1/12',
@@ -4097,7 +4097,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 831.25,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-002',
+        numeroReferencia: '0006',
         nossoNumero: '20230234567890',
         numeroRefAntigo: 'ANT-2017-1120',
         prestacao: '2/12',
@@ -4157,7 +4157,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         valorTotalPrestacao: 1533.33,
 
         // Campos string para textos e datas
-        numeroReferencia: 'REF-2023-003',
+        numeroReferencia: '0007',
         nossoNumero: '20230345678901',
         numeroRefAntigo: 'ANT-2020-5541',
         prestacao: '3/12',

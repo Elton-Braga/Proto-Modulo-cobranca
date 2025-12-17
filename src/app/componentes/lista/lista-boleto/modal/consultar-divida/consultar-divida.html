@@ -27,7 +27,8 @@
   </div>
 
   <!-- DADOS DO DÉBITO SELECIONADO -->
-  <div class="table-container" *ngIf="debitoSelecionado">
+
+  <div class="table-container">
     <!-- BLOCO 6 – IDENTIFICAÇÃO DA RECEITA -->
     <h3 class="bloco-titulo">Identificação da Receita</h3>
     <table class="pagamentos-table" role="table">
@@ -44,39 +45,36 @@
       <tbody>
         <tr>
           <td>
+            <!-- Campo vazio quando não há seleção, preenchido quando há seleção -->
             <input
               type="text"
-              [value]="debitoSelecionado.tipoReceita || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.tipoReceita || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.descricaoReceita || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.descricaoReceita || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="formataNumero(debitoSelecionado.valorOriginal)"
-              [disabled]="!modoEdicao"
-              style="text-align: right"
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              [value]="debitoSelecionado.numeroPrestacoes ?? 'xxxxx'"
-              [disabled]="!modoEdicao"
-              style="text-align: right"
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              [value]="formataNumero(debitoSelecionado.saldoDevedor)"
+              [value]="
+                debitoSelecionado
+                  ? formataNumero(debitoSelecionado.valorOriginal)
+                  : ''
+              "
               [disabled]="!modoEdicao"
               style="text-align: right"
             />
@@ -84,7 +82,35 @@
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.objetoCredito || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.numeroPrestacoes ?? 'xxxxx'
+                  : ''
+              "
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="
+                debitoSelecionado
+                  ? formataNumero(debitoSelecionado.saldoDevedor)
+                  : ''
+              "
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.objetoCredito || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
@@ -109,28 +135,42 @@
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.numeroReferencia || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.numeroReferencia || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.nossoNumero || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.nossoNumero || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.numeroRefAntigo || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.numeroRefAntigo || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.prestacao || 'xxxxx'"
+              [value]="
+                debitoSelecionado ? debitoSelecionado.prestacao || 'xxxxx' : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
@@ -152,14 +192,11 @@
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.vencimentoOriginal || 'xxxxx'"
-              [disabled]="!modoEdicao"
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              [value]="debitoSelecionado.dataParaPagamento || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.vencimentoOriginal || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
@@ -167,7 +204,20 @@
             <input
               type="text"
               [value]="
-                formataNumero(debitoSelecionado.valorPrincipal) || 'xxxxx'
+                debitoSelecionado
+                  ? debitoSelecionado.dataParaPagamento || 'xxxxx'
+                  : ''
+              "
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="
+                debitoSelecionado
+                  ? formataNumero(debitoSelecionado.valorPrincipal) || 'xxxxx'
+                  : ''
               "
               [disabled]="!modoEdicao"
               style="text-align: right"
@@ -176,7 +226,11 @@
           <td>
             <input
               type="text"
-              [value]="formataNumero(debitoSelecionado.correcao) || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? formataNumero(debitoSelecionado.correcao) || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
               style="text-align: right"
             />
@@ -199,21 +253,29 @@
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.indice || 'xxxxx'"
+              [value]="
+                debitoSelecionado ? debitoSelecionado.indice || 'xxxxx' : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.mesAno || 'xxxxx'"
+              [value]="
+                debitoSelecionado ? debitoSelecionado.mesAno || 'xxxxx' : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="formataNumero(debitoSelecionado.coeficiente) || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? formataNumero(debitoSelecionado.coeficiente) || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
               style="text-align: right"
             />
@@ -222,7 +284,9 @@
             <input
               type="text"
               [value]="
-                formataNumero(debitoSelecionado.valorCorrigido) || 'xxxxx'
+                debitoSelecionado
+                  ? formataNumero(debitoSelecionado.valorCorrigido) || 'xxxxx'
+                  : ''
               "
               [disabled]="!modoEdicao"
               style="text-align: right"
@@ -246,24 +310,10 @@
           <td>
             <input
               type="text"
-              [value]="formataNumero(debitoSelecionado.multa) || 'xxxxx'"
-              [disabled]="!modoEdicao"
-              style="text-align: right"
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              [value]="formataNumero(debitoSelecionado.jurosMora) || 'xxxxx'"
-              [disabled]="!modoEdicao"
-              style="text-align: right"
-            />
-          </td>
-          <td>
-            <input
-              type="text"
               [value]="
-                formataNumero(debitoSelecionado.valorComEncargos) || 'xxxxx'
+                debitoSelecionado
+                  ? formataNumero(debitoSelecionado.multa) || 'xxxxx'
+                  : ''
               "
               [disabled]="!modoEdicao"
               style="text-align: right"
@@ -273,7 +323,34 @@
             <input
               type="text"
               [value]="
-                formataNumero(debitoSelecionado.valorTotalPrestacao) || 'xxxxx'
+                debitoSelecionado
+                  ? formataNumero(debitoSelecionado.jurosMora) || 'xxxxx'
+                  : ''
+              "
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="
+                debitoSelecionado
+                  ? formataNumero(debitoSelecionado.valorComEncargos) || 'xxxxx'
+                  : ''
+              "
+              [disabled]="!modoEdicao"
+              style="text-align: right"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              [value]="
+                debitoSelecionado
+                  ? formataNumero(debitoSelecionado.valorTotalPrestacao) ||
+                    'xxxxx'
+                  : ''
               "
               [disabled]="!modoEdicao"
               style="text-align: right"
@@ -289,6 +366,8 @@
           <th>Data entrega GRU</th>
           <th>Forma entrega GRU</th>
           <th>Motivo não entrega GRU</th>
+          <th>Observação</th>
+          <th>N. Req. SEI</th>
         </tr>
       </thead>
       <tbody>
@@ -296,21 +375,52 @@
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.dataEntregaGRU || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.dataEntregaGRU || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.formaEntregaGRU || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.formaEntregaGRU || 'xxxxx'
+                  : ''
+              "
               [disabled]="!modoEdicao"
             />
           </td>
           <td>
             <input
               type="text"
-              [value]="debitoSelecionado.motivoNaoEntregaGRU || 'xxxxx'"
+              [value]="
+                debitoSelecionado
+                  ? debitoSelecionado.motivoNaoEntregaGRU || 'xxxxx'
+                  : ''
+              "
+              [disabled]="!modoEdicao"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value="
+                Observações aqui
+              "
+              [disabled]="!modoEdicao"
+            />
+          </td>
+
+          <td>
+            <input
+              type="text"
+              value="
+                1111111111111
+              "
               [disabled]="!modoEdicao"
             />
           </td>

@@ -174,9 +174,16 @@ export class ConsultarDivida implements OnInit {
   }
 
   selecionarLinha(row: Debito): void {
-    this.selection.clear();
-    this.selection.select(row);
-    this.debitoSelecionado = { ...row };
+    // Se a linha já está selecionada, desseleciona
+    if (this.selection.isSelected(row)) {
+      this.selection.deselect(row);
+      this.debitoSelecionado = null;
+    } else {
+      // Seleciona a nova linha
+      this.selection.clear();
+      this.selection.select(row);
+      this.debitoSelecionado = { ...row };
+    }
     this.modoEdicao = false;
   }
 
