@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MAT_DIALOG_DATA,
@@ -37,6 +37,37 @@ export interface Debito {
   numeroPrestacoes?: number;
   saldoDevedor?: number;
   objetoCredito?: string;
+  numeroReferencia?: string;
+  nossoNumero?: string;
+  numeroRefAntigo?: string;
+  prestacao?: string;
+  vencimentoOriginal?: string;
+  dataParaPagamento?: string;
+  valorPrincipal?: number;
+  correcao?: number;
+  indice?: string;
+  mesAno?: string;
+  coeficiente?: number;
+  valorCorrigido?: number;
+  multa?: number;
+  jurosMora?: number;
+  valorComEncargos?: number;
+  valorTotalPrestacao?: number;
+  dataEntregaGRU?: string;
+  formaEntregaGRU?: string;
+  motivoNaoEntregaGRU?: string;
+  moeda?: string;
+  juros?: number;
+  desconto?: number;
+  remissao?: number;
+  credito?: number;
+  valorDevido?: number;
+  moedaFinal?: string;
+  baixado?: string;
+  numeroAvisoBaixa?: string;
+  tipoBaixa?: string;
+  prestacaoUnica?: string;
+  dataBaixa?: string;
 }
 
 @Component({
@@ -61,7 +92,7 @@ export class ConsultarDivida implements OnInit {
   beneficiarioNome = '';
   beneficiarioCpf = '';
 
-  debitoSelecionado: any | null = null;
+  debitoSelecionado: Debito | null = null; // Alterado para Debito | null
   modoEdicao = false;
 
   selection = new SelectionModel<Debito>(true, []);
@@ -94,7 +125,8 @@ export class ConsultarDivida implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<ConsultarDivida>
+    private dialogRef: MatDialogRef<ConsultarDivida>,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -134,13 +166,14 @@ export class ConsultarDivida implements OnInit {
     this.beneficiarioNome = this.data?.titular?.nome || '';
     this.beneficiarioCpf = this.data?.titular?.cpf || '';
 
-    // Preencher valores iniciais para o primeiro débito
-    if (this.debitos.length) {
-      this.debitoSelecionado = { ...this.debitos[0] };
-
-      this.preencherValoresIniciais(this.debitoSelecionado, 0);
-    }
+    // REMOVIDO: Não inicializar automaticamente com o primeiro débito
+    // Os campos devem iniciar vazios até que o usuário selecione uma linha
+    // if (this.debitos.length) {
+    //   this.debitoSelecionado = { ...this.debitos[0] };
+    //   this.preencherValoresIniciais(this.debitoSelecionado, 0);
+    // }
   }
+
   private preencherValoresIniciais(debito: Debito, index: number): void {
     // Preencher campos que podem estar vazios com valores apropriados
     if (!debito.tipoReceita)
@@ -160,17 +193,6 @@ export class ConsultarDivida implements OnInit {
     if (!debito.objetoCredito)
       debito.objetoCredito =
         'Crédito destinado à recuperação produtiva da unidade familiar';
-    /*if (!debito.numeroReferencia) debito.numeroReferencia = `REF-2023-00${index + 1}`;
-    if (!debito.nossoNumero) debito.nossoNumero = `2023${String(index + 1).padStart(10, '0')}`;
-    if (!debito.numeroRefAntigo) debito.numeroRefAntigo = `ANT-2020-${String(index + 1).padStart(4, '0')}`;
-    if (!debito.prestacao) debito.prestacao = `${index * 5 + 15}/${debito.numeroPrestacoes || 60}`;
-    if (!debito.vencimentoOriginal) debito.vencimentoOriginal = `15/0${index + 1}/2023`;
-    if (!debito.dataParaPagamento) debito.dataParaPagamento = `20/0${index + 1}/2023`;
-    if (!debito.indice) debito.indice = ['IPCA-E', 'IGP-M', 'SELIC'][index] || 'IPCA-E';
-    if (!debito.mesAno) debito.mesAno = `0${index + 1}/2023`;
-    if (!debito.dataEntregaGRU) debito.dataEntregaGRU = `10/0${index + 1}/2023`;
-    if (!debito.formaEntregaGRU) debito.formaEntregaGRU = ['Correios', 'Pessoalmente', 'E-mail'][index] || 'Correios';
-    if (!debito.motivoNaoEntregaGRU) debito.motivoNaoEntregaGRU = ['Não se aplica', 'Cliente retirou no balcão', 'GRU enviada por e-mail'][index] || 'Não se aplica';*/
   }
 
   selecionarLinha(row: Debito): void {
@@ -183,8 +205,15 @@ export class ConsultarDivida implements OnInit {
       this.selection.clear();
       this.selection.select(row);
       this.debitoSelecionado = { ...row };
+
+      // Obter o índice da linha selecionada
+      const index = this.debitos.findIndex((d) => d === row);
+      if (index !== -1 && this.debitoSelecionado) {
+        this.preencherValoresIniciais(this.debitoSelecionado, index);
+      }
     }
     this.modoEdicao = false;
+    this.cdr.detectChanges(); // Força a detecção de mudanças
   }
 
   editar(): void {
@@ -202,7 +231,7 @@ export class ConsultarDivida implements OnInit {
   masterToggle(): void {
     this.isAllSelected()
       ? this.selection.clear()
-      : this.pagamentos.forEach((row) => this.selection.select(row));
+      : this.debitos.forEach((row) => this.selection.select(row));
   }
 
   fechar(): void {

@@ -433,6 +433,19 @@
     <div style="height: 1rem"></div>
   </div>
 
+  <!-- Indicador quando não há débito selecionado -->
+  <div *ngIf="!debitoSelecionado" class="nenhum-selecionado">
+    <p>
+      <mat-icon>info</mat-icon> Selecione uma linha na tabela abaixo para
+      visualizar os detalhes do débito nos campos acima.
+    </p>
+  </div>
+
+  <!-- DADOS DO DÉBITO SELECIONADO -->
+  <div class="table-container">
+    <!-- ... resto do código das tabelas ... -->
+  </div>
+
   <!-- GRID DE PARCELAS / LANÇAMENTOS -->
   <h3 class="bloco-titulo">Parcelas / Lançamentos</h3>
 
@@ -443,8 +456,9 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
           <mat-checkbox
-            (click)="$event.stopPropagation()"
+            (change)="selecionarLinha(row)"
             [checked]="selection.isSelected(row)"
+            (click)="$event.stopPropagation()"
           >
           </mat-checkbox>
         </td>
