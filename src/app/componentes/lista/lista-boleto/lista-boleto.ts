@@ -124,6 +124,30 @@ export class ListaBoleto implements AfterViewInit {
 
   sr: string[] = ['01', '02', '03', '04', '05'];
   tipos: string[] = ['Tipo 1', 'Tipo 2', 'Tipo 3'];
+  situacao_prestacao: String[] = [
+    'em atraso',
+    'em aberto',
+    'Prorrogada',
+    'Baixada',
+    'baixada em dívida aberta',
+    'Prescrita',
+  ];
+
+  tipo_receita: String[] = [
+    'Crédito concedido',
+    'Documento de Titulação ',
+    'Receitas diversas ',
+  ];
+
+  descricao_receita: String[] = [
+    'Fomento',
+    'Apoio Inicial',
+    'Título Original/Principal ',
+    'Termo Aditivo Renegociação ',
+    'Termo Aditivo Enquadramento',
+    'Termo Aditivo Alteração',
+    'Termo Aditivo Reenquadramento',
+  ];
 
   // Tabela / seleção
   displayedColumns: string[] = [

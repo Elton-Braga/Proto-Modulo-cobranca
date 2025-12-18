@@ -76,8 +76,9 @@
 
             <mat-form-field appearance="outline" class="col-4">
               <mat-label>Tipo da Receita</mat-label>
+
               <mat-select formControlName="tipo">
-                <mat-option *ngFor="let item of tipos" [value]="item">
+                <mat-option *ngFor="let item of tipo_receita" [value]="item">
                   {{ item }}
                 </mat-option>
               </mat-select>
@@ -94,20 +95,31 @@
 
             <mat-form-field appearance="outline" class="col-3">
               <mat-label>Situação da prestação</mat-label>
-              <input
-                matInput
+
+              <mat-select
                 formControlName="situacaoP"
                 placeholder="Situação da prestação"
-              />
+              >
+                <mat-option
+                  *ngFor="let situacao of situacao_prestacao"
+                  [value]="situacao"
+                >
+                  {{ situacao }}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="col-3">
               <mat-label>Descrição da Receita</mat-label>
-              <input
-                matInput
-                formControlName="DescricaoReceita"
-                placeholder="Descrição da Receita"
-              />
+
+              <mat-select formControlName="DescricaoReceita">
+                <mat-option
+                  *ngFor="let descricao of descricao_receita"
+                  [value]="descricao"
+                >
+                  {{ descricao }}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="col-3">
