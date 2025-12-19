@@ -15,35 +15,66 @@
                 class="col-md-3"
                 *ngFor="let campo of controlesTitular; trackBy: trackByKey"
               >
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>
-                    {{ campo.key.replace("_", " ") | titlecase }}
-                  </mat-label>
+                <!-- REGRA DE EXIBIÇÃO -->
+                <ng-container
+                  *ngIf="
+                    campo.key === 'Natureza_Juridica' ||
+                    form.get('titular.Natureza_Juridica')?.value !== 'PJ'
+                  "
+                >
+                  <mat-form-field appearance="outline" class="w-100 col-4">
+                    <mat-label>
+                      {{ campo.key.replace("_", " ") | titlecase }}
+                    </mat-label>
 
-                  <!-- Combobox para Natureza_Juridica -->
-                  <mat-select
-                    *ngIf="campo.key === 'Natureza_Juridica'; else campoPadrao"
-                    [formControlName]="campo.key"
-                  >
-                    <mat-option value="PF">Pessoa Física</mat-option>
-                    <mat-option value="PJ">Pessoa Jurídica</mat-option>
-                  </mat-select>
-
-                  <!-- Campo padrão -->
-                  <ng-template #campoPadrao>
-                    <input
-                      matInput
-                      [formControlName]="campo.key"
-                      [type]="
-                        campo.key.toLowerCase().includes('data')
-                          ? 'date'
-                          : 'text'
+                    <!-- Combobox -->
+                    <mat-select
+                      *ngIf="
+                        campo.key === 'Natureza_Juridica';
+                        else campoPadrao
                       "
-                    />
-                  </ng-template>
-                </mat-form-field>
+                      [formControlName]="campo.key"
+                    >
+                      <mat-option value="PF">Pessoa Física</mat-option>
+                      <mat-option value="PJ">Pessoa Jurídica</mat-option>
+                    </mat-select>
+
+                    <!-- Campo padrão -->
+                    <ng-template #campoPadrao>
+                      <input
+                        matInput
+                        [formControlName]="campo.key"
+                        [type]="
+                          campo.key.toLowerCase().includes('data')
+                            ? 'date'
+                            : 'text'
+                        "
+                      />
+                    </ng-template>
+                  </mat-form-field>
+                </ng-container>
               </div>
             </div>
+          </div>
+
+          <div
+            class="container row"
+            *ngIf="form.get('titular.Natureza_Juridica')?.value === 'PJ'"
+          >
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Razão social</mat-label>
+              <input matInput placeholder="Razão social" value="Sushi" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>CNPJ</mat-label>
+              <input matInput placeholder="CNPJ" value="0000.0000.0000./0000" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Endereço</mat-label>
+              <input matInput placeholder="Endereço" value="Endereço aqui" />
+            </mat-form-field>
           </div>
         </mat-expansion-panel>
 
