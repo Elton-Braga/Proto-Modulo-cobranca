@@ -79,7 +79,9 @@
         </mat-expansion-panel>
 
         <!-- ================= CÔNJUGE ================= -->
-        <mat-expansion-panel>
+        <mat-expansion-panel
+          *ngIf="form.get('titular.Natureza_Juridica')?.value === 'PF'"
+        >
           <mat-expansion-panel-header>
             <mat-panel-title> Cônjuge </mat-panel-title>
           </mat-expansion-panel-header>
@@ -103,7 +105,9 @@
         </mat-expansion-panel>
 
         <!-- ================= Unidade Familiar ================= -->
-        <mat-expansion-panel>
+        <mat-expansion-panel
+          *ngIf="form.get('titular.Natureza_Juridica')?.value === 'PF'"
+        >
           <mat-expansion-panel-header>
             <mat-panel-title> Unidade Familiar </mat-panel-title>
           </mat-expansion-panel-header>
