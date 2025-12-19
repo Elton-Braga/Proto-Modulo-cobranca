@@ -98,8 +98,9 @@
         <!-- ================= Bloqueio ================= -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title> Bloqueio / Desbloqueio </mat-panel-title>
+            <mat-panel-title>Bloqueio / Desbloqueio</mat-panel-title>
           </mat-expansion-panel-header>
+
           <div formGroupName="bloqueio" class="container">
             <div class="row">
               <div
@@ -107,8 +108,23 @@
                 *ngFor="let campo of getControles('bloqueio')"
               >
                 <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>{{ campo.key | titlecase }}</mat-label>
-                  <input matInput [formControlName]="campo.key" />
+                  <mat-label>
+                    {{ labelsBloqueio[campo.key] }}
+                  </mat-label>
+
+                  <ng-container
+                    *ngIf="campo.key !== 'observacaoBloqueio'; else textareaObs"
+                  >
+                    <input matInput [formControlName]="campo.key" />
+                  </ng-container>
+
+                  <ng-template #textareaObs>
+                    <textarea
+                      matInput
+                      rows="3"
+                      [formControlName]="campo.key"
+                    ></textarea>
+                  </ng-template>
                 </mat-form-field>
               </div>
             </div>
@@ -118,20 +134,33 @@
         <!-- ================= GEOLOCALIZAÇÃO ================= -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title> Geolocalização </mat-panel-title>
+            <mat-panel-title>Geolocalização</mat-panel-title>
           </mat-expansion-panel-header>
+
           <div formGroupName="geolocalizacao" class="container">
             <div class="row">
-              <div class="col-md-6">
+              <div
+                class="col-md-3"
+                *ngFor="let campo of getControles('geolocalizacao')"
+              >
                 <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Latitude</mat-label>
-                  <input matInput formControlName="latitude" />
-                </mat-form-field>
-              </div>
-              <div class="col-md-6">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Longitude</mat-label>
-                  <input matInput formControlName="longitude" />
+                  <mat-label>
+                    {{ labelsGeolocalizacao[campo.key] }}
+                  </mat-label>
+
+                  <ng-container
+                    *ngIf="campo.key !== 'observacoes'; else textareaGeo"
+                  >
+                    <input matInput [formControlName]="campo.key" />
+                  </ng-container>
+
+                  <ng-template #textareaGeo>
+                    <textarea
+                      matInput
+                      rows="3"
+                      [formControlName]="campo.key"
+                    ></textarea>
+                  </ng-template>
                 </mat-form-field>
               </div>
             </div>
@@ -163,37 +192,10 @@
           </div>
         </mat-expansion-panel>
 
-        <!-- ================= Concessão de credito =================
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title> Concessão de credito </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <div>
-            <div>
-              <div formGroupName="concessao_credito">
-                <div class="row">
-                  <div
-                    class="col-md-6"
-                    *ngFor="let campo of getControles('concessao_credito')"
-                  >
-                    <mat-form-field appearance="outline" class="w-100">
-                      <mat-label>{{ campo.key | titlecase }}</mat-label>
-                      <input matInput [formControlName]="campo.key" />
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-
-              
-            </div>
-          </div>
-        </mat-expansion-panel> -->
-
         <!-- ================= ENDEREÇO E IMPEDIMENTO ================= -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title> Endereço de Cobrança </mat-panel-title>
+            <mat-panel-title>Endereço de Cobrança</mat-panel-title>
           </mat-expansion-panel-header>
 
           <div class="container">
@@ -206,17 +208,21 @@
                     *ngFor="let campo of getControles('enderecoCobranca')"
                   >
                     <mat-form-field appearance="outline" class="w-100">
-                      <mat-label>{{ campo.key | titlecase }}</mat-label>
+                      <mat-label>
+                        {{ labelsEnderecoCobranca[campo.key] }}
+                      </mat-label>
+
                       <input matInput [formControlName]="campo.key" />
                     </mat-form-field>
                   </div>
                 </div>
               </div>
 
-              <!-- IMPEDIMENTO -->
+              <!-- OUTRAS SEÇÕES FUTURAS -->
             </div>
           </div>
         </mat-expansion-panel>
+
         <!--OBSERVACAO-->
 
         <mat-expansion-panel>
