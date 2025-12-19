@@ -15,17 +15,20 @@ import {
 import { ConsultarDivida } from '../consultar-divida/consultar-divida';
 import { MOCK_BENEFICIARIOS } from '../../../mock/MOCK_BENEFICIATIO';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Beneficiario } from '../lista';
+import { MatSelectModule } from '@angular/material/select';
+//import { MatOption } from "@angular/material/select";
 
 @Component({
   selector: 'app-detalhar-divida',
   standalone: true,
   imports: [
+    MatSelectModule,
     MatIconModule,
     CommonModule,
     ReactiveFormsModule,
@@ -36,6 +39,7 @@ import { Beneficiario } from '../lista';
     MatIconModule,
     MatButtonModule,
     FormsModule,
+    NgFor,
   ],
   templateUrl: './detalhar-divida.html',
   styleUrls: ['./detalhar-divida.scss'],
@@ -45,6 +49,11 @@ export class DetalharDivida implements OnInit {
   form!: FormGroup;
   latitude = -22.88587129197667;
   longitude = -42.23844749254404;
+
+  controlesProjetoAssentamento: { key: string; value: any }[] = [];
+  controlesBloqueio: { key: string; value: any }[] = [];
+  controlesGeolocalizacao: { key: string; value: any }[] = [];
+  controlesEnderecoCobranca: { key: string; value: any }[] = [];
 
   camposBloqueados: string[] = [
     'nome',
@@ -90,6 +99,25 @@ export class DetalharDivida implements OnInit {
     observacoes: 'Observações',
   };
 
+  labelsProjetoAssentamento: Record<string, string> = {
+    nome: 'Nome do Projeto',
+    codigo_contato: 'Código do Contato',
+    lote_individual_contato: 'Lote Individual (Contato)',
+    numero_lote: 'Número do Lote',
+    nome_lote: 'Nome do Lote',
+    situacao: 'Situação',
+    cep: 'CEP',
+    estado: 'Estado (UF)',
+    municipio: 'Município',
+    gleba: 'Gleba',
+    regularizacao_fundiaria: 'Regularização Fundiária',
+  };
+
+  opcoesRegularizacao = [
+    { value: 'S', label: 'Sim' },
+    { value: 'N', label: 'Não' },
+  ];
+
   labelsEnderecoCobranca: Record<string, string> = {
     cep: 'CEP',
     estado: 'Estado (UF)',
@@ -112,6 +140,8 @@ export class DetalharDivida implements OnInit {
     // ✅ Inicialização dos grupos com controle do estado (disabled)
     this.form = this.fb.group({
       titular: this.fb.group({
+        tipo: new FormControl({ value: '', disabled: true }),
+        Natureza_Juridica: new FormControl({ value: '', disabled: true }),
         nome: new FormControl({ value: '', disabled: true }),
         cpf: new FormControl({ value: '', disabled: true }),
         codigo_beneficiario: new FormControl({ value: '', disabled: true }),
@@ -127,7 +157,7 @@ export class DetalharDivida implements OnInit {
         telefone: new FormControl({ value: '', disabled: true }),
         email: new FormControl({ value: '', disabled: true }),
         numero_processo: new FormControl({ value: '', disabled: true }),
-        data_entrada_processo: new FormControl({ value: '', disabled: true }),
+        Data_Falecimento: new FormControl({ value: '', disabled: true }),
         data_homologacao: new FormControl({ value: '', disabled: true }),
       }),
       conjuge: this.fb.group({
@@ -143,6 +173,7 @@ export class DetalharDivida implements OnInit {
         nis: new FormControl({ value: '', disabled: true }),
         telefone: new FormControl({ value: '', disabled: true }),
         email: new FormControl({ value: '', disabled: true }),
+        Data_homologacao: new FormControl({ value: '', disabled: true }),
       }),
 
       unidadeFamiliar: this.fb.group({
@@ -151,31 +182,36 @@ export class DetalharDivida implements OnInit {
         data_separacao: new FormControl({ value: '', disabled: true }),
         renda_familiar: new FormControl({ value: '', disabled: true }),
         nome_dependente: new FormControl({ value: '', disabled: true }),
-        tipo_dependente: new FormControl({ value: '', disabled: true }),
-        nome: new FormControl({ value: '', disabled: true }),
+        // tipo_dependente: new FormControl({ value: '', disabled: true }),
+        //nome: new FormControl({ value: '', disabled: true }),
         data_nascimento: new FormControl({ value: '', disabled: true }),
-        data_entrada_na_familia: new FormControl({ value: '', disabled: true }),
+        //data_entrada_na_familia: new FormControl({ value: '', disabled: true }),
         cpf_dependente: new FormControl({ value: '', disabled: true }),
-        telefone: new FormControl({ value: '', disabled: true }),
-        associacao_unidade_familiar: new FormControl({
+        //telefone: new FormControl({ value: '', disabled: true }),
+        /*associacao_unidade_familiar: new FormControl({
           value: '',
           disabled: true,
-        }),
+        })*/
       }),
       projetoAssentamento: this.fb.group({
-        nome_projeto: new FormControl({ value: '', disabled: true }),
-        codigo_projeto: new FormControl({ value: '', disabled: true }),
-        agrovila_contato: new FormControl({ value: '', disabled: true }),
+        nome: new FormControl({ value: '', disabled: true }),
+        //codigo: new FormControl({ value: '', disabled: true }),
+        //agrovila_contato: new FormControl({ value: '', disabled: true }),
         codigo_contato: new FormControl({ value: '', disabled: true }),
         lote_individual_contato: new FormControl({ value: '', disabled: true }),
         numero_lote: new FormControl({ value: '', disabled: true }),
         nome_lote: new FormControl({ value: '', disabled: true }),
+        situacao: new FormControl({ value: '', disabled: true }),
+        cep: new FormControl({ value: '', disabled: true }),
         estado: new FormControl({ value: '', disabled: true }),
         municipio: new FormControl({ value: '', disabled: true }),
-        codigo_municipio: new FormControl({ value: '', disabled: true }),
+        //codigo_municipio: new FormControl({ value: '', disabled: true }),
         gleba: new FormControl({ value: '', disabled: true }),
-        area: new FormControl({ value: '', disabled: true }),
-        regularizacao_fundiaria: new FormControl({ value: '', disabled: true }),
+        //area: new FormControl({ value: '', disabled: true }),
+        regularizacao_fundiaria: new FormControl({
+          value: 'sim',
+          disabled: false,
+        }),
       }),
 
       bloqueio: this.fb.group({
@@ -232,11 +268,6 @@ export class DetalharDivida implements OnInit {
         municipioSedeImovel: new FormControl({ value: '', disabled: true }),
         tipoTermoAditivo: new FormControl({ value: '', disabled: true }),
       }),
-      /*
-      concessao_credito: this.fb.group({
-        n_processo: new FormControl({ value: '', disabled: true }),
-        modalidade: new FormControl({ value: '', disabled: true }),
-      }),*/
 
       observacao: this.fb.group({
         observacao: new FormControl({ value: '', disabled: true }),
@@ -245,6 +276,16 @@ export class DetalharDivida implements OnInit {
 
     // ✅ Preenche os dados (mock)
     this.carregarDadosMock();
+
+    this.controlesProjetoAssentamento = this.getControles(
+      'projetoAssentamento'
+    );
+
+    this.controlesBloqueio = this.getControles('bloqueio');
+
+    this.controlesGeolocalizacao = this.getControles('geolocalizacao');
+
+    this.controlesEnderecoCobranca = this.getControles('enderecoCobranca');
   }
 
   carregarDadosMock(): void {

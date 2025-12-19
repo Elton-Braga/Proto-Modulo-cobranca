@@ -78,17 +78,41 @@
         <!-- ================= PROJETO ASSENTAMENTO ================= -->
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title> Imóvel / Gleba / PA </mat-panel-title>
+            <mat-panel-title>Imóvel / Gleba / PA</mat-panel-title>
           </mat-expansion-panel-header>
+
           <div formGroupName="projetoAssentamento" class="container">
             <div class="row">
               <div
                 class="col-md-3"
-                *ngFor="let campo of getControles('projetoAssentamento')"
+                *ngFor="let campo of controlesProjetoAssentamento"
               >
                 <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>{{ campo.key | titlecase }}</mat-label>
-                  <input matInput [formControlName]="campo.key" />
+                  <mat-label>
+                    {{ labelsProjetoAssentamento[campo.key] }}
+                  </mat-label>
+
+                  <!-- Combobox -->
+                  <ng-container
+                    *ngIf="
+                      campo.key === 'regularizacao_fundiaria';
+                      else inputPadrao
+                    "
+                  >
+                    <mat-select [formControlName]="campo.key">
+                      <mat-option
+                        *ngFor="let opcao of opcoesRegularizacao"
+                        [value]="opcao.value"
+                      >
+                        {{ opcao.label }}
+                      </mat-option>
+                    </mat-select>
+                  </ng-container>
+
+                  <!-- Input padrão -->
+                  <ng-template #inputPadrao>
+                    <input matInput [formControlName]="campo.key" />
+                  </ng-template>
                 </mat-form-field>
               </div>
             </div>
