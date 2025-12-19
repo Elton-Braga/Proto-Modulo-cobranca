@@ -77,7 +77,7 @@ export class DetalharDivida implements OnInit {
 
   labelsGeolocalizacao: Record<string, string> = {
     codigoSigef: 'Código SIGEF',
-    titulacao: 'Titulação',
+    /*titulacao: 'Titulação',
     documentoTitulacao: 'Documento de Titulação',
     tituloCancelado: 'Título Cancelado?',
     processoAdministrativo: 'Processo Administrativo de Titulação',
@@ -96,7 +96,7 @@ export class DetalharDivida implements OnInit {
     numeroSeiAtesto: 'Nº SEI – Atesto de Não Interesse',
     numeroModulosFiscais: 'Nº de Módulos Fiscais',
     tipoTermoAditivo: 'Tipo de Termo Aditivo',
-    observacoes: 'Observações',
+    observacoes: 'Observações',*/
   };
 
   labelsProjetoAssentamento: Record<string, string> = {
@@ -223,6 +223,23 @@ export class DetalharDivida implements OnInit {
       }),
       geolocalizacao: this.fb.group({
         codigoSigef: new FormControl({ value: '', disabled: true }),
+      }),
+
+      enderecoCobranca: this.fb.group({
+        cep: new FormControl({ value: '', disabled: true }),
+        estado: new FormControl({ value: '', disabled: true }),
+        municipio: new FormControl({ value: '', disabled: true }),
+        bairro: new FormControl({ value: '', disabled: true }),
+        logradouro: new FormControl({ value: '', disabled: true }),
+        complemento: new FormControl({ value: '', disabled: true }),
+        numero: new FormControl({ value: '', disabled: true }),
+        msm_end: new FormControl({ value: '', disabled: true }),
+      }),
+      impedimento: this.fb.group({
+        bloqueio: new FormControl({ value: '', disabled: true }),
+        motivo_bloqueio: new FormControl({ value: '', disabled: true }),
+      }),
+      titulacao: this.fb.group({
         titulacao: new FormControl({ value: '', disabled: true }),
         documentoTitulacao: new FormControl({ value: '', disabled: true }),
         tituloCancelado: new FormControl({ value: '', disabled: true }),
@@ -243,30 +260,6 @@ export class DetalharDivida implements OnInit {
         numeroModulosFiscais: new FormControl({ value: '', disabled: true }),
         tipoTermoAditivo: new FormControl({ value: '', disabled: true }),
         observacoes: new FormControl({ value: '', disabled: true }),
-      }),
-
-      enderecoCobranca: this.fb.group({
-        cep: new FormControl({ value: '', disabled: true }),
-        estado: new FormControl({ value: '', disabled: true }),
-        municipio: new FormControl({ value: '', disabled: true }),
-        bairro: new FormControl({ value: '', disabled: true }),
-        logradouro: new FormControl({ value: '', disabled: true }),
-        complemento: new FormControl({ value: '', disabled: true }),
-        numero: new FormControl({ value: '', disabled: true }),
-        msm_end: new FormControl({ value: '', disabled: true }),
-      }),
-      impedimento: this.fb.group({
-        bloqueio: new FormControl({ value: '', disabled: true }),
-        motivo_bloqueio: new FormControl({ value: '', disabled: true }),
-      }),
-      titulacao: this.fb.group({
-        n_processo: new FormControl({ value: '', disabled: true }),
-        doc_titulacao: new FormControl({ value: '', disabled: true }),
-
-        tituloCancelado: new FormControl({ value: '', disabled: true }),
-
-        municipioSedeImovel: new FormControl({ value: '', disabled: true }),
-        tipoTermoAditivo: new FormControl({ value: '', disabled: true }),
       }),
 
       observacao: this.fb.group({
