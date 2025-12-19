@@ -8,19 +8,39 @@
           <mat-expansion-panel-header>
             <mat-panel-title> Titular </mat-panel-title>
           </mat-expansion-panel-header>
+
           <div formGroupName="titular" class="container">
             <div class="row">
               <div
                 class="col-md-3"
-                *ngFor="let campo of getControles('titular')"
+                *ngFor="let campo of controlesTitular; trackBy: trackByKey"
               >
                 <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>{{ campo.key | titlecase }}</mat-label>
-                  <input
-                    matInput
+                  <mat-label>
+                    {{ campo.key.replace("_", " ") | titlecase }}
+                  </mat-label>
+
+                  <!-- Combobox para Natureza_Juridica -->
+                  <mat-select
+                    *ngIf="campo.key === 'Natureza_Juridica'; else campoPadrao"
                     [formControlName]="campo.key"
-                    [type]="campo.key.includes('data') ? 'date' : 'text'"
-                  />
+                  >
+                    <mat-option value="PF">Pessoa Física</mat-option>
+                    <mat-option value="PJ">Pessoa Jurídica</mat-option>
+                  </mat-select>
+
+                  <!-- Campo padrão -->
+                  <ng-template #campoPadrao>
+                    <input
+                      matInput
+                      [formControlName]="campo.key"
+                      [type]="
+                        campo.key.toLowerCase().includes('data')
+                          ? 'date'
+                          : 'text'
+                      "
+                    />
+                  </ng-template>
                 </mat-form-field>
               </div>
             </div>

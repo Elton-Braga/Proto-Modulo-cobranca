@@ -130,6 +130,8 @@ export class DetalharDivida implements OnInit {
     msm_end: 'mesmo endereço do Imóvel/Gleba/PA?',
   };
 
+  controlesTitular: { key: string; value: any }[] = [];
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialog,
@@ -141,7 +143,7 @@ export class DetalharDivida implements OnInit {
     this.form = this.fb.group({
       titular: this.fb.group({
         tipo: new FormControl({ value: '', disabled: true }),
-        Natureza_Juridica: new FormControl({ value: '', disabled: true }),
+        Natureza_Juridica: new FormControl({ value: '', disabled: false }),
         nome: new FormControl({ value: '', disabled: true }),
         cpf: new FormControl({ value: '', disabled: true }),
         codigo_beneficiario: new FormControl({ value: '', disabled: true }),
@@ -279,6 +281,17 @@ export class DetalharDivida implements OnInit {
     this.controlesGeolocalizacao = this.getControles('geolocalizacao');
 
     this.controlesEnderecoCobranca = this.getControles('enderecoCobranca');
+
+    this.controlesTitular = Object.keys(
+      (this.form.get('titular') as FormGroup).controls
+    ).map((key) => ({
+      key,
+      value: (this.form.get('titular') as FormGroup).controls[key],
+    }));
+  }
+
+  trackByKey(index: number, item: { key: string }): string {
+    return item.key;
   }
 
   carregarDadosMock(): void {
