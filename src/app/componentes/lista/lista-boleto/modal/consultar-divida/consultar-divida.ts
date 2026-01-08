@@ -4,6 +4,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogRef,
   MatDialogModule,
+  MatDialog,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +12,9 @@ import { ParcelaPagamento } from '../../../../../mock/pagamento';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { DebtRow } from '../../lista-boleto';
+import { Situacao } from './situacao/situacao';
+//import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 export type ParcelaPagamentoExtendido = ParcelaPagamento & {
   numeroReferencia?: string;
@@ -80,6 +84,7 @@ export interface Debito {
     MatIconModule,
     MatTableModule,
     MatCheckboxModule,
+    MatDialogModule,
   ],
   templateUrl: './consultar-divida.html',
   styleUrls: ['./consultar-divida.scss'],
@@ -126,7 +131,8 @@ export class ConsultarDivida implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ConsultarDivida>,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -165,13 +171,6 @@ export class ConsultarDivida implements OnInit {
 
     this.beneficiarioNome = this.data?.titular?.nome || '';
     this.beneficiarioCpf = this.data?.titular?.cpf || '';
-
-    // REMOVIDO: Não inicializar automaticamente com o primeiro débito
-    // Os campos devem iniciar vazios até que o usuário selecione uma linha
-    // if (this.debitos.length) {
-    //   this.debitoSelecionado = { ...this.debitos[0] };
-    //   this.preencherValoresIniciais(this.debitoSelecionado, 0);
-    // }
   }
 
   private preencherValoresIniciais(debito: Debito, index: number): void {
@@ -247,6 +246,28 @@ export class ConsultarDivida implements OnInit {
     return valor.toLocaleString('pt-BR', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
+    });
+  }
+
+  baixarSituacao(row: Debito): void {
+    if (!row) return;
+
+    console.log('Detalhar dívida', row);
+
+    const dialogRef = this.dialog.open(Situacao, {
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'detalhar-divida-modal',
+      data: row,
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        console.log('Modal fechada com resultado:', result);
+      }
     });
   }
 }

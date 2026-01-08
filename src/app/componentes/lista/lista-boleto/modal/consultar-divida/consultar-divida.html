@@ -666,8 +666,8 @@
   <button
     mat-flat-button
     color="accent"
-    (click)="salvar()"
-    [disabled]="!modoEdicao"
+    (click)="baixarSituacao(debitoSelecionado!)"
+    [disabled]="modoEdicao || !debitoSelecionado"
   >
     <mat-icon>check_circle</mat-icon>
     Dar Baixa
