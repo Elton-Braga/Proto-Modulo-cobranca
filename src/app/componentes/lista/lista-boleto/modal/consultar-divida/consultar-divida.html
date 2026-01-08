@@ -659,8 +659,8 @@
     (click)="editar()"
     [disabled]="modoEdicao || !debitoSelecionado"
   >
-    <mat-icon>edit</mat-icon>
-    Editar
+    <mat-icon>receipt_long</mat-icon>
+    Emitir GRU
   </button>
 
   <button
@@ -669,8 +669,8 @@
     (click)="salvar()"
     [disabled]="!modoEdicao"
   >
-    <mat-icon>save</mat-icon>
-    Salvar
+    <mat-icon>check_circle</mat-icon>
+    Dar Baixa
   </button>
 
   <button
@@ -679,8 +679,8 @@
     (click)="imprimir()"
     class="btn-imprimir"
   >
-    <mat-icon>print</mat-icon>
-    Imprimir
+    <mat-icon>merge</mat-icon>
+    Agrupar prestações
   </button>
 
   <button
@@ -689,8 +689,8 @@
     (click)="baixarGRU()"
     class="btn-baixar"
   >
-    <mat-icon>download</mat-icon>
-    Baixar GRU
+    <mat-icon>payments</mat-icon>
+    Solicitar pagamento à vista
   </button>
 
   <button
@@ -699,18 +699,8 @@
     (click)="baixarGRU()"
     class="btn-baixar"
   >
-    <mat-icon>add</mat-icon>
-    Incluir
-  </button>
-
-  <button
-    mat-flat-button
-    color="accent"
-    (click)="baixarGRU()"
-    class="btn-baixar"
-  >
-    <mat-icon>delete</mat-icon>
-    Excluir
+    <mat-icon>account_balance_wallet</mat-icon>
+    Aproveitamento de crédito
   </button>
 
   <mat-dialog-actions align="end">
