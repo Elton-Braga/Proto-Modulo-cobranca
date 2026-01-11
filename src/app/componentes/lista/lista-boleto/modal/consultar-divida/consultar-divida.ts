@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DebtRow } from '../../lista-boleto';
 import { Situacao } from './situacao/situacao';
+import { AgruparPrestacoes } from './agrupar-prestacoes/agrupar-prestacoes';
 //import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 export type ParcelaPagamentoExtendido = ParcelaPagamento & {
@@ -255,6 +256,28 @@ export class ConsultarDivida implements OnInit {
     console.log('Detalhar dívida', row);
 
     const dialogRef = this.dialog.open(Situacao, {
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'detalhar-divida-modal',
+      data: row,
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        console.log('Modal fechada com resultado:', result);
+      }
+    });
+  }
+
+  agruparPrestacoes(row: Debito): void {
+    if (!row) return;
+
+    console.log('Detalhar dívida', row);
+
+    const dialogRef = this.dialog.open(AgruparPrestacoes, {
       width: '100vw',
       height: '100vh',
       maxWidth: '100vw',

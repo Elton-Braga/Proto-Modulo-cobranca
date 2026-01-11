@@ -676,8 +676,9 @@
   <button
     mat-flat-button
     color="primary"
-    (click)="imprimir()"
+    (click)="agruparPrestacoes(debitoSelecionado!)"
     class="btn-imprimir"
+    [disabled]="modoEdicao || !debitoSelecionado"
   >
     <mat-icon>merge</mat-icon>
     Agrupar prestações

@@ -1,1 +1,42 @@
-<p>situacao works!</p>
+<div class="modal-content">
+  <!-- Combobox de Situação -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Situação</mat-label>
+    <mat-select [(ngModel)]="situacaoSelecionada">
+      <mat-option *ngFor="let s of situacoes" [value]="s">
+        {{ s }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Upload de anexo (opcional) -->
+  <div class="upload-container">
+    <button mat-stroked-button color="primary" type="button">
+      <mat-icon>attach_file</mat-icon>
+      Anexar documento
+      <input type="file" hidden (change)="onFileSelected($event)" />
+    </button>
+
+    <span class="file-name" *ngIf="anexo">
+      {{ anexo.name }}
+    </span>
+  </div>
+
+  <!-- Botões -->
+  <div class="actions">
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="salvar()"
+      [disabled]="!situacaoSelecionada"
+    >
+      <mat-icon>save</mat-icon>
+      Salvar
+    </button>
+
+    <button mat-flat-button color="warn" (click)="fechar()">
+      <mat-icon>close</mat-icon>
+      Fechar
+    </button>
+  </div>
+</div>
