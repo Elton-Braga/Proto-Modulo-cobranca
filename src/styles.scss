@@ -80,3 +80,22 @@ body {
   max-width: none !important;
   width: 50rem !important;
 }
+
+/* Centraliza qualquer dialog que use essa classe */
+.detalhar-divida-modal {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Garante que o container não empurre para a esquerda */
+.detalhar-divida-modal .mat-mdc-dialog-container {
+  margin: 0 !important;
+}
+
+/* Ajusta o tamanho da modal de Situação */
+.detalhar-divida-modal .mat-mdc-dialog-surface {
+  min-width: 400px;
+  max-width: 90vw;
+  max-height: 90vh;
+}

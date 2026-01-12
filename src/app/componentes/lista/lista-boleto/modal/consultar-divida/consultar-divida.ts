@@ -253,21 +253,21 @@ export class ConsultarDivida implements OnInit {
   baixarSituacao(row: Debito): void {
     if (!row) return;
 
-    console.log('Detalhar dívida', row);
-
     const dialogRef = this.dialog.open(Situacao, {
-      width: '100vw',
-      height: '100vh',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      panelClass: 'detalhar-divida-modal',
+      panelClass: 'situacao-dialog',
       data: row,
       disableClose: false,
+      position: {
+        //top: '50%',
+        left: '50%',
+      },
     });
 
-    dialogRef.afterClosed().subscribe((result: any) => {
-      if (result) {
-        console.log('Modal fechada com resultado:', result);
+    dialogRef.afterOpened().subscribe(() => {
+      const pane = document.querySelector('.situacao-dialog') as HTMLElement;
+
+      if (pane) {
+        pane.style.transform = 'translate(-50%, -50%)';
       }
     });
   }
