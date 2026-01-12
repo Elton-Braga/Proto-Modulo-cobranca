@@ -196,24 +196,34 @@ export class ConsultarDivida implements OnInit {
   }
 
   selecionarLinha(row: Debito): void {
-    // Se a linha já está selecionada, desseleciona
     if (this.selection.isSelected(row)) {
       this.selection.deselect(row);
-      this.debitoSelecionado = null;
     } else {
-      // Seleciona a nova linha
-      this.selection.clear();
       this.selection.select(row);
-      this.debitoSelecionado = { ...row };
+    }
 
-      // Obter o índice da linha selecionada
-      const index = this.debitos.findIndex((d) => d === row);
+    const selecionados = this.selection.selected;
+
+    if (selecionados.length === 1) {
+      // Apenas uma linha selecionada → exibe valores
+      const unicoDebito = selecionados[0];
+      this.debitoSelecionado = { ...unicoDebito };
+
+      const index = this.debitos.findIndex((d) => d === unicoDebito);
       if (index !== -1 && this.debitoSelecionado) {
         this.preencherValoresIniciais(this.debitoSelecionado, index);
       }
+    } else {
+      // Nenhuma ou múltiplas seleções → inputs vazios
+      this.debitoSelecionado = null;
     }
+
     this.modoEdicao = false;
-    this.cdr.detectChanges(); // Força a detecção de mudanças
+    this.cdr.detectChanges();
+  }
+
+  get possuiSelecao(): boolean {
+    return this.selection.selected.length > 0;
   }
 
   editar(): void {

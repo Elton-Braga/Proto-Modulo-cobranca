@@ -1,0 +1,21 @@
+.modal-container {
+  padding: 1.5rem;
+  min-width: 320px;
+}
+
+.mensagem {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.acoes {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.full-width {
+  width: 100%;
+}

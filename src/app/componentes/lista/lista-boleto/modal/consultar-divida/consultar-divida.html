@@ -657,7 +657,7 @@
     mat-flat-button
     color="primary"
     (click)="editar()"
-    [disabled]="modoEdicao || !debitoSelecionado"
+    [disabled]="modoEdicao || !possuiSelecao"
   >
     <mat-icon>receipt_long</mat-icon>
     Emitir GRU
@@ -667,7 +667,7 @@
     mat-flat-button
     color="accent"
     (click)="baixarSituacao(debitoSelecionado!)"
-    [disabled]="modoEdicao || !debitoSelecionado"
+    [disabled]="modoEdicao || !possuiSelecao"
   >
     <mat-icon>check_circle</mat-icon>
     Dar Baixa
@@ -678,7 +678,7 @@
     color="primary"
     (click)="agruparPrestacoes(debitoSelecionado!)"
     class="btn-imprimir"
-    [disabled]="modoEdicao || !debitoSelecionado"
+    [disabled]="modoEdicao || !possuiSelecao"
   >
     <mat-icon>merge</mat-icon>
     Agrupar prestações

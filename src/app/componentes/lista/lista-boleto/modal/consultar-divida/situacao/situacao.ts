@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,6 +19,7 @@ import { MatDialogRef } from '@angular/material/dialog';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    NgIf,
   ],
   templateUrl: './situacao.html',
   styleUrl: './situacao.scss',
