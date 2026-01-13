@@ -666,7 +666,7 @@
   <button
     mat-flat-button
     color="accent"
-    (click)="baixarSituacao(debitoSelecionado!)"
+    (click)="baixarSituacaoSelecionados()"
     [disabled]="modoEdicao || !possuiSelecao"
   >
     <mat-icon>check_circle</mat-icon>
@@ -676,7 +676,7 @@
   <button
     mat-flat-button
     color="primary"
-    (click)="agruparPrestacoes(debitoSelecionado!)"
+    (click)="agruparPrestacoesSelecionadas()"
     class="btn-imprimir"
     [disabled]="modoEdicao || !possuiSelecao"
   >
@@ -684,22 +684,12 @@
     Agrupar prestações
   </button>
 
-  <button
-    mat-flat-button
-    color="accent"
-    (click)="baixarGRU()"
-    class="btn-baixar"
-  >
+  <button mat-flat-button color="accent" class="btn-baixar">
     <mat-icon>payments</mat-icon>
     Solicitar pagamento à vista
   </button>
 
-  <button
-    mat-flat-button
-    color="accent"
-    (click)="baixarGRU()"
-    class="btn-baixar"
-  >
+  <button mat-flat-button color="accent" class="btn-baixar">
     <mat-icon>account_balance_wallet</mat-icon>
     Aproveitamento de crédito
   </button>

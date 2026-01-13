@@ -222,6 +222,34 @@ export class ConsultarDivida implements OnInit {
     this.cdr.detectChanges();
   }
 
+  baixarSituacaoSelecionados(): void {
+    const selecionados = this.selection.selected;
+
+    if (selecionados.length === 0) return;
+
+    this.dialog.open(Situacao, {
+      panelClass: 'situacao-dialog',
+      data: selecionados,
+      disableClose: false,
+    });
+  }
+
+  agruparPrestacoesSelecionadas(): void {
+    const selecionados = this.selection.selected;
+
+    if (selecionados.length === 0) return;
+
+    this.dialog.open(AgruparPrestacoes, {
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'detalhar-divida-modal',
+      data: selecionados,
+      disableClose: false,
+    });
+  }
+
   get possuiSelecao(): boolean {
     return this.selection.selected.length > 0;
   }
