@@ -307,6 +307,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: 'Em atraso',
+        numeroDaPrestacao: '10',
       },
       {
         objetoCredito:
@@ -362,6 +364,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: 'Em atraso',
+        numeroDaPrestacao: '11',
       },
       {
         objetoCredito:
@@ -422,6 +426,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: 'Em aberto',
+        numeroDaPrestacao: '12',
       },
     ],
   },
@@ -585,7 +591,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         houveDescumprimentoRegras: true,
         rebateLiquidacaoAteVencimento: 15.0,
         rebateLiquidacaoAposVencimento: 5.0,
-        dataVencimento: undefined,
+        dataVencimento: '10/10/2015',
         modalidade: '',
       },
     ],
@@ -601,7 +607,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         descontoConcedido: 100.0,
         jurosMora: 12.5,
         valorDevido: 662.5,
-        dataVencimento: '2025-12-31', // ISO string (YYYY-MM-DD)
+        dataVencimento: '12/12/2025', // ISO string (YYYY-MM-DD)
       },
     ],
     concessao: [
@@ -646,7 +652,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         nossoNumero: '',
         numeroRefAntigo: '',
         prestacao: '1/12',
-        vencimentoOriginal: '',
+        vencimentoOriginal: '10/12/2023',
         dataParaPagamento: '',
         valorPrincipal: 0,
         correcao: 0,
@@ -673,6 +679,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: 'Em aberto',
+        numeroDaPrestacao: '5',
       },
       {
         objetoCredito:
@@ -697,7 +705,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         nossoNumero: '',
         numeroRefAntigo: '',
         prestacao: '2/12',
-        vencimentoOriginal: '',
+        vencimentoOriginal: '01/01/2024',
         dataParaPagamento: '',
         valorPrincipal: 0,
         correcao: 0,
@@ -724,6 +732,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: 'Em atraso',
+        numeroDaPrestacao: '6',
       },
       {
         objetoCredito:
@@ -753,7 +763,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         nossoNumero: '',
         numeroRefAntigo: '',
         prestacao: '3/12',
-        vencimentoOriginal: '',
+        vencimentoOriginal: '02/01/2024',
         dataParaPagamento: '',
         valorPrincipal: 0,
         correcao: 0,
@@ -780,6 +790,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: 'Em atraso',
+        numeroDaPrestacao: '6',
       },
     ],
   },
@@ -1019,6 +1031,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: 'Em atraso',
+        numeroDaPrestacao: '12',
       },
       {
         objetoCredito:
@@ -1074,6 +1088,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: 'Em atraso',
+        numeroDaPrestacao: '13',
       },
       {
         objetoCredito:
@@ -1134,6 +1150,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: 'Em atraso',
+        numeroDaPrestacao: '14',
       },
     ],
   }, // ==== REGISTRO 4 ====
@@ -1340,6 +1358,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -1395,6 +1415,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -1455,6 +1477,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
     ],
   },
@@ -1691,6 +1715,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -1746,6 +1772,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -1806,6 +1834,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
     ],
   },
@@ -2028,6 +2058,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -2083,6 +2115,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -2143,6 +2177,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
     ],
   }, // ==== REGISTRO 7 ====
@@ -2375,6 +2411,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -2430,6 +2468,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -2490,6 +2530,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
     ],
   },
@@ -2709,6 +2751,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -2764,6 +2808,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -2824,6 +2870,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
     ],
   }, // ==== REGISTRO 9 ====
@@ -3027,6 +3075,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -3082,6 +3132,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -3142,6 +3194,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
     ],
   },
@@ -3395,6 +3449,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -3450,6 +3506,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -3510,6 +3568,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
     ],
   },
@@ -3711,6 +3771,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -3766,6 +3828,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -3826,6 +3890,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
     ],
   },
@@ -4065,6 +4131,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -4120,6 +4188,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
       {
         objetoCredito:
@@ -4180,6 +4250,8 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
+        situacao: '',
+        numeroDaPrestacao: '',
       },
     ],
   },

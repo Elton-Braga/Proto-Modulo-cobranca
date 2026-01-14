@@ -45,4 +45,6 @@ export interface Debitos {
   tipoBaixa: string;
   prestacaoUnica: string;
   dataBaixa: string;
+  situacao: string;
+  numeroDaPrestacao: string;
 }

@@ -342,7 +342,7 @@
         <!-- Número da parcela -->
         <ng-container matColumnDef="parcela">
           <th mat-header-cell *matHeaderCellDef>Nº Prestação</th>
-          <td mat-cell *matCellDef="let row">12</td>
+          <td mat-cell *matCellDef="let row">{{ row.numeroDaPrestacao }}</td>
         </ng-container>
 
         <!-- Vencimento -->
@@ -364,7 +364,7 @@
         <!-- Situação -->
         <ng-container matColumnDef="situacao">
           <th mat-header-cell *matHeaderCellDef>Situação</th>
-          <td mat-cell *matCellDef="let row">Baixada</td>
+          <td mat-cell *matCellDef="let row">{{ row.situacao }}</td>
         </ng-container>
 
         <!-- Ação -->
@@ -398,7 +398,7 @@
 
               <button mat-menu-item (click)="atualizarParcela(row)">
                 <mat-icon>update</mat-icon>
-                <span>Atualizar Prestações</span>
+                <span>Atualizar Prestação</span>
               </button>
             </mat-menu>
           </td>

@@ -31,6 +31,7 @@ import { DetalharDivida } from '../detalhar-divida/detalhar-divida';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ConsultarDivida } from './modal/consultar-divida/consultar-divida';
+//import { Debitos } from '../../../mock/debitos';
 
 /* =======================================================
    ==== INTERFACES ESTRUTURADAS E TIPADAS CORRETAMENTE ====
@@ -68,8 +69,20 @@ export interface Beneficiario {
   bloqueios?: { bloqueio?: string }[];
   requerimento?: Requerimento[];
   dadosDeCobranca?: DadosDeCobranca[];
+  debitos?: Debitos[]; // ADICIONE ESTA LINHA
   documentoTitulacao?: DocumentoTitulacao;
   innerSelection?: SelectionModel<DadosDeCobranca>;
+}
+
+// Adicione a interface Debitos localmente ou importe do seu mock
+export interface Debitos {
+  descricaoReceita?: string;
+  prestacao?: string;
+  vencimentoOriginal?: string;
+  valorDevido?: number;
+  situacao?: string;
+  numeroDaPrestacao?: string;
+  // Adicione outros campos conforme necessário
 }
 
 /* Linha que será exibida na tabela (flatten) */
@@ -78,12 +91,13 @@ export interface DebtRow {
   nomeDevedor: string;
   cpfDevedor: string;
   descricaoDivida?: string;
-  numeroParcela?: string;
-  vencimento?: Date; // <-- agora Date | undefined
+  numeroParcela?: string; // "1/12"
+  vencimento?: Date;
   valor?: number;
   situacao?: string;
   beneficiarioIndex?: number;
   cobrancaIndex?: number;
+  numeroDaPrestacao?: string;
 }
 
 @Component({
@@ -277,48 +291,43 @@ export class ListaBoleto implements AfterViewInit {
    *   numeroReferencia / nossoNumero / numeroParcela => número de parcela (quando disponível).
    * Ajuste conforme formato real do mock.
    */
+  // Corrija a função buildDebtRows para percorrer o array debitos em vez de dadosDeCobranca
   private buildDebtRows(): DebtRow[] {
     const rows: DebtRow[] = [];
 
     this.beneficiariosOriginais.forEach((b, bi) => {
-      const codigo = b.titular?.cod_beneficiario || '';
-      const nome = b.titular?.nome || '';
-      const cpf = b.titular?.cpf || '';
+      const codigo = b.titular.cod_beneficiario;
+      const nome = b.titular.nome;
+      const cpf = b.titular.cpf;
 
-      if (b.dadosDeCobranca && b.dadosDeCobranca.length > 0) {
-        b.dadosDeCobranca.forEach((d, di) => {
-          const row: DebtRow = {
-            codigoBeneficiario: codigo,
-            nomeDevedor: nome,
-            cpfDevedor: cpf,
-            descricaoDivida: d.descricao || d.modalidade || d.tipo,
-            numeroParcela:
-              d.numeroParcela || d.numeroReferencia || d.nossoNumero,
-            vencimento: this.parseDate(d.dataAssinaturaContrato),
-            valor: d.valorContrato ?? undefined,
-            situacao:
-              d.situacao || b.historico_PNRA?.[0]?.situacao || undefined,
-            beneficiarioIndex: bi,
-            cobrancaIndex: di,
-          };
-          rows.push(row);
-        });
-      } else {
-        // Caso não haja dadosDeCobranca, adicionar linha "vazia"
+      if (!b.debitos || b.debitos.length === 0) {
+        return;
+      }
+
+      b.debitos.forEach((d: Debitos, di: number) => {
         const row: DebtRow = {
           codigoBeneficiario: codigo,
           nomeDevedor: nome,
           cpfDevedor: cpf,
-          descricaoDivida: undefined,
-          numeroParcela: undefined,
-          vencimento: undefined,
-          valor: undefined,
-          situacao: b.historico_PNRA?.[0]?.situacao,
+
+          // Use os campos do objeto Debitos
+          descricaoDivida: d.descricaoReceita,
+          numeroParcela: d.prestacao, // "1/12", "2/12", etc.
+          vencimento: this.parseDate(d.vencimentoOriginal), // String no formato "dd/MM/yyyy"
+          valor: d.valorDevido,
+
+          // Agora sim, a situação virá do array debitos
+          situacao: d.situacao,
+
           beneficiarioIndex: bi,
-          cobrancaIndex: -1,
+          cobrancaIndex: di,
+
+          // Adicione o número da prestação
+          numeroDaPrestacao: d.numeroDaPrestacao,
         };
+
         rows.push(row);
-      }
+      });
     });
 
     return rows;
@@ -328,19 +337,13 @@ export class ListaBoleto implements AfterViewInit {
   private parseDate(value: string | number | undefined): Date | undefined {
     if (value == null || value === '') return undefined;
 
-    // se for número (timestamp em ms)
     if (typeof value === 'number') {
       const dtNum = new Date(value);
       return isNaN(dtNum.getTime()) ? undefined : dtNum;
     }
 
-    // se já for string: tenta new Date()
     if (typeof value === 'string') {
-      // tentativa direta (ISO, etc.)
-      const tryIso = new Date(value);
-      if (!isNaN(tryIso.getTime())) return tryIso;
-
-      // tenta dd/MM/yyyy
+      // Tenta o formato dd/MM/yyyy primeiro (que é o formato no JSON)
       const ddmmyyyy = /^(\d{2})\/(\d{2})\/(\d{4})$/;
       const m = value.match(ddmmyyyy);
       if (m) {
@@ -351,7 +354,9 @@ export class ListaBoleto implements AfterViewInit {
         return isNaN(dt.getTime()) ? undefined : dt;
       }
 
-      // outras formatações podem ser adicionadas aqui
+      // Tenta outros formatos (ISO, etc.)
+      const tryIso = new Date(value);
+      if (!isNaN(tryIso.getTime())) return tryIso;
     }
 
     return undefined;
