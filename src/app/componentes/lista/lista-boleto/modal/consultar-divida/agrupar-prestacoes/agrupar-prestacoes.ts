@@ -36,6 +36,7 @@ export class AgruparPrestacoes {
 
   ngOnInit(): void {
     this.calcularTotal();
+    this.calcularTotalPrestacoesEmAtraso();
   }
 
   private calcularTotal(): void {
@@ -65,5 +66,11 @@ export class AgruparPrestacoes {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
+  }
+
+  calcularTotalPrestacoesEmAtraso(): void {
+    this.valorAgrupado = this.debitosSelecionados
+      .filter((d) => d.situacao?.toLowerCase() === 'em atraso')
+      .reduce((total, d) => total + (d.valorTotalPrestacao ?? 0), 0);
   }
 }

@@ -31,6 +31,8 @@ import { DetalharDivida } from '../detalhar-divida/detalhar-divida';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ConsultarDivida } from './modal/consultar-divida/consultar-divida';
+import { AgruparPrestacoes } from './modal/consultar-divida/agrupar-prestacoes/agrupar-prestacoes';
+import { AlertDialogComponent } from './modal/mensagem/mensagem';
 //import { Debitos } from '../../../mock/debitos';
 
 /* =======================================================
@@ -125,6 +127,7 @@ export interface DebtRow {
     MatDatepickerModule,
     MatNativeDateModule,
     NgFor,
+    //AlertDialogComponent,
   ],
   templateUrl: './lista-boleto.html',
   styleUrls: ['./lista-boleto.scss'],
@@ -472,10 +475,77 @@ export class ListaBoleto implements AfterViewInit {
   /** Atualizar parcela (abrir formulário/modal de edição) */
   atualizarParcela(row: DebtRow): void {
     if (!row) return;
-    console.log('Atualizar parcela', row);
-    // Exemplo: abrir um dialog para editar a parcela
-    // const ref = this.dialog.open(EditarParcelaComponent, { data: row });
-    // ref.afterClosed().subscribe( updated => { if(updated) this.atualizarTabela(); });
+
+    // Regra geral: somente em atraso
+    if (row.situacao?.toLowerCase() !== 'em atraso') {
+      return;
+    }
+
+    const nome = row.nomeDevedor?.toLowerCase();
+
+    /* ===============================
+     CASO JOANA – BLOQUEIO TOTAL
+     =============================== */
+    if (nome?.includes('joana')) {
+      //alert('Para atualizar esta prestação, procure a área responsável');
+
+      this.dialog.open(AlertDialogComponent, {
+        width: '420px',
+        data: {
+          title: 'Acesso restrito',
+          message: 'Para atualizar esta prestação, procure a área responsável',
+        },
+      });
+
+      return;
+    }
+
+    /* ===============================
+     CASO FRANCISCO / MATEUS
+     =============================== */
+
+    const prestacoesEmAtraso = this.dataSource.data.filter(
+      (r) =>
+        r.codigoBeneficiario === row.codigoBeneficiario &&
+        r.situacao?.toLowerCase() === 'em atraso'
+    );
+
+    const dialogRef = this.dialog.open(AgruparPrestacoes, {
+      width: '480px',
+      disableClose: true,
+      data: prestacoesEmAtraso.map((p) => ({
+        ...p,
+        valorTotalPrestacao: p.valor ?? 0,
+      })),
+    });
+
+    /* ===============================
+     CASO MATEUS – CONFIRMAÇÃO PÓS-MODAL
+     =============================== */
+    if (nome?.includes('mateus')) {
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.dialog
+            .open(AlertDialogComponent, {
+              width: '420px',
+              data: {
+                title: 'Confirmação',
+                message: 'Deseja emitir a GRU?',
+                confirmText: 'Sim',
+                cancelText: 'Não',
+                showCancel: true,
+              },
+            })
+            .afterClosed()
+            .subscribe((confirmou) => {
+              if (confirmou) {
+                console.log('Emitir GRU confirmada');
+                // chamada real do serviço aqui
+              }
+            });
+        }
+      });
+    }
   }
 
   /** Exporta seleção atual como CSV (utiliza ponto e vírgula como separador) */
