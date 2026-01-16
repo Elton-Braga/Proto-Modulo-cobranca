@@ -1088,7 +1088,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
-        situacao: 'Em atraso',
+        situacao: 'Em aberto',
         numeroDaPrestacao: '13',
       },
       {
@@ -1150,7 +1150,7 @@ export const MOCK_BENEFICIARIOS: Beneficiario[] = [
         tipoBaixa: 'Normal',
         prestacaoUnica: 'Não',
         dataBaixa: '—',
-        situacao: 'Em atraso',
+        situacao: 'Em aberto',
         numeroDaPrestacao: '14',
       },
     ],

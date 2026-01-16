@@ -484,33 +484,55 @@ export class ListaBoleto implements AfterViewInit {
     const nome = row.nomeDevedor?.toLowerCase();
 
     /* ===============================
-     CASO JOANA – BLOQUEIO TOTAL
-     =============================== */
+   CASO JOANA – BLOQUEIO TOTAL
+   =============================== */
     if (nome?.includes('joana')) {
-      //alert('Para atualizar esta prestação, procure a área responsável');
-
       this.dialog.open(AlertDialogComponent, {
         width: '420px',
         data: {
-          title: 'Acesso restrito',
+          title: 'Atenção',
           message: 'Para atualizar esta prestação, procure a área responsável',
         },
       });
-
       return;
     }
 
     /* ===============================
-     CASO FRANCISCO / MATEUS
-     =============================== */
+   CASO MATEUS – APENAS CONFIRMAÇÃO
+   =============================== */
+    if (nome?.includes('mateus')) {
+      this.dialog
+        .open(AlertDialogComponent, {
+          width: '420px',
+          data: {
+            title: 'Confirmação',
+            message: 'Deseja emitir a GRU?',
+            confirmText: 'Sim',
+            cancelText: 'Não',
+            showCancel: true,
+          },
+        })
+        .afterClosed()
+        .subscribe((confirmou) => {
+          if (confirmou) {
+            console.log('Emitir GRU confirmada');
+            // chamada real do serviço aqui
+          }
+        });
 
+      return; // 🔴 impede abertura da modal AgruparPrestacoes
+    }
+
+    /* ===============================
+   CASO FRANCISCO (E DEMAIS)
+   =============================== */
     const prestacoesEmAtraso = this.dataSource.data.filter(
       (r) =>
         r.codigoBeneficiario === row.codigoBeneficiario &&
         r.situacao?.toLowerCase() === 'em atraso'
     );
 
-    const dialogRef = this.dialog.open(AgruparPrestacoes, {
+    this.dialog.open(AgruparPrestacoes, {
       width: '480px',
       disableClose: true,
       data: prestacoesEmAtraso.map((p) => ({
@@ -518,34 +540,6 @@ export class ListaBoleto implements AfterViewInit {
         valorTotalPrestacao: p.valor ?? 0,
       })),
     });
-
-    /* ===============================
-     CASO MATEUS – CONFIRMAÇÃO PÓS-MODAL
-     =============================== */
-    if (nome?.includes('mateus')) {
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.dialog
-            .open(AlertDialogComponent, {
-              width: '420px',
-              data: {
-                title: 'Confirmação',
-                message: 'Deseja emitir a GRU?',
-                confirmText: 'Sim',
-                cancelText: 'Não',
-                showCancel: true,
-              },
-            })
-            .afterClosed()
-            .subscribe((confirmou) => {
-              if (confirmou) {
-                console.log('Emitir GRU confirmada');
-                // chamada real do serviço aqui
-              }
-            });
-        }
-      });
-    }
   }
 
   /** Exporta seleção atual como CSV (utiliza ponto e vírgula como separador) */
