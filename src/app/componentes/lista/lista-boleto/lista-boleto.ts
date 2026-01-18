@@ -474,54 +474,7 @@ export class ListaBoleto implements AfterViewInit {
 
   /** Atualizar parcela (abrir formulário/modal de edição) */
   atualizarParcela(row: DebtRow): void {
-    if (!row) return;
-
-    // Regra geral: somente em atraso
-    if (row.situacao?.toLowerCase() !== 'em atraso') {
-      return;
-    }
-
-    const nome = row.nomeDevedor?.toLowerCase();
-
-    /* ===============================
-   CASO JOANA – BLOQUEIO TOTAL
-   =============================== */
-    if (nome?.includes('joana')) {
-      this.dialog.open(AlertDialogComponent, {
-        width: '420px',
-        data: {
-          title: 'Atenção',
-          message: 'Para atualizar esta prestação, procure a área responsável',
-        },
-      });
-      return;
-    }
-
-    /* ===============================
-   CASO MATEUS – APENAS CONFIRMAÇÃO
-   =============================== */
-    if (nome?.includes('mateus')) {
-      this.dialog
-        .open(AlertDialogComponent, {
-          width: '420px',
-          data: {
-            title: 'Confirmação',
-            message: 'Deseja emitir a GRU?',
-            confirmText: 'Sim',
-            cancelText: 'Não',
-            showCancel: true,
-          },
-        })
-        .afterClosed()
-        .subscribe((confirmou) => {
-          if (confirmou) {
-            console.log('Emitir GRU confirmada');
-            // chamada real do serviço aqui
-          }
-        });
-
-      return; // 🔴 impede abertura da modal AgruparPrestacoes
-    }
+    // ... (código existente até a abertura da modal)
 
     /* ===============================
    CASO FRANCISCO (E DEMAIS)
@@ -535,10 +488,13 @@ export class ListaBoleto implements AfterViewInit {
     this.dialog.open(AgruparPrestacoes, {
       width: '480px',
       disableClose: true,
-      data: prestacoesEmAtraso.map((p) => ({
-        ...p,
-        valorTotalPrestacao: p.valor ?? 0,
-      })),
+      data: {
+        debitos: prestacoesEmAtraso.map((p) => ({
+          ...p,
+          valorTotalPrestacao: p.valor ?? 0,
+        })),
+        origem: 'listaBoleto', // Adiciona a origem
+      },
     });
   }
 

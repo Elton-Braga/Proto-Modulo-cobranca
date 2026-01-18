@@ -245,7 +245,10 @@ export class ConsultarDivida implements OnInit {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'detalhar-divida-modal',
-      data: selecionados,
+      data: {
+        debitos: selecionados,
+        origem: 'consultarDivida', // Adiciona a origem
+      },
       disableClose: false,
     });
   }
@@ -313,15 +316,16 @@ export class ConsultarDivida implements OnInit {
   agruparPrestacoes(row: Debito): void {
     if (!row) return;
 
-    console.log('Detalhar dívida', row);
-
     const dialogRef = this.dialog.open(AgruparPrestacoes, {
       width: '100vw',
       height: '100vh',
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'detalhar-divida-modal',
-      data: row,
+      data: {
+        debitos: [row],
+        origem: 'consultarDivida', // Adiciona a origem
+      },
       disableClose: false,
     });
 

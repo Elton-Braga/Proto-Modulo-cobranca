@@ -1,11 +1,18 @@
 <div class="modal-container">
   <!-- Etapa 1 -->
   <ng-container *ngIf="!confirmarAgrupamento">
-    <p class="mensagem">Deseja agrupar seleções?</p>
+    <!-- Texto para ConsultarDivida -->
+    <p class="mensagem" *ngIf="origemComponente === 'consultarDivida'">
+      Deseja agrupar seleções?
+    </p>
+
+    <!-- Texto para ListaBoleto -->
+    <p class="mensagem" *ngIf="origemComponente === 'listaBoleto'">
+      Serão agrupadas todas as prestações em atraso, deseja continuar?
+    </p>
 
     <div class="acoes">
       <button mat-flat-button color="primary" (click)="confirmar()">Sim</button>
-
       <button mat-stroked-button color="warn" (click)="fechar()">Não</button>
     </div>
   </ng-container>
@@ -25,7 +32,6 @@
 
     <div class="acoes">
       <button mat-stroked-button (click)="fechar()">Sair</button>
-
       <button
         mat-flat-button
         color="primary"

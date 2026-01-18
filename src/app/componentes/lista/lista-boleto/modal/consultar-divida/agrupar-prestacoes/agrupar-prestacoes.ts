@@ -26,21 +26,33 @@ import { FormsModule } from '@angular/forms';
 export class AgruparPrestacoes {
   confirmarAgrupamento = false;
   novaData: Date | null = null;
-
   valorAgrupado = 0;
+  origemComponente: string = 'consultarDivida'; // Valor padrão
 
   constructor(
     private dialogRef: MatDialogRef<AgruparPrestacoes>,
-    @Inject(MAT_DIALOG_DATA) public debitosSelecionados: any[]
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
-    this.calcularTotal();
-    this.calcularTotalPrestacoesEmAtraso();
+    // Extrair a origem do componente e os débitos
+    if (this.data) {
+      // Se data for um array (para compatibilidade)
+      if (Array.isArray(this.data)) {
+        this.data = { debitos: this.data };
+      }
+
+      this.origemComponente = this.data.origem || 'consultarDivida';
+
+      if (this.data.debitos) {
+        this.calcularTotal(this.data.debitos);
+        this.calcularTotalPrestacoesEmAtraso(this.data.debitos);
+      }
+    }
   }
 
-  private calcularTotal(): void {
-    this.valorAgrupado = this.debitosSelecionados.reduce(
+  private calcularTotal(debitos: any[]): void {
+    this.valorAgrupado = debitos.reduce(
       (total, debito) => total + (debito.valorTotalPrestacao ?? 0),
       0
     );
@@ -68,8 +80,8 @@ export class AgruparPrestacoes {
     });
   }
 
-  calcularTotalPrestacoesEmAtraso(): void {
-    this.valorAgrupado = this.debitosSelecionados
+  calcularTotalPrestacoesEmAtraso(debitos: any[]): void {
+    this.valorAgrupado = debitos
       .filter((d) => d.situacao?.toLowerCase() === 'em atraso')
       .reduce((total, d) => total + (d.valorTotalPrestacao ?? 0), 0);
   }
