@@ -69,7 +69,7 @@
               <mat-label>SR</mat-label>
               <mat-select formControlName="sr">
                 @for (item of sr; track item) {
-                <mat-option [value]="item">{{ item }}</mat-option>
+                  <mat-option [value]="item">{{ item }}</mat-option>
                 }
               </mat-select>
             </mat-form-field>
@@ -255,32 +255,6 @@
         </div>
       </div>
 
-      <!--<div class="table-toolbar margem-exportar">
-      <button
-        mat-button
-        [matMenuTriggerFor]="menuExportar"
-        matTooltip="Exportar dados selecionados"
-      >
-        <mat-icon>upload_file</mat-icon>
-        Exportar
-      </button>
-
-      <mat-menu #menuExportar="matMenu">
-        <button mat-menu-item (click)="exportarCSV()">
-          <mat-icon>table_view</mat-icon>
-          <span>CSV</span>
-        </button>
-
-        <button mat-menu-item (click)="exportarPDF()">
-          <mat-icon>picture_as_pdf</mat-icon>
-          <span>PDF</span>
-        </button>
-      </mat-menu>
-      <span class="selected-count" *ngIf="selection?.hasValue()">
-        {{ selection.selected.length }} selecionado(s)
-      </span>
-    </div>-->
-
       <br />
       <table
         mat-table
@@ -349,7 +323,7 @@
         <ng-container matColumnDef="vencimento">
           <th mat-header-cell *matHeaderCellDef>Vencimento</th>
           <td mat-cell *matCellDef="let row">
-            {{ row.vencimento ? (row.vencimento | date : "dd/MM/yyyy") : "-" }}
+            {{ row.vencimento ? (row.vencimento | date: "dd/MM/yyyy") : "-" }}
           </td>
         </ng-container>
 
@@ -357,7 +331,7 @@
         <ng-container matColumnDef="valor">
           <th mat-header-cell *matHeaderCellDef>Valor</th>
           <td mat-cell *matCellDef="let row">
-            {{ row.valor != null ? (row.valor | number : "1.2-2") : "-" }}
+            {{ row.valor != null ? (row.valor | number: "1.2-2") : "-" }}
           </td>
         </ng-container>
 

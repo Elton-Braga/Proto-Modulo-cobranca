@@ -188,7 +188,7 @@ export class ListaBoleto implements AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -447,7 +447,7 @@ export class ListaBoleto implements AfterViewInit {
     if (!row) return;
 
     const beneficiario = MOCK_BENEFICIARIOS.find(
-      (b) => b.titular.cod_beneficiario === row.codigoBeneficiario
+      (b) => b.titular.cod_beneficiario === row.codigoBeneficiario,
     );
 
     const dialogRef = this.dialog.open(ConsultarDivida, {
@@ -475,27 +475,69 @@ export class ListaBoleto implements AfterViewInit {
   /** Atualizar parcela (abrir formulário/modal de edição) */
   atualizarParcela(row: DebtRow): void {
     // ... (código existente até a abertura da modal)
+    if (!row) return;
 
+    // Regra geral: somente em atraso
+    if (row.situacao?.toLowerCase() !== 'em atraso') {
+      return;
+    }
+
+    const nome = row.nomeDevedor?.toLowerCase();
     /* ===============================
    CASO FRANCISCO (E DEMAIS)
    =============================== */
+
     const prestacoesEmAtraso = this.dataSource.data.filter(
       (r) =>
         r.codigoBeneficiario === row.codigoBeneficiario &&
-        r.situacao?.toLowerCase() === 'em atraso'
+        r.situacao?.toLowerCase() === 'em atraso',
     );
+    if (nome?.includes('francisco')) {
+      this.dialog.open(AgruparPrestacoes, {
+        width: '480px',
+        disableClose: true,
+        data: {
+          debitos: prestacoesEmAtraso.map((p) => ({
+            ...p,
+            valorTotalPrestacao: p.valor ?? 0,
+          })),
+          origem: 'listaBoleto', // Adiciona a origem
+        },
+      });
+      return;
+    }
 
-    this.dialog.open(AgruparPrestacoes, {
-      width: '480px',
-      disableClose: true,
-      data: {
-        debitos: prestacoesEmAtraso.map((p) => ({
-          ...p,
-          valorTotalPrestacao: p.valor ?? 0,
-        })),
-        origem: 'listaBoleto', // Adiciona a origem
-      },
-    });
+    /* ===============================
+     CASO JOANA – BLOQUEIO TOTAL
+     =============================== */
+    if (nome?.includes('joana')) {
+      //alert('Para atualizar esta prestação, procure a área responsável');
+
+      this.dialog.open(AlertDialogComponent, {
+        width: '420px',
+        data: {
+          title: 'Atenção!',
+          message: 'Para atualizar esta prestação, procure a área responsável',
+        },
+      });
+
+      return;
+    }
+
+    if (nome?.includes('mateus')) {
+      this.dialog.open(AlertDialogComponent, {
+        width: '480px',
+        disableClose: true,
+        data: {
+          title: 'Confirmação',
+          message: 'Deseja emitir a GRU?',
+          confirmText: 'Sim',
+          cancelText: 'Não',
+          showCancel: true,
+        },
+      });
+      return;
+    }
   }
 
   /** Exporta seleção atual como CSV (utiliza ponto e vírgula como separador) */
@@ -602,7 +644,7 @@ export class ListaBoleto implements AfterViewInit {
       w.print();
     } else {
       console.warn(
-        'Popup bloqueado: não foi possível abrir janela para exportar PDF.'
+        'Popup bloqueado: não foi possível abrir janela para exportar PDF.',
       );
     }
   }
@@ -625,7 +667,7 @@ export class ListaBoleto implements AfterViewInit {
     const ids = rows
       .map(
         (r) =>
-          r.codigoBeneficiario ?? `${r.beneficiarioIndex}:${r.cobrancaIndex}`
+          r.codigoBeneficiario ?? `${r.beneficiarioIndex}:${r.cobrancaIndex}`,
       )
       .filter(Boolean);
 
