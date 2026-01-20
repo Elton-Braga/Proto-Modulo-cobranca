@@ -525,16 +525,38 @@ export class ListaBoleto implements AfterViewInit {
     }
 
     if (nome?.includes('mateus')) {
-      this.dialog.open(AlertDialogComponent, {
+      const prestacoesEmAtraso = this.dataSource.data.filter(
+        (r) =>
+          r.codigoBeneficiario === row.codigoBeneficiario &&
+          r.situacao?.toLowerCase() === 'em atraso',
+      );
+
+      const agruparDialogRef = this.dialog.open(AgruparPrestacoes, {
         width: '480px',
         disableClose: true,
         data: {
-          title: 'Confirmação',
-          message: 'Deseja emitir a GRU?',
-          confirmText: 'Sim',
-          cancelText: 'Não',
-          showCancel: true,
+          debitos: prestacoesEmAtraso.map((p) => ({
+            ...p,
+            valorTotalPrestacao: p.valor ?? 0,
+          })),
+          origem: 'listaBoleto',
         },
+      });
+
+      // Quando a modal AgruparPrestacoes for fechada, abre a modal de confirmação
+      agruparDialogRef.afterClosed().subscribe((result) => {
+        // result contém os dados retornados pelo AgruparPrestacoes, se houver
+        // Independente do resultado, abre a modal de confirmação
+        this.dialog.open(AlertDialogComponent, {
+          width: '420px',
+          data: {
+            title: 'Confirmação',
+            message: 'Deseja emitir a GRU?',
+            confirmText: 'Sim',
+            cancelText: 'Não',
+            showCancel: true,
+          },
+        });
       });
       return;
     }
