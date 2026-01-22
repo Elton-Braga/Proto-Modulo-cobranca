@@ -175,6 +175,7 @@ export class ListaBoleto implements AfterViewInit {
     'descricaoD',
     //'descricaoP',
     'parcela',
+    'Pagamento',
     'vencimento',
     'valor',
     'situacao',

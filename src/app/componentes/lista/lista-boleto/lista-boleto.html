@@ -319,6 +319,14 @@
           <td mat-cell *matCellDef="let row">{{ row.numeroDaPrestacao }}</td>
         </ng-container>
 
+        <!-- Pagamento -->
+        <ng-container matColumnDef="Pagamento">
+          <th mat-header-cell *matHeaderCellDef>Pagamento</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.vencimento ? (row.vencimento | date: "dd/MM/yyyy") : "-" }}
+          </td>
+        </ng-container>
+
         <!-- Vencimento -->
         <ng-container matColumnDef="vencimento">
           <th mat-header-cell *matHeaderCellDef>Vencimento</th>
