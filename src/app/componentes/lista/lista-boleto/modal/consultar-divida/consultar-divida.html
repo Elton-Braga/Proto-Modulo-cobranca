@@ -363,38 +363,6 @@
     <table class="pagamentos-table" role="table">
       <thead>
         <tr>
-          <th>Numero do Requerimento</th>
-          <th>Data do requerimento</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <input
-              type="text"
-              value="
-                00000-00
-              "
-              [disabled]="!modoEdicao"
-            />
-          </td>
-
-          <td>
-            <input
-              type="text"
-              value="
-                10/10/2010
-              "
-              [disabled]="!modoEdicao"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table class="pagamentos-table" role="table">
-      <thead>
-        <tr>
           <th>Data entrega GRU</th>
           <th>Forma entrega GRU</th>
           <th>Motivo não entrega GRU</th>
@@ -474,6 +442,24 @@
     <div style="height: 1rem"></div>
     <hr />
     <div style="height: 1rem"></div>
+  </div>
+  <!-- Editar e aproveitamento de credito -->
+  <div class="acoes">
+    <button
+      mat-flat-button
+      color="accent"
+      class="btn-baixar"
+      (click)="editar()"
+      [disabled]="!exatamenteUmaSelecao || modoEdicao"
+    >
+      <mat-icon>edit</mat-icon>
+      Editar
+    </button>
+
+    <button mat-flat-button color="accent" class="btn-baixar">
+      <mat-icon>account_balance_wallet</mat-icon>
+      Aproveitamento de crédito
+    </button>
   </div>
 
   <!-- Indicador quando não há débito selecionado -->
@@ -720,7 +706,6 @@
     mat-flat-button
     color="primary"
     (click)="agruparPrestacoesSelecionadas()"
-    class="btn-imprimir"
     [disabled]="modoEdicao || !possuiSelecao"
   >
     <mat-icon>merge</mat-icon>
@@ -737,22 +722,37 @@
     Incluir
   </button>
 
-  <button mat-flat-button color="accent" class="btn-baixar">
+  <button
+    mat-flat-button
+    color="accent"
+    class="btn-baixar"
+    mat-flat-button
+    color="primary"
+    [disabled]="modoEdicao || !possuiSelecao"
+  >
     <mat-icon>delete</mat-icon>
     Excluir
   </button>
-
-  <button mat-flat-button color="accent" class="btn-baixar">
-    <mat-icon>edit</mat-icon>
-    Editar
+</div>
+<div class="acoes">
+  <button
+    mat-flat-button
+    color="accent"
+    class="btn-baixar"
+    (click)="imprimir()"
+    [disabled]="!possuiSelecao"
+  >
+    <mat-icon>print</mat-icon>
+    Imprimir
   </button>
 
-  <button mat-flat-button color="accent" class="btn-baixar">
-    <mat-icon>account_balance_wallet</mat-icon>
-    Aproveitamento de crédito
-  </button>
-
-  <button mat-flat-button color="accent" class="btn-baixar">
+  <button
+    mat-flat-button
+    color="accent"
+    class="btn-baixar"
+    (click)="salvar()"
+    [disabled]="!modoEdicao"
+  >
     <mat-icon>save</mat-icon>
     Salvar alterações
   </button>

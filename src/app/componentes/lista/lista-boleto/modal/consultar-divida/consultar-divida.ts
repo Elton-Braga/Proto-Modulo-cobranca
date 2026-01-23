@@ -133,7 +133,7 @@ export class ConsultarDivida implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ConsultarDivida>,
     private cdr: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -218,6 +218,7 @@ export class ConsultarDivida implements OnInit {
       this.debitoSelecionado = null;
     }
 
+    // Sai do modo de edição sempre que a seleção muda
     this.modoEdicao = false;
     this.cdr.detectChanges();
   }
@@ -258,11 +259,32 @@ export class ConsultarDivida implements OnInit {
   }
 
   editar(): void {
-    this.modoEdicao = true;
+    if (this.exatamenteUmaSelecao) {
+      this.modoEdicao = true;
+    }
   }
 
   salvar(): void {
-    this.modoEdicao = false;
+    if (this.modoEdicao && this.debitoSelecionado) {
+      // Aqui você pode adicionar a lógica para salvar as alterações
+      // Por exemplo, atualizar o débito na lista de débitos
+      const index = this.debitos.findIndex(
+        (d) => d.numeroReferencia === this.debitoSelecionado?.numeroReferencia,
+      );
+
+      if (index !== -1) {
+        // Atualiza o débito na lista
+        this.debitos[index] = { ...this.debitoSelecionado };
+      }
+
+      // Sai do modo de edição
+      this.modoEdicao = false;
+
+      // Exibe mensagem de sucesso (opcional)
+      console.log('Alterações salvas com sucesso!');
+
+      this.cdr.detectChanges();
+    }
   }
 
   isAllSelected(): boolean {
@@ -279,7 +301,27 @@ export class ConsultarDivida implements OnInit {
     this.dialogRef.close();
   }
 
-  imprimir(): void {}
+  imprimir(): void {
+    if (this.possuiSelecao) {
+      // Implemente a lógica de impressão aqui
+      // Por exemplo, abrir uma nova janela com os dados para impressão
+      const dadosParaImpressao = {
+        beneficiario: {
+          nome: this.beneficiarioNome,
+          cpf: this.beneficiarioCpf,
+        },
+        debitosSelecionados: this.selection.selected,
+        dataImpressao: new Date().toLocaleDateString(),
+      };
+
+      console.log('Imprimindo:', dadosParaImpressao);
+
+      // Alternativa: usar window.print() para imprimir a página atual
+      // window.print();
+
+      // Ou abrir uma nova rota/componente para impressão
+    }
+  }
 
   baixarGRU(): void {}
 
@@ -334,5 +376,24 @@ export class ConsultarDivida implements OnInit {
         console.log('Modal fechada com resultado:', result);
       }
     });
+  }
+
+  get exatamenteUmaSelecao(): boolean {
+    return this.selection.selected.length === 1;
+  }
+
+  cancelarEdicao(): void {
+    if (this.modoEdicao) {
+      this.modoEdicao = false;
+
+      // Restaura os valores originais se necessário
+      const selecionados = this.selection.selected;
+      if (selecionados.length === 1) {
+        const original = selecionados[0];
+        this.debitoSelecionado = { ...original };
+      }
+
+      this.cdr.detectChanges();
+    }
   }
 }
