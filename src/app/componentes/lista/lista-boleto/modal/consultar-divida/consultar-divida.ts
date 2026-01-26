@@ -15,6 +15,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { DebtRow } from '../../lista-boleto';
 import { Situacao } from './situacao/situacao';
 import { AgruparPrestacoes } from './agrupar-prestacoes/agrupar-prestacoes';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { AproveitamentoDeCredito } from '../aproveitamento-de-credito/aproveitamento-de-credito';
 //import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 export type ParcelaPagamentoExtendido = ParcelaPagamento & {
@@ -86,6 +89,8 @@ export interface Debito {
     MatTableModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatMenuModule,
+    MatDividerModule,
   ],
   templateUrl: './consultar-divida.html',
   styleUrls: ['./consultar-divida.scss'],
@@ -323,6 +328,24 @@ export class ConsultarDivida implements OnInit {
     }
   }
 
+  abrirModalAproveitamentoCredito(): void {
+    if (!this.exatamenteUmaSelecao) return;
+
+    const debito = this.selection.selected[0];
+
+    this.dialog.open(AproveitamentoDeCredito, {
+      width: '90vw',
+      maxWidth: '1200px',
+      disableClose: false,
+      autoFocus: false,
+      data: {
+        titular: this.data?.titular,
+        debitos: this.debitos,
+        debitoSelecionado: debito,
+      },
+    });
+  }
+
   baixarGRU(): void {}
 
   formataNumero(valor: number | null | undefined): string {
@@ -394,6 +417,47 @@ export class ConsultarDivida implements OnInit {
       }
 
       this.cdr.detectChanges();
+    }
+  }
+
+  emitirGRU(): void {
+    if (this.exatamenteUmaSelecao) {
+      const debito = this.selection.selected[0];
+      console.log('Emitir GRU para o débito:', debito);
+      // Aqui você implementaria a lógica para emitir GRU
+      // Por exemplo: abrir um modal de emissão de GRU
+
+      // Exemplo de implementação:
+      // this.dialog.open(EmitirGRUComponent, {
+      //   data: { debito: debito },
+      //   width: '600px'
+      // });
+    }
+  }
+
+  excluirDebito(): void {
+    if (this.exatamenteUmaSelecao) {
+      const confirmar = window.confirm(
+        'Tem certeza que deseja excluir este débito? Esta ação não pode ser desfeita.',
+      );
+
+      if (confirmar) {
+        const debito = this.selection.selected[0];
+
+        // Remove o débito da lista
+        this.debitos = this.debitos.filter((d) => d !== debito);
+
+        // Limpa a seleção
+        this.selection.clear();
+
+        // Limpa o débito selecionado
+        this.debitoSelecionado = null;
+
+        console.log('Débito excluído:', debito);
+
+        // Atualiza a view
+        this.cdr.detectChanges();
+      }
     }
   }
 }

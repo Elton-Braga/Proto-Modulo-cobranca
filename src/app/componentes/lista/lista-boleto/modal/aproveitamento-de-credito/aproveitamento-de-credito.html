@@ -1,0 +1,73 @@
+<div class="principal">
+  <section class="cabecalho">
+    <p><strong>Nome / Razão Social:</strong> {{ data.titular?.nome }}</p>
+    <p><strong>CPF / CNPJ:</strong> {{ data.titular?.cpf }}</p>
+    <p>
+      <strong>Nº Beneficiário / INCRA:</strong>
+      {{ data.titular?.cod_beneficiario }}
+    </p>
+    <p>
+      <strong>UF / SR:</strong> {{ data.titular?.uf }} / {{ data.titular?.sr }}
+    </p>
+    <p>
+      <strong>Saldo Devedor Total:</strong> R$
+      {{ formatarValor(data.debitoSelecionado?.saldoDevedor || 0) }}
+    </p>
+    <p>
+      <strong>Saldo de Crédito Disponível:</strong> R$
+      {{ formatarValor(data.debitoSelecionado?.credito || 0) }}
+    </p>
+  </section>
+
+  <hr />
+  <div class="tabela-container">
+    <table mat-table [dataSource]="data.debitos" class="mat-elevation-z2">
+      <!-- Seleção -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="selection.toggle(row)"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let row">{{ row.numeroReferencia }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="origem">
+        <th mat-header-cell *matHeaderCellDef>Origem</th>
+        <td mat-cell *matCellDef="let row">{{ row.tipoReceita }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="data">
+        <th mat-header-cell *matHeaderCellDef>Data</th>
+        <td mat-cell *matCellDef="let row">{{ row.vencimentoOriginal }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef>Valor</th>
+        <td mat-cell *matCellDef="let row">
+          R$ {{ formatarValor(row.valorOriginal || 0) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="situacao">
+        <th mat-header-cell *matHeaderCellDef>Situação</th>
+        <td mat-cell *matCellDef="let row">{{ row.situacao }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <div class="acoes">
+    <button mat-flat-button color="warn" (click)="fechar()">Fechar</button>
+  </div>
+</div>

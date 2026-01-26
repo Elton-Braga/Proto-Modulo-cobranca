@@ -30,8 +30,17 @@
       {{ formataNumero(valorAgrupado) }}
     </p>
 
-    <p><strong>Numero do Requerimento: </strong> 1111111111111</p>
-    <p><strong>Data do Requerimento: </strong> 15/12/2010</p>
+    <!-- Número do Requerimento -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Número do Requerimento</mat-label>
+      <input matInput type="text" [(ngModel)]="numeroRequerimento" readonly />
+    </mat-form-field>
+
+    <!-- Data do Requerimento -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Data do Requerimento</mat-label>
+      <input matInput type="text" [(ngModel)]="dataRequerimento" readonly />
+    </mat-form-field>
 
     <div class="acoes">
       <button mat-stroked-button (click)="fechar()">Sair</button>

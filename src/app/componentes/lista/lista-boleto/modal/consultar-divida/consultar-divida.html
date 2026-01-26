@@ -456,17 +456,76 @@
       Editar
     </button>
 
-    <button mat-flat-button color="accent" class="btn-baixar">
+    <button
+      mat-flat-button
+      color="accent"
+      class="btn-baixar"
+      (click)="abrirModalAproveitamentoCredito()"
+      [disabled]="!exatamenteUmaSelecao"
+    >
       <mat-icon>account_balance_wallet</mat-icon>
       Aproveitamento de crédito
     </button>
   </div>
 
   <!-- Indicador quando não há débito selecionado -->
-  <div *ngIf="!debitoSelecionado" class="nenhum-selecionado">
+  <!-- Menu de ações quando uma linha está selecionada -->
+
+  <!-- Mensagem quando nenhuma linha está selecionada -->
+  <!-- Menu de ações quando uma linha está selecionada -->
+  <div *ngIf="exatamenteUmaSelecao" class="menu-acoes">
+    <!--<p>Ações para o débito selecionado</p>-->
+    <div class="botoes-menu">
+      <button mat-flat-button [matMenuTriggerFor]="acoesMenu" color="primary">
+        <mat-icon>more_vert</mat-icon>
+        Ações
+      </button>
+
+      <mat-menu #acoesMenu="matMenu">
+        <button mat-menu-item (click)="emitirGRU()" [disabled]="modoEdicao">
+          <mat-icon>receipt_long</mat-icon>
+          <span>Emitir GRU</span>
+        </button>
+
+        <button
+          mat-menu-item
+          (click)="baixarSituacaoSelecionados()"
+          [disabled]="modoEdicao"
+        >
+          <mat-icon>check_circle</mat-icon>
+          <span>Dar Baixa</span>
+        </button>
+
+        <button
+          mat-menu-item
+          (click)="agruparPrestacoesSelecionadas()"
+          [disabled]="modoEdicao"
+        >
+          <mat-icon>merge</mat-icon>
+          <span>Agrupar prestações</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button
+          mat-menu-item
+          (click)="excluirDebito()"
+          [disabled]="modoEdicao"
+          class="menu-item-warn"
+        >
+          <mat-icon color="warn">delete</mat-icon>
+          <span>Excluir</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <!-- Mensagem quando nenhuma linha está selecionada -->
+  <div *ngIf="!exatamenteUmaSelecao" class="nenhum-selecionado">
     <p>
-      <mat-icon>info</mat-icon> Selecione uma linha na tabela abaixo para
-      visualizar os detalhes do débito nos campos acima.
+      <mat-icon>info</mat-icon>
+      Selecione exatamente uma linha na tabela abaixo para visualizar os
+      detalhes e acessar as ações.
     </p>
   </div>
 
@@ -682,7 +741,7 @@
 
 <!-- AÇÕES -->
 <div class="acoes">
-  <button
+  <!--<button
     mat-flat-button
     color="primary"
     (click)="editar()"
@@ -711,15 +770,10 @@
     <mat-icon>merge</mat-icon>
     Agrupar prestações
   </button>
-  <!--
+  
   <button mat-flat-button color="accent" class="btn-baixar">
     <mat-icon>payments</mat-icon>
     Solicitar pagamento à vista
-  </button>-->
-
-  <button mat-flat-button color="accent" class="btn-baixar">
-    <mat-icon>add_circle</mat-icon>
-    Incluir
   </button>
 
   <button
@@ -732,7 +786,7 @@
   >
     <mat-icon>delete</mat-icon>
     Excluir
-  </button>
+  </button>-->
 </div>
 <div class="acoes">
   <button
@@ -745,7 +799,10 @@
     <mat-icon>print</mat-icon>
     Imprimir
   </button>
-
+  <button mat-flat-button color="accent" class="btn-baixar">
+    <mat-icon>add_circle</mat-icon>
+    Incluir
+  </button>
   <button
     mat-flat-button
     color="accent"
@@ -755,6 +812,17 @@
   >
     <mat-icon>save</mat-icon>
     Salvar alterações
+  </button>
+
+  <button
+    mat-flat-button
+    color="accent"
+    class="btn-baixar"
+    (click)="salvar()"
+    [disabled]="!possuiSelecao"
+  >
+    <mat-icon>undo</mat-icon>
+    Desfazer
   </button>
 
   <mat-dialog-actions align="end">

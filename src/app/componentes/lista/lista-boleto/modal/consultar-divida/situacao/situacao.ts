@@ -31,7 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
 export class Situacao {
   /** Array com as situações */
   situacoes: string[] = ['baixada', 'baixada em dívida aberta', 'prescrita'];
-
+  valor: string = 'R$ 0.000,00';
   /** Campos do formulário */
   situacaoSelecionada: string | null = null;
   dataBaixa: Date | null = null;

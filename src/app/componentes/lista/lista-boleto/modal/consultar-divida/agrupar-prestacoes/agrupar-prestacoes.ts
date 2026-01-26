@@ -28,10 +28,12 @@ export class AgruparPrestacoes {
   novaData: Date | null = null;
   valorAgrupado = 0;
   origemComponente: string = 'consultarDivida'; // Valor padrão
+  numeroRequerimento: string = '1111111111111';
+  dataRequerimento: string = '15/12/2010';
 
   constructor(
     private dialogRef: MatDialogRef<AgruparPrestacoes>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class AgruparPrestacoes {
   private calcularTotal(debitos: any[]): void {
     this.valorAgrupado = debitos.reduce(
       (total, debito) => total + (debito.valorTotalPrestacao ?? 0),
-      0
+      0,
     );
   }
 
