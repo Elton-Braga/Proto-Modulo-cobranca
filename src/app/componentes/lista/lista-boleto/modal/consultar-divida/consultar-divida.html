@@ -461,7 +461,7 @@
       color="accent"
       class="btn-baixar"
       (click)="abrirModalAproveitamentoCredito()"
-      [disabled]="!exatamenteUmaSelecao"
+      [disabled]="!possuiSelecao"
     >
       <mat-icon>account_balance_wallet</mat-icon>
       Aproveitamento de crédito
@@ -473,7 +473,7 @@
 
   <!-- Mensagem quando nenhuma linha está selecionada -->
   <!-- Menu de ações quando uma linha está selecionada -->
-  <div *ngIf="exatamenteUmaSelecao" class="menu-acoes">
+  <div *ngIf="possuiSelecao" class="menu-acoes">
     <!--<p>Ações para o débito selecionado</p>-->
     <div class="botoes-menu">
       <button mat-flat-button [matMenuTriggerFor]="acoesMenu" color="primary">
