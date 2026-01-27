@@ -18,10 +18,47 @@ table {
 
 .acoes {
   display: flex;
+  gap: 12px;
   justify-content: flex-end;
-  margin-top: 1.5rem;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.spacer {
+  flex: 1;
 }
 
 .principal {
   margin: 3rem;
+}
+
+.cabecalho-table p {
+  margin: 0 0 4px 0;
+}
+
+/* Container exclusivo da tabela */
+.tabela-scroll {
+  width: 100%;
+  max-width: 100vw; /* nunca ultrapassa a tela */
+  overflow-x: auto; /* rolagem horizontal */
+  overflow-y: hidden;
+}
+
+/* Tabela */
+.tabela-prestacoes {
+  width: max-content; /* permite largura real das colunas */
+  min-width: 100%; /* ocupa no mínimo o container */
+  border-collapse: collapse;
+}
+
+/* Mantém cabeçalho e células alinhados */
+.mat-header-cell,
+.mat-cell {
+  white-space: nowrap; /* evita quebra de linha */
+  padding: 8px 12px;
+}
+
+/* Alinhamento numérico */
+.text-right {
+  text-align: right;
 }
