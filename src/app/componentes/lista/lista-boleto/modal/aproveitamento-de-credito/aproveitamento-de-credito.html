@@ -288,7 +288,9 @@
 
       <ng-container matColumnDef="simulacao">
         <th mat-header-cell *matHeaderCellDef>Simulação</th>
-        <td mat-cell *matCellDef="let row">Simulacao</td>
+        <td mat-cell *matCellDef="let row">
+          {{ formatarValor(totalCreditoSelecionado) }}
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumnsPrestacoes"></tr>

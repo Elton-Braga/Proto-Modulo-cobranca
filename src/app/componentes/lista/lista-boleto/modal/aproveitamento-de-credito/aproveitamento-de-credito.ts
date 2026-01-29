@@ -242,6 +242,13 @@ export class AproveitamentoDeCredito implements OnInit {
     }
   }
 
+  get totalCreditoSelecionado(): number {
+    return this.selection.selected.reduce(
+      (soma: number, item: any) => soma + (item.valorCorrigido || 0),
+      0,
+    );
+  }
+
   onFormaDistribuicaoChange(): void {
     this.calcularDistribuicao();
   }
