@@ -27,7 +27,32 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './aproveitamento-de-credito.scss',
 })
 export class AproveitamentoDeCredito implements OnInit {
-  dadosTabelaPrestacoes: any;
+  dadosTabelaPrestacoes: any = [
+    {
+      data: '10/01/2024',
+      descricao: 'Crédito referente a pagamento indevido',
+      valorOriginal: 1500,
+      valorCorrigido: 1620.45,
+      folhaSei: 'SEI 12345/2024',
+      utilizado: false,
+    },
+    {
+      data: '05/02/2024',
+      descricao: 'Restituição administrativa',
+      valorOriginal: 980.5,
+      valorCorrigido: 1012.3,
+      folhaSei: 'Folha 78',
+      utilizado: true,
+    },
+    {
+      data: '20/03/2024',
+      descricao: 'Ajuste de cobrança',
+      valorOriginal: 450,
+      valorCorrigido: 470.12,
+      folhaSei: 'SEI 99887/2024',
+      utilizado: false,
+    },
+  ];
   dadosTabela = [
     {
       data: '10/01/2024',
@@ -55,6 +80,13 @@ export class AproveitamentoDeCredito implements OnInit {
     },
   ];
 
+  valoresDistribuicao = {
+    valorUtilizado: 0,
+    proporcional: 0,
+    decrescentePrimeira: 0,
+    decrescenteUltima: 0,
+  };
+
   displayedColumns: string[] = [
     'select',
     'data',
@@ -67,21 +99,22 @@ export class AproveitamentoDeCredito implements OnInit {
 
   displayedColumnsPrestacoes: string[] = [
     'select',
-    'numeroReferencia',
-    'nossoNumero',
+    //'numeroReferencia',
+    //'nossoNumero',
     'prestacao',
-    'vencimento',
-    'prorrogacao',
-    'moeda',
-    'valor',
-    'correcao',
-    'juros',
-    'jurosMora',
-    'multa',
-    'descontos',
-    'descExcedente',
-    'credito',
-    'aPagar',
+    'descricao',
+    //'vencimento',
+    //'prorrogacao',
+    //'moeda',
+    //'valor',
+    //'correcao',
+    //'juros',
+    //'jurosMora',
+    //'multa',
+    //'descontos',
+    //'descExcedente',
+    //'credito',
+    //'aPagar',
     'totalPagar',
     'simulacao',
   ];
@@ -166,6 +199,51 @@ export class AproveitamentoDeCredito implements OnInit {
 
   imprimir(): void {
     window.print();
+  }
+  get creditosSelecionados(): any[] {
+    return this.selection.selected.filter(
+      (item) => item.valorCorrigido !== undefined,
+    );
+  }
+  calcularDistribuicao(): void {
+    const creditos = this.creditosSelecionados;
+
+    const totalCredito = creditos.reduce(
+      (soma: number, c: any) => soma + (c.valorCorrigido || 0),
+      0,
+    );
+
+    const totalPrestacoes = this.dadosTabelaPrestacoes.reduce(
+      (soma: number, p: any) => soma + (p.totalPagar || 0),
+      0,
+    );
+
+    this.valoresDistribuicao.valorUtilizado = totalCredito;
+
+    if (!this.formaDistribuicao || totalPrestacoes === 0) {
+      this.valoresDistribuicao.proporcional = 0;
+      this.valoresDistribuicao.decrescentePrimeira = 0;
+      this.valoresDistribuicao.decrescenteUltima = 0;
+      return;
+    }
+
+    switch (this.formaDistribuicao) {
+      case 'Proporcionalmente':
+        this.valoresDistribuicao.proporcional = totalCredito;
+        break;
+
+      case 'Decrescentemente a partir da primeira':
+        this.valoresDistribuicao.decrescentePrimeira = totalCredito;
+        break;
+
+      case 'Decrescentemente a partir da última':
+        this.valoresDistribuicao.decrescenteUltima = totalCredito;
+        break;
+    }
+  }
+
+  onFormaDistribuicaoChange(): void {
+    this.calcularDistribuicao();
   }
 
   desfazer(): void {

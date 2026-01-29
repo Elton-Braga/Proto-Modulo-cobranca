@@ -62,3 +62,14 @@ table {
 .text-right {
   text-align: right;
 }
+
+.texto {
+  text-align: left;
+}
+
+.grid-distribuicao {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
