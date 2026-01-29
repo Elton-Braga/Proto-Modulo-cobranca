@@ -112,6 +112,14 @@
   <hr />
   <div>
     <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label>Valor a ser utilizado</mat-label>
+      <input
+        matInput
+        readonly
+        [value]="formatarValor(valoresDistribuicao.valorUtilizado)"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%">
       <mat-label>Forma de distribuição</mat-label>
 
       <mat-select
@@ -125,43 +133,7 @@
     </mat-form-field>
   </div>
 
-  <div class="grid-distribuicao">
-    <mat-form-field appearance="outline">
-      <mat-label>Valor a ser utilizado</mat-label>
-      <input
-        matInput
-        readonly
-        [value]="formatarValor(valoresDistribuicao.valorUtilizado)"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Proporcionalmente nas prestações</mat-label>
-      <input
-        matInput
-        readonly
-        [value]="formatarValor(valoresDistribuicao.proporcional)"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Decrescente (da primeira)</mat-label>
-      <input
-        matInput
-        readonly
-        [value]="formatarValor(valoresDistribuicao.decrescentePrimeira)"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Decrescente (da última)</mat-label>
-      <input
-        matInput
-        readonly
-        [value]="formatarValor(valoresDistribuicao.decrescenteUltima)"
-      />
-    </mat-form-field>
-  </div>
+  <div class="grid-distribuicao"></div>
 
   <hr />
   <div class="tabela-scroll">
@@ -179,18 +151,8 @@
             [checked]="selection.isSelected(row)"
           >
           </mat-checkbox>
-        </td> </ng-container
-      ><!--
-      <ng-container matColumnDef="numeroReferencia">
-        <th mat-header-cell *matHeaderCellDef>Nº Ref.</th>
-        <td mat-cell *matCellDef="let d">{{ d.numeroReferencia }}</td>
+        </td>
       </ng-container>
-
-      <ng-container matColumnDef="nossoNumero">
-        <th mat-header-cell *matHeaderCellDef>Nosso Número</th>
-        <td mat-cell *matCellDef="let d">{{ d.nossoNumero }}</td>
-      </ng-container>-->
-
       <ng-container matColumnDef="descricao">
         <th mat-header-cell *matHeaderCellDef>descrição</th>
         <td mat-cell *matCellDef="let d">{{ d.descricao || "Descrição" }}</td>
@@ -200,84 +162,6 @@
         <th mat-header-cell *matHeaderCellDef>N. Prest.</th>
         <td mat-cell *matCellDef="let d">{{ d.prestacao }}</td>
       </ng-container>
-      <!--
-      <ng-container matColumnDef="vencimento">
-        <th mat-header-cell *matHeaderCellDef>Vencimento</th>
-        <td mat-cell *matCellDef="let d">{{ d.vencimento }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="prorrogacao">
-        <th mat-header-cell *matHeaderCellDef>Prorrogação</th>
-        <td mat-cell *matCellDef="let d">{{ d.prorrogacao }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="moeda">
-        <th mat-header-cell *matHeaderCellDef>Moeda</th>
-        <td mat-cell *matCellDef="let d">{{ d.moeda }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="valor">
-        <th mat-header-cell *matHeaderCellDef>Valor</th>
-        <td mat-cell *matCellDef="let d" class="text-right">
-          {{ formatarValor(d.valor) }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="correcao">
-        <th mat-header-cell *matHeaderCellDef>Correção</th>
-        <td mat-cell *matCellDef="let d" class="text-right">
-          {{ formatarValor(d.correcao) }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="juros">
-        <th mat-header-cell *matHeaderCellDef>Juros</th>
-        <td mat-cell *matCellDef="let d" class="text-right">
-          {{ formatarValor(d.juros) }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="jurosMora">
-        <th mat-header-cell *matHeaderCellDef>Juros Mora</th>
-        <td mat-cell *matCellDef="let d" class="text-right">
-          {{ formatarValor(d.jurosMora) }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="multa">
-        <th mat-header-cell *matHeaderCellDef>Multa</th>
-        <td mat-cell *matCellDef="let d" class="text-right">
-          {{ formatarValor(d.multa) }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="descontos">
-        <th mat-header-cell *matHeaderCellDef>Descontos</th>
-        <td mat-cell *matCellDef="let d" class="text-right">
-          {{ formatarValor(d.descontos) }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="descExcedente">
-        <th mat-header-cell *matHeaderCellDef>Desc. Exced.</th>
-        <td mat-cell *matCellDef="let d" class="text-right">
-          {{ formatarValor(d.descExcedente) }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="credito">
-        <th mat-header-cell *matHeaderCellDef>Crédito</th>
-        <td mat-cell *matCellDef="let d" class="text-right">
-          {{ formatarValor(d.credito) }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="aPagar">
-        <th mat-header-cell *matHeaderCellDef>A pagar</th>
-        <td mat-cell *matCellDef="let d" class="text-right">
-          {{ formatarValor(d.aPagar) }}
-        </td>
-      </ng-container>-->
 
       <ng-container matColumnDef="totalPagar">
         <th mat-header-cell *matHeaderCellDef>Total a pagar</th>
@@ -288,8 +172,8 @@
 
       <ng-container matColumnDef="simulacao">
         <th mat-header-cell *matHeaderCellDef>Simulação</th>
-        <td mat-cell *matCellDef="let row">
-          {{ formatarValor(totalCreditoSelecionado) }}
+        <td mat-cell *matCellDef="let row" class="text">
+          {{ formatarValor(row.simulacao || 0) }}
         </td>
       </ng-container>
 

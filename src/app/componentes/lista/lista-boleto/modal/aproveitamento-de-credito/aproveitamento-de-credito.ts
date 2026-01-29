@@ -68,7 +68,7 @@ export class AproveitamentoDeCredito implements OnInit {
       valorOriginal: 980.5,
       valorCorrigido: 1012.3,
       folhaSei: 'Folha 78',
-      utilizado: true,
+      utilizado: false,
     },
     {
       data: '20/03/2024',
@@ -251,10 +251,33 @@ export class AproveitamentoDeCredito implements OnInit {
 
   onFormaDistribuicaoChange(): void {
     this.calcularDistribuicao();
+    this.calcularSimulacaoProporcional();
   }
 
   desfazer(): void {
     this.selection.clear();
     this.formaDistribuicao = null;
+  }
+
+  private calcularSimulacaoProporcional(): void {
+    if (this.formaDistribuicao !== 'Proporcionalmente') {
+      this.dadosTabelaPrestacoes = this.dadosTabelaPrestacoes.map((p: any) => ({
+        ...p,
+        simulacao: 0,
+      }));
+      return;
+    }
+
+    const totalCredito = this.totalCreditoSelecionado;
+    const quantidadePrestacoes = this.dadosTabelaPrestacoes.length;
+
+    if (quantidadePrestacoes === 0) return;
+
+    const valorPorPrestacao = totalCredito / quantidadePrestacoes;
+
+    this.dadosTabelaPrestacoes = this.dadosTabelaPrestacoes.map((p: any) => ({
+      ...p,
+      simulacao: valorPorPrestacao - (p.totalPagar || 0),
+    }));
   }
 }
