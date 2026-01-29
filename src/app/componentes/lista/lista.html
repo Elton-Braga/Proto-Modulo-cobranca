@@ -54,7 +54,7 @@
           <mat-label>SR</mat-label>
           <mat-select formControlName="sr">
             @for (item of sr; track item) {
-            <mat-option [value]="item">{{ item }}</mat-option>
+              <mat-option [value]="item">{{ item }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -247,14 +247,14 @@
       <ng-container matColumnDef="nome_PA">
         <th mat-header-cell *matHeaderCellDef>Nome do PA</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.historico_PNRA?.[0]?.nome_PA || '-' }}
+          {{ element.historico_PNRA?.[0]?.nome_PA || "-" }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="sr">
         <th mat-header-cell *matHeaderCellDef>SR</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.requerimento?.[0]?.sr || '-' }}
+          {{ element.requerimento?.[0]?.sr || "-" }}
         </td>
       </ng-container>
       <!---->
@@ -262,7 +262,7 @@
       <ng-container matColumnDef="Situação">
         <th mat-header-cell *matHeaderCellDef>Situação</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.historico_PNRA?.[0]?.situacao || '-' }}
+          {{ element.historico_PNRA?.[0]?.situacao || "-" }}
         </td>
       </ng-container>
       <ng-container matColumnDef="Parcela">
@@ -281,7 +281,7 @@
       <ng-container matColumnDef="Impedimento">
         <th mat-header-cell *matHeaderCellDef>Bloqueio</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.bloqueios?.[0]?.bloqueio || '-' }}
+          {{ element.bloqueios?.[0]?.bloqueio || "-" }}
         </td>
       </ng-container>
 
@@ -384,10 +384,10 @@
                     d.tipo
                       ? d.tipo
                       : d.valorContrato && d.valorContrato <= 50000
-                      ? "Título"
-                      : d.valorContrato && d.valorContrato <= 70000
-                      ? "Concessão"
-                      : "Outros"
+                        ? "Título"
+                        : d.valorContrato && d.valorContrato <= 70000
+                          ? "Concessão"
+                          : "Outros"
                   }}
                 </td>
               </ng-container>
@@ -398,7 +398,7 @@
                   Valor
                 </th>
                 <td mat-cell *matCellDef="let d" class="linha-expandida">
-                  {{ d.valorContrato | currency : "BRL" : "symbol" : "1.2-2" }}
+                  {{ d.valorContrato | currency: "R$" : "symbol" : "1.2-2" }}
                 </td>
               </ng-container>
 
@@ -410,8 +410,8 @@
                 <td mat-cell *matCellDef="let d" class="linha-expandida">
                   {{
                     d.dataVencimento
-                      ? (d.dataVencimento | date : "dd/MM/yyyy")
-                      : (d.dataAssinaturaContrato | date : "dd/MM/yyyy")
+                      ? (d.dataVencimento | date: "dd/MM/yyyy")
+                      : (d.dataAssinaturaContrato | date: "dd/MM/yyyy")
                   }}
                 </td>
               </ng-container>
@@ -442,7 +442,7 @@
                   'tipo',
                   'valorContrato',
                   'dataVencimento',
-                  'visualizar'
+                  'visualizar',
                 ]"
               ></tr>
               <tr
@@ -454,7 +454,7 @@
                     'tipo',
                     'valorContrato',
                     'dataVencimento',
-                    'visualizar'
+                    'visualizar',
                   ]
                 "
               ></tr>

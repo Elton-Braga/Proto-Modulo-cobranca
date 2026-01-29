@@ -33,7 +33,7 @@
         </p>
         <p>
           <strong>Saldo de Crédito Disponível:</strong> R$
-          {{ formatarValor(row.credito) }}
+          {{ formatarValor(totalCreditoDisponivel) }}
         </p>
       </td>
     </ng-container>
@@ -123,9 +123,8 @@
   </div>
 
   <hr />
-  <div>
+  <div class="tabela-scroll">
     <table
-      class="tabela-scroll"
       mat-table
       [dataSource]="dadosTabelaPrestacoes"
       class="mat-elevation-z2 tabela-prestacoes"

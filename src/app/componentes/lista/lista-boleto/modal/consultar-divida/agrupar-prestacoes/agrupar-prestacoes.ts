@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    NgIf,
   ],
   templateUrl: './agrupar-prestacoes.html',
   styleUrl: './agrupar-prestacoes.scss',
@@ -30,16 +31,60 @@ export class AgruparPrestacoes {
   origemComponente: string = 'consultarDivida'; // Valor padrão
   numeroRequerimento: string = '1111111111111';
   dataRequerimento: string = '15/12/2010';
-
+  quantidadePrestacoes = 0;
+  dadosCabecalho: any;
+  dadosTabelaPrestacoes: any;
   constructor(
     private dialogRef: MatDialogRef<AgruparPrestacoes>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   ngOnInit(): void {
-    // Extrair a origem do componente e os débitos
-    if (this.data) {
-      // Se data for um array (para compatibilidade)
+    this.dadosCabecalho = [
+      {
+        nome: this.data.titular?.nome,
+        cpf: this.data.titular?.cpf,
+        codBeneficiario: this.data.titular?.cod_beneficiario,
+        sr: this.data.titular?.sr || 'xx',
+        uf: this.data.titular?.uf || 'xx',
+        saldoDevedor: this.data.debitos?.reduce(
+          (acc: number, d: any) => acc + (d.saldoDevedor || 0),
+          0,
+        ),
+        credito: this.data.debitos?.reduce(
+          (acc: number, d: any) => acc + (d.credito || 0),
+          0,
+        ),
+      },
+    ];
+
+    this.dadosTabelaPrestacoes = Array.isArray(this.data?.debitos)
+      ? this.data.debitos.map((d: any) => ({
+          numeroReferencia: d.numeroReferencia,
+          nossoNumero: d.nossoNumero,
+          prestacao: d.prestacao,
+          vencimento: d.vencimentoOriginal,
+          prorrogacao: d.dataParaPagamento,
+          moeda: d.moeda,
+          valor: d.valorOriginal,
+          correcao: d.correcao,
+          juros: d.juros,
+          jurosMora: d.jurosMora,
+          multa: d.multa,
+          descontos: d.desconto,
+          descExcedente: d.remissao,
+          credito: d.credito,
+          aPagar: d.valorDevido,
+          totalPagar: d.valorTotalPrestacao,
+          moedaFinal: d.moedaFinal,
+          baixado: d.baixado,
+          numeroAvisoBaixa: d.numeroAvisoBaixa,
+          tipoBaixa: d.tipoBaixa,
+          prestacaoUnica: d.prestacaoUnica,
+          dataBaixa: d.dataBaixa,
+        }))
+      : [];
+    /*if (this.data) {
       if (Array.isArray(this.data)) {
         this.data = { debitos: this.data };
       }
@@ -48,9 +93,10 @@ export class AgruparPrestacoes {
 
       if (this.data.debitos) {
         this.calcularTotal(this.data.debitos);
-        this.calcularTotalPrestacoesEmAtraso(this.data.debitos);
       }
-    }
+
+      this.quantidadePrestacoes = this.data.quantidadePrestacoes ?? 0;
+    }*/
   }
 
   private calcularTotal(debitos: any[]): void {

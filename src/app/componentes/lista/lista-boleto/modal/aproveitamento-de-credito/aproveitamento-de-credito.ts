@@ -107,35 +107,27 @@ export class AproveitamentoDeCredito implements OnInit {
       },
     ];
 
-    if (this.data?.debitoSelecionado) {
-      const d = this.data.debitoSelecionado;
-
-      this.dadosTabelaPrestacoes = [
-        {
-          numeroReferencia: d.numeroReferencia,
-          nossoNumero: d.nossoNumero,
-          prestacao: d.prestacao,
-          vencimento: d.vencimentoOriginal,
-          prorrogacao: d.dataParaPagamento,
-          moeda: d.moeda,
-          valor: d.valorOriginal,
-          correcao: d.correcao,
-          juros: d.juros,
-          jurosMora: d.jurosMora,
-          multa: d.multa,
-          descontos: d.desconto,
-          descExcedente: d.remissao,
-          credito: d.credito,
-          aPagar: d.valorDevido,
-          moedaFinal: d.moedaFinal,
-          baixado: d.baixado,
-          numeroAvisoBaixa: d.numeroAvisoBaixa,
-          tipoBaixa: d.tipoBaixa,
-          prestacaoUnica: d.prestacaoUnica,
-          dataBaixa: d.dataBaixa,
-          totalPagar: d.valorTotalPrestacao,
-        },
-      ];
+    if (Array.isArray(this.data?.debitos)) {
+      this.dadosTabelaPrestacoes = this.data.debitos.map((d: any) => ({
+        numeroReferencia: d.numeroReferencia,
+        nossoNumero: d.nossoNumero,
+        prestacao: d.prestacao,
+        vencimento: d.vencimentoOriginal,
+        prorrogacao: d.dataParaPagamento,
+        moeda: d.moeda,
+        valor: d.valorOriginal,
+        correcao: d.correcao,
+        juros: d.juros,
+        jurosMora: d.jurosMora,
+        multa: d.multa,
+        descontos: d.desconto,
+        descExcedente: d.remissao,
+        credito: d.credito,
+        aPagar: d.valorDevido,
+        totalPagar: d.valorTotalPrestacao,
+      }));
+    } else {
+      this.dadosTabelaPrestacoes = [];
     }
   }
 
@@ -147,6 +139,15 @@ export class AproveitamentoDeCredito implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<AproveitamentoDeCredito>,
   ) {}
+
+  get totalCreditoDisponivel(): number {
+    if (!Array.isArray(this.dadosTabela)) return 0;
+
+    return this.dadosTabela.reduce(
+      (soma, item) => soma + (item.valorCorrigido || 0),
+      0,
+    );
+  }
 
   fechar(): void {
     this.dialogRef.close();

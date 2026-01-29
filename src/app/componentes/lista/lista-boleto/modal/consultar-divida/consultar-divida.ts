@@ -155,13 +155,13 @@ export class ConsultarDivida implements OnInit {
           dataVencimento: debito.vencimentoOriginal || '',
           prorrogacao: debito.dataParaPagamento || '',
           // Inicializar campos que não existem nos dados originais
-          moeda: debito.moeda || 'BRL',
+          moeda: debito.moeda || 'R$',
           juros: debito.juros || 0,
           desconto: debito.desconto || 0,
           remissao: debito.remissao || 0,
           credito: debito.credito || 0,
           valorDevido: debito.valorTotalPrestacao || 0,
-          moedaFinal: debito.moedaFinal || 'BRL',
+          moedaFinal: debito.moedaFinal || 'R$',
           baixado: debito.baixado || 'Não',
           numeroAvisoBaixa:
             debito.numeroAvisoBaixa || `ABX-2023-00${index + 1}`,
@@ -234,6 +234,10 @@ export class ConsultarDivida implements OnInit {
     if (selecionados.length === 0) return;
 
     this.dialog.open(Situacao, {
+      width: '60vw',
+      height: '60vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       panelClass: 'situacao-dialog',
       data: selecionados,
       disableClose: false,
@@ -253,7 +257,8 @@ export class ConsultarDivida implements OnInit {
       panelClass: 'detalhar-divida-modal',
       data: {
         debitos: selecionados,
-        origem: 'consultarDivida', // Adiciona a origem
+        origem: 'consultarDivida',
+        quantidadePrestacoes: selecionados.length,
       },
       disableClose: false,
     });
@@ -329,7 +334,7 @@ export class ConsultarDivida implements OnInit {
   }
 
   abrirModalAproveitamentoCredito(): void {
-    if (!this.exatamenteUmaSelecao) return;
+    //if (!this.exatamenteUmaSelecao) return;
 
     const debito = this.selection.selected[0];
 

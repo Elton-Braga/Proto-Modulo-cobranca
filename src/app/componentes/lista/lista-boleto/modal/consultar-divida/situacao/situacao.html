@@ -1,39 +1,78 @@
-<div class="modal-content">
-  <!-- Combobox de Situação -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Motivo</mat-label>
-    <mat-select [(ngModel)]="situacaoSelecionada">
-      <mat-option *ngFor="let s of situacoes" [value]="s">
-        {{ s }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="modal-content container-fluid">
+  <div class="row">
+    <!-- Motivo -->
+    <div class="col-12 col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Motivo</mat-label>
+        <mat-select [(ngModel)]="situacaoSelecionada">
+          <mat-option *ngFor="let s of situacoes" [value]="s">
+            {{ s }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-  <!-- Datepicker: Data da Baixa -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Data da Baixa</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="dataBaixa" />
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+    <!-- Data da Baixa -->
+    <div class="col-12 col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Data da Baixa</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="dataBaixa" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
 
-  <!-- Campo Valor -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Valor</mat-label>
-    <input matInput type="text" [(ngModel)]="valor" readonly />
-  </mat-form-field>
+  <div class="row">
+    <!-- Valor -->
+    <div class="col-12 col-md-4">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Valor</mat-label>
+        <input matInput [(ngModel)]="valor" readonly />
+      </mat-form-field>
+    </div>
 
-  <!-- Upload de anexo (opcional) -->
-  <div class="upload-container">
-    <button mat-stroked-button color="primary" type="button">
-      <mat-icon>attach_file</mat-icon>
-      Anexar documento
-      <input type="file" hidden (change)="onFileSelected($event)" />
-    </button>
+    <!-- Tipo de comprovante -->
+    <div class="col-12 col-md-4">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Tipo de comprovante</mat-label>
+        <input matInput [(ngModel)]="tipoComprovante" readonly />
+      </mat-form-field>
+    </div>
 
-    <span class="file-name" *ngIf="anexo">
-      {{ anexo.name }}
-    </span>
+    <!-- Nº da Pag/SEI -->
+    <div class="col-12 col-md-4">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nº da Pag./SEI</mat-label>
+        <input matInput [(ngModel)]="numeroSEI" readonly />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Nº da GRU -->
+    <div class="col-12">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nº da GRU</mat-label>
+        <input matInput [(ngModel)]="numeroGRU" readonly />
+      </mat-form-field>
+    </div>
+
+    <!-- Upload -->
+    <div class="col-12">
+      <button mat-stroked-button color="primary" type="button">
+        <mat-icon>attach_file</mat-icon>
+        Anexar documento
+        <input type="file" hidden (change)="onFileSelected($event)" />
+      </button>
+
+      <span class="file-name" *ngIf="anexo">
+        {{ anexo.name }}
+      </span>
+    </div>
   </div>
 
   <!-- Botões -->

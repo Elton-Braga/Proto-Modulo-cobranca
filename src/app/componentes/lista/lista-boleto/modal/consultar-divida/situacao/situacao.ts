@@ -29,12 +29,16 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './situacao.scss',
 })
 export class Situacao {
-  /** Array com as situações */
   situacoes: string[] = ['baixada', 'baixada em dívida aberta', 'prescrita'];
-  valor: string = 'R$ 0.000,00';
-  /** Campos do formulário */
+
   situacaoSelecionada: string | null = null;
   dataBaixa: Date | null = null;
+
+  valor: string = 'R$ 12.345,67';
+  tipoComprovante: string = 'Comprovante Bancário';
+  numeroSEI: string = 'SEI-2024.000123/0001-11';
+  numeroGRU: string = 'GRU-987654321';
+
   anexo: File | null = null;
 
   constructor(private dialogRef: MatDialogRef<Situacao>) {}
@@ -50,11 +54,15 @@ export class Situacao {
     const payload = {
       situacao: this.situacaoSelecionada,
       dataBaixa: this.dataBaixa,
+      valor: this.valor,
+      tipoComprovante: this.tipoComprovante,
+      numeroSEI: this.numeroSEI,
+      numeroGRU: this.numeroGRU,
       anexo: this.anexo,
     };
 
     console.log('Dados para salvar:', payload);
-    this.dialogRef.close();
+    this.dialogRef.close(payload);
   }
 
   fechar(): void {
