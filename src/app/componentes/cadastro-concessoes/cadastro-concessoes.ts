@@ -45,7 +45,6 @@ import { GRUProcessada } from './gruprocessada/gruprocessada';
   styleUrls: ['./cadastro-concessoes.scss'],
 })
 export class CadastroConcessoes {
-
   formDados!: FormGroup;
 
   naturezas = ['Pessoa física', 'Pessoa jurídica'];
@@ -64,7 +63,8 @@ export class CadastroConcessoes {
     'Outras restituições': '28852-7',
     'Serviços administrativos': '28830-6',
     'Multas e juros previstas em contratos': '28867-5',
-    'Alienação de bens imóveis – principal (Multas/juros) assentados': '28874-8',
+    'Alienação de bens imóveis – principal (Multas/juros) assentados':
+      '28874-8',
     'Amortização de Empréstimos Contratuais (Multas e juros)': '48807-0',
   };
 
@@ -74,7 +74,13 @@ export class CadastroConcessoes {
       nomeRazaoSocial: ['', Validators.required],
       cpfCnpj: ['', Validators.required],
       identificacaoDevedor: ['', Validators.required],
-      enderecoCobranca: ['', Validators.required],
+
+      // Endereço de cobrança
+      logradouro: ['', Validators.required],
+      bairro: ['', Validators.required],
+      cep: ['', Validators.required],
+      municipio: ['', Validators.required],
+      estado: ['', Validators.required],
 
       descricaoNatureza: ['', Validators.required],
       codigoGru: [{ value: '', disabled: true }],

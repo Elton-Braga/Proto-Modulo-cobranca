@@ -11,7 +11,6 @@
     <mat-step>
       <form [formGroup]="formDados" (ngSubmit)="onSubmit()">
         <mat-accordion multi class="accordion-wrapper">
-
           <!-- IDENTIFICAÇÃO DO DEVEDOR -->
           <mat-expansion-panel expanded>
             <mat-expansion-panel-header>
@@ -38,15 +37,40 @@
                 <input matInput formControlName="cpfCnpj" />
               </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Identificação do devedor</mat-label>
-                <input matInput formControlName="identificacaoDevedor" />
-              </mat-form-field>
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Rua</mat-label>
+                  <input matInput formControlName="logradouro" />
+                </mat-form-field>
+              </div>
 
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Endereço de cobrança</mat-label>
-                <input matInput formControlName="enderecoCobranca" />
-              </mat-form-field>
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Bairro</mat-label>
+                  <input matInput formControlName="bairro" />
+                </mat-form-field>
+              </div>
+
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>CEP</mat-label>
+                  <input matInput formControlName="cep" />
+                </mat-form-field>
+              </div>
+
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Município</mat-label>
+                  <input matInput formControlName="municipio" />
+                </mat-form-field>
+              </div>
+
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Estado</mat-label>
+                  <input matInput formControlName="estado" />
+                </mat-form-field>
+              </div>
             </div>
           </mat-expansion-panel>
 
@@ -63,10 +87,7 @@
                   formControlName="descricaoNatureza"
                   (selectionChange)="atualizarCodigoGru()"
                 >
-                  <mat-option
-                    *ngFor="let d of descricoesNatureza"
-                    [value]="d"
-                  >
+                  <mat-option *ngFor="let d of descricoesNatureza" [value]="d">
                     {{ d }}
                   </mat-option>
                 </mat-select>
@@ -84,22 +105,43 @@
 
               <mat-form-field appearance="outline" class="itens">
                 <mat-label>Data do requerimento</mat-label>
-                <input matInput [matDatepicker]="dr1" formControlName="dataRequerimento" />
-                <mat-datepicker-toggle matSuffix [for]="dr1"></mat-datepicker-toggle>
+                <input
+                  matInput
+                  [matDatepicker]="dr1"
+                  formControlName="dataRequerimento"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="dr1"
+                ></mat-datepicker-toggle>
                 <mat-datepicker #dr1></mat-datepicker>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
                 <mat-label>Data de origem</mat-label>
-                <input matInput [matDatepicker]="dr2" formControlName="dataOrigem" />
-                <mat-datepicker-toggle matSuffix [for]="dr2"></mat-datepicker-toggle>
+                <input
+                  matInput
+                  [matDatepicker]="dr2"
+                  formControlName="dataOrigem"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="dr2"
+                ></mat-datepicker-toggle>
                 <mat-datepicker #dr2></mat-datepicker>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
                 <mat-label>Data de vencimento</mat-label>
-                <input matInput [matDatepicker]="dr3" formControlName="dataVencimento" />
-                <mat-datepicker-toggle matSuffix [for]="dr3"></mat-datepicker-toggle>
+                <input
+                  matInput
+                  [matDatepicker]="dr3"
+                  formControlName="dataVencimento"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="dr3"
+                ></mat-datepicker-toggle>
                 <mat-datepicker #dr3></mat-datepicker>
               </mat-form-field>
 
@@ -150,7 +192,11 @@
 
               <mat-form-field appearance="outline" class="itens">
                 <mat-label>Nº de prestações</mat-label>
-                <input matInput type="number" formControlName="numeroPrestacoes" />
+                <input
+                  matInput
+                  type="number"
+                  formControlName="numeroPrestacoes"
+                />
               </mat-form-field>
             </div>
           </mat-expansion-panel>
@@ -164,16 +210,19 @@
             <div class="flexbox-form">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Descrição</mat-label>
-                <textarea matInput rows="3" formControlName="descricaoComplementar"></textarea>
+                <textarea
+                  matInput
+                  rows="3"
+                  formControlName="descricaoComplementar"
+                ></textarea>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Anexo</mat-label>
-                <input matInput  />
+                <input matInput />
               </mat-form-field>
             </div>
           </mat-expansion-panel>
-
         </mat-accordion>
       </form>
     </mat-step>
