@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+
 import { Component, AfterViewInit } from '@angular/core';
 import {
   FormBuilder,
@@ -26,201 +28,86 @@ import { GRUProcessada } from './gruprocessada/gruprocessada';
   selector: 'app-cadastro-concessoes',
   standalone: true,
   imports: [
+    CommonModule, // ✅ OBRIGATÓRIO para *ngFor, *ngIf, etc.
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
     MatExpansionModule,
     MatStepperModule,
-    //Prestacoes,
-    //CreditosAConsiderar,
     MatIconModule,
     RouterLink,
-    //GRUProcessada,
   ],
   templateUrl: './cadastro-concessoes.html',
   styleUrls: ['./cadastro-concessoes.scss'],
 })
-export class CadastroConcessoes implements AfterViewInit {
+export class CadastroConcessoes {
+
   formDados!: FormGroup;
-  formFinanceiro!: FormGroup;
-  isEditable = true;
-  constructor(private fb: FormBuilder, private location: Location) {}
 
-  ngOnInit(): void {
-    // ✅ 1. Primeiro, criar os formulários
-    this.criarFormularios();
+  naturezas = ['Pessoa física', 'Pessoa jurídica'];
 
-    // ✅ 2. Depois, verificar se há dados vindos da navegação
-    const state = this.location.getState() as any;
-    if (state?.beneficiario) {
-      console.log('🔹 Beneficiário recebido:', state.beneficiario);
+  descricoesNatureza = [
+    'Aluguéis e arrendamentos / Serviços administrativos',
+    'Outras restituições',
+    'Serviços administrativos',
+    'Multas e juros previstas em contratos',
+    'Alienação de bens imóveis – principal (Multas/juros) assentados',
+    'Amortização de Empréstimos Contratuais (Multas e juros)',
+  ];
 
-      this.formDados.patchValue({
-        beneficiario: state.beneficiario.titular?.nome || '',
-        cpfBeneficiario: state.beneficiario.titular?.cpf || '',
-      });
-    }
+  mapaGru: Record<string, string> = {
+    'Aluguéis e arrendamentos / Serviços administrativos': '28804-7',
+    'Outras restituições': '28852-7',
+    'Serviços administrativos': '28830-6',
+    'Multas e juros previstas em contratos': '28867-5',
+    'Alienação de bens imóveis – principal (Multas/juros) assentados': '28874-8',
+    'Amortização de Empréstimos Contratuais (Multas e juros)': '48807-0',
+  };
+
+  constructor(private fb: FormBuilder) {
+    this.formDados = this.fb.group({
+      naturezaJuridica: ['', Validators.required],
+      nomeRazaoSocial: ['', Validators.required],
+      cpfCnpj: ['', Validators.required],
+      identificacaoDevedor: ['', Validators.required],
+      enderecoCobranca: ['', Validators.required],
+
+      descricaoNatureza: ['', Validators.required],
+      codigoGru: [{ value: '', disabled: true }],
+
+      numeroRequerimento: [''],
+      dataRequerimento: [''],
+      dataOrigem: [''],
+      dataVencimento: [''],
+      valor: [''],
+      juros: [''],
+      mora: [''],
+      multa: [''],
+
+      formaPagamento: ['', Validators.required],
+      frequenciaPagamento: ['', Validators.required],
+      numeroPrestacoes: [''],
+
+      descricaoComplementar: [''],
+    });
   }
 
-  private criarFormularios(): void {
-    this.formDados = this.fb.group({
-      imovelProjeto: ['', Validators.required],
-      tipoDocumento: ['', Validators.required],
-      numero: ['', Validators.required],
-      beneficiario: [{ value: '', disabled: true }, Validators.required],
-      situacaoBeneficiario: [''],
-      cpfBeneficiario: [
-        { value: '', disabled: false },
-        [
-          Validators.required,
-          Validators.minLength(11),
-          Validators.maxLength(11),
-          Validators.pattern(/^\d+$/),
-        ],
-      ],
-      nascimento: [''],
-      idade: [''],
-      qtdFilhos: [''],
-      numeroLote: ['', Validators.required],
-      area: [
-        '',
-        [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
-      ],
-      gleba: ['', Validators.required],
-      dataPublicacao: ['', Validators.required],
-      numeroBoletimServico: ['', Validators.required],
-      dataEntrega: ['', Validators.required],
-      dataEmissao: ['', Validators.required],
-      numeroProcesso: ['', Validators.required],
-      codigoSNCR: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
-      diferencaArea: ['', Validators.pattern(/^-?\d+(\.\d{1,2})?$/)],
-      valorHectare: [
-        '',
-        [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
-      ],
-      valorAlienacao: [
-        '',
-        [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
-      ],
-      frequenciaPagamento: ['', Validators.required],
-      numeroModuloFiscal: [
-        '',
-        [Validators.required, Validators.pattern(/^\d+$/)],
-      ],
-      moduloFiscal: ['', Validators.required],
-      tituloCancelado: ['', Validators.required],
-      valorPrimeiraPrestacao: [
-        '',
-        [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
-      ],
-      vencimentoPrimeiraPrestacao: ['', Validators.required],
-      condicaoPagamento: ['', Validators.required],
-      numeroPrestacoes: [
-        '',
-        [Validators.required, Validators.pattern(/^\d+$/)],
-      ],
-      municipioSedeImovel: ['', Validators.required],
-      tipoTermoAditivo: ['', Validators.required],
-      regularizacaoFundiaria: [false],
-      observacoes: [''],
-      rf: [''],
-      qtdPrestacoesAVencer: [{ value: 0, disabled: true }],
-      N_PA: [],
-      Pag_Processo_SEI: [],
-      Processo_SEI_não_interesse: [],
-      tipo_receita: [{ value: 'Alienação de Bens Imóveis', disabled: true }],
-      descricao_receita: [{ value: 'Título de Domínio XYX', disabled: true }],
-    });
-
-    this.formFinanceiro = this.fb.group({
-      valorTotalAtualizado: [{ value: '0,00', disabled: true }],
-
-      valorAVencer: [{ value: '0,00', disabled: true }],
-      qtdPrestacoesVencidas: [{ value: 0, disabled: true }],
-      valorVencido: [{ value: '0,00', disabled: true }],
-      qtdPrestacoesPagas: [{ value: 0, disabled: true }],
-      valorPago: [{ value: '0,00', disabled: true }],
-      qtdPrestacoesNaoPagas: [{ value: 0, disabled: true }],
-      valorEmAberto: [{ value: '0,00', disabled: true }],
-      diferencasGeradas: [{ value: '0,00', disabled: true }],
-      diferencasEmAberto: [{ value: '0,00', disabled: true }],
-      valorTotalDevido: [{ value: '0,00', disabled: true }],
+  atualizarCodigoGru(): void {
+    const descricao = this.formDados.get('descricaoNatureza')?.value;
+    this.formDados.patchValue({
+      codigoGru: this.mapaGru[descricao] || '',
     });
   }
 
   onSubmit(): void {
-    if (this.formDados.valid && this.formFinanceiro.valid) {
-      console.log('✅ Dados do formulário:', this.formDados.value);
-      console.log('📊 Resumo financeiro:', this.formFinanceiro.value);
-
-      // ✅ Chamada corrigida
-      this.mostrarToast('✅ Dados salvos com sucesso!', 'success');
+    if (this.formDados.valid) {
+      console.log(this.formDados.getRawValue());
     } else {
       this.formDados.markAllAsTouched();
-      this.formFinanceiro.markAllAsTouched();
-
-      // Identifica campos inválidos (opcional, pode incluir)
-      const camposInvalidos: string[] = [];
-      Object.keys(this.formDados.controls).forEach((key) => {
-        const control = this.formDados.get(key);
-        if (control?.invalid) camposInvalidos.push(key);
-      });
-
-      const msgErro =
-        camposInvalidos.length > 0
-          ? `❌ Os seguintes campos obrigatórios devem ser preenchidos: ${camposInvalidos
-              .join(', ')
-              .replace(/([A-Z])/g, ' $1')
-              .toLowerCase()}.`
-          : '❌ Preencha todos os campos obrigatórios.';
-
-      // ✅ Toast de erro
-      this.mostrarToast(msgErro, 'error');
-    }
-  }
-
-  ngAfterViewInit(): void {
-    // Garantia de inicialização após renderização do DOM
-  }
-
-  mostrarToast(mensagem: string, tipo: 'success' | 'error' = 'success'): void {
-    const toastEl = document.getElementById('toastGlobal');
-    const toastMsg = document.getElementById('toastMensagem');
-
-    if (toastEl && toastMsg) {
-      // Remove classes antigas
-      toastEl.classList.remove('text-bg-success', 'text-bg-danger');
-
-      // Aplica o estilo conforme o tipo
-      toastEl.classList.add(
-        tipo === 'success' ? 'text-bg-success' : 'text-bg-danger'
-      );
-
-      // Define a mensagem
-      toastMsg.textContent = mensagem;
-
-      // Exibe o toast
-      const toast = new bootstrap.Toast(toastEl);
-      toast.show();
-    }
-  }
-
-  /** Avança para o próximo step */
-  avancarStep(stepper: MatStepper): void {
-    if (stepper.selectedIndex < stepper.steps.length - 1) {
-      stepper.next();
-    }
-  }
-
-  /** Volta para o step anterior */
-  voltarStep(stepper: MatStepper): void {
-    if (stepper.selectedIndex > 0) {
-      stepper.previous();
     }
   }
 }
