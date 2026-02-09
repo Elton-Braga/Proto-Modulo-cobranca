@@ -81,7 +81,8 @@ export class CadastroConcessoes {
       cep: ['', Validators.required],
       municipio: ['', Validators.required],
       estado: ['', Validators.required],
-
+      complemento: [],
+      numero: [],
       descricaoNatureza: ['', Validators.required],
       codigoGru: [{ value: '', disabled: true }],
 
@@ -93,6 +94,9 @@ export class CadastroConcessoes {
       juros: [''],
       mora: [''],
       multa: [''],
+      historico: [''],
+      desconto: [''],
+      correcao: [''],
 
       formaPagamento: ['', Validators.required],
       frequenciaPagamento: ['', Validators.required],

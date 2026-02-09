@@ -18,6 +18,54 @@
             </mat-expansion-panel-header>
 
             <div class="flexbox-form">
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>CEP</mat-label>
+                  <input matInput formControlName="cep" />
+                </mat-form-field>
+              </div>
+
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Rua</mat-label>
+                  <input matInput formControlName="logradouro" />
+                </mat-form-field>
+              </div>
+
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Bairro</mat-label>
+                  <input matInput formControlName="bairro" />
+                </mat-form-field>
+              </div>
+
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Numero</mat-label>
+                  <input matInput formControlName="numero" />
+                </mat-form-field>
+              </div>
+
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Complemento</mat-label>
+                  <input matInput formControlName="complemento" />
+                </mat-form-field>
+              </div>
+
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Município</mat-label>
+                  <input matInput formControlName="municipio" />
+                </mat-form-field>
+              </div>
+
+              <div class="itens">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Estado</mat-label>
+                  <input matInput formControlName="estado" />
+                </mat-form-field>
+              </div>
               <mat-form-field appearance="outline" class="itens">
                 <mat-label>Natureza jurídica</mat-label>
                 <mat-select formControlName="naturezaJuridica">
@@ -36,41 +84,6 @@
                 <mat-label>CPF / CNPJ</mat-label>
                 <input matInput formControlName="cpfCnpj" />
               </mat-form-field>
-
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Rua</mat-label>
-                  <input matInput formControlName="logradouro" />
-                </mat-form-field>
-              </div>
-
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Bairro</mat-label>
-                  <input matInput formControlName="bairro" />
-                </mat-form-field>
-              </div>
-
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>CEP</mat-label>
-                  <input matInput formControlName="cep" />
-                </mat-form-field>
-              </div>
-
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Município</mat-label>
-                  <input matInput formControlName="municipio" />
-                </mat-form-field>
-              </div>
-
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Estado</mat-label>
-                  <input matInput formControlName="estado" />
-                </mat-form-field>
-              </div>
             </div>
           </mat-expansion-panel>
 
@@ -118,7 +131,7 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
-                <mat-label>Data de origem</mat-label>
+                <mat-label>Vencimento original</mat-label>
                 <input
                   matInput
                   [matDatepicker]="dr2"
@@ -132,7 +145,7 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
-                <mat-label>Data de vencimento</mat-label>
+                <mat-label>Data para pagamento</mat-label>
                 <input
                   matInput
                   [matDatepicker]="dr3"
@@ -146,23 +159,38 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
-                <mat-label>Valor (R$)</mat-label>
+                <mat-label>Valor Principal(R$)</mat-label>
                 <input matInput type="number" formControlName="valor" />
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
-                <mat-label>Juros contratuais (%)</mat-label>
+                <mat-label>Juros (%)</mat-label>
                 <input matInput type="number" formControlName="juros" />
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
-                <mat-label>Mora (%)</mat-label>
+                <mat-label>Juros de Mora (%)</mat-label>
                 <input matInput type="number" formControlName="mora" />
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="itens">
                 <mat-label>Multa (%)</mat-label>
                 <input matInput type="number" formControlName="multa" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Correção / Atualização</mat-label>
+                <input matInput type="number" formControlName="correcao" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Desconto</mat-label>
+                <input matInput type="number" formControlName="desconto" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Histórico</mat-label>
+                <input matInput type="number" formControlName="historico" />
               </mat-form-field>
             </div>
           </mat-expansion-panel>
