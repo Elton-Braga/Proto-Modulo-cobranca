@@ -18,6 +18,33 @@
             </mat-expansion-panel-header>
 
             <div class="flexbox-form">
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Natureza jurídica</mat-label>
+                <mat-select formControlName="naturezaJuridica">
+                  <mat-option *ngFor="let n of naturezas" [value]="n">
+                    {{ n }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>Nome / Razão Social</mat-label>
+                <input matInput formControlName="nomeRazaoSocial" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="itens">
+                <mat-label>CPF / CNPJ</mat-label>
+                <input matInput formControlName="cpfCnpj" />
+              </mat-form-field>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>Endereço de Cobrança</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="flexbox-form">
               <div class="itens">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>CEP</mat-label>
@@ -66,24 +93,6 @@
                   <input matInput formControlName="estado" />
                 </mat-form-field>
               </div>
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Natureza jurídica</mat-label>
-                <mat-select formControlName="naturezaJuridica">
-                  <mat-option *ngFor="let n of naturezas" [value]="n">
-                    {{ n }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Nome / Razão Social</mat-label>
-                <input matInput formControlName="nomeRazaoSocial" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>CPF / CNPJ</mat-label>
-                <input matInput formControlName="cpfCnpj" />
-              </mat-form-field>
             </div>
           </mat-expansion-panel>
 
