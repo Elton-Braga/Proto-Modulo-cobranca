@@ -44,12 +44,17 @@ import { DetalharDivida } from './detalhar-divida/detalhar-divida';
     trigger('detailExpand', [
       state(
         'collapsed',
-        style({ height: '0px', minHeight: '0', opacity: 0, overflow: 'hidden' })
+        style({
+          height: '0px',
+          minHeight: '0',
+          opacity: 0,
+          overflow: 'hidden',
+        }),
       ),
       state('expanded', style({ height: '*', opacity: 1 })),
       transition(
         'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
+        animate('225ms cubic-bezier(0.4,0.0,0.2,1)'),
       ),
     ]),
   ],
@@ -98,13 +103,23 @@ export class Lista implements OnInit, AfterViewInit {
   beneficiariosOriginais: Beneficiario[] = [...MOCK_BENEFICIARIOS];
   formFiltro!: FormGroup;
   sr: string[] = ['01', '02', '03', '04', '05'];
+  natureza: String[] = [
+    'Todas as receitas',
+    'Títulos ',
+    'Concessão de Crédito',
+    'Aluguéis e arrendamentos / Serviços administrativos ',
+    'Outras restituições ',
+    'Serviços administrativos',
+    'Multas e juros previstas em contratos',
+  ];
+  relatorio: String[] = ['Título', 'Concessão'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -113,23 +128,25 @@ export class Lista implements OnInit, AfterViewInit {
       cpf: ['', [Validators.pattern(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)]],
       nomePA: [''],
       sr: [''],
+      natureza: [''],
+      relatorio: [],
       situacao: [''],
       impedimento: [''],
       cod_beneficiario: [''],
-      modalidade: [''],
-      tipo: [''],
-      nossoNumero: [''],
-      numeroReferencia: [''],
-      numeroProcesso: [''],
-      numeroDocumento: [''],
-      situacao_receita: [''],
+      periodo: [''],
+      haQD: [''],
+      numeroPrestacoes: [''],
+      periodoArrecadacao: [''],
+      tipoarrecadacao: [''],
+      formato: [''],
+      modelo: [''],
       situacao_PA: [''],
     });
     this.beneficiariosOriginais.forEach((b) => {
       b.dadosDeCobranca?.forEach((d) => {
         d.dataAssinaturaContrato = this.converterData(d.dataAssinaturaContrato);
         (d as any).dataVencimento = this.converterData(
-          (d as any).dataVencimento
+          (d as any).dataVencimento,
         );
       });
     });
@@ -182,17 +199,17 @@ export class Lista implements OnInit, AfterViewInit {
       const tipoMatch =
         !tipo ||
         b.dadosDeCobranca?.some((d) =>
-          d.tipo?.toLowerCase().includes(tipo.toLowerCase())
+          d.tipo?.toLowerCase().includes(tipo.toLowerCase()),
         );
       const nossoNumeroMatch =
         !nossoNumero ||
         b.dadosDeCobranca?.some((d) =>
-          d.nossoNumero?.toString().includes(nossoNumero)
+          d.nossoNumero?.toString().includes(nossoNumero),
         );
       const numeroReferenciaMatch =
         !numeroReferencia ||
         b.dadosDeCobranca?.some((d) =>
-          d.numeroReferencia?.toString().includes(numeroReferencia)
+          d.numeroReferencia?.toString().includes(numeroReferencia),
         );
       const numeroProcessoMatch =
         !numeroProcesso ||
@@ -297,9 +314,9 @@ export class Lista implements OnInit, AfterViewInit {
       const novaAba = window.open(
         `${window.location.origin}${window.location.pathname.replace(
           /\/$/,
-          ''
+          '',
         )}/#/emitir-gru`,
-        '_blank'
+        '_blank',
       );
       if (!novaAba) {
         alert('Permita pop-ups para imprimir a GRU.');
@@ -325,7 +342,7 @@ export class Lista implements OnInit, AfterViewInit {
       element.innerSelection.clear();
     } else {
       element.dadosDeCobranca?.forEach((row) =>
-        element.innerSelection!.select(row)
+        element.innerSelection!.select(row),
       );
     }
   }

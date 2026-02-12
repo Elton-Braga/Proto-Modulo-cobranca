@@ -65,62 +65,74 @@
         </mat-form-field>-->
 
         <mat-form-field appearance="outline" class="col-3">
-          <mat-label>Modalidade</mat-label>
+          <mat-label>Periodo</mat-label>
+          <input matInput formControlName="periodo" placeholder="Periodo" />
+        </mat-form-field>
+
+        <!--Natureza-->
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Natureza</mat-label>
+          <mat-select formControlName="natureza">
+            @for (item of natureza; track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <!--Relatorios-->
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Relatorio</mat-label>
+          <mat-select formControlName="relatorio">
+            @for (item of relatorio; track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>Há quantos dias</mat-label>
           <input
             matInput
-            formControlName="modalidade"
-            placeholder="Modalidade"
+            formControlName="haQD"
+            placeholder="Há quantos dias"
           />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-3">
-          <mat-label>Tipo de receita</mat-label>
-          <input matInput formControlName="tipo" placeholder="Tipo" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="col-3">
-          <mat-label>Nosso Número (Boleto)</mat-label>
+          <mat-label>Número de prestações</mat-label>
           <input
             matInput
-            formControlName="nossoNumero"
-            placeholder="Número do boleto"
+            formControlName="numeroPrestacoes"
+            placeholder="Número de prestações"
           />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-4">
-          <mat-label>Número de Referência (GRU)</mat-label>
+          <mat-label>Periodo de arrecadação</mat-label>
           <input
             matInput
-            formControlName="numeroReferencia"
-            placeholder="Número da GRU"
+            formControlName="periodoArrecadacao"
+            placeholder="Periodo de arrecadação"
           />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-4">
-          <mat-label>Número do Processo</mat-label>
+          <mat-label>Tipo de arrecadação</mat-label>
           <input
             matInput
-            formControlName="numeroProcesso"
-            placeholder="Número do processo"
+            formControlName="tipoarrecadacao"
+            placeholder="Tipo de arrecadação"
           />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-4">
-          <mat-label>Nº do Documento de Titulação</mat-label>
-          <input
-            matInput
-            formControlName="numeroDocumento"
-            placeholder="Documento de titulação"
-          />
+          <mat-label>Formato</mat-label>
+          <input matInput formControlName="formato" placeholder="Formato" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-6">
-          <mat-label>Situação da receita</mat-label>
-          <input
-            matInput
-            formControlName="situacao_receita"
-            placeholder="Documento de titulação"
-          />
+          <mat-label>Modelo</mat-label>
+          <input matInput formControlName="modelo" placeholder="Modelo" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-6">
@@ -185,7 +197,7 @@
         [disabled]="selection.selected.length === 0"
       >
         <mat-icon>print</mat-icon>
-        Emitir GRU
+        Relatorio
       </button>
       <button
         mat-flat-button
