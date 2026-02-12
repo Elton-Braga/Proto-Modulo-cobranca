@@ -16,10 +16,10 @@
 
       <form [formGroup]="formFiltro" (ngSubmit)="aplicarFiltro()" class="row">
         <mat-form-field appearance="outline" class="col-3">
-          <mat-label>Nome do Devedor</mat-label>
-          <input matInput formControlName="nome" placeholder="Nome completo" />
+          <mat-label>Ano</mat-label>
+          <input matInput formControlName="ano" placeholder="Ano" />
           <mat-error *ngIf="formFiltro.get('nome')?.hasError('minlength')">
-            Mínimo 3 caracteres.
+            Em ajuste.
           </mat-error>
         </mat-form-field>
 

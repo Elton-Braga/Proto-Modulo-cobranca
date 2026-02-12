@@ -124,7 +124,7 @@ export class Lista implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.formFiltro = this.fb.group({
-      nome: ['', [Validators.minLength(3)]],
+      ano: ['', [Validators.minLength(3)]],
       cpf: ['', [Validators.pattern(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)]],
       nomePA: [''],
       sr: [''],
