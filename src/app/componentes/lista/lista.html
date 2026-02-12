@@ -15,7 +15,39 @@
       </mat-expansion-panel-header>
 
       <form [formGroup]="formFiltro" (ngSubmit)="aplicarFiltro()" class="row">
-        <mat-form-field appearance="outline" class="col-3">
+        <!--Natureza-->
+        <mat-form-field appearance="outline" class="col-4">
+          <mat-label>Natureza</mat-label>
+          <mat-select formControlName="natureza">
+            @for (item of natureza; track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <!--Relatorios-->
+        <mat-form-field appearance="outline" class="col-4">
+          <mat-label>Relatorio</mat-label>
+          <mat-select formControlName="relatorio">
+            @for (item of relatorio; track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-4">
+          <mat-label>SR</mat-label>
+          <mat-select formControlName="sr">
+            @for (item of sr; track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-4">
+          <mat-label>Nome do PA</mat-label>
+          <input matInput formControlName="nomePA" placeholder="Nome do PA" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-4">
           <mat-label>Ano</mat-label>
           <input matInput formControlName="ano" placeholder="Ano" />
           <mat-error *ngIf="formFiltro.get('nome')?.hasError('minlength')">
@@ -23,7 +55,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-3">
+        <mat-form-field appearance="outline" class="col-4">
           <mat-label>Código do Beneficiário</mat-label>
           <input
             matInput
@@ -37,59 +69,12 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-3">
-          <mat-label>CPF do Beneficiário</mat-label>
-          <input matInput formControlName="cpf" placeholder="000.000.000-00" />
-          <mat-error *ngIf="formFiltro.get('cpf')?.hasError('pattern')">
-            Formato inválido (xxx.xxx.xxx-xx).
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="col-3">
-          <mat-label>Nome do PA</mat-label>
-          <input matInput formControlName="nomePA" placeholder="Nome do PA" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="col-3">
-          <mat-label>SR</mat-label>
-          <mat-select formControlName="sr">
-            @for (item of sr; track item) {
-              <mat-option [value]="item">{{ item }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <!--
-        <mat-form-field appearance="outline" class="col-3">
-          <mat-label>Situação</mat-label>
-          <input matInput formControlName="situacao" placeholder="Situação" />
-        </mat-form-field>-->
-
-        <mat-form-field appearance="outline" class="col-3">
+        <mat-form-field appearance="outline" class="col-4">
           <mat-label>Periodo</mat-label>
           <input matInput formControlName="periodo" placeholder="Periodo" />
         </mat-form-field>
 
-        <!--Natureza-->
-        <mat-form-field appearance="outline" class="col-6">
-          <mat-label>Natureza</mat-label>
-          <mat-select formControlName="natureza">
-            @for (item of natureza; track item) {
-              <mat-option [value]="item">{{ item }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-
-        <!--Relatorios-->
-        <mat-form-field appearance="outline" class="col-6">
-          <mat-label>Relatorio</mat-label>
-          <mat-select formControlName="relatorio">
-            @for (item of relatorio; track item) {
-              <mat-option [value]="item">{{ item }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="col-3">
+        <mat-form-field appearance="outline" class="col-4">
           <mat-label>Há quantos dias</mat-label>
           <input
             matInput
@@ -98,7 +83,7 @@
           />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-3">
+        <mat-form-field appearance="outline" class="col-4">
           <mat-label>Número de prestações</mat-label>
           <input
             matInput
@@ -143,6 +128,17 @@
             placeholder="Documento de titulação"
           />
         </mat-form-field>
+
+        <!--<mat-form-field appearance="outline" class="col-3">
+          <mat-label>CPF do Beneficiário</mat-label>
+          <input matInput formControlName="cpf" placeholder="000.000.000-00" />
+          <mat-error *ngIf="formFiltro.get('cpf')?.hasError('pattern')">
+            Formato inválido (xxx.xxx.xxx-xx).
+          </mat-error>
+        </mat-form-field>
+
+        
+        -->
 
         <div class="botoes-row">
           <button mat-flat-button color="primary" type="submit">Buscar</button>
