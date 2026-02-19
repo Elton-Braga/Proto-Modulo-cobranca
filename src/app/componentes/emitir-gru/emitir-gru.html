@@ -1,108 +1,90 @@
-<button class="btn btn-primary" (click)="imprimir()">Imprimir GRU</button>
+<!--<button class="btn btn-primary" (click)="imprimir()">Imprimir GRU</button>-->
+
+<div class="gru-container topo">
+  <div class="row">
+    <div class="col-2">
+      <img
+        src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0011/1984/brand.gif?itok=Cc0SpPbr"
+      />
+    </div>
+    <div class="col-8">
+      <strong>Serviço Público Federal</strong>
+      <br />
+      <strong>Casa Civil da Presidnencia da República</strong>
+      <br />
+      <strong>Instituto Nacional de Colonização e Reforma Agrária</strong>
+    </div>
+    <div class="col-2">
+      <img
+        src="https://ribeirocostaadvocacia.com.br/wp-content/webp-express/webp-images/uploads/2024/12/LogoINCRAverticaldegrad-1024x768.png.webp"
+      />
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <strong class="aviso"
+          >Relação de prestações a vencer 5 dias ou mais</strong
+        >
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="gru-container">
   <table>
-    <tr>
-      <td colspan="4" class="cabecalho">
-        INCRA<br />
-        Instituto Nacional de Reforma Agrária<br />
-        <b>Guia de Recolhimento da União - GRU</b>
-        <small>
-          Gerado a partir de
-          http://consulta.tesouro.fazenda.gov.br/gru_novosite/gru_simples_parte2.asp
-        </small>
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <td colspan="4">
+          <b>Nome do Contribuinte / Recolhedor:</b>
+          {{ beneficiario?.titular?.nome || "---" }}
+        </td>
 
-    <tr>
-      <td><b>Código de Recolhimento</b><br />22048-5</td>
-      <td><b>Número de Referência</b><br />12006700001220485</td>
-      <td><b>Competência</b><br />08/2016</td>
-      <td><b>Vencimento</b><br />30/08/2016</td>
-    </tr>
+        <td colspan="3">
+          <b>Código do beneficiario:</b>
+          {{ beneficiario?.titular?.cod_beneficiario || "---" }}
+        </td>
 
-    <tr>
-      <td colspan="2">
-        <b>Nome do Contribuinte / Recolhedor</b><br />
-        {{ beneficiario?.titular?.nome || "---" }}
-      </td>
-      <td colspan="2">
-        <b>CNPJ ou CPF do Contribuinte</b><br />
-        {{ beneficiario?.titular?.cpf || "---" }}
-      </td>
-    </tr>
+        <td colspan="3">
+          <b>Nome do PA:</b>
+          {{ beneficiario?.historico_PNRA?.[0]?.nome_PA || "---" }}
+        </td>
+      </tr>
 
-    <tr>
-      <td colspan="2">
-        <b>Nome da Unidade Favorecida</b><br />
-        GRUPAMENTO DE APOIO ÀS UNIDADES DO SISTEMA DE
-      </td>
-      <td colspan="2"><b>UG / Gestão</b><br />120646 / 00001</td>
-    </tr>
+      <tr>
+        <th>nº prestações</th>
+        <th>vencimento</th>
+        <th>valor</th>
+        <th>data para pagamento</th>
+        <th>juros de mora</th>
+        <th>multa</th>
+        <th>desc</th>
+        <th>crédito</th>
+        <th>valor final da prestação</th>
+        <th>total a pagar</th>
+      </tr>
+    </thead>
 
-    <tr>
-      <td colspan="4" class="instrucoes">
-        <b>Instruções:</b><br />
-        As informações inseridas nessa guia são de exclusiva responsabilidade do
-        contribuinte, que deverá, em caso de dúvidas, consultar a Unidade
-        Favorecida dos recursos.
-      </td>
-    </tr>
+    <tbody>
+      <tr *ngFor="let debito of beneficiario?.debitos">
+        <td>{{ debito.numeroDaPrestacao }}</td>
 
-    <tr>
-      <td colspan="4" class="titulo">Valores</td>
-    </tr>
+        <td>{{ debito.vencimentoOriginal }}</td>
 
-    <tr>
-      <td colspan="3">(=) Valor do Principal</td>
-      <td class="direita">6.529,50</td>
-    </tr>
-    <tr>
-      <td colspan="3">(-) Desconto / Abatimento</td>
-      <td class="direita">—</td>
-    </tr>
-    <tr>
-      <td colspan="3">(-) Outras deduções</td>
-      <td class="direita">—</td>
-    </tr>
-    <tr>
-      <td colspan="3">(+) Mora / Multa</td>
-      <td class="direita">—</td>
-    </tr>
-    <tr>
-      <td colspan="3">(+) Juros / Encargos</td>
-      <td class="direita">—</td>
-    </tr>
-    <tr>
-      <td colspan="3">(+) Outros Acréscimos</td>
-      <td class="direita">—</td>
-    </tr>
-    <tr>
-      <td colspan="3"><b>(=) Valor Total</b></td>
-      <td class="direita"><b>6.529,50</b></td>
-    </tr>
+        <td>{{ debito.valorPrincipal }}</td>
 
-    <tr>
-      <td colspan="4" class="rodape">
-        GRU SIMPLES<br />
-        Pagamento exclusivo no Banco do Brasil S.A.<br />
-        [STN532BEB6100A82563059A8466C27CB3A4]
-      </td>
-    </tr>
+        <td>{{ debito.dataParaPagamento }}</td>
 
-    <tr>
-      <td colspan="4" class="linha-digitavel">
-        89920000065-9 29500001010-2 955231622044-4 81891525723-1
-      </td>
-    </tr>
+        <td>{{ debito.jurosMora }}</td>
 
-    <tr>
-      <td colspan="4" class="codigo-barras">
-        <img
-          src="https://dummyimage.com/400x60/000/fff.png&text=||||||||||||||||||||||||||||"
-          alt="Código de Barras"
-        />
-      </td>
-    </tr>
+        <td>{{ debito.multa }}</td>
+
+        <td>{{ debito.desconto }}</td>
+
+        <td>{{ debito.credito }}</td>
+
+        <td>{{ debito.valorTotalPrestacao }}</td>
+
+        <td>{{ debito.valorDevido }}</td>
+      </tr>
+    </tbody>
   </table>
 </div>

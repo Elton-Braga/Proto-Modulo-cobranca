@@ -1,3 +1,4 @@
+import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-emitir-gru',
   templateUrl: './emitir-gru.html',
   styleUrls: ['./emitir-gru.scss'],
+  imports: [NgFor],
 })
 export class EmitirGRU implements OnInit {
   beneficiario: any = null;
