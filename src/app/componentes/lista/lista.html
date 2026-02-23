@@ -18,9 +18,29 @@
         <!--Natureza-->
         <mat-form-field appearance="outline" class="col-4">
           <mat-label>Natureza</mat-label>
-          <mat-select formControlName="natureza">
+
+          <mat-select formControlName="natureza" multiple>
+            <mat-select-trigger
+              class="d-flex justify-content-start text-start w-100"
+            >
+              {{ formFiltro.get("natureza")?.value?.[0] || "" }}
+
+              @if ((formFiltro.get("natureza")?.value?.length || 0) > 1) {
+                <span class="example-additional-selection ms-1">
+                  (+{{ (formFiltro.get("natureza")?.value?.length || 0) - 1 }}
+                  {{
+                    formFiltro.get("natureza")?.value?.length === 2
+                      ? "outro"
+                      : "outros"
+                  }})
+                </span>
+              }
+            </mat-select-trigger>
+
             @for (item of natureza; track item) {
-              <mat-option [value]="item">{{ item }}</mat-option>
+              <mat-option [value]="item">
+                {{ item }}
+              </mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -43,24 +63,37 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-4">
-          <mat-label>Nome do PA</mat-label>
-          <input matInput formControlName="nomePA" placeholder="Nome do PA" />
+          <mat-label>PA/Imóvel/Gleba</mat-label>
+          <input
+            matInput
+            formControlName="nomePA"
+            placeholder="PA/Imóvel/Gleba"
+          />
         </mat-form-field>
 
+        <mat-form-field appearance="outline" class="col-4">
+          <mat-label>Modalidade</mat-label>
+          <input
+            matInput
+            formControlName="modalidade"
+            placeholder="Modalidade"
+          />
+        </mat-form-field>
+        <!--
         <mat-form-field appearance="outline" class="col-4">
           <mat-label>Ano</mat-label>
           <input matInput formControlName="ano" placeholder="Ano" />
           <mat-error *ngIf="formFiltro.get('nome')?.hasError('minlength')">
             Em ajuste.
           </mat-error>
-        </mat-form-field>
+        </mat-form-field>-->
 
         <mat-form-field appearance="outline" class="col-4">
-          <mat-label>Código do Beneficiário</mat-label>
+          <mat-label>Código do Devedor</mat-label>
           <input
             matInput
             formControlName="cod_beneficiario"
-            placeholder="Código do BEneficiario"
+            placeholder="Código do Devedor"
           />
           <mat-error
             *ngIf="formFiltro.get('cod_beneficiario')?.hasError('minlength')"
@@ -70,26 +103,43 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-4">
+          <mat-label>CPF / CNPJ</mat-label>
+          <input matInput formControlName="devedor" placeholder="CPF / CNPJ" />
+        </mat-form-field>
+        <!--
+        <mat-form-field appearance="outline" class="col-4">
           <mat-label>Periodo</mat-label>
           <input matInput formControlName="periodo" placeholder="Periodo" />
-        </mat-form-field>
+        </mat-form-field>-->
 
         <mat-form-field appearance="outline" class="col-4">
-          <mat-label>Há quantos dias</mat-label>
-          <input
-            matInput
-            formControlName="haQD"
-            placeholder="Há quantos dias"
-          />
-        </mat-form-field>
+          <mat-label>Período (Data de Inicio e fim)</mat-label>
 
-        <mat-form-field appearance="outline" class="col-4">
-          <mat-label>Número de prestações</mat-label>
-          <input
-            matInput
-            formControlName="numeroPrestacoes"
-            placeholder="Número de prestações"
-          />
+          <mat-date-range-input
+            [formGroup]="dataFormGroup"
+            [rangePicker]="picker"
+          >
+            <input
+              matStartDate
+              formControlName="start"
+              placeholder="Data inicial"
+            />
+            <input matEndDate formControlName="end" placeholder="Data final" />
+          </mat-date-range-input>
+
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+
+          @if (formFiltro.get("data.start")?.hasError("matStartDateInvalid")) {
+            <mat-error>Data inicial inválida</mat-error>
+          }
+
+          @if (formFiltro.get("data.end")?.hasError("matEndDateInvalid")) {
+            <mat-error>Data final inválida</mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-4">
@@ -115,18 +165,9 @@
           <input matInput formControlName="formato" placeholder="Formato" />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-6">
+        <mat-form-field appearance="outline" class="col-4">
           <mat-label>Modelo</mat-label>
           <input matInput formControlName="modelo" placeholder="Modelo" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="col-6">
-          <mat-label>Situação do PA</mat-label>
-          <input
-            matInput
-            formControlName="situacao_PA"
-            placeholder="Documento de titulação"
-          />
         </mat-form-field>
 
         <!--<mat-form-field appearance="outline" class="col-3">
@@ -141,7 +182,14 @@
         -->
 
         <div class="botoes-row">
-          <button mat-flat-button color="primary" type="submit">Buscar</button>
+          <button
+            mat-flat-button
+            color="accent"
+            (click)="imprimirGRU(selection.selected[0])"
+          >
+            <mat-icon>print</mat-icon>
+            Relatorio
+          </button>
           <button
             mat-stroked-button
             color="accent"
@@ -186,15 +234,6 @@
     </div>
 
     <div>
-      <button
-        mat-flat-button
-        color="accent"
-        (click)="imprimirGRU(selection.selected[0])"
-        [disabled]="selection.selected.length === 0"
-      >
-        <mat-icon>print</mat-icon>
-        Relatorio
-      </button>
       <button
         mat-flat-button
         type="button"

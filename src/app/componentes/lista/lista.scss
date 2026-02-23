@@ -197,3 +197,21 @@ button[mat-icon-button].expanded {
   background-color: #0a7aeb; /* Slightly darker on hover */
   border-color: #dae0e5;
 }
+
+/* Alinha o conteúdo do trigger à esquerda */
+::ng-deep .mat-mdc-select-trigger {
+  display: flex;
+  justify-content: flex-start !important;
+  text-align: left;
+}
+
+/* Garante que o texto não fique centralizado */
+::ng-deep .mat-mdc-select-value {
+  text-align: left !important;
+  width: 100%;
+}
+
+/* Evita que o contador vá para a direita */
+.example-additional-selection {
+  margin-left: 4px;
+}

@@ -34,6 +34,8 @@ import {
 import { MOCK_BENEFICIARIOS } from '../../mock/MOCK_BENEFICIATIO';
 import { ConsultarDivida } from './consultar-divida/consultar-divida';
 import { DetalharDivida } from './detalhar-divida/detalhar-divida';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   standalone: true,
@@ -77,6 +79,10 @@ import { DetalharDivida } from './detalhar-divida/detalhar-divida';
     MatExpansionPanel,
     MatExpansionPanelHeader,
     MatExpansionPanelTitle,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
 })
 export class Lista implements OnInit, AfterViewInit {
@@ -126,6 +132,7 @@ export class Lista implements OnInit, AfterViewInit {
     this.formFiltro = this.fb.group({
       ano: ['', [Validators.minLength(3)]],
       cpf: ['', [Validators.pattern(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)]],
+      modalidade: [],
       nomePA: [''],
       sr: [''],
       natureza: [''],
@@ -133,14 +140,18 @@ export class Lista implements OnInit, AfterViewInit {
       situacao: [''],
       impedimento: [''],
       cod_beneficiario: [''],
+      devedor: [],
       periodo: [''],
       haQD: [''],
+      data: this.fb.group({
+        start: [null],
+        end: [null],
+      }),
       numeroPrestacoes: [''],
       periodoArrecadacao: [''],
       tipoarrecadacao: [''],
       formato: [''],
       modelo: [''],
-      situacao_PA: [''],
     });
     this.beneficiariosOriginais.forEach((b) => {
       b.dadosDeCobranca?.forEach((d) => {
@@ -153,7 +164,9 @@ export class Lista implements OnInit, AfterViewInit {
 
     this.dataSource.data = this.beneficiariosOriginais;
   }
-
+  get dataFormGroup(): FormGroup {
+    return this.formFiltro.get('data') as FormGroup;
+  }
   private converterData(dataStr?: string): string | undefined {
     if (!dataStr) return undefined;
     const partes = dataStr.split('/');
