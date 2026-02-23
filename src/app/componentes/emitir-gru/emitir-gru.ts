@@ -1,20 +1,23 @@
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
   selector: 'app-emitir-gru',
   templateUrl: './emitir-gru.html',
   styleUrls: ['./emitir-gru.scss'],
-  imports: [NgFor],
+  imports: [NgFor, MatIconModule],
 })
 export class EmitirGRU implements OnInit {
   beneficiario: any = null;
+  dataHoraAtual!: string;
 
   ngOnInit(): void {
+    this.dataHoraAtual = new Date().toLocaleString('pt-BR');
+
     const dado = sessionStorage.getItem('beneficiarioSelecionado');
 
-    // ⚠️ Verificação adicional: se for 'undefined' ou vazio, aborta o parse
     if (!dado || dado === 'undefined' || dado === 'null') {
       console.warn('Nenhum beneficiário válido encontrado no sessionStorage.');
       this.beneficiario = null;
