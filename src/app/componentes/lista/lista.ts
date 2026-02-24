@@ -88,6 +88,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 export class Lista implements OnInit, AfterViewInit {
   expandedElement: Beneficiario | null = null;
 
+  periodoArrecadacao = ['arrecadação mensal', 'arrecadação diária'];
+  tipoArrecadacao: string[] = ['arrecadação diária', 'arrecadação total'];
+  modelo: string[] = ['sintetico', 'analitico'];
   displayedColumns: string[] = [
     'select',
     'cod_beneficiario',

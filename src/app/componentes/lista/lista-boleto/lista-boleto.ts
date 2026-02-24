@@ -156,6 +156,8 @@ export class ListaBoleto implements AfterViewInit {
     'Receitas diversas ',
   ];
 
+  periodoArrecadacao = ['arrecadação mensal', 'arrecadação diária'];
+
   descricao_receita: String[] = [
     'Fomento',
     'Apoio Inicial',
