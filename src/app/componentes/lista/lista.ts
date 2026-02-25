@@ -1,3 +1,4 @@
+import Chart from 'chart.js/auto';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, NgIf } from '@angular/common';
 import {
@@ -167,6 +168,58 @@ export class Lista implements OnInit, AfterViewInit {
 
     this.dataSource.data = this.beneficiariosOriginais;
   }
+
+  ngAfterViewInit(): void {
+    // Configura o paginator (do segundo método)
+    this.dataSource.paginator = this.paginator;
+
+    // Gráfico de pizza (do primeiro método)
+    const ctxPie = document.getElementById('myPieChart') as HTMLCanvasElement;
+    if (ctxPie) {
+      new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+          labels: ['Busca', 'Direto', 'Indicação', 'Social'],
+          datasets: [
+            {
+              data: [5649, 3919, 2126, 972],
+              backgroundColor: ['#6200ea', '#26a69a', '#9c27b0', '#ffb300'],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+        },
+      });
+    }
+
+    // Gráfico de barras horizontais (do primeiro método)
+    const ctxBar = document.getElementById(
+      'dashboardHorizontalBarChart',
+    ) as HTMLCanvasElement;
+    if (ctxBar) {
+      new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: ['18-24', '25-34', '35-44', '45-54', '55+'],
+          datasets: [
+            {
+              label: 'Usuários',
+              data: [1200, 2300, 1800, 1400, 900],
+              backgroundColor: '#6200ea',
+            },
+          ],
+        },
+        options: {
+          indexAxis: 'y', // barras horizontais
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      });
+    }
+  }
+
   get dataFormGroup(): FormGroup {
     return this.formFiltro.get('data') as FormGroup;
   }
@@ -176,10 +229,6 @@ export class Lista implements OnInit, AfterViewInit {
     if (partes.length !== 3) return dataStr;
     const [dia, mes, ano] = partes;
     return `${ano}-${mes}-${dia}`;
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
   }
 
   toggleExpand(element: Beneficiario): void {

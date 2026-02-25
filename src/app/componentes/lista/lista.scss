@@ -215,3 +215,6 @@ button[mat-icon-button].expanded {
 .example-additional-selection {
   margin-left: 4px;
 }
+.largura {
+  flex: 1; /* faz o elemento ocupar o espaço restante no flex container */
+}
