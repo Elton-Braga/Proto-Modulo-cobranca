@@ -321,21 +321,24 @@ export class Lista implements OnInit, AfterViewInit {
   // ================================
   // MÉTODO ATUALIZADO PARA ABRIR GRU
   // ================================
-  imprimirGRU(element: Beneficiario): void {
-    // Salva o beneficiário no sessionStorage
-    sessionStorage.setItem('beneficiarioSelecionado', JSON.stringify(element));
+  gerarRelatorio(): void {
+    // Pega a lista de beneficiários exibida após a aplicação dos filtros
+    const beneficiariosFiltrados = this.dataSource.data;
 
-    // Aguarda brevemente para garantir que o dado foi gravado antes de abrir a nova aba
+    // Armazena no sessionStorage
+    sessionStorage.setItem(
+      'relatorioBeneficiarios',
+      JSON.stringify(beneficiariosFiltrados),
+    );
+
+    // Abre a página de emissão em uma nova aba (com um pequeno delay para garantir a gravação)
     setTimeout(() => {
       const novaAba = window.open(
-        `${window.location.origin}${window.location.pathname.replace(
-          /\/$/,
-          '',
-        )}/#/emitir-gru`,
+        `${window.location.origin}${window.location.pathname.replace(/\/$/, '')}/#/emitir-gru`,
         '_blank',
       );
       if (!novaAba) {
-        alert('Permita pop-ups para imprimir a GRU.');
+        alert('Permita pop-ups para gerar o relatório.');
       }
     }, 100);
   }

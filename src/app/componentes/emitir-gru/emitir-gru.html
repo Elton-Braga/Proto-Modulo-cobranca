@@ -1,9 +1,13 @@
 <!--<button class="btn btn-primary" (click)="imprimir()">Imprimir GRU</button>-->
-Relatório emitido em: {{ dataHoraAtual }}<br />
-<button class="btn btn-primary">
-  <mat-icon class="me-2">print</mat-icon>
-  Imprimir
-</button>
+<div class="d-flex align-items-center mb-3 gru-container">
+  <p>
+    <span>Relatório emitido em: {{ dataHoraAtual }}</span>
+  </p>
+  <button class="btn btn-primary" (click)="imprimir()">
+    <mat-icon class="me-2">print</mat-icon>
+    Imprimir
+  </button>
+</div>
 <div class="gru-container topo">
   <div class="row">
     <div class="col-2">
@@ -33,26 +37,25 @@ Relatório emitido em: {{ dataHoraAtual }}<br />
   </div>
 </div>
 
-<div class="gru-container">
+<!-- Para cada beneficiário, gera uma seção -->
+<div *ngFor="let beneficiario of beneficiarios" class="gru-container mb-4">
+  <!-- Informações do beneficiário (cabeçalho da tabela) -->
   <table>
     <thead>
       <tr>
         <td colspan="4">
           <b>Nome do Contribuinte / Recolhedor:</b>
-          {{ beneficiario?.titular?.nome || "---" }}
+          {{ beneficiario.titular?.nome || "---" }}
         </td>
-
         <td colspan="3">
           <b>Código do beneficiario:</b>
-          {{ beneficiario?.titular?.cod_beneficiario || "---" }}
+          {{ beneficiario.titular?.cod_beneficiario || "---" }}
         </td>
-
         <td colspan="3">
           <b>Nome do PA:</b>
-          {{ beneficiario?.historico_PNRA?.[0]?.nome_PA || "---" }}
+          {{ beneficiario.historico_PNRA?.[0]?.nome_PA || "---" }}
         </td>
       </tr>
-
       <tr>
         <th>nº prestações</th>
         <th>vencimento</th>
@@ -66,27 +69,17 @@ Relatório emitido em: {{ dataHoraAtual }}<br />
         <th>total a pagar</th>
       </tr>
     </thead>
-
     <tbody>
-      <tr *ngFor="let debito of beneficiario?.debitos">
+      <tr *ngFor="let debito of beneficiario.debitos">
         <td>{{ debito.numeroDaPrestacao }}</td>
-
         <td>{{ debito.vencimentoOriginal }}</td>
-
         <td>{{ debito.valorPrincipal }}</td>
-
         <td>{{ debito.dataParaPagamento }}</td>
-
         <td>{{ debito.jurosMora }}</td>
-
         <td>{{ debito.multa }}</td>
-
         <td>{{ debito.desconto }}</td>
-
         <td>{{ debito.credito }}</td>
-
         <td>{{ debito.valorTotalPrestacao }}</td>
-
         <td>{{ debito.valorDevido }}</td>
       </tr>
     </tbody>
