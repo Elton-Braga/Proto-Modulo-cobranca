@@ -37,7 +37,7 @@ import { ConsultarDivida } from './consultar-divida/consultar-divida';
 import { DetalharDivida } from './detalhar-divida/detalhar-divida';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { MatRadioModule } from '@angular/material/radio';
 @Component({
   standalone: true,
   selector: 'app-lista',
@@ -84,6 +84,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
+    MatRadioModule,
   ],
 })
 export class Lista implements OnInit, AfterViewInit {
@@ -107,6 +109,7 @@ export class Lista implements OnInit, AfterViewInit {
     'Impedimento',
     'acoes',
   ];
+  anos: number[] = [2020, 2021, 2022, 2023, 2024, 2025, 2026];
 
   dataSource = new MatTableDataSource<Beneficiario>();
   selection = new SelectionModel<Beneficiario>(true, []);
@@ -147,6 +150,12 @@ export class Lista implements OnInit, AfterViewInit {
       devedor: [],
       periodo: [''],
       haQD: [''],
+      ug: [''],
+      periodoGrafico: [''],
+      tipoValor: [],
+      mostrarValores: [false],
+      valor: [''],
+      anoGrafico: [''],
       data: this.fb.group({
         start: [null],
         end: [null],
