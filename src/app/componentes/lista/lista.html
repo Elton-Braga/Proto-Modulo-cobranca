@@ -184,17 +184,6 @@
           </mat-select>
         </mat-form-field>
 
-        <!--<mat-form-field appearance="outline" class="col-3">
-          <mat-label>CPF do Beneficiário</mat-label>
-          <input matInput formControlName="cpf" placeholder="000.000.000-00" />
-          <mat-error *ngIf="formFiltro.get('cpf')?.hasError('pattern')">
-            Formato inválido (xxx.xxx.xxx-xx).
-          </mat-error>
-        </mat-form-field>
-
-        
-        -->
-
         <div class="botoes-row">
           <button mat-flat-button color="accent" (click)="gerarRelatorio()">
             <mat-icon>print</mat-icon>
@@ -228,17 +217,19 @@
 
     <!-- RADIO GROUP -->
     <div class="col-4">
-      <label class="d-block mb-2">Período</label>
+      <label class="d-block mb-2">Período de arrecadação</label>
       <mat-radio-group formControlName="periodoGrafico">
-        <mat-radio-button value="dias">Em dias</mat-radio-button><br />
+        <mat-radio-button value="dias">Arrecadação diária</mat-radio-button
+        ><br />
         <mat-radio-button value="mensal">Arrecadação mensal</mat-radio-button>
       </mat-radio-group>
     </div>
 
     <!-- CHECKBOXES -->
     <div class="col-4 d-flex flex-column">
+      <label class="d-block mb-2">Tipo de arrecadação</label>
       <mat-checkbox formControlName="tipoValor" value="concedida">
-        Arrecadação concedida
+        Arrecadação diária
       </mat-checkbox>
 
       <mat-checkbox formControlName="tipoValor" value="total">
