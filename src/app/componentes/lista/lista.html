@@ -20,7 +20,7 @@
 
       <form [formGroup]="formFiltro" (ngSubmit)="aplicarFiltro()" class="row">
         <!--Natureza-->
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Natureza</mat-label>
 
           <mat-select formControlName="natureza" multiple>
@@ -50,7 +50,7 @@
         </mat-form-field>
 
         <!--Relatorios-->
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Relatorio</mat-label>
           <mat-select formControlName="relatorio">
             @for (item of relatorio; track item) {
@@ -58,7 +58,7 @@
             }
           </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>SR</mat-label>
           <mat-select formControlName="sr">
             @for (item of sr; track item) {
@@ -66,7 +66,7 @@
             }
           </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>PA/Imóvel/Gleba</mat-label>
           <input
             matInput
@@ -75,7 +75,7 @@
           />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Modalidade</mat-label>
           <input
             matInput
@@ -84,7 +84,7 @@
           />
         </mat-form-field>
         <!--
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Ano</mat-label>
           <input matInput formControlName="ano" placeholder="Ano" />
           <mat-error *ngIf="formFiltro.get('nome')?.hasError('minlength')">
@@ -92,7 +92,7 @@
           </mat-error>
         </mat-form-field>-->
 
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Código do Devedor</mat-label>
           <input
             matInput
@@ -106,17 +106,17 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>CPF / CNPJ</mat-label>
           <input matInput formControlName="devedor" placeholder="CPF / CNPJ" />
         </mat-form-field>
         <!--
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Periodo</mat-label>
           <input matInput formControlName="periodo" placeholder="Periodo" />
         </mat-form-field>-->
 
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Período (Data de Inicio e fim)</mat-label>
 
           <mat-date-range-input
@@ -147,31 +147,18 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-4">
-          <mat-label>Período de arrecadação</mat-label>
-
-          <mat-select formControlName="periodoArrecadacao">
-            <mat-option
-              *ngFor="let periodo of periodoArrecadacao"
-              [value]="periodo"
-            >
-              {{ periodo }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="col-4">
-          <mat-label>Tipo de arrecadação</mat-label>
-
-          <mat-select formControlName="tipoarrecadacao">
-            <mat-option *ngFor="let tipo of tipoArrecadacao" [value]="tipo">
-              {{ tipo }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="col-4">
-          <mat-label>Formato</mat-label>
+          <mat-label>Nº de prestações</mat-label>
           <input matInput formControlName="formato" placeholder="Formato" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-4">
+          <mat-label>Nº de dias</mat-label>
+
+          <mat-select formControlName="modelo">
+            <mat-option *ngFor="let item of ndias" [value]="item">
+              {{ item }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-4">
@@ -206,17 +193,17 @@
     <!-- UG -->
     <div class="col-12">
       <mat-form-field appearance="outline" class="w-100">
-        <mat-label>UG</mat-label>
+        <mat-label>SR</mat-label>
         <mat-select formControlName="ug">
-          <mat-option value="ug1">UG 01</mat-option>
-          <mat-option value="ug2">UG 02</mat-option>
-          <mat-option value="ug3">UG 03</mat-option>
+          <mat-option value="ug1">SR 01</mat-option>
+          <mat-option value="ug2">SR 02</mat-option>
+          <mat-option value="ug3">SR 03</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
     <!-- RADIO GROUP -->
-    <div class="col-4">
+    <div class="col-3">
       <label class="d-block mb-2">Período de arrecadação</label>
       <mat-radio-group formControlName="periodoGrafico">
         <mat-radio-button value="dias">Arrecadação diária</mat-radio-button
@@ -226,7 +213,7 @@
     </div>
 
     <!-- CHECKBOXES -->
-    <div class="col-4 d-flex flex-column">
+    <div class="col-3 d-flex flex-column">
       <label class="d-block mb-2">Tipo de arrecadação</label>
       <mat-checkbox formControlName="tipoValor" value="concedida">
         Arrecadação diária
@@ -235,14 +222,10 @@
       <mat-checkbox formControlName="tipoValor" value="total">
         Arrecadação total
       </mat-checkbox>
-
-      <mat-checkbox formControlName="mostrarValores">
-        Mostrar valores
-      </mat-checkbox>
     </div>
 
     <!-- ANO -->
-    <div class="col-4">
+    <div class="col-3">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Ano</mat-label>
         <mat-select formControlName="anoGrafico">

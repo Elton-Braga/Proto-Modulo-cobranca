@@ -116,6 +116,13 @@ export class Lista implements OnInit, AfterViewInit {
   beneficiariosOriginais: Beneficiario[] = [...MOCK_BENEFICIARIOS];
   formFiltro!: FormGroup;
   sr: string[] = ['01', '02', '03', '04', '05'];
+  ndias: string[] = [
+    '5 ou mais',
+    '10 ou mais',
+    '15 ou mais',
+    '30 ou mais',
+    '60 dias ou mais',
+  ];
   natureza: String[] = [
     'Todas as receitas',
     'Títulos ',

@@ -3,10 +3,27 @@
   <p>
     <span>Relatório emitido em: {{ dataHoraAtual }}</span>
   </p>
-  <button class="btn btn-primary" (click)="imprimir()">
-    <mat-icon class="me-2">print</mat-icon>
-    Imprimir
+  <button mat-raised-button color="primary" [matMenuTriggerFor]="menuExportar">
+    <mat-icon class="me-2">download</mat-icon>
+    Exportar
   </button>
+
+  <mat-menu #menuExportar="matMenu">
+    <button mat-menu-item (click)="exportar('xls')">
+      <mat-icon>table_view</mat-icon>
+      <span>XLS</span>
+    </button>
+
+    <button mat-menu-item (click)="exportar('csv')">
+      <mat-icon>grid_on</mat-icon>
+      <span>CSV</span>
+    </button>
+
+    <button mat-menu-item (click)="exportar('pdf')">
+      <mat-icon>picture_as_pdf</mat-icon>
+      <span>PDF</span>
+    </button>
+  </mat-menu>
 </div>
 <div class="gru-container topo">
   <div class="row">

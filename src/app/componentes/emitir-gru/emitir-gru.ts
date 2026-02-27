@@ -1,13 +1,15 @@
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone: true,
   selector: 'app-emitir-gru',
   templateUrl: './emitir-gru.html',
   styleUrls: ['./emitir-gru.scss'],
-  imports: [NgFor, MatIconModule],
+  imports: [NgFor, MatIconModule, MatButtonModule, MatMenuModule],
 })
 export class EmitirGRU implements OnInit {
   beneficiarios: any[] = [];
@@ -65,6 +67,24 @@ export class EmitirGRU implements OnInit {
         }
       }
     });
+  }
+
+  exportar(tipo: 'xls' | 'csv' | 'pdf') {
+    console.log('Exportando para:', tipo);
+
+    switch (tipo) {
+      case 'xls':
+        // lógica XLS
+        break;
+
+      case 'csv':
+        // lógica CSV
+        break;
+
+      case 'pdf':
+        // lógica PDF
+        break;
+    }
   }
 
   // O método imprimir() permanece inalterado
