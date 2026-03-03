@@ -11,10 +11,15 @@
   align-items: baseline;
   margin: 0 0 1.5rem 0rem;
   justify-content: space-between;
+  text-decoration: none;
+  margin: 0 0 1.5rem 0;
 }
-
-.menu strong mat-icon {
-  color: #000000;
+.cor {
+  color: #263aeb;
+  text-decoration: none;
+}
+.menu a mat-icon {
+  color: #263aeb;
 }
 .titulo {
   font-size: 2rem;
