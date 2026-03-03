@@ -19,6 +19,14 @@
       </mat-expansion-panel-header>
 
       <form [formGroup]="formFiltro" (ngSubmit)="aplicarFiltro()" class="row">
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>SR</mat-label>
+          <mat-select formControlName="sr">
+            @for (item of sr; track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
         <!--Natureza-->
         <mat-form-field appearance="outline" class="col-3">
           <mat-label>Natureza</mat-label>
@@ -58,14 +66,7 @@
             }
           </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="col-3">
-          <mat-label>SR</mat-label>
-          <mat-select formControlName="sr">
-            @for (item of sr; track item) {
-              <mat-option [value]="item">{{ item }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
+
         <mat-form-field appearance="outline" class="col-3">
           <mat-label>PA/Imóvel/Gleba</mat-label>
           <input
@@ -76,34 +77,22 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-3">
+          <mat-label>Política pública</mat-label>
+          <input matInput formControlName="periodo" placeholder="ppub" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>Tipo do documento</mat-label>
+          <input matInput formControlName="periodo" placeholder="tdoc" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Modalidade</mat-label>
           <input
             matInput
             formControlName="modalidade"
             placeholder="Modalidade"
           />
-        </mat-form-field>
-        <!--
-        <mat-form-field appearance="outline" class="col-3">
-          <mat-label>Ano</mat-label>
-          <input matInput formControlName="ano" placeholder="Ano" />
-          <mat-error *ngIf="formFiltro.get('nome')?.hasError('minlength')">
-            Em ajuste.
-          </mat-error>
-        </mat-form-field>-->
-
-        <mat-form-field appearance="outline" class="col-3">
-          <mat-label>Código do Devedor</mat-label>
-          <input
-            matInput
-            formControlName="cod_beneficiario"
-            placeholder="Código do Devedor"
-          />
-          <mat-error
-            *ngIf="formFiltro.get('cod_beneficiario')?.hasError('minlength')"
-          >
-            Mínimo 3 caracteres.
-          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-3">
@@ -146,22 +135,22 @@
           }
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Nº de prestações</mat-label>
           <input matInput formControlName="formato" placeholder="Formato" />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Nº de dias</mat-label>
 
-          <mat-select formControlName="modelo">
-            <mat-option *ngFor="let item of ndias" [value]="item">
-              {{ item }}
-            </mat-option>
-          </mat-select>
+          <input
+            matInput
+            formControlName="modelo"
+            placeholder="Número de dias"
+          />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-4">
+        <mat-form-field appearance="outline" class="col-3">
           <mat-label>Modelo</mat-label>
 
           <mat-select formControlName="modelo">
@@ -225,12 +214,21 @@
     </div>
 
     <!-- ANO -->
-    <div class="col-3">
+    <div class="col-4">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Ano</mat-label>
         <mat-select formControlName="anoGrafico">
           <mat-option *ngFor="let ano of anos" [value]="ano">
             {{ ano }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Natureza</mat-label>
+        <mat-select formControlName="anoGrafico">
+          <mat-option *ngFor="let natureza of natureza" [value]="natureza">
+            {{ natureza }}
           </mat-option>
         </mat-select>
       </mat-form-field>

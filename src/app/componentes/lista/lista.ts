@@ -74,7 +74,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatButtonModule,
     MatDialogModule,
     MatSelectModule,
-    NgIf,
+
     RouterLink,
     MatAccordion,
     MatExpansionPanel,
@@ -110,7 +110,7 @@ export class Lista implements OnInit, AfterViewInit {
     'acoes',
   ];
   anos: number[] = [2020, 2021, 2022, 2023, 2024, 2025, 2026];
-
+  //natureza: string[] = ['Natureza 1', 'Natureza 2', 'Natureza 3'];
   dataSource = new MatTableDataSource<Beneficiario>();
   selection = new SelectionModel<Beneficiario>(true, []);
   beneficiariosOriginais: Beneficiario[] = [...MOCK_BENEFICIARIOS];
@@ -158,6 +158,8 @@ export class Lista implements OnInit, AfterViewInit {
       periodo: [''],
       haQD: [''],
       ug: [''],
+      tdoc: [],
+      ppub: [],
       periodoGrafico: [''],
       tipoValor: [],
       mostrarValores: [false],
