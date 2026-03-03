@@ -1,267 +1,263 @@
 <div class="main">
   <div class="menu">
-    <button matMiniFab routerLink="/lista">
+    <button
+      class="btn btn-link d-inline-flex align-items-center gap-1"
+      routerLink="/"
+    >
       <mat-icon>home</mat-icon>
+      <strong> Início </strong>
     </button>
   </div>
 
-  <h1 class="mb-4">Cadastro de Dívidas</h1>
+  <h1 class="mb-4 titulo">Nova Receita</h1>
 
-  <mat-stepper orientation="horizontal" class="breadcrumb-header">
-    <mat-step>
-      <form [formGroup]="formDados" (ngSubmit)="onSubmit()">
-        <mat-accordion multi class="accordion-wrapper">
-          <!-- IDENTIFICAÇÃO DO DEVEDOR -->
-          <mat-expansion-panel expanded>
-            <mat-expansion-panel-header>
-              <mat-panel-title>Identificação do devedor</mat-panel-title>
-            </mat-expansion-panel-header>
+  <form [formGroup]="formDados" (ngSubmit)="onSubmit()">
+    <mat-accordion multi class="accordion-wrapper">
+      <!-- IDENTIFICAÇÃO DO DEVEDOR -->
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Identificação do devedor</mat-panel-title>
+        </mat-expansion-panel-header>
 
-            <div class="flexbox-form">
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Natureza jurídica</mat-label>
-                <mat-select formControlName="naturezaJuridica">
-                  <mat-option *ngFor="let n of naturezas" [value]="n">
-                    {{ n }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+        <div class="flexbox-form">
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Natureza jurídica</mat-label>
+            <mat-select formControlName="naturezaJuridica">
+              <mat-option *ngFor="let n of naturezas" [value]="n">
+                {{ n }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Nome / Razão Social</mat-label>
-                <input matInput formControlName="nomeRazaoSocial" />
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Nome / Razão Social</mat-label>
+            <input matInput formControlName="nomeRazaoSocial" />
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>CPF / CNPJ</mat-label>
-                <input matInput formControlName="cpfCnpj" />
-              </mat-form-field>
-            </div>
-          </mat-expansion-panel>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>CPF / CNPJ</mat-label>
+            <input matInput formControlName="cpfCnpj" />
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
 
-          <mat-expansion-panel expanded>
-            <mat-expansion-panel-header>
-              <mat-panel-title>Endereço de Cobrança</mat-panel-title>
-            </mat-expansion-panel-header>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Endereço de Cobrança</mat-panel-title>
+        </mat-expansion-panel-header>
 
-            <div class="flexbox-form">
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>CEP</mat-label>
-                  <input matInput formControlName="cep" />
-                </mat-form-field>
-              </div>
+        <div class="flexbox-form">
+          <div class="itens">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>CEP</mat-label>
+              <input matInput formControlName="cep" />
+            </mat-form-field>
+          </div>
 
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Rua</mat-label>
-                  <input matInput formControlName="logradouro" />
-                </mat-form-field>
-              </div>
+          <div class="itens">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Rua</mat-label>
+              <input matInput formControlName="logradouro" />
+            </mat-form-field>
+          </div>
 
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Bairro</mat-label>
-                  <input matInput formControlName="bairro" />
-                </mat-form-field>
-              </div>
+          <div class="itens">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Bairro</mat-label>
+              <input matInput formControlName="bairro" />
+            </mat-form-field>
+          </div>
 
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Numero</mat-label>
-                  <input matInput formControlName="numero" />
-                </mat-form-field>
-              </div>
+          <div class="itens">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Numero</mat-label>
+              <input matInput formControlName="numero" />
+            </mat-form-field>
+          </div>
 
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Complemento</mat-label>
-                  <input matInput formControlName="complemento" />
-                </mat-form-field>
-              </div>
+          <div class="itens">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Complemento</mat-label>
+              <input matInput formControlName="complemento" />
+            </mat-form-field>
+          </div>
 
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Município</mat-label>
-                  <input matInput formControlName="municipio" />
-                </mat-form-field>
-              </div>
+          <div class="itens">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Município</mat-label>
+              <input matInput formControlName="municipio" />
+            </mat-form-field>
+          </div>
 
-              <div class="itens">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Estado</mat-label>
-                  <input matInput formControlName="estado" />
-                </mat-form-field>
-              </div>
-            </div>
-          </mat-expansion-panel>
+          <div class="itens">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Estado</mat-label>
+              <input matInput formControlName="estado" />
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-expansion-panel>
 
-          <!-- DADOS DA RECEITA -->
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>Dados da receita</mat-panel-title>
-            </mat-expansion-panel-header>
+      <!-- DADOS DA RECEITA -->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Dados da receita</mat-panel-title>
+        </mat-expansion-panel-header>
 
-            <div class="flexbox-form">
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Descrição da Natureza</mat-label>
-                <mat-select
-                  formControlName="descricaoNatureza"
-                  (selectionChange)="atualizarCodigoGru()"
-                >
-                  <mat-option *ngFor="let d of descricoesNatureza" [value]="d">
-                    {{ d }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+        <div class="flexbox-form">
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Descrição da Natureza</mat-label>
+            <mat-select
+              formControlName="descricaoNatureza"
+              (selectionChange)="atualizarCodigoGru()"
+            >
+              <mat-option *ngFor="let d of descricoesNatureza" [value]="d">
+                {{ d }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Cód. Recolhimento (GRU)</mat-label>
-                <input matInput formControlName="codigoGru" />
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Cód. Recolhimento (GRU)</mat-label>
+            <input matInput formControlName="codigoGru" />
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Nº do requerimento</mat-label>
-                <input matInput formControlName="numeroRequerimento" />
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Nº do requerimento</mat-label>
+            <input matInput formControlName="numeroRequerimento" />
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Data do requerimento</mat-label>
-                <input
-                  matInput
-                  [matDatepicker]="dr1"
-                  formControlName="dataRequerimento"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="dr1"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #dr1></mat-datepicker>
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Data do requerimento</mat-label>
+            <input
+              matInput
+              [matDatepicker]="dr1"
+              formControlName="dataRequerimento"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dr1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dr1></mat-datepicker>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Vencimento original</mat-label>
-                <input
-                  matInput
-                  [matDatepicker]="dr2"
-                  formControlName="dataOrigem"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="dr2"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #dr2></mat-datepicker>
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Vencimento original</mat-label>
+            <input
+              matInput
+              [matDatepicker]="dr2"
+              formControlName="dataOrigem"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dr2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dr2></mat-datepicker>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Data para pagamento</mat-label>
-                <input
-                  matInput
-                  [matDatepicker]="dr3"
-                  formControlName="dataVencimento"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="dr3"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #dr3></mat-datepicker>
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Data para pagamento</mat-label>
+            <input
+              matInput
+              [matDatepicker]="dr3"
+              formControlName="dataVencimento"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dr3"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dr3></mat-datepicker>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Valor Principal(R$)</mat-label>
-                <input matInput type="number" formControlName="valor" />
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Valor Principal(R$)</mat-label>
+            <input matInput type="number" formControlName="valor" />
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Juros (%)</mat-label>
-                <input matInput type="number" formControlName="juros" />
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Juros (%)</mat-label>
+            <input matInput type="number" formControlName="juros" />
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Juros de Mora (%)</mat-label>
-                <input matInput type="number" formControlName="mora" />
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Juros de Mora (%)</mat-label>
+            <input matInput type="number" formControlName="mora" />
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Multa (%)</mat-label>
-                <input matInput type="number" formControlName="multa" />
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Multa (%)</mat-label>
+            <input matInput type="number" formControlName="multa" />
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Correção / Atualização</mat-label>
-                <input matInput type="number" formControlName="correcao" />
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Correção / Atualização</mat-label>
+            <input matInput type="number" formControlName="correcao" />
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Desconto</mat-label>
-                <input matInput type="number" formControlName="desconto" />
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Desconto</mat-label>
+            <input matInput type="number" formControlName="desconto" />
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Histórico</mat-label>
-                <input matInput type="number" formControlName="historico" />
-              </mat-form-field>
-            </div>
-          </mat-expansion-panel>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Histórico</mat-label>
+            <input matInput type="number" formControlName="historico" />
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
 
-          <!-- CONDIÇÕES DE PAGAMENTO -->
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>Condições de pagamento</mat-panel-title>
-            </mat-expansion-panel-header>
+      <!-- CONDIÇÕES DE PAGAMENTO -->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Condições de pagamento</mat-panel-title>
+        </mat-expansion-panel-header>
 
-            <div class="flexbox-form">
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Forma de pagamento</mat-label>
-                <mat-select formControlName="formaPagamento">
-                  <mat-option value="avista">À vista</mat-option>
-                  <mat-option value="parcelado">Parcelado</mat-option>
-                </mat-select>
-              </mat-form-field>
+        <div class="flexbox-form">
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Forma de pagamento</mat-label>
+            <mat-select formControlName="formaPagamento">
+              <mat-option value="avista">À vista</mat-option>
+              <mat-option value="parcelado">Parcelado</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Frequência</mat-label>
-                <mat-select formControlName="frequenciaPagamento">
-                  <mat-option value="mensal">Mensal</mat-option>
-                  <mat-option value="anual">Anual</mat-option>
-                </mat-select>
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Frequência</mat-label>
+            <mat-select formControlName="frequenciaPagamento">
+              <mat-option value="mensal">Mensal</mat-option>
+              <mat-option value="anual">Anual</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="itens">
-                <mat-label>Nº de prestações</mat-label>
-                <input
-                  matInput
-                  type="number"
-                  formControlName="numeroPrestacoes"
-                />
-              </mat-form-field>
-            </div>
-          </mat-expansion-panel>
+          <mat-form-field appearance="outline" class="itens">
+            <mat-label>Nº de prestações</mat-label>
+            <input matInput type="number" formControlName="numeroPrestacoes" />
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
 
-          <!-- INFORMAÇÕES COMPLEMENTARES -->
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>Informações complementares</mat-panel-title>
-            </mat-expansion-panel-header>
+      <!-- INFORMAÇÕES COMPLEMENTARES -->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Informações complementares</mat-panel-title>
+        </mat-expansion-panel-header>
 
-            <div class="flexbox-form">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Descrição</mat-label>
-                <textarea
-                  matInput
-                  rows="3"
-                  formControlName="descricaoComplementar"
-                ></textarea>
-              </mat-form-field>
+        <div class="flexbox-form">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Descrição</mat-label>
+            <textarea
+              matInput
+              rows="3"
+              formControlName="descricaoComplementar"
+            ></textarea>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Anexo</mat-label>
-                <input matInput />
-              </mat-form-field>
-            </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </form>
-    </mat-step>
-  </mat-stepper>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Anexo</mat-label>
+            <input matInput />
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
 </div>

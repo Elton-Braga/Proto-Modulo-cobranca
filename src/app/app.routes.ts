@@ -19,7 +19,7 @@ export const routes: Routes = [
     path: 'boletos', // rota para acessar o componente Lista
     component: ListaBoleto,
   },
-  { path: 'cadastro-concessoes', component: CadastroConcessoes },
+  { path: 'cadastro', component: CadastroConcessoes },
   {
     path: 'emitir-gru',
     component: EmitirGRU,

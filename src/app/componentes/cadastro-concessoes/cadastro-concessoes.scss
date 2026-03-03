@@ -12,6 +12,14 @@
   margin: 0 0 1.5rem 0rem;
   justify-content: space-between;
 }
+
+.menu strong mat-icon {
+  color: #000000;
+}
+.titulo {
+  font-size: 2rem;
+  margin: 0 0 2rem 2rem;
+}
 mat-accordion {
   padding: 0;
   margin: 0;
