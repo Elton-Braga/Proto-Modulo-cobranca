@@ -1,7 +1,7 @@
 .main {
-  margin: 5rem 5rem;
+  margin: 5rem 5rem 0 19rem;
   border: solid 0px rgb(235, 234, 234);
-  padding: 1rem 1rem 3rem 1rem;
+  padding: 0rem 0rem 3rem 0rem;
   //display: flex;
 }
 .menu {
@@ -13,6 +13,10 @@
   justify-content: space-between;
   text-decoration: none;
   margin: 0 0 1.5rem 0;
+}
+
+mat-accordion {
+  width: 85%;
 }
 .cor {
   //color: #263aeb;
