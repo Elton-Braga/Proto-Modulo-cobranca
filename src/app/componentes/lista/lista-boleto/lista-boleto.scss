@@ -1,5 +1,5 @@
 .principal {
-  margin: 5rem 20rem;
+  margin: 1rem 20rem;
 }
 
 .btn-voltar {
@@ -11,4 +11,19 @@
 
 .filtro {
   margin-bottom: 1.5rem;
+}
+
+.menu {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-items: baseline;
+  margin: 0 0 1.5rem 0rem;
+  justify-content: space-between;
+  text-decoration: none;
+  margin: 5rem 0 0rem 19rem;
+}
+.cor {
+  //color: #263aeb;
+  text-decoration: none;
 }
