@@ -132,7 +132,48 @@ export class Lista implements OnInit, AfterViewInit {
     'Serviços administrativos',
     'Multas e juros previstas em contratos',
   ];
-  relatorio: String[] = ['Título', 'Concessão'];
+  relatorio: String[] = [
+    'Título',
+    'Concessão',
+    'Prestações vencidas há n dias',
+    'Prestações a vencer em n dias',
+    'Saldo a receber',
+    'Relatório de atividades dos usuários',
+    'Demonstrativo dos Avisos de Baixa',
+    'Previsão de arrecadação: valores a receber',
+    'Valores Recebidos/Baixados',
+    'Títulos com n prestações vencidas',
+    'Pagamento por PA/Imóvel/Gleba',
+    'Relação diária de pagamentos por PA/Imóvel/Gleba',
+    'Certidões emitidas',
+    'Relação de títulos Quitados',
+  ];
+
+  politicasPublicas: string[] = [
+    'Projeto de Assentamento',
+    'Regularização Fundiária',
+  ];
+
+  tiposDocumento: string[] = [
+    'Todos',
+    'Títulos de domínio',
+    'Termos Aditivos',
+    'CDRU',
+    'BRAVIACO',
+  ];
+
+  modalidades: string[] = [
+    'Apoio Inicial',
+    'Fomento',
+    'Fomento Jovem',
+    'Fomento Mulher',
+    'Semiárido',
+    'Florestal',
+    'Recuperação Ambiental',
+    'Cacau',
+    'Habitacional',
+    'Reforma Habitacional',
+  ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

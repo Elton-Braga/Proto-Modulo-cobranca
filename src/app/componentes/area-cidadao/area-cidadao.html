@@ -1,0 +1,49 @@
+<div class="menu">
+  <a
+    class="btn btn-link d-inline-flex align-items-center gap-1 cor"
+    routerLink="/"
+  >
+    <mat-icon>home</mat-icon>
+    Início
+  </a>
+
+  <a
+    class="btn btn-link d-inline-flex align-items-center gap-1 cor"
+    routerLink="/cadastro"
+  >
+    <mat-icon>receipt_long</mat-icon>
+    Novo Cadastro
+  </a>
+
+  <a
+    class="btn btn-link d-inline-flex align-items-center gap-1 cor"
+    routerLink="/boletos"
+  >
+    <mat-icon>event_repeat</mat-icon>
+    Prestações
+  </a>
+</div>
+
+<div class="principal">
+  <div class="row">
+    <div class="titulo col-12">
+      <h1>Módulo do cidadão</h1>
+    </div>
+  </div>
+
+  <mat-accordion class="menu-acordeon">
+    <mat-expansion-panel
+      [expanded]="true"
+      [hideToggle]="true"
+      [disabled]="true"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Filtros do relatório </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form class="row">
+        <!-- Campos serão adicionados aqui -->
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

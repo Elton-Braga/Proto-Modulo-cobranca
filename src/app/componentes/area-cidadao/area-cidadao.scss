@@ -1,0 +1,30 @@
+.menu {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin: 5rem 0 0rem 19rem;
+  justify-content: space-between;
+}
+
+.cor {
+  text-decoration: none;
+}
+
+.principal {
+  margin: 1rem 20rem;
+}
+
+.menu-acordeon {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+mat-expansion-panel {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+  margin: 2.5rem 0;
+}

@@ -4,6 +4,7 @@ import { Lista } from './componentes/lista/lista';
 import { CadastroConcessoes } from './componentes/cadastro-concessoes/cadastro-concessoes';
 import { EmitirGRU } from './componentes/emitir-gru/emitir-gru';
 import { ListaBoleto } from './componentes/lista/lista-boleto/lista-boleto';
+import { AreaCidadao } from './componentes/area-cidadao/area-cidadao';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,10 @@ export const routes: Routes = [
     path: 'boletos', // rota para acessar o componente Lista
     component: ListaBoleto,
   },
+  {
+    path: 'cidadania', // rota para acessar o componente Lista
+    component: AreaCidadao,
+  },
   { path: 'cadastro', component: CadastroConcessoes },
   {
     path: 'emitir-gru',
@@ -30,4 +35,4 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 ];
-//ListaBoleto
+//ListaBoleto AreaCidadao

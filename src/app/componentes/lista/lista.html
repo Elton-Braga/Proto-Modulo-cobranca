@@ -100,29 +100,39 @@
 
         <mat-form-field appearance="outline" class="col-3">
           <mat-label>Política pública</mat-label>
-          <input matInput formControlName="periodo" placeholder="ppub" />
+
+          <mat-select formControlName="periodo">
+            <mat-option
+              *ngFor="let politica of politicasPublicas"
+              [value]="politica"
+            >
+              {{ politica }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-3">
           <mat-label>Tipo do documento</mat-label>
-          <input matInput formControlName="periodo" placeholder="tdoc" />
+
+          <mat-select formControlName="periodo">
+            <mat-option *ngFor="let tipo of tiposDocumento" [value]="tipo">
+              {{ tipo }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-3">
           <mat-label>Modalidade</mat-label>
-          <input
-            matInput
-            formControlName="modalidade"
-            placeholder="Modalidade"
-          />
+
+          <mat-select formControlName="modalidade">
+            <mat-option
+              *ngFor="let modalidade of modalidades"
+              [value]="modalidade"
+            >
+              {{ modalidade }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <!--
-        <mat-form-field appearance="outline" class="col-3">
-          <mat-label>CPF / CNPJ</mat-label>
-          <input matInput formControlName="devedor" placeholder="CPF / CNPJ" />
-        </mat-form-field>
-        
-        -->
 
         <mat-form-field appearance="outline" class="col-3">
           <mat-label>Período (Data de Inicio e fim)</mat-label>
