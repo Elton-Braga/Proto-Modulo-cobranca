@@ -29,6 +29,12 @@
     <div class="titulo col-12">
       <h1>Módulo do cidadão</h1>
     </div>
+
+    <!--<div class="titulo col-12">
+      <strong>Nome:</strong> {{ nome }},<strong> CPF:</strong> {{ cpf }},
+      <strong>Endereço de cobrança:</strong>
+      {{ enderecoCobranca }}
+    </div>-->
   </div>
 
   <mat-accordion class="menu-acordeon">
@@ -46,4 +52,75 @@
       </form>
     </mat-expansion-panel>
   </mat-accordion>
+</div>
+<div class="tabela">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 tabela">
+    <!-- Descrição da Receita -->
+    <ng-container matColumnDef="descricaoReceita">
+      <th mat-header-cell *matHeaderCellDef>Descrição da Receita</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.descricaoReceita }}
+      </td>
+    </ng-container>
+
+    <!-- Nº Prestação -->
+    <ng-container matColumnDef="numeroPrestacao">
+      <th mat-header-cell *matHeaderCellDef>Nº Prestação</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.numeroDaPrestacao }}
+      </td>
+    </ng-container>
+
+    <!-- Pagamento -->
+    <ng-container matColumnDef="pagamento">
+      <th mat-header-cell *matHeaderCellDef>Pagamento</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dataParaPagamento }}
+      </td>
+    </ng-container>
+
+    <!-- Vencimento -->
+    <ng-container matColumnDef="vencimento">
+      <th mat-header-cell *matHeaderCellDef>Vencimento</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.vencimentoOriginal }}
+      </td>
+    </ng-container>
+
+    <!-- Valor -->
+    <ng-container matColumnDef="valor">
+      <th mat-header-cell *matHeaderCellDef>Valor</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.valorTotalPrestacao | number: "1.2-2" }}
+      </td>
+    </ng-container>
+
+    <!-- Situação -->
+    <ng-container matColumnDef="situacao">
+      <th mat-header-cell *matHeaderCellDef>Situação</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.situacao }}
+      </td>
+    </ng-container>
+
+    <!-- Ação -->
+    <ng-container matColumnDef="acao">
+      <th mat-header-cell *matHeaderCellDef>Ação</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  >
+  </mat-paginator>
 </div>
