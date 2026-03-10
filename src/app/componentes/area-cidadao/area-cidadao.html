@@ -30,11 +30,11 @@
       <h1>Módulo do cidadão</h1>
     </div>
 
-    <!--<div class="titulo col-12">
+    <div class="titulo col-12">
       <strong>Nome:</strong> {{ nome }},<strong> CPF:</strong> {{ cpf }},
       <strong>Endereço de cobrança:</strong>
       {{ enderecoCobranca }}
-    </div>-->
+    </div>
   </div>
 
   <mat-accordion class="menu-acordeon">
@@ -55,6 +55,27 @@
 </div>
 <div class="tabela">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 tabela">
+    <!-- Seleção -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="$event ? toggleAllRows() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+        >
+        </mat-checkbox>
+      </th>
+
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="selection.toggle(row)"
+          [checked]="selection.isSelected(row)"
+        >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
     <!-- Descrição da Receita -->
     <ng-container matColumnDef="descricaoReceita">
       <th mat-header-cell *matHeaderCellDef>Descrição da Receita</th>
@@ -123,4 +144,13 @@
     showFirstLastButtons
   >
   </mat-paginator>
+</div>
+
+<div class="rodape-botoes">
+  <button mat-raised-button color="primary">Espelho de débito</button>
+  <button mat-raised-button color="accent">Aproveitamento de crédito</button>
+  <button mat-raised-button>Agrupar prestações</button>
+  <button mat-raised-button (click)="abrirCertidao()">
+    Certidão de quitação
+  </button>
 </div>
