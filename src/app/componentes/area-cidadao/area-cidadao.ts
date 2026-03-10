@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Certidao } from './certidao/certidao';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-area-cidadao',
@@ -25,6 +26,7 @@ import { Certidao } from './certidao/certidao';
     MatPaginatorModule,
     MatCheckboxModule,
     MatDialogModule,
+    RouterLink,
   ],
   templateUrl: './area-cidadao.html',
   styleUrl: './area-cidadao.scss',
