@@ -164,14 +164,11 @@
 </div>
 
 <div class="rodape-botoes">
-  <button mat-raised-button color="primary" [disabled]="!selection.hasValue()">
-    Espelho de débito
-  </button>
+  <button mat-raised-button color="primary">Espelho de débito</button>
 
   <button
     mat-raised-button
     color="accent"
-    [disabled]="!selection.hasValue()"
     (click)="abrirModalAproveitamentoCredito()"
   >
     Aproveitamento de crédito
@@ -185,11 +182,7 @@
     Agrupar prestações
   </button>
 
-  <button
-    mat-raised-button
-    (click)="abrirCertidao()"
-    [disabled]="!selection.hasValue()"
-  >
+  <button mat-raised-button (click)="abrirCertidao()">
     Certidão de quitação
   </button>
 </div>
