@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MOCK_BENEFICIARIOS } from '../../mock/MOCK_BENEFICIATIO';
@@ -10,9 +16,17 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { Certidao } from './certidao/certidao';
 import { RouterLink } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
+import { AgruparPrestacoes } from '../lista/lista-boleto/modal/consultar-divida/agrupar-prestacoes/agrupar-prestacoes';
+import { AproveitamentoDeCredito } from '../lista/lista-boleto/modal/aproveitamento-de-credito/aproveitamento-de-credito';
+import { Debito } from '../lista/lista-boleto/modal/consultar-divida/consultar-divida';
 
 @Component({
   selector: 'app-area-cidadao',
@@ -27,13 +41,14 @@ import { RouterLink } from '@angular/router';
     MatCheckboxModule,
     MatDialogModule,
     RouterLink,
+    MatMenuModule,
   ],
   templateUrl: './area-cidadao.html',
   styleUrl: './area-cidadao.scss',
 })
 export class AreaCidadao implements OnInit, AfterViewInit {
   beneficiario!: Beneficiario;
-
+  debitos: Debito[] = [];
   nome!: string;
   cpf!: string;
   enderecoCobranca!: string;
@@ -92,6 +107,54 @@ export class AreaCidadao implements OnInit, AfterViewInit {
       data: {
         nome: this.nome,
         cpf: this.cpf,
+      },
+    });
+  }
+
+  baixarSegundaVia(debito: Debitos): void {
+    console.log('Baixando 2ª via da prestação:', debito);
+
+    // futura chamada de API ou geração de boleto
+  }
+
+  atualizarPrestacao(debito: Debitos): void {
+    console.log('Atualizando prestação:', debito);
+
+    // futura chamada para recalcular juros/multa
+  }
+
+  agruparPrestacoesSelecionadas(): void {
+    const selecionados = this.selection.selected;
+
+    if (selecionados.length === 0) return;
+
+    this.dialog.open(AgruparPrestacoes, {
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'detalhar-divida-modal',
+      data: {
+        debitos: selecionados,
+        origem: 'consultarDivida',
+        quantidadePrestacoes: selecionados.length,
+      },
+      disableClose: false,
+    });
+  }
+
+  abrirModalAproveitamentoCredito(): void {
+    const debito = this.selection.selected[0];
+
+    this.dialog.open(AproveitamentoDeCredito, {
+      width: '90vw',
+      maxWidth: '1200px',
+      disableClose: false,
+      autoFocus: false,
+      data: {
+        titular: this.beneficiario.titular,
+        debitos: this.beneficiario.debitos,
+        debitoSelecionado: debito,
       },
     });
   }

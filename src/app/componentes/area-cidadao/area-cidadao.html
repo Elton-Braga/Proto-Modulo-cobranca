@@ -127,10 +127,27 @@
     <!-- Ação -->
     <ng-container matColumnDef="acao">
       <th mat-header-cell *matHeaderCellDef>Ação</th>
+
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button>
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menuAcoes"
+          (click)="$event.stopPropagation()"
+        >
           <mat-icon>more_vert</mat-icon>
         </button>
+
+        <mat-menu #menuAcoes="matMenu">
+          <button mat-menu-item (click)="baixarSegundaVia(element)">
+            <mat-icon>download</mat-icon>
+            <span>Baixar 2ª via</span>
+          </button>
+
+          <button mat-menu-item (click)="atualizarPrestacao(element)">
+            <mat-icon>update</mat-icon>
+            <span>Atualizar prestação</span>
+          </button>
+        </mat-menu>
       </td>
     </ng-container>
 
@@ -147,10 +164,32 @@
 </div>
 
 <div class="rodape-botoes">
-  <button mat-raised-button color="primary">Espelho de débito</button>
-  <button mat-raised-button color="accent">Aproveitamento de crédito</button>
-  <button mat-raised-button>Agrupar prestações</button>
-  <button mat-raised-button (click)="abrirCertidao()">
+  <button mat-raised-button color="primary" [disabled]="!selection.hasValue()">
+    Espelho de débito
+  </button>
+
+  <button
+    mat-raised-button
+    color="accent"
+    [disabled]="!selection.hasValue()"
+    (click)="abrirModalAproveitamentoCredito()"
+  >
+    Aproveitamento de crédito
+  </button>
+
+  <button
+    mat-raised-button
+    [disabled]="!selection.hasValue()"
+    (click)="agruparPrestacoesSelecionadas()"
+  >
+    Agrupar prestações
+  </button>
+
+  <button
+    mat-raised-button
+    (click)="abrirCertidao()"
+    [disabled]="!selection.hasValue()"
+  >
     Certidão de quitação
   </button>
 </div>
