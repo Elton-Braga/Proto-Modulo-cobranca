@@ -27,6 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AgruparPrestacoes } from '../lista/lista-boleto/modal/consultar-divida/agrupar-prestacoes/agrupar-prestacoes';
 import { AproveitamentoDeCredito } from '../lista/lista-boleto/modal/aproveitamento-de-credito/aproveitamento-de-credito';
 import { Debito } from '../lista/lista-boleto/modal/consultar-divida/consultar-divida';
+import { EspelhoDivida } from './espelho-divida/espelho-divida';
 
 @Component({
   selector: 'app-area-cidadao',
@@ -182,5 +183,23 @@ export class AreaCidadao implements OnInit, AfterViewInit {
       (total, debito) => total + (debito.saldoDevedor || 0),
       0,
     );
+  }
+
+  abrirEspelhoDivida(): void {
+    const selecionados = this.selection.selected;
+
+    if (selecionados.length === 0) return;
+
+    this.dialog.open(EspelhoDivida, {
+      width: '90vw',
+      maxWidth: '1200px',
+      disableClose: false,
+      data: {
+        nome: this.nome,
+        cpf: this.cpf,
+        endereco: this.enderecoCobranca,
+        debitos: selecionados,
+      },
+    });
   }
 }

@@ -1,0 +1,99 @@
+<div class="principal">
+  <h2>Espelho da dívida</h2>
+
+  <p><strong>Nome:</strong> {{ nome }}</p>
+  <p><strong>CPF:</strong> {{ cpf }}</p>
+  <p><strong>Endereço:</strong> {{ endereco }}</p>
+  <table mat-table [dataSource]="dadosIdentificacao">
+    <ng-container matColumnDef="receita">
+      <th mat-header-cell *matHeaderCellDef>Receita</th>
+      <td mat-cell *matCellDef="let element">{{ element.receita }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dataOrigem">
+      <th mat-header-cell *matHeaderCellDef>Data de origem</th>
+      <td mat-cell *matCellDef="let element">{{ element.dataOrigem }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="valorOriginal">
+      <th mat-header-cell *matHeaderCellDef>Valor original</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.valorOriginal | number: "1.2-2" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="saldoDevedor">
+      <th mat-header-cell *matHeaderCellDef>Saldo devedor</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.saldoDevedor | number: "1.2-2" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantidadePrestacoes">
+      <th mat-header-cell *matHeaderCellDef>Qtd. prestações</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.quantidadePrestacoes }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="situacao">
+      <th mat-header-cell *matHeaderCellDef>Situação</th>
+      <td mat-cell *matCellDef="let element">{{ element.situacao }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsIdentificacao"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumnsIdentificacao"
+    ></tr>
+  </table>
+  <h3>Parcelas</h3>
+
+  <table mat-table [dataSource]="debitos">
+    <ng-container matColumnDef="parcela">
+      <th mat-header-cell *matHeaderCellDef>Parcela</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.numeroDaPrestacao }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="pagamento">
+      <th mat-header-cell *matHeaderCellDef>Pagamento</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dataParaPagamento }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="vencimento">
+      <th mat-header-cell *matHeaderCellDef>Vencimento</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.vencimentoOriginal }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valorOriginal">
+      <th mat-header-cell *matHeaderCellDef>Valor original</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.valorPrincipal | number: "1.2-2" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valorAtualizado">
+      <th mat-header-cell *matHeaderCellDef>Valor atualizado</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.valorTotalPrestacao | number: "1.2-2" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="situacao">
+      <th mat-header-cell *matHeaderCellDef>Situação</th>
+      <td mat-cell *matCellDef="let element">{{ element.situacao }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsParcelas"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsParcelas"></tr>
+  </table>
+</div>
+<div style="margin-top: 20px; text-align: right; margin-button: 20px">
+  <button mat-raised-button color="primary" (click)="fechar()">Fechar</button>
+</div>
