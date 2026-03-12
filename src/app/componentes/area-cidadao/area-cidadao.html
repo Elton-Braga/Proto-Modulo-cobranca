@@ -53,6 +53,25 @@
     </mat-expansion-panel>
   </mat-accordion>
 </div>
+<div class="rodape-botoes">
+  <button mat-raised-button color="primary">Espelho de débito</button>
+
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="abrirModalAproveitamentoCredito()"
+  >
+    Aproveitamento de crédito
+  </button>
+
+  <button
+    mat-raised-button
+    [disabled]="!selection.hasValue()"
+    (click)="agruparPrestacoesSelecionadas()"
+  >
+    Agrupar prestações
+  </button>
+</div>
 <div class="tabela">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 tabela">
     <!-- Seleção -->
@@ -162,27 +181,9 @@
   >
   </mat-paginator>
 </div>
-
 <div class="rodape-botoes">
-  <button mat-raised-button color="primary">Espelho de débito</button>
-
-  <button
-    mat-raised-button
-    color="accent"
-    (click)="abrirModalAproveitamentoCredito()"
-  >
-    Aproveitamento de crédito
-  </button>
-
-  <button
-    mat-raised-button
-    [disabled]="!selection.hasValue()"
-    (click)="agruparPrestacoesSelecionadas()"
-  >
-    Agrupar prestações
-  </button>
-
   <button mat-raised-button (click)="abrirCertidao()">
     Certidão de quitação
   </button>
+  <br />
 </div>
