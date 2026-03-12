@@ -42,7 +42,20 @@ th {
 }
 .rodape-botoes {
   width: 70%;
-  margin-top: 5rem;
+  margin-top: 1rem;
   display: flex;
-  gap: 15px;
+  gap: 1rem;
+}
+
+.botoes {
+  width: 70%;
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+.texto {
+  width: 70%;
+  margin-top: 1rem;
+  display: block;
+  gap: 1rem;
 }

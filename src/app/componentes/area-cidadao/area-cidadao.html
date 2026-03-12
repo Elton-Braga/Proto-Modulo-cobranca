@@ -53,7 +53,7 @@
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-<div class="rodape-botoes">
+<div class="botoes">
   <button mat-raised-button color="primary">Espelho de débito</button>
 
   <button
@@ -181,6 +181,17 @@
   >
   </mat-paginator>
 </div>
+<p class="texto"><strong>Receita:</strong> {{ receitaSelecionada }}</p>
+
+<p class="texto">
+  <strong>Valor total:</strong>
+  {{ valorTotalSelecionado | number: "1.2-2" }}
+</p>
+
+<p class="texto">
+  <strong>Saldo devedor:</strong>
+  {{ saldoDevedorSelecionado | number: "1.2-2" }}
+</p>
 <div class="rodape-botoes">
   <button mat-raised-button (click)="abrirCertidao()">
     Certidão de quitação

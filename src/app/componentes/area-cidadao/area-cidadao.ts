@@ -158,4 +158,29 @@ export class AreaCidadao implements OnInit, AfterViewInit {
       },
     });
   }
+
+  get receitaSelecionada(): string {
+    const selecionados = this.selection.selected;
+
+    if (selecionados.length === 0) return '';
+
+    // se todos tiverem a mesma receita mostra o nome
+    const receitas = [...new Set(selecionados.map((d) => d.descricaoReceita))];
+
+    return receitas.length === 1 ? receitas[0] : 'Receitas diversas';
+  }
+
+  get valorTotalSelecionado(): number {
+    return this.selection.selected.reduce(
+      (total, debito) => total + (debito.valorTotalPrestacao || 0),
+      0,
+    );
+  }
+
+  get saldoDevedorSelecionado(): number {
+    return this.selection.selected.reduce(
+      (total, debito) => total + (debito.saldoDevedor || 0),
+      0,
+    );
+  }
 }
