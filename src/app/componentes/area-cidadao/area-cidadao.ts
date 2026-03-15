@@ -202,4 +202,27 @@ export class AreaCidadao implements OnInit, AfterViewInit {
       },
     });
   }
+  existeDebitoQuitadoSelecionado(): boolean {
+    return this.selection.selected.some(
+      (debito) => debito.situacao?.toLowerCase() === 'quitado',
+    );
+  }
+
+  existeDebitoEmAbertoSelecionado(): boolean {
+    return this.selection.selected.some(
+      (debito) => debito.situacao?.toLowerCase() === 'em aberto',
+    );
+  }
+
+  get valorTotalQuitadoSelecionado(): number {
+    return this.selection.selected
+      .filter((debito) => debito.situacao?.toLowerCase() === 'quitado')
+      .reduce((total, debito) => total + (debito.valorTotalPrestacao || 0), 0);
+  }
+
+  get saldoDevedorQuitadoSelecionado(): number {
+    return this.selection.selected
+      .filter((debito) => debito.situacao?.toLowerCase() === 'quitado')
+      .reduce((total, debito) => total + (debito.saldoDevedor || 0), 0);
+  }
 }

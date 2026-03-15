@@ -1,0 +1,45 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.modal-container {
+  background: #ffffff;
+  color: #000000;
+  width: 900px;
+  max-width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  z-index: 1060;
+}
+
+.assinatura-box {
+  background: #ffffff;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 20px;
+}
+
+.assinatura-box h3,
+.assinatura-box p,
+.assinatura-box strong,
+.assinatura-box hr {
+  color: #000000;
+}
+
+.acoes {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}

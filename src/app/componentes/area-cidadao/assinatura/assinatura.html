@@ -1,0 +1,80 @@
+<div class="assinatura-box">
+  <h3>NOTIFICAÇÃO PESSOAL</h3>
+
+  <p>
+    <strong>Notificante:</strong> Instituto Nacional de Colonização e Reforma
+    Agrária - Incra
+  </p>
+
+  <p>
+    <strong>Endereço:</strong>
+    {{ endereco.logradouro }}, {{ endereco.numero }}, {{ endereco.bairro }},
+    {{ endereco.municipio }} - {{ endereco.estado }}
+  </p>
+
+  <p><strong>Telefone:</strong> {{ titular.telefone }}</p>
+
+  <p><strong>CEP:</strong> {{ endereco.cep || "---" }}</p>
+
+  <p>
+    <strong>Notificado (1):</strong> {{ titular.nome }} / CPF: {{ titular.cpf }}
+  </p>
+
+  <p>
+    <strong>Notificado (2):</strong> {{ conjuge.nome }} / CPF: {{ conjuge.cpf }}
+  </p>
+
+  <p>
+    <strong>Código do Beneficiário:</strong>
+    {{ titular.cod_beneficiario }}
+  </p>
+
+  <p>
+    <strong>Projeto de Assentamento:</strong>
+    {{ projeto.nomeProjeto }}
+  </p>
+
+  <p>
+    <strong>Lote:</strong>
+    {{ projeto.numeroLote }}
+  </p>
+
+  <p>
+    <strong>Município:</strong>
+    {{ endereco.municipio }}/{{ endereco.estado }}
+  </p>
+
+  <p>
+    <strong>Processo Incra nº:</strong>
+    {{ titular.numero_processo }}
+  </p>
+
+  <hr />
+
+  <p>
+    O Instituto Nacional de Colonização e Reforma Agrária - Incra, por meio da
+    Superintendência Regional, notifica V.Sa. de irregularidade na aplicação do
+    crédito de instalação.
+  </p>
+
+  <p>
+    Tal enquadramento ocorreu porque V.Sa. não executou adequadamente o projeto
+    básico produtivo.
+  </p>
+
+  <p>
+    Deve proceder, no prazo de 60 dias, ao ressarcimento integral do crédito.
+  </p>
+
+  <p>O não pagamento ensejará inscrição em dívida ativa do Incra.</p>
+
+  <br />
+
+  <p><strong>Representante do Incra (assinatura digital)</strong></p>
+
+  <div class="acoes">
+    <button class="btn btn-secondary" (click)="fecharModal()">Fechar</button>
+
+    <button class="btn btn-primary" routerLink="/cidadania">Assinar</button>
+  </div>
+</div>

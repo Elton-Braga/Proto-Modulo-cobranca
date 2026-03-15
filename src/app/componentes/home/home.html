@@ -11,10 +11,16 @@
     <button
       type="button"
       class="btn btn-primary rounded-pill px-4 py-2"
-      routerLink="/cidadania"
+      (click)="abrirAssinatura()"
     >
       Módulo de Cidadania
     </button>
+
+    <div class="modal-backdrop" *ngIf="abrirModal">
+      <div class="modal-container">
+        <app-assinatura (fechar)="fecharModal()"></app-assinatura>
+      </div>
+    </div>
     <br />
     <br />
     <br />

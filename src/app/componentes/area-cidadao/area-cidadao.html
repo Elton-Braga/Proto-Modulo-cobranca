@@ -53,8 +53,24 @@
     </mat-expansion-panel>
   </mat-accordion>
 </div>
+<p class="texto"><strong>Receita:</strong> {{ receitaSelecionada }}</p>
+
+<p class="texto">
+  <strong>Valor total:</strong>
+  {{ valorTotalSelecionado | number: "1.2-2" }}
+</p>
+
+<p class="texto">
+  <strong>Saldo devedor:</strong>
+  {{ saldoDevedorSelecionado | number: "1.2-2" }}
+</p>
 <div class="botoes">
-  <button mat-raised-button color="primary" (click)="abrirEspelhoDivida()">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="abrirEspelhoDivida()"
+    [disabled]="!existeDebitoEmAbertoSelecionado()"
+  >
     Espelho de débito
   </button>
 
@@ -183,19 +199,21 @@
   >
   </mat-paginator>
 </div>
-<p class="texto"><strong>Receita:</strong> {{ receitaSelecionada }}</p>
-
 <p class="texto">
   <strong>Valor total:</strong>
-  {{ valorTotalSelecionado | number: "1.2-2" }}
+  {{ valorTotalQuitadoSelecionado | number: "1.2-2" }}
 </p>
 
 <p class="texto">
   <strong>Saldo devedor:</strong>
-  {{ saldoDevedorSelecionado | number: "1.2-2" }}
+  {{ saldoDevedorQuitadoSelecionado | number: "1.2-2" }}
 </p>
 <div class="rodape-botoes">
-  <button mat-raised-button (click)="abrirCertidao()">
+  <button
+    mat-raised-button
+    (click)="abrirCertidao()"
+    [disabled]="!existeDebitoQuitadoSelecionado()"
+  >
     Certidão de quitação
   </button>
   <br />
