@@ -79,7 +79,11 @@ export class AreaCidadao implements OnInit, AfterViewInit {
 
     this.enderecoCobranca = `${endereco.logradouro}, ${endereco.numero} - ${endereco.bairro}, ${endereco.municipio} - ${endereco.estado}`;
 
-    this.dataSource.data = this.beneficiario.debitos;
+    this.dataSource.data = this.beneficiario.debitos.filter(
+      (debito) =>
+        debito.descricaoReceita ===
+        'Investimento agrícola para fortalecimento da produção familiar',
+    );
   }
 
   ngAfterViewInit(): void {
@@ -159,7 +163,7 @@ export class AreaCidadao implements OnInit, AfterViewInit {
       },
     });
   }
-
+  /*
   get receitaSelecionada(): string {
     const selecionados = this.selection.selected;
 
@@ -169,6 +173,11 @@ export class AreaCidadao implements OnInit, AfterViewInit {
     const receitas = [...new Set(selecionados.map((d) => d.descricaoReceita))];
 
     return receitas.length === 1 ? receitas[0] : 'Receitas diversas';
+  }*/
+  get receitaSelecionada(): string {
+    if (this.dataSource.data.length === 0) return '';
+
+    return this.dataSource.data[0].descricaoReceita || '';
   }
 
   get valorTotalSelecionado(): number {

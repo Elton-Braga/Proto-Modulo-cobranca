@@ -65,12 +65,7 @@
   {{ saldoDevedorSelecionado | number: "1.2-2" }}
 </p>
 <div class="botoes">
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="abrirEspelhoDivida()"
-    [disabled]="!existeDebitoEmAbertoSelecionado()"
-  >
+  <button mat-raised-button color="primary" (click)="abrirEspelhoDivida()">
     Espelho de débito
   </button>
 
@@ -88,6 +83,14 @@
     (click)="agruparPrestacoesSelecionadas()"
   >
     Agrupar prestações
+  </button>
+
+  <button
+    mat-raised-button
+    (click)="abrirCertidao()"
+    [disabled]="!existeDebitoQuitadoSelecionado()"
+  >
+    Certidão de quitação
   </button>
 </div>
 <div class="tabela">
@@ -209,12 +212,5 @@
   {{ saldoDevedorQuitadoSelecionado | number: "1.2-2" }}
 </p>
 <div class="rodape-botoes">
-  <button
-    mat-raised-button
-    (click)="abrirCertidao()"
-    [disabled]="!existeDebitoQuitadoSelecionado()"
-  >
-    Certidão de quitação
-  </button>
   <br />
 </div>
