@@ -82,7 +82,8 @@ export class AreaCidadao implements OnInit, AfterViewInit {
     this.dataSource.data = this.beneficiario.debitos.filter(
       (debito) =>
         debito.descricaoReceita ===
-        'Investimento agrícola para fortalecimento da produção familiar',
+          'Investimento agrícola para fortalecimento da produção familiar' &&
+        debito.situacao?.toLowerCase() !== 'quitado',
     );
   }
 
