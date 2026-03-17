@@ -7,10 +7,13 @@
     <!-- COLUNA 1 -->
     <ng-container matColumnDef="coluna1">
       <td mat-cell *matCellDef="let row">
-        <p><strong>Nome / Razão Social:</strong> {{ row.nome }}</p>
-        <p><strong>CPF / CNPJ:</strong> {{ row.cpf }}</p>
         <p>
-          <strong>Nº Beneficiário / INCRA:</strong>
+          <strong class="text-primary">Nome / Razão Social:</strong>
+          {{ row.nome }}
+        </p>
+        <p><strong class="text-primary">CPF / CNPJ:</strong> {{ row.cpf }}</p>
+        <p>
+          <strong class="text-primary">Nº Beneficiário / INCRA:</strong>
           {{ row.codBeneficiario }}
         </p>
       </td>
@@ -19,8 +22,8 @@
     <!-- COLUNA 2 -->
     <ng-container matColumnDef="coluna2">
       <td mat-cell *matCellDef="let row">
-        <p><strong>SR:</strong> {{ row.sr }}</p>
-        <p><strong>UF:</strong> {{ row.uf }}</p>
+        <p><strong class="text-primary">SR:</strong> {{ row.sr }}</p>
+        <p><strong class="text-primary">UF:</strong> {{ row.uf }}</p>
       </td>
     </ng-container>
 
@@ -28,11 +31,11 @@
     <ng-container matColumnDef="coluna3">
       <td mat-cell *matCellDef="let row">
         <p>
-          <strong>Saldo Devedor Total:</strong> R$
+          <strong class="text-primary">Saldo Devedor Total:</strong> R$
           {{ formatarValor(row.saldoDevedor) }}
         </p>
         <p>
-          <strong>Saldo de Crédito Disponível:</strong> R$
+          <strong class="text-primary">Saldo de Crédito Disponível:</strong> R$
           {{ formatarValor(totalCreditoDisponivel) }}
         </p>
       </td>
@@ -186,24 +189,24 @@
   </div>
 
   <div class="acoes">
-    <button mat-flat-button color="primary" (click)="salvarAlteracoes()">
+    <button class="btn btn-primary" (click)="salvarAlteracoes()">
       <mat-icon>save</mat-icon>
       Salvar Alterações
     </button>
 
-    <button mat-flat-button color="accent" (click)="imprimir()">
+    <button class="btn btn-primary" (click)="imprimir()">
       <mat-icon>print</mat-icon>
       Imprimir
     </button>
 
-    <button mat-flat-button color="warn" (click)="desfazer()">
+    <button class="btn btn-primary" (click)="desfazer()">
       <mat-icon>undo</mat-icon>
       Desfazer
     </button>
 
     <span class="spacer"></span>
 
-    <button mat-flat-button color="basic" (click)="fechar()">
+    <button class="btn btn-primary" (click)="fechar()">
       <mat-icon>close</mat-icon>
       Fechar
     </button>
