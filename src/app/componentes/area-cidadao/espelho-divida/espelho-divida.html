@@ -4,7 +4,7 @@
   <p><strong>Nome:</strong> {{ nome }}</p>
   <p><strong>CPF:</strong> {{ cpf }}</p>
   <p><strong>Endereço:</strong> {{ endereco }}</p>
-  <table mat-table [dataSource]="dadosIdentificacao">
+  <!--<table mat-table [dataSource]="dadosIdentificacao">
     <ng-container matColumnDef="receita">
       <th mat-header-cell *matHeaderCellDef>Receita</th>
       <td mat-cell *matCellDef="let element">{{ element.receita }}</td>
@@ -46,7 +46,20 @@
       mat-row
       *matRowDef="let row; columns: displayedColumnsIdentificacao"
     ></tr>
-  </table>
+  </table>-->
+  <hr />
+  <p class="texto"><strong>Receita:</strong> {{ receitaSelecionada }}</p>
+
+  <p class="texto">
+    <strong>Valor total:</strong>
+    {{ valorTotalSelecionado | number: "1.2-2" }}
+  </p>
+
+  <p class="texto">
+    <strong>Saldo devedor:</strong>
+    {{ saldoDevedorSelecionado | number: "1.2-2" }}
+  </p>
+  <hr />
   <h3>Parcelas</h3>
 
   <table mat-table [dataSource]="debitos">

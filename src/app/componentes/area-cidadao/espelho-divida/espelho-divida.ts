@@ -58,6 +58,27 @@ export class EspelhoDivida implements OnInit {
       situacao: d.situacao,
     }));
   }
+
+  get receitaSelecionada(): string {
+    if (this.debitos.length === 0) return '';
+
+    return this.debitos[0].descricaoReceita || '';
+  }
+
+  get valorTotalSelecionado(): number {
+    return this.debitos.reduce(
+      (total, debito) => total + (debito.valorTotalPrestacao || 0),
+      0,
+    );
+  }
+
+  get saldoDevedorSelecionado(): number {
+    return this.debitos.reduce(
+      (total, debito) => total + (debito.saldoDevedor || 0),
+      0,
+    );
+  }
+
   fechar(): void {
     this.dialogRef.close();
   }

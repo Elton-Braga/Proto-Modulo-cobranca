@@ -182,19 +182,18 @@ export class AreaCidadao implements OnInit, AfterViewInit {
   }
 
   get valorTotalSelecionado(): number {
-    return this.selection.selected.reduce(
+    return this.dataSource.data.reduce(
       (total, debito) => total + (debito.valorTotalPrestacao || 0),
       0,
     );
   }
 
   get saldoDevedorSelecionado(): number {
-    return this.selection.selected.reduce(
+    return this.dataSource.data.reduce(
       (total, debito) => total + (debito.saldoDevedor || 0),
       0,
     );
   }
-
   abrirEspelhoDivida(): void {
     const receita = this.receitaSelecionada;
 
