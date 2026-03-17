@@ -196,9 +196,11 @@ export class AreaCidadao implements OnInit, AfterViewInit {
   }
 
   abrirEspelhoDivida(): void {
-    const selecionados = this.selection.selected;
+    const receita = this.receitaSelecionada;
 
-    if (selecionados.length === 0) return;
+    const todosDebitosDaReceita = this.beneficiario.debitos.filter(
+      (debito) => debito.descricaoReceita === receita,
+    );
 
     this.dialog.open(EspelhoDivida, {
       width: '90vw',
@@ -208,10 +210,11 @@ export class AreaCidadao implements OnInit, AfterViewInit {
         nome: this.nome,
         cpf: this.cpf,
         endereco: this.enderecoCobranca,
-        debitos: selecionados,
+        debitos: todosDebitosDaReceita,
       },
     });
   }
+
   existeDebitoQuitadoSelecionado(): boolean {
     return this.selection.selected.some(
       (debito) => debito.situacao?.toLowerCase() === 'quitado',
