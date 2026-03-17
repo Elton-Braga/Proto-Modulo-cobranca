@@ -46,7 +46,28 @@ th {
   display: flex;
   gap: 1rem;
 }
+.btn-govbr {
+  background-color: #1351b4 !important;
+  color: white !important;
+  border-radius: 6px;
+  min-width: 200px;
+  height: 44px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+  box-shadow: none !important;
+  padding: 0 20px;
+}
 
+.btn-govbr:hover {
+  background-color: #0c3d91 !important;
+  transition: 0.2s ease-in-out;
+}
+
+.btn-govbr:disabled {
+  background-color: #9bb8e8 !important;
+  color: white !important;
+}
 .botoes {
   width: 70%;
   margin-top: 2rem;

@@ -27,7 +27,7 @@
 <div class="principal">
   <div class="row">
     <div class="titulo col-12">
-      <h1>Módulo do cidadão</h1>
+      <h1 class="text-primary">Módulo do cidadão</h1>
     </div>
 
     <div class="titulo col-12">
@@ -71,7 +71,7 @@
   </button>-->
 
   <button
-    mat-raised-button
+    class="btn btn-primary"
     color="accent"
     (click)="abrirModalAproveitamentoCredito()"
   >
@@ -79,7 +79,7 @@
   </button>
 
   <button
-    mat-raised-button
+    class="btn btn-primary"
     [disabled]="!selection.hasValue()"
     (click)="agruparPrestacoesSelecionadas()"
   >
@@ -87,7 +87,7 @@
   </button>
 
   <button
-    mat-raised-button
+    class="btn btn-primary"
     (click)="abrirCertidao()"
     [disabled]="!existeDebitoQuitadoSelecionado()"
   >
@@ -215,7 +215,8 @@
 </p>-->
 
 <div class="botoes">
-  <button mat-raised-button color="primary" (click)="abrirEspelhoDivida()">
+  <button class="btn btn-primary" (click)="abrirEspelhoDivida()">
     Espelho de débito
   </button>
+  <br />
 </div>
