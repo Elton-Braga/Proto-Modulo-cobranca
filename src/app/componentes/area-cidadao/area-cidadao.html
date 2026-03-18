@@ -26,8 +26,20 @@
 
 <div class="principal">
   <div class="row">
-    <div class="titulo col-12">
+    <div class="titulo col-10">
       <h1 class="text-primary">Módulo do cidadão</h1>
+    </div>
+    <div class="col-2">
+      <section>
+        <mat-button-toggle-group
+          [(ngModel)]="fontStyle"
+          (change)="filtrarPorSituacao()"
+          aria-label="Filtro de situação"
+        >
+          <mat-button-toggle value="quitado">Quitado</mat-button-toggle>
+          <mat-button-toggle value="em atraso">Em atraso</mat-button-toggle>
+        </mat-button-toggle-group>
+      </section>
     </div>
 
     <div class="titulo col-12">
@@ -36,7 +48,7 @@
       {{ enderecoCobranca }}
     </div>
   </div>
-
+  <!--
   <mat-accordion class="menu-acordeon">
     <mat-expansion-panel
       [expanded]="true"
@@ -48,10 +60,10 @@
       </mat-expansion-panel-header>
 
       <form class="row">
-        <!-- Campos serão adicionados aqui -->
+        
       </form>
     </mat-expansion-panel>
-  </mat-accordion>
+  </mat-accordion>-->
 </div>
 <p class="texto"><strong>Receita:</strong> {{ receitaSelecionada }}</p>
 
@@ -65,12 +77,8 @@
   {{ saldoDevedorSelecionado | number: "1.2-2" }}
 </p>
 <div class="botoes">
-  <!--
-  <button mat-raised-button color="primary" (click)="abrirEspelhoDivida()">
-    Espelho de débito
-  </button>-->
-
   <button
+    *ngIf="fontStyle !== 'quitado'"
     class="btn btn-primary"
     color="accent"
     (click)="abrirModalAproveitamentoCredito()"
@@ -79,6 +87,7 @@
   </button>
 
   <button
+    *ngIf="fontStyle !== 'quitado'"
     class="btn btn-primary"
     [disabled]="!selection.hasValue()"
     (click)="agruparPrestacoesSelecionadas()"
@@ -86,10 +95,14 @@
     Agrupar prestações
   </button>
 
+  <button class="btn btn-primary" (click)="abrirEspelhoDivida()">
+    Espelho de débito
+  </button>
+
   <button
+    *ngIf="fontStyle === 'quitado'"
     class="btn btn-primary"
     (click)="abrirCertidao()"
-    [disabled]="!existeDebitoQuitadoSelecionado()"
   >
     Certidão de quitação
   </button>
@@ -204,19 +217,10 @@
   </mat-paginator>
 </div>
 <!--
-<p class="texto">
-  <strong>Valor total:</strong>
-  {{ valorTotalQuitadoSelecionado | number: "1.2-2" }}
-</p>
 
-<p class="texto">
-  <strong>Saldo devedor:</strong>
-  {{ saldoDevedorQuitadoSelecionado | number: "1.2-2" }}
-</p>-->
 
-<div class="botoes">
+<div class="botoes" *ngIf="fontStyle === 'quitado'">
   <button class="btn btn-primary" (click)="abrirEspelhoDivida()">
     Espelho de débito
   </button>
-  <br />
-</div>
+</div>-->

@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   Inject,
   OnInit,
@@ -10,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MOCK_BENEFICIARIOS } from '../../mock/MOCK_BENEFICIATIO';
 import { Beneficiario } from '../../mock/beneficiario';
 import { Debitos } from '../../mock/debitos';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -28,6 +29,8 @@ import { AgruparPrestacoes } from '../lista/lista-boleto/modal/consultar-divida/
 import { AproveitamentoDeCredito } from '../lista/lista-boleto/modal/aproveitamento-de-credito/aproveitamento-de-credito';
 import { Debito } from '../lista/lista-boleto/modal/consultar-divida/consultar-divida';
 import { EspelhoDivida } from './espelho-divida/espelho-divida';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-area-cidadao',
@@ -43,11 +46,18 @@ import { EspelhoDivida } from './espelho-divida/espelho-divida';
     MatDialogModule,
     RouterLink,
     MatMenuModule,
+    MatButtonToggleModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgIf,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './area-cidadao.html',
   styleUrl: './area-cidadao.scss',
 })
 export class AreaCidadao implements OnInit, AfterViewInit {
+  fontStyleControl = new FormControl('');
+  fontStyle?: string;
   beneficiario!: Beneficiario;
   debitos: Debito[] = [];
   nome!: string;
@@ -79,12 +89,15 @@ export class AreaCidadao implements OnInit, AfterViewInit {
 
     this.enderecoCobranca = `${endereco.logradouro}, ${endereco.numero} - ${endereco.bairro}, ${endereco.municipio} - ${endereco.estado}`;
 
+    this.fontStyle = 'em atraso';
+    this.filtrarPorSituacao();
+    /*
     this.dataSource.data = this.beneficiario.debitos.filter(
       (debito) =>
         debito.descricaoReceita ===
           'Investimento agrícola para fortalecimento da produção familiar' &&
         debito.situacao?.toLowerCase() !== 'quitado',
-    );
+    );*/
   }
 
   ngAfterViewInit(): void {
@@ -236,5 +249,28 @@ export class AreaCidadao implements OnInit, AfterViewInit {
     return this.selection.selected
       .filter((debito) => debito.situacao?.toLowerCase() === 'quitado')
       .reduce((total, debito) => total + (debito.saldoDevedor || 0), 0);
+  }
+
+  filtrarPorSituacao(): void {
+    const receita =
+      'Investimento agrícola para fortalecimento da produção familiar';
+
+    if (this.fontStyle === 'quitado') {
+      this.dataSource.data = this.beneficiario.debitos.filter(
+        (debito) =>
+          debito.descricaoReceita === receita &&
+          debito.situacao?.toLowerCase() === 'quitado',
+      );
+    }
+
+    if (this.fontStyle === 'em atraso') {
+      this.dataSource.data = this.beneficiario.debitos.filter(
+        (debito) =>
+          debito.descricaoReceita === receita &&
+          debito.situacao?.toLowerCase() === 'em atraso',
+      );
+    }
+
+    this.selection.clear();
   }
 }
