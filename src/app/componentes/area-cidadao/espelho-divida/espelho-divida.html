@@ -107,6 +107,15 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumnsParcelas"></tr>
   </table>
 </div>
-<div style="margin-top: 20px; text-align: right; margin-button: 20px">
+<div class="botoes-acoes">
   <button mat-raised-button color="primary" (click)="fechar()">Fechar</button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="d-flex align-items-center gap-1"
+  >
+    <mat-icon>print</mat-icon>
+    Imprimir
+  </button>
 </div>
