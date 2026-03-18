@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-certidao',
-  imports: [DatePipe],
+  standalone: true,
+  imports: [DatePipe, MatIconModule],
   templateUrl: './certidao.html',
   styleUrl: './certidao.scss',
 })

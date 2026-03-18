@@ -65,6 +65,11 @@
     </mat-expansion-panel>
   </mat-accordion>-->
 </div>
+<div class="botoes">
+  <button class="btn btn-primary" (click)="abrirEspelhoDivida()">
+    Espelho de débito
+  </button>
+</div>
 <p class="texto"><strong>Receita:</strong> {{ receitaSelecionada }}</p>
 
 <p class="texto">
@@ -94,10 +99,10 @@
   >
     Agrupar prestações
   </button>
-
+  <!--
   <button class="btn btn-primary" (click)="abrirEspelhoDivida()">
     Espelho de débito
-  </button>
+  </button>-->
 
   <button
     *ngIf="fontStyle === 'quitado'"

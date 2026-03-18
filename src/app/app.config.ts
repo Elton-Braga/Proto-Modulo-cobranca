@@ -1,10 +1,12 @@
 import {
   ApplicationConfig,
+  LOCALE_ID,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
+
 import { provideRouter, withHashLocation } from '@angular/router';
-import { provideAnimations } from '@angular/platform-browser/animations'; // ✅ Import adicionado
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -12,6 +14,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withHashLocation()),
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideAnimations(), // ✅ Habilita as animações em toda a aplicação
+    provideAnimations(),
+
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR',
+    },
   ],
 };
