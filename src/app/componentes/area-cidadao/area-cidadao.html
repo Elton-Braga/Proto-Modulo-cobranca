@@ -66,7 +66,7 @@
   </mat-accordion>-->
 </div>
 <div class="botoes">
-  <button class="btn btn-primary" (click)="abrirEspelhoDivida()">
+  <button class="btn btn-primary rounded-pill" (click)="abrirEspelhoDivida()">
     <mat-icon>receipt_long</mat-icon>
     Espelho de débito
   </button>
@@ -94,7 +94,7 @@
 
   <button
     *ngIf="fontStyle !== 'quitado'"
-    class="btn btn-primary"
+    class="btn btn-primary rounded-pill"
     [disabled]="!selection.hasValue()"
     (click)="agruparPrestacoesSelecionadas()"
   >
